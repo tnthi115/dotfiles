@@ -146,3 +146,9 @@ fi
 # conda deactivate
 # neofetch
 colorscript random
+
+# Add cargo to path
+export PATH="$PATH:/home/user/.cargo/bin"
+
+# Add lvim to path
+export PATH="$PATH:/home/user/.local/bin/"
