@@ -127,7 +127,7 @@ lvim.colorscheme = "gruvbox-material"
 -- })
 -- lvim.colorscheme = "rose-pine"
 
--- VIM SETS -- 
+-- VIM SETS --
 vim.opt.background = "dark"
 vim.opt.backup = false -- creates a backup file
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
@@ -242,12 +242,12 @@ lvim.builtin.which_key.mappings["m"] = {
 }
 -- Terminal
 lvim.builtin.which_key.mappings["t"] = {
-    name = "+Terminal",
-    t = { "<cmd>ToggleTerm<CR>", "Toggle" },
-    f = { "<cmd>ToggleTerm direction=float<CR>", "Float" },
-    v = { "<cmd>ToggleTerm direction=vertical size=50<CR>", "Vertical" },
-    h = { "<cmd>ToggleTerm direction=horizontal<CR>", "Horizontal" },
-    T = { "<cmd>ToggleTerm direction=tab<CR>", "Tab" },
+  name = "+Terminal",
+  t = { "<cmd>ToggleTerm<CR>", "Toggle" },
+  f = { "<cmd>ToggleTerm direction=float<CR>", "Float" },
+  v = { "<cmd>ToggleTerm direction=vertical size=50<CR>", "Vertical" },
+  h = { "<cmd>ToggleTerm direction=horizontal<CR>", "Horizontal" },
+  T = { "<cmd>ToggleTerm direction=tab<CR>", "Tab" },
 }
 -- Bufferline
 lvim.builtin.which_key.mappings[","] = {
@@ -393,8 +393,8 @@ lvim.plugins = {
     setup = function()
       vim.g.indentLine_enabled = 1
       vim.g.indent_blankline_char = "▏"
-      vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
-      vim.g.indent_blankline_buftype_exclude = {"terminal"}
+      vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
+      vim.g.indent_blankline_buftype_exclude = { "terminal" }
       vim.g.indent_blankline_show_trailing_blankline_indent = false
       vim.g.indent_blankline_show_first_indent_level = false
     end
