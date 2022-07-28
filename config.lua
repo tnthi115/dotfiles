@@ -22,6 +22,22 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
+
+-- Lualine
+-- local components = require("lvim.core.lualine.components")
+-- lvim.builtin.lualine.sections.lualine_a = { "mode" }
+-- lvim.builtin.lualine.inactive_sections.lualine_x = { components.scrollbar }
+-- lvim.builtin.lualine.options.component_separators =  { left = "", right = "" }
+-- lvim.builtin.lualine.options.section_separators = { left = "" }
+-- lvim.builtin.lualine.sections.lualine_y = {
+--   components.spaces,
+--   components.location
+-- }
+-- lvim.builtin.lualine.sections.lualine_z = {
+--   components.scrollbar,
+--   components.location
+-- }
+lvim.builtin.lualine.style = "lvim"
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "tokyonight"
 -- lvim.colorscheme = "vscode"
