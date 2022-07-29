@@ -21,7 +21,7 @@ an executable
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = false
+lvim.format_on_save = true
 
 -- Lualine
 -- local components = require("lvim.core.lualine.components")
@@ -57,19 +57,19 @@ vim.g.gruvbox_material_diagnostic_line_highlight = 1
 -- vim.api.nvim_set_hl(0, "WhichKeyFloat", {fg = "#32302f", bg = "#32302f"})
 -- vim.api.nvim_set_hl(0, "FloatBorder", {bg = "#32302f"})
 -- lvim.builtin.which_key.setup.window.border = "single" -- none, single, double, shadow
--- change in gruvbox-material.vim
--- call gruvbox_material#highlight('NormalFloat', s:palette.fg1, s:palette.bg1)
+-- change in /home/user/.local/lunarvim/site/pack/packer/start/gruvbox-material/gruvbox-material.vim
+-- call gruvbox_material#highlight('NormalFloat', s:palette.fg1, s:palette.bg0)
 -- call gruvbox_material#highlight('FloatBorder', s:palette.grey1, s:palette.bg0)
 -- bufferline color adjustment
 lvim.builtin.bufferline.highlights = { background = {
-                                         gui = "italic",
-                                       },
-                                       buffer_selected = {
-                                         gui = "bold",
-                                       },
-                                       fill = {
-                                       },
-                                     }
+  gui = "italic",
+},
+  buffer_selected = {
+    gui = "bold",
+  },
+  fill = {
+  },
+}
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#2F343F"
 -- lualine inactive color for gruvbox_material colorscheme
 lvim.builtin.bufferline.highlights.fill.guibg = "#32302f"
@@ -331,21 +331,25 @@ lvim.builtin.bufferline.options.offsets[2] = nil
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
--- -- set a formatter, this will override the language server formatting capabilities (if it exists)
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
---   { command = "black", filetypes = { "python" } },
---   { command = "isort", filetypes = { "python" } },
---   -- {
---   --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---   --   command = "prettier",
---   --   ---@usage arguments to pass to the formatter
---   --   -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---   --   extra_args = { "--print-with", "100" },
---   --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---   --   filetypes = { "typescript", "typescriptreact" },
---   -- },
--- }
+-- set a formatter, this will override the language server formatting capabilities (if it exists)
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  -- need to "pip install black"
+  -- { command = "black", filetypes = { "python" } },
+  -- { name = "black" },
+  -- need to "pip install yapf"
+  -- { command = "yapf", filetypes = { "python" } },
+  { command = "isort", filetypes = { "python" } },
+  -- {
+  --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+  --   command = "prettier",
+  --   ---@usage arguments to pass to the formatter
+  --   -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+  --   extra_args = { "--print-with", "100" },
+  --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+  --   filetypes = { "typescript", "typescriptreact" },
+  -- },
+}
 
 -- set additional linters --
 local linters = require "lvim.lsp.null-ls.linters"
@@ -415,7 +419,9 @@ lvim.plugins = {
       vim.g.indent_blankline_show_first_indent_level = false
     end
   },
-  "ray-x/lsp_signature.nvim",
+  { "ray-x/lsp_signature.nvim" },
+  -- { "norcalli/nvim-colorizer.lua" },
+  { "nacro90/numb.nvim" },
 }
 
 -- Configure markdown-preview
@@ -423,7 +429,6 @@ vim.g.mkdp_browser = "/snap/bin/firefox"
 vim.g.mkdp_theme = "dark"
 
 -- Configure lsp_signature
-
 local cfg = {
   debug = false, -- set to true to enable debug logging
   log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
@@ -431,11 +436,11 @@ local cfg = {
   verbose = false, -- show debug line number
 
   bind = true, -- This is mandatory, otherwise border config won't get registered.
-               -- If you want to hook lspsaga or other signature handler, pls set to false
+  -- If you want to hook lspsaga or other signature handler, pls set to false
   doc_lines = 10, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
-                 -- set to 0 if you DO NOT want any API comments be shown
-                 -- This setting only take effect in insert mode, it does not affect signature help in normal
-                 -- mode, 10 by default
+  -- set to 0 if you DO NOT want any API comments be shown
+  -- This setting only take effect in insert mode, it does not affect signature help in normal
+  -- mode, 10 by default
 
   max_height = 12, -- max height of signature floating_window
   max_width = 80, -- max_width of signature floating_window
@@ -450,13 +455,13 @@ local cfg = {
   floating_window_off_y = 0, -- adjust float windows y position. e.g -2 move window up 2 lines; 2 move down 2 lines
 
   close_timeout = 4000, -- close floating window after ms when laster parameter is entered
-  fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
+  fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
   hint_enable = true, -- virtual hint enable
-  hint_prefix = "🐼 ",  -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
+  hint_prefix = "🐼 ", -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
   hint_scheme = "String",
   hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
   handler_opts = {
-    border = "rounded"   -- double, rounded, single, shadow, none
+    border = "rounded" -- double, rounded, single, shadow, none
   },
 
   always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
@@ -478,12 +483,20 @@ local cfg = {
 }
 
 -- recommended:
-require'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use toggle_key
+require 'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use toggle_key
 
 -- You can also do this inside lsp on_attach
 -- note: on_attach deprecated
 -- require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
-require'lsp_signature'.on_attach(cfg) -- no need to specify bufnr if you don't use toggle_key
+require 'lsp_signature'.on_attach(cfg) -- no need to specify bufnr if you don't use toggle_key
+
+-- Configure numb
+require('numb').setup {
+  show_numbers = true, -- Enable 'number' for the window while peeking
+  show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+  number_only = false, -- Peek only when the command is only a number instead of when it starts with a number
+  centered_peeking = true, -- Peeked line will be centered relative to window
+}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
