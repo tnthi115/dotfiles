@@ -47,13 +47,15 @@ lvim.builtin.lualine.style = "lvim"
 -- COLORSCHEME --
 -- gruvbox-material
 vim.g.gruvbox_material_background = "medium" -- hard, medium, soft
-vim.g.gruvbox_material_foreground = "material" -- material, mix, original
+vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
 vim.g.gruvbox_material_visual = "blue background"
 vim.g.gruvbox_material_menu_selection_background = "blue"
 vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_statusline_style = "default"
 vim.g.gruvbox_material_diagnostic_line_highlight = 1
+-- vim.cmd([[highlight lualine_x_diagnostics_hint_normal guifg=#32302f guibg=#32302f]])
+-- vim.g.gruvbox_material_diagnostic_text_highlight = 1
 -- vim.api.nvim_set_hl(0, "WhichKeyFloat", {fg = "#32302f", bg = "#32302f"})
 -- vim.api.nvim_set_hl(0, "FloatBorder", {bg = "#32302f"})
 -- lvim.builtin.which_key.setup.window.border = "single" -- none, single, double, shadow
@@ -101,45 +103,45 @@ lvim.colorscheme = "gruvbox-material"
 
 -- rose-pine
 -- require('rose-pine').setup({
--- 	--- @usage 'main' | 'moon'
--- 	dark_variant = 'moon',
--- 	bold_vert_split = false,
--- 	dim_nc_background = false,
--- 	disable_background = false,
--- 	disable_float_background = false,
--- 	disable_italics = true,
+--   --- @usage 'main' | 'moon'
+--   dark_variant = 'moon',
+--   bold_vert_split = false,
+--   dim_nc_background = false,
+--   disable_background = false,
+--   disable_float_background = false,
+--   disable_italics = true,
 
--- 	--- @usage string hex value or named color from rosepinetheme.com/palette
--- 	groups = {
--- 		background = 'base',
--- 		panel = 'surface',
--- 		-- panel = 'gold',
--- 		border = 'highlight_med',
--- 		comment = 'muted',
--- 		link = 'iris',
--- 		punctuation = 'subtle',
+--   --- @usage string hex value or named color from rosepinetheme.com/palette
+--   groups = {
+--     background = 'base',
+--     panel = 'surface',
+--     -- panel = 'gold',
+--     border = 'highlight_med',
+--     comment = 'muted',
+--     link = 'iris',
+--     punctuation = 'subtle',
 
--- 		error = 'love',
--- 		hint = 'iris',
--- 		info = 'foam',
--- 		warn = 'gold',
+--     error = 'love',
+--     hint = 'iris',
+--     info = 'foam',
+--     warn = 'gold',
 
--- 		headings = {
--- 			h1 = 'iris',
--- 			h2 = 'foam',
--- 			h3 = 'rose',
--- 			h4 = 'gold',
--- 			h5 = 'pine',
--- 			h6 = 'foam',
--- 		}
--- 		-- or set all headings at once
--- 		-- headings = 'subtle'
--- 	},
+--     headings = {
+--       h1 = 'iris',
+--       h2 = 'foam',
+--       h3 = 'rose',
+--       h4 = 'gold',
+--       h5 = 'pine',
+--       h6 = 'foam',
+--     }
+--     -- or set all headings at once
+--     -- headings = 'subtle'
+--   },
 
--- 	-- Change specific vim highlight groups
--- 	highlight_groups = {
--- 		ColorColumn = { bg = 'rose' }
--- 	}
+--   -- Change specific vim highlight groups
+--   highlight_groups = {
+--     ColorColumn = { bg = 'rose' }
+--   }
 -- })
 -- lvim.colorscheme = "rose-pine"
 
@@ -286,16 +288,16 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
-  "javascript",
+  -- "javascript",
   "json",
   "lua",
   "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
+  -- "typescript",
+  -- "tsx",
+  -- "css",
+  -- "rust",
   "java",
-  "yaml",
+  -- "yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -420,7 +422,7 @@ lvim.plugins = {
     end
   },
   { "ray-x/lsp_signature.nvim" },
-  -- { "norcalli/nvim-colorizer.lua" },
+  { "norcalli/nvim-colorizer.lua" },
   { "nacro90/numb.nvim" },
 }
 
