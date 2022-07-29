@@ -93,7 +93,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # vim aliases
-alias vim="nvim"
+alias vim="lvim"
 alias oldvim="\vim"
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -145,10 +145,12 @@ fi
 # fortune | cowsay -f $(ls /usr/share/cowsay/cows|shuf -n 1) | lolcat
 # conda deactivate
 # neofetch
-colorscript random
 
 # Add cargo to path
 export PATH="$PATH:/home/user/.cargo/bin"
 
 # Add lvim to path
 export PATH="$PATH:/home/user/.local/bin/"
+
+set -o vi
+colorscript random
