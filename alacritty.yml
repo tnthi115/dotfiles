@@ -201,11 +201,63 @@ colors:
   #   foreground: '#c5c8c6'
 
   # Colors (Gruvbox Material Dark Medium)
+  # primary:
+  #   background: '#282828'
+  #   # background: '#000000'
+  #   # foreground: '#dfbf8e'
+  #   foreground: '#d4be98'
+
+  # normal:
+  #   black:   '#665c54'
+  #   red:     '#ea6962'
+  #   green:   '#a9b665'
+  #   yellow:  '#e78a4e'
+  #   blue:    '#7daea3'
+  #   magenta: '#d3869b'
+  #   cyan:    '#89b482'
+  #   # white:   '#dfbf8e'
+  #   white:   '#d4be98'
+
+  # bright:
+  #   black:   '#928374'
+  #   red:     '#ea6962'
+  #   green:   '#a9b665'
+  #   yellow:  '#e3a84e'
+  #   blue:    '#7daea3'
+  #   magenta: '#d3869b'
+  #   cyan:    '#89b482'
+  #   white:   '#dfbf8e'
+  
+  # Colors (Gruvbox dark)
   primary:
-    background: '#282828'
-    # background: '#000000'
-    # foreground: '#dfbf8e'
-    foreground: '#d4be98'
+    # hard contrast: background = '0x1d2021'
+    # background: '#282828'
+    # background: '#1d2021'
+    background: '#010101'
+    # soft contrast: background = '0x32302f'
+    foreground: '#ebdbb2'
+
+  # Normal colors
+  normal:
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#a89984'
+
+  # Bright colors
+  bright:
+    black:   '#928374'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
 
     # Bright and dim foreground colors
     #
@@ -213,8 +265,8 @@ colors:
     # present. If the bright foreground color is not set, or
     # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
     # color will be used.
-    dim_foreground: '#828482'
-    bright_foreground: '#eaeaea'
+    # dim_foreground: '#828482'
+    # bright_foreground: '#eaeaea'
 
   # Cursor colors
   #
@@ -326,28 +378,6 @@ colors:
   #   magenta: '#75617b'
   #   cyan:    '#5b7d78'
   #   white:   '#828482'
-
-  # Colors (Gruvbox Material Dark Medium)
-  normal:
-    black:   '#665c54'
-    red:     '#ea6962'
-    green:   '#a9b665'
-    yellow:  '#e78a4e'
-    blue:    '#7daea3'
-    magenta: '#d3869b'
-    cyan:    '#89b482'
-    # white:   '#dfbf8e'
-    white:   '#d4be98'
-
-  bright:
-    black:   '#928374'
-    red:     '#ea6962'
-    green:   '#a9b665'
-    yellow:  '#e3a84e'
-    blue:    '#7daea3'
-    magenta: '#d3869b'
-    cyan:    '#89b482'
-    white:   '#dfbf8e'
 
   # Indexed Colors
   #
