@@ -235,7 +235,8 @@ colors:
     # background: '#1d2021'
     background: '#010101'
     # soft contrast: background = '0x32302f'
-    foreground: '#ebdbb2'
+    # foreground: '#ebdbb2'
+    foreground: '#c5c8c6'
 
   # Normal colors
   normal:
