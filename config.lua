@@ -274,6 +274,10 @@ lvim.builtin.which_key.mappings[","] = {
 lvim.builtin.which_key.mappings["."] = {
   "<cmd>BufferLineMoveNext<CR>", "Move Buffer Right"
 }
+-- Colorizer
+lvim.builtin.which_key.mappings["C"] = {
+  "<cmd>ColorizerToggle<CR>", "Toggle Color"
+}
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile

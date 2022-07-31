@@ -153,7 +153,7 @@ export PATH="$PATH:/home/user/.cargo/bin"
 export PATH="$PATH:/home/user/.local/bin/"
 
 # Set editor.
-export EDITOR="vim"
+export EDITOR="lvim"
 
 set -o vi
 colorscript random
