@@ -95,6 +95,7 @@ alias l='ls -CF'
 # vim aliases
 alias vim="lvim"
 alias oldvim="\vim"
+alias vimf="vim \$(fzf)"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -154,6 +155,9 @@ export PATH="$PATH:/home/user/.local/bin/"
 
 # Set editor.
 export EDITOR="lvim"
+
+# Setting for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 set -o vi
 colorscript random
