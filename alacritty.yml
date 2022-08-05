@@ -943,4 +943,6 @@ shell:
   #print_events: false
 
 import:
-  - ~/dotfiles/rose-pine-moon.yml
+  # - ~/dotfiles/rose-pine-theme/rose-pine-moon.yml
+  # - ~/dotfiles/rose-pine-theme/rose-pine-dawn.yml
+  - ~/dotfiles/rose-pine-theme/rose-pine.yml
