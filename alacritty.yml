@@ -81,7 +81,9 @@ window:
   startup_mode: Windowed
 
   # Window title
-  title: Alacritty
+  # title: Alacritty
+
+  # Need to edit /etc/bash.bashrc to include alacritty*
 
   # Allow terminal applications to change Alacritty's window title.
   dynamic_title: true
