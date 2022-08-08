@@ -291,6 +291,13 @@ lvim.builtin.which_key.mappings["."] = {
 lvim.builtin.which_key.mappings["C"] = {
   "<cmd>ColorizerToggle<CR>", "Toggle Color"
 }
+-- Persistence (sessions)
+-- lvim.builtin.which_key.mappings["S"] = {
+--   name = "Session",
+--   c = { "<cmd>lua require('persistence').load()<CR>", "Restore last session for current dir" },
+--   l = { "<cmd>lua require('persistence').load({ last = true })<CR>", "Restore last session" },
+--   Q = { "<cmd>lua require('persistence').stop()<CR>", "Quit without saving session" },
+-- }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -324,6 +331,9 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.bufferline.options.offsets[2] = nil
 -- lvim.builtin.bufferline.options.offsets[2].text = ""
 -- lvim.builtin.bufferline.options.offsets[2].highlight = "BufferTabpageFill"
+
+-- Add session button to dashboard.
+-- Edit alpha/dashboard.lua
 
 -- generic LSP settings --
 
@@ -443,7 +453,17 @@ lvim.plugins = {
   { "ray-x/lsp_signature.nvim" },
   { "norcalli/nvim-colorizer.lua" },
   { "nacro90/numb.nvim" },
-  { "tpope/vim-obsession" },
+  -- {
+  --   "folke/persistence.nvim",
+  --   event = "BufReadPre", -- this will only start session saving when an actual file was opened
+  --   module = "persistence",
+  --   config = function()
+  --     require("persistence").setup {
+  --       dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
+  --       options = { "buffers", "curdir", "tabpages", "winsize" },
+  --     }
+  --   end,
+  -- },
 }
 
 -- Configure markdown-preview
