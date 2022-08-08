@@ -443,6 +443,7 @@ lvim.plugins = {
   { "ray-x/lsp_signature.nvim" },
   { "norcalli/nvim-colorizer.lua" },
   { "nacro90/numb.nvim" },
+  { "tpope/vim-obsession" },
 }
 
 -- Configure markdown-preview

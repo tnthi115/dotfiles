@@ -94,6 +94,8 @@ alias l='ls -CF'
 
 # vim aliases
 alias vim="lvim"
+alias nvim="lvim"
+alias oldnvim="\nvim"
 alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 
