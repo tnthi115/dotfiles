@@ -472,7 +472,8 @@ lvim.plugins = {
 
 -- Configure markdown-preview
 vim.g.mkdp_browser = "/snap/bin/firefox"
-vim.g.mkdp_theme = "dark"
+vim.g.mkdp_theme = "light"
+vim.g.mkdp_auto_close = 0
 
 -- Configure lsp_signature
 local cfg = {
