@@ -202,22 +202,51 @@ colors:
   #   background: '#1d1f21'
   #   foreground: '#c5c8c6'
 
-  # Colors (Gruvbox Material Dark Medium)
+  # # Colors (Gruvbox Material Dark Medium)
+  # primary:
+  #   # background: '#282828'
+  #   background: '#1d2021'
+  #   # background: '#000000'
+  #   # foreground: '#dfbf8e'
+  #   foreground: '#d4be98'
+
+  # normal:
+  #   black:   '#665c54'
+  #   red:     '#ea6962'
+  #   green:   '#a9b665'
+  #   yellow:  '#e78a4e'
+  #   blue:    '#7daea3'
+  #   magenta: '#d3869b'
+  #   cyan:    '#89b482'
+  #   # white:   '#dfbf8e'
+  #   white:   '#d4be98'
+
+  # bright:
+  #   black:   '#928374'
+  #   red:     '#ea6962'
+  #   green:   '#a9b665'
+  #   yellow:  '#e3a84e'
+  #   blue:    '#7daea3'
+  #   magenta: '#d3869b'
+  #   cyan:    '#89b482'
+  #   white:   '#dfbf8e'
+
+  # Colors (Gruvbox Material Dark Hard Mix)
   primary:
     # background: '#282828'
     background: '#1d2021'
     # background: '#000000'
     # foreground: '#dfbf8e'
-    foreground: '#d4be98'
+    foreground: '#e2cca9'
 
   normal:
     black:   '#665c54'
-    red:     '#ea6962'
+    red:     '#f2594b'
     green:   '#a9b665'
-    yellow:  '#e78a4e'
-    blue:    '#7daea3'
+    yellow:  '#e3a84e'
+    blue:    '#80aa9e'
     magenta: '#d3869b'
-    cyan:    '#89b482'
+    cyan:    '#8bba7f'
     # white:   '#dfbf8e'
     white:   '#d4be98'
 
@@ -225,13 +254,13 @@ colors:
     black:   '#928374'
     red:     '#ea6962'
     green:   '#a9b665'
-    yellow:  '#e3a84e'
+    yellow:  '#e9b143'
     blue:    '#7daea3'
     magenta: '#d3869b'
     cyan:    '#89b482'
     white:   '#dfbf8e'
   
-  # Colors (Gruvbox dark)
+  # # Colors (Gruvbox dark)
   # primary:
   #   # hard contrast: background = '0x1d2021'
   #   # background: '#282828'
@@ -239,7 +268,8 @@ colors:
   #   # background: '#010101'
   #   # soft contrast: background = '0x32302f'
   #   # foreground: '#ebdbb2'
-  #   foreground: '#c5c8c6'
+  #   # foreground: '#c5c8c6'
+  #   foreground: '#d4be98'
 
   # # Normal colors
   # normal:
@@ -949,3 +979,4 @@ shell:
   # - ~/dotfiles/rose-pine-theme/rose-pine-moon.yml
   # - ~/dotfiles/rose-pine-theme/rose-pine-dawn.yml
   # - ~/dotfiles/rose-pine-theme/rose-pine.yml
+  # - ~/dotfiles/gruvbox-theme/gruvbox_material.yml
