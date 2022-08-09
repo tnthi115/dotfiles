@@ -291,6 +291,10 @@ lvim.builtin.which_key.mappings["."] = {
 lvim.builtin.which_key.mappings["C"] = {
   "<cmd>ColorizerToggle<CR>", "Toggle Color"
 }
+-- Show full path of current buffer
+lvim.builtin.which_key.mappings["d"] = {
+  "<cmd>echo expand('%:p)')<CR>", "Show Buffer Path"
+}
 -- Persistence (sessions)
 -- lvim.builtin.which_key.mappings["S"] = {
 --   name = "Session",
