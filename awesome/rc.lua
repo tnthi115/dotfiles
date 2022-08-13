@@ -49,11 +49,14 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+-- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init("/home/user/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
-editor = os.getenv("EDITOR") or "editor"
+-- terminal = "x-terminal-emulator"
+terminal = "kitty"
+-- editor = os.getenv("EDITOR") or "editor"
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -65,16 +68,17 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-  awful.layout.suit.floating,
   awful.layout.suit.tile,
-  awful.layout.suit.tile.left,
-  awful.layout.suit.tile.bottom,
-  awful.layout.suit.tile.top,
+  awful.layout.suit.floating,
+  -- awful.layout.suit.tile,
+  -- awful.layout.suit.tile.left,
+  -- awful.layout.suit.tile.bottom,
+  -- awful.layout.suit.tile.top,
   -- awful.layout.suit.fair,
   -- awful.layout.suit.fair.horizontal,
-  awful.layout.suit.spiral,
-  awful.layout.suit.spiral.dwindle,
-  awful.layout.suit.max,
+  -- awful.layout.suit.spiral,
+  -- awful.layout.suit.spiral.dwindle,
+  -- awful.layout.suit.max,
   -- awful.layout.suit.max.fullscreen,
   -- awful.layout.suit.magnifier,
   -- awful.layout.suit.corner.nw,
@@ -299,18 +303,18 @@ globalkeys = gears.table.join(
   awful.key({ modkey, "Shift" }, "q", awesome.quit,
     { description = "quit awesome", group = "awesome" }),
 
-  awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
+  awful.key({ modkey, "Control" }, "l", function() awful.tag.incmwfact(0.05) end,
     { description = "increase master width factor", group = "layout" }),
-  awful.key({ modkey, }, "h", function() awful.tag.incmwfact(-0.05) end,
+  awful.key({ modkey, "Control" }, "h", function() awful.tag.incmwfact(-0.05) end,
     { description = "decrease master width factor", group = "layout" }),
   awful.key({ modkey, "Shift" }, "h", function() awful.tag.incnmaster(1, nil, true) end,
     { description = "increase the number of master clients", group = "layout" }),
   awful.key({ modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
     { description = "decrease the number of master clients", group = "layout" }),
-  awful.key({ modkey, "Control" }, "h", function() awful.tag.incncol(1, nil, true) end,
-    { description = "increase the number of columns", group = "layout" }),
-  awful.key({ modkey, "Control" }, "l", function() awful.tag.incncol(-1, nil, true) end,
-    { description = "decrease the number of columns", group = "layout" }),
+  -- awful.key({ modkey, "Control" }, "h", function() awful.tag.incncol(1, nil, true) end,
+  --   { description = "increase the number of columns", group = "layout" }),
+  -- awful.key({ modkey, "Control" }, "l", function() awful.tag.incncol(-1, nil, true) end,
+  --   { description = "decrease the number of columns", group = "layout" }),
   awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
     { description = "select next", group = "layout" }),
   awful.key({ modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
@@ -331,8 +335,14 @@ globalkeys = gears.table.join(
   -- Prompt
   -- awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
   --   { description = "run prompt", group = "launcher" }),
+
+  -- Dmenu
   awful.key({ modkey }, "r", function() awful.util.spawn("dmenu_run") end,
     { description = "run prompt", group = "launcher" }),
+
+  -- Firefox
+  awful.key({ modkey }, "b", function() awful.util.spawn("firefox") end,
+    { description = "launch firefox", group = "launcher" }),
 
   awful.key({ modkey }, "x",
     function()
@@ -356,7 +366,7 @@ clientkeys = gears.table.join(
       c:raise()
     end,
     { description = "toggle fullscreen", group = "client" }),
-  awful.key({ modkey, "Shift" }, "c", function(c) c:kill() end,
+  awful.key({ modkey, }, "c", function(c) c:kill() end,
     { description = "close", group = "client" }),
   awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
     { description = "toggle floating", group = "client" }),
@@ -511,7 +521,8 @@ awful.rules.rules = {
 
   -- Add titlebars to normal clients and dialogs
   { rule_any = { type = { "normal", "dialog" }
-  }, properties = { titlebars_enabled = true }
+    -- }, properties = { titlebars_enabled = true }
+  }, properties = { titlebars_enabled = false }
   },
 
   -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -576,14 +587,17 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-  c:emit_signal("request::activate", "mouse_enter", { raise = false })
-end)
+-- client.connect_signal("mouse::enter", function(c)
+--   c:emit_signal("request::activate", "mouse_enter", { raise = false })
+-- end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
+-- Gaps
+beautiful.useless_gap = 3
+
 -- Autostart programs
-awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("compton")
+-- awful.spawn.with_shell("nitrogen --restore")
