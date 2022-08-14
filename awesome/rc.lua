@@ -59,6 +59,12 @@ terminal = "kitty"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
+-- Gaps
+beautiful.useless_gap = 3
+
+-- Window snapping
+awful.mouse.snap.edge_enabled = false
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -276,14 +282,37 @@ globalkeys = gears.table.join(
     { description = "show main menu", group = "awesome" }),
 
   -- Layout manipulation
-  awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
-    { description = "swap with next client by index", group = "client" }),
-  awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
-    { description = "swap with previous client by index", group = "client" }),
-  awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end,
-    { description = "focus the next screen", group = "screen" }),
-  awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end,
-    { description = "focus the previous screen", group = "screen" }),
+  -- awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
+  --   { description = "swap with next client by index", group = "client" }),
+  -- awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
+  --   { description = "swap with previous client by index", group = "client" }),
+
+  -- Moving windows by direction instead of by index.
+  awful.key({ modkey, "Shift" }, "h", function()
+    awful.client.swap.global_bydirection("left")
+    -- c:raise()
+  end,
+    { description = "swap with left client", group = "client" }),
+  awful.key({ modkey, "Shift" }, "l", function()
+    awful.client.swap.global_bydirection("right")
+    -- c:raise()
+  end,
+    { description = "swap with right client", group = "client" }),
+  awful.key({ modkey, "Shift" }, "j", function()
+    awful.client.swap.global_bydirection("down")
+    -- c:raise()
+  end,
+    { description = "swap with down client", group = "client" }),
+  awful.key({ modkey, "Shift" }, "k", function()
+    awful.client.swap.global_bydirection("up")
+    -- c:raise()
+  end,
+    { description = "swap with up client", group = "client" }),
+
+  -- awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end,
+  --   { description = "focus the next screen", group = "screen" }),
+  -- awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end,
+  --   { description = "focus the previous screen", group = "screen" }),
   awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
     { description = "jump to urgent client", group = "client" }),
   awful.key({ modkey, }, "Tab",
@@ -303,18 +332,23 @@ globalkeys = gears.table.join(
   awful.key({ modkey, "Shift" }, "q", awesome.quit,
     { description = "quit awesome", group = "awesome" }),
 
-  awful.key({ modkey, "Control" }, "l", function() awful.tag.incmwfact(0.05) end,
+  awful.key({ modkey, "Control" }, "Left", function() awful.tag.incmwfact(0.025) end,
     { description = "increase master width factor", group = "layout" }),
-  awful.key({ modkey, "Control" }, "h", function() awful.tag.incmwfact(-0.05) end,
+  awful.key({ modkey, "Control" }, "Right", function() awful.tag.incmwfact(-0.025) end,
     { description = "decrease master width factor", group = "layout" }),
-  awful.key({ modkey, "Shift" }, "h", function() awful.tag.incnmaster(1, nil, true) end,
+  awful.key({ modkey, "Control" }, "Down", function() awful.client.incwfact(-0.025) end,
+    { description = "resize vertical +", group = "layout" }),
+  awful.key({ modkey, "Control" }, "Up", function() awful.client.incwfact(0.025) end,
+    { description = "resize vertical -", group = "layout" }),
+
+  awful.key({ modkey, "Control" }, "k", function() awful.tag.incnmaster(1, nil, true) end,
     { description = "increase the number of master clients", group = "layout" }),
-  awful.key({ modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
+  awful.key({ modkey, "Control" }, "j", function() awful.tag.incnmaster(-1, nil, true) end,
     { description = "decrease the number of master clients", group = "layout" }),
-  -- awful.key({ modkey, "Control" }, "h", function() awful.tag.incncol(1, nil, true) end,
-  --   { description = "increase the number of columns", group = "layout" }),
-  -- awful.key({ modkey, "Control" }, "l", function() awful.tag.incncol(-1, nil, true) end,
-  --   { description = "decrease the number of columns", group = "layout" }),
+  awful.key({ modkey, "Control" }, "l", function() awful.tag.incncol(1, nil, true) end,
+    { description = "increase the number of columns", group = "layout" }),
+  awful.key({ modkey, "Control" }, "h", function() awful.tag.incncol(-1, nil, true) end,
+    { description = "decrease the number of columns", group = "layout" }),
   awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
     { description = "select next", group = "layout" }),
   awful.key({ modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
@@ -333,12 +367,12 @@ globalkeys = gears.table.join(
     { description = "restore minimized", group = "client" }),
 
   -- Prompt
-  -- awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
-  --   { description = "run prompt", group = "launcher" }),
+  awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
+    { description = "run prompt", group = "launcher" }),
 
   -- Dmenu
-  awful.key({ modkey }, "r", function() awful.util.spawn("dmenu_run") end,
-    { description = "run prompt", group = "launcher" }),
+  -- awful.key({ modkey }, "r", function() awful.util.spawn("dmenu_run") end,
+  --   { description = "run prompt", group = "launcher" }),
 
   -- Firefox
   awful.key({ modkey }, "b", function() awful.util.spawn("firefox") end,
@@ -595,9 +629,5 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
--- Gaps
-beautiful.useless_gap = 3
-
 -- Autostart programs
 awful.spawn.with_shell("compton")
--- awful.spawn.with_shell("nitrogen --restore")
