@@ -99,6 +99,8 @@ alias oldnvim="\nvim"
 alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 
+alias nfi="neofetch --wpm --source /media/sf_Downloads/Background\ Photos/sushi.jpg"
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 # alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
