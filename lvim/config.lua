@@ -46,7 +46,7 @@ lvim.builtin.lualine.style = "lvim"
 
 -- COLORSCHEME --
 -- gruvbox-material
-vim.g.gruvbox_material_background = "medium" -- hard, medium, soft
+vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
 vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
 vim.g.gruvbox_material_visual = "blue background"
 vim.g.gruvbox_material_menu_selection_background = "blue"
@@ -63,18 +63,18 @@ vim.g.gruvbox_material_diagnostic_line_highlight = 1
 -- call gruvbox_material#highlight('NormalFloat', s:palette.fg1, s:palette.bg0)
 -- call gruvbox_material#highlight('FloatBorder', s:palette.grey1, s:palette.bg0)
 -- bufferline color adjustment
-lvim.builtin.bufferline.highlights = { background = {
-  gui = "italic",
-},
-  buffer_selected = {
-    gui = "bold",
-  },
-  fill = {
-  },
-}
+-- lvim.builtin.bufferline.highlights = { background = {
+--   gui = "italic",
+-- },
+--   buffer_selected = {
+--     gui = "bold",
+--   },
+--   fill = {
+--   },
+-- }
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#2F343F"
 -- lualine inactive color for gruvbox_material colorscheme
-lvim.builtin.bufferline.highlights.fill.guibg = "#32302f"
+-- lvim.builtin.bufferline.highlights.fill.guibg = "#32302f"
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#40423D"
 lvim.colorscheme = "gruvbox-material"
 
@@ -187,7 +187,8 @@ vim.opt.swapfile = false -- creates a swapfile
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
 vim.opt.timeoutlen = 100 -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.title = true -- set the title of window to the value of the titlestring
-vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
+-- vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
+vim.opt.titlestring = "%<%F | %l/%L - nvim" -- what the title of the window will be set to
 vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
 vim.opt.undofile = true -- enable persistent undo
 vim.opt.updatetime = 300 -- faster completion
