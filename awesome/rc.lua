@@ -60,7 +60,7 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Gaps
-beautiful.useless_gap = 3
+-- beautiful.useless_gap = 3
 
 -- Window snapping
 awful.mouse.snap.edge_enabled = false
@@ -332,9 +332,9 @@ globalkeys = gears.table.join(
   awful.key({ modkey, "Shift" }, "q", awesome.quit,
     { description = "quit awesome", group = "awesome" }),
 
-  awful.key({ modkey, "Control" }, "Left", function() awful.tag.incmwfact(0.025) end,
+  awful.key({ modkey, "Control" }, "Right", function() awful.tag.incmwfact(0.025) end,
     { description = "increase master width factor", group = "layout" }),
-  awful.key({ modkey, "Control" }, "Right", function() awful.tag.incmwfact(-0.025) end,
+  awful.key({ modkey, "Control" }, "Left", function() awful.tag.incmwfact(-0.025) end,
     { description = "decrease master width factor", group = "layout" }),
   awful.key({ modkey, "Control" }, "Down", function() awful.client.incwfact(-0.025) end,
     { description = "resize vertical +", group = "layout" }),
