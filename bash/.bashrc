@@ -150,11 +150,12 @@ fi
 # fortune | cowsay -f $(ls /usr/share/cowsay/cows|shuf -n 1) | lolcat
 # conda deactivate
 
-if [ $TERM = xterm-kitty ]; then
-    neofetch --wpm --source /media/sf_Downloads/Background\ Photos/sushi.jpg
-else
-    neofetch
-fi
+# if [ $TERM = xterm-kitty ]; then
+#     neofetch --wpm --source /media/sf_Downloads/Background\ Photos/sushi.jpg
+# else
+#     neofetch
+# fi
+neofetch
 
 # Add cargo to path
 export PATH="$PATH:/home/user/.cargo/bin"
