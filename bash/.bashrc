@@ -183,6 +183,15 @@ set -o vi
 # alias tmux
 alias tmux='tmux -2'
 
-neofetch
+T=1
+number=$RANDOM
+# let "number %= $BINARY"
+let "number >>= 14"
+if [ "$number" -eq $T ]
+then
+  neofetch
+else
+  colorscript -r
+fi
 
 eval "$(starship init bash)"
