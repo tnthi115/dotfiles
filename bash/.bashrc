@@ -100,6 +100,7 @@ alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 
 alias nfi="neofetch --wpm --source /media/sf_Downloads/Background\ Photos/sushi.jpg"
+alias rw="nitrogen --set-scaled --random /media/sf_Downloads/Background Photos/gruvbox"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -155,7 +156,6 @@ fi
 # else
 #     neofetch
 # fi
-neofetch
 
 # Add cargo to path
 export PATH="$PATH:/home/user/.cargo/bin"
@@ -182,5 +182,7 @@ set -o vi
 
 # alias tmux
 alias tmux='tmux -2'
+
+neofetch
 
 eval "$(starship init bash)"
