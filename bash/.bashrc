@@ -99,7 +99,7 @@ alias oldnvim="\nvim"
 alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 
-alias nfi="neofetch --wpm --source /media/sf_Downloads/Background\ Photos/sushi.jpg"
+alias nfi="neofetch --wpm --source /media/sf_Downloads/Background\ Photos/gruvbox/sushi.jpg"
 alias rw="nitrogen --set-scaled --random /media/sf_Downloads/Background Photos/gruvbox"
 
 # Add an "alert" alias for long running commands.  Use like so:

@@ -54,6 +54,7 @@ vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_statusline_style = "default"
 vim.g.gruvbox_material_diagnostic_line_highlight = 1
+vim.g.gruvbox_material_diagnostic_text_highlight = 1
 -- vim.cmd([[highlight lualine_x_diagnostics_hint_normal guifg=#32302f guibg=#32302f]])
 -- vim.g.gruvbox_material_diagnostic_text_highlight = 1
 -- vim.api.nvim_set_hl(0, "WhichKeyFloat", {fg = "#32302f", bg = "#32302f"})
