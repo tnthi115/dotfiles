@@ -143,7 +143,7 @@ local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batterya
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 
 -- CPU widget
-local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+-- local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 
 -- RAM widget
 -- local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
@@ -226,7 +226,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   -- Each screen has its own tag table.
   -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
-  awful.tag({ " DEV", "爵 WWW", " SYS", " CHAT" }, s, awful.layout.layouts[1])
+  awful.tag({ " DEV", " SYS", "爵 WWW", " CHAT" }, s, awful.layout.layouts[1])
 
   -- Create a promptbox for each screen
   s.mypromptbox = awful.widget.prompt()
@@ -270,14 +270,14 @@ awful.screen.connect_for_each_screen(function(s)
       spacing = 8,
       -- mykeyboardlayout,
       wibox.widget.systray(),
-      cpu_widget({
-        width = 20,
-        step_width = 2,
-        step_spacing = 0,
-        -- color = '#434c5e',
-        color = beautiful.fg_normal,
-        timeout = 5,
-      }),
+      -- cpu_widget({
+      --   width = 20,
+      --   step_width = 2,
+      --   step_spacing = 0,
+      --   -- color = '#434c5e',
+      --   color = beautiful.fg_normal,
+      --   timeout = 5,
+      -- }),
       -- ram_widget({
       --   widget_width = 20,
       --   timeout = 5,
