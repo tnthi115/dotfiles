@@ -136,6 +136,35 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
+-- Battery Arc widget
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+
+-- Volume widget
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+
+-- CPU widget
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+
+-- RAM widget
+-- local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+
+-- Calendar widget
+-- local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+
+-- local cw = calendar_widget({
+--   theme = 'naughty',
+--   placement = 'top_right',
+--   start_sunday = true,
+--   radius = 8,
+--   -- with customized next/previous (see table above)
+--   -- previous_month_button = 1,
+--   -- next_month_button = 3,
+-- })
+-- mytextclock:connect_signal("button::press",
+--   function(_, _, _, button)
+--     if button == 1 then cw.toggle() end
+--   end)
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
   awful.button({}, 1, function(t) t:view_only() end),
@@ -238,8 +267,39 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist, -- Middle widget
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      mykeyboardlayout,
+      spacing = 8,
+      -- mykeyboardlayout,
       wibox.widget.systray(),
+      cpu_widget({
+        width = 20,
+        step_width = 2,
+        step_spacing = 0,
+        -- color = '#434c5e',
+        color = beautiful.fg_normal,
+        timeout = 5,
+      }),
+      -- ram_widget({
+      --   widget_width = 20,
+      --   timeout = 5,
+      -- }),
+      volume_widget({
+        widget_type = "icon_and_text",
+        step = "2",
+        -- main_color = beautiful.fg_normal,
+        -- mute_color = beautiful.bg_normal,
+        -- with_icon = true,
+        font = "Hack Nerd Font 8",
+      }),
+      batteryarc_widget({
+        font = "Hack Nerd Font 6",
+        main_color = "#b0b846",
+        show_current_level = true,
+        arc_thickness = 2,
+        notification_position = top_right,
+        low_level_color = "#f2594b",
+        medium_level_color = "#e3a84e",
+        charging_color = "#b0b846",
+      }),
       mytextclock,
       s.mylayoutbox,
     },
