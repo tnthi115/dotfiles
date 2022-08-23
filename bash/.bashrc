@@ -101,6 +101,7 @@ alias vimf="vim \$(fzf)"
 
 alias nfi="neofetch --wpm --source /media/sf_Downloads/Background\ Photos/gruvbox/sushi.jpg"
 alias rw="nitrogen --set-scaled --random /media/sf_Downloads/Background Photos/gruvbox"
+alias tn="notify-send -i ~/.config/awesome/awesome-wm-widgets/battery-widget/spaceman.jpg -t 10000 'test' 'hello this is a test notification!'"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

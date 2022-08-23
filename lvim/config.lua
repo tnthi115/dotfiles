@@ -208,6 +208,7 @@ vim.opt.spelllang = "en"
 vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
 vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
+-- vim.cmd("set winbar=%=%m\ %f") -- set winbar (TODO: broken syntax)
 
 -- KEYMAPPINGS [view all the defaults by pressing <leader>Lk] --
 lvim.leader = "space"

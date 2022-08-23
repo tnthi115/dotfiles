@@ -137,7 +137,10 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 mytextclock = wibox.widget.textclock()
 
 -- Battery Arc widget
-local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+-- local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+
+-- Battery widget
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 
 -- Volume widget
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
@@ -164,6 +167,9 @@ local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 --   function(_, _, _, button)
 --     if button == 1 then cw.toggle() end
 --   end)
+
+-- Logout menu widget
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -260,7 +266,10 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.horizontal,
     { -- Left widgets
       layout = wibox.layout.fixed.horizontal,
-      mylauncher,
+      -- mylauncher,
+      logout_menu_widget({
+        font = "Hack Nerd Font 9"
+      }),
       s.mytaglist,
       s.mypromptbox,
     },
@@ -276,7 +285,7 @@ awful.screen.connect_for_each_screen(function(s)
       --   step_spacing = 0,
       --   -- color = '#434c5e',
       --   color = beautiful.fg_normal,
-      --   timeout = 5,
+      --   timeout = 2,
       -- }),
       -- ram_widget({
       --   widget_width = 20,
@@ -288,19 +297,31 @@ awful.screen.connect_for_each_screen(function(s)
         -- main_color = beautiful.fg_normal,
         -- mute_color = beautiful.bg_normal,
         -- with_icon = true,
-        font = "Hack Nerd Font 8",
+        font = "Hack Nerd Font 8.5",
       }),
-      batteryarc_widget({
-        font = "Hack Nerd Font 6",
-        main_color = "#b0b846",
+      battery_widget({
+        font = "Hack Nerd Font 8.5",
+        path_to_icons = "/usr/share/icons/Arc/status/symbolic/",
         show_current_level = true,
-        arc_thickness = 2,
-        notification_position = top_right,
-        low_level_color = "#f2594b",
-        medium_level_color = "#e3a84e",
-        charging_color = "#b0b846",
+        -- margin_left = 5,
+        display_notification = true,
+        warning_msg_position = top_right,
+        enable_battery_warning = true,
       }),
+      -- batteryarc_widget({
+      --   font = "Hack Nerd Font 6",
+      --   main_color = "#b0b846",
+      --   show_current_level = true,
+      --   arc_thickness = 2,
+      --   notification_position = top_right,
+      --   low_level_color = "#f2594b",
+      --   medium_level_color = "#e3a84e",
+      --   charging_color = "#b0b846",
+      -- }),
       mytextclock,
+      -- logout_menu_widget({
+      --   font = "Hack Nerd Font 9"
+      -- }),
       s.mylayoutbox,
     },
   }
