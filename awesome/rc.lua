@@ -469,9 +469,15 @@ globalkeys = gears.table.join(
       }
     end,
     { description = "lua execute prompt", group = "awesome" }),
+
   -- Menubar
   awful.key({ modkey }, "p", function() menubar.show() end,
     { description = "show the menubar", group = "launcher" })
+
+-- Center floating window
+-- awful.key({ modkey, "Shift" }, "y", function() awful.placement.centered end,
+--   { description = "center window", group = "client" })
+-- awful.key({ modkey, "Shift" }, "y", awful.placement.centered),
 )
 
 clientkeys = gears.table.join(
@@ -643,6 +649,17 @@ awful.rules.rules = {
   -- Set Firefox to always map on the tag named "2" on screen 1.
   -- { rule = { class = "Firefox" },
   --   properties = { screen = 1, tag = "2" } },
+
+  -- TODO: Set htop to always map on the tag named " SYS" on screen 1.
+  -- { rule = { class = "Htop" },
+  --   properties = { screen = 1, tag = " SYS" } },
+
+  -- Spawn floating clients centered
+  -- { rule_any = { floating = true },
+  --   properties = {
+  --     placement = awful.placement.centered
+  --   }
+  -- },
 }
 -- }}}
 
