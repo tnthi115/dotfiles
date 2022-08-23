@@ -472,7 +472,11 @@ globalkeys = gears.table.join(
 
   -- Menubar
   awful.key({ modkey }, "p", function() menubar.show() end,
-    { description = "show the menubar", group = "launcher" })
+    { description = "show the menubar", group = "launcher" }),
+
+  -- Obsidian
+  awful.key({ modkey }, "o", function() awful.util.spawn("/opt/obsidian/Obsidian-0.15.9.AppImage") end,
+    { description = "launch obsidian", group = "launcher" })
 
 -- Center floating window
 -- awful.key({ modkey, "Shift" }, "y", function() awful.placement.centered end,
@@ -493,8 +497,8 @@ clientkeys = gears.table.join(
     { description = "toggle floating", group = "client" }),
   awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
     { description = "move to master", group = "client" }),
-  awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
-    { description = "move to screen", group = "client" }),
+  -- awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
+  --   { description = "move to screen", group = "client" }),
   awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
     { description = "toggle keep on top", group = "client" }),
   awful.key({ modkey, }, "n",
