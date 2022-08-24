@@ -565,6 +565,6 @@ require('numb').setup {
 
 -- set indentation to 4 spaces for certain files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "python", "json", "java", "xml", "tcl" },
+  pattern = { "python", "java", "xml", "tcl" },
   command = "setlocal shiftwidth=4 softtabstop=4 expandtab",
 })
