@@ -476,7 +476,11 @@ globalkeys = gears.table.join(
 
   -- Obsidian
   awful.key({ modkey }, "o", function() awful.util.spawn("/opt/obsidian/Obsidian-0.15.9.AppImage") end,
-    { description = "launch obsidian", group = "launcher" })
+    { description = "launch obsidian", group = "launcher" }),
+
+  -- VSCode
+  awful.key({ modkey }, "v", function() awful.util.spawn("code") end,
+    { description = "launch vscode", group = "launcher" })
 
 -- Center floating window
 -- awful.key({ modkey, "Shift" }, "y", function() awful.placement.centered end,

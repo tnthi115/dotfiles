@@ -306,6 +306,12 @@ lvim.builtin.which_key.mappings["d"] = {
 --   Q = { "<cmd>lua require('persistence').stop()<CR>", "Quit without saving session" },
 -- }
 
+-- -- Distant
+-- lvim.builtin.which_key.mappings["D"] = {
+--   name = "+Distant",
+--   l = { "<cmd>DistantLaunch cedar.cs.berkeley.edu mode=ssh ssh.user=cs164-aak<CR>", "Launch cs164" },
+-- }
+
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -470,6 +476,60 @@ lvim.plugins = {
   --       options = { "buffers", "curdir", "tabpages", "winsize" },
   --     }
   --   end,
+  -- },
+  -- {
+  --   "chipsenkbeil/distant.nvim",
+  --   config = function()
+  --     local dactions = require('distant.nav.actions')
+  --     require('distant').setup {
+  --       -- Applies Chip's personal settings to every machine you connect to
+  --       --
+  --       -- 1. Ensures that distant servers terminate with no connections
+  --       -- 2. Provides navigation bindings for remote directories
+  --       -- 3. Provides keybinding to jump into a remote file's parent directory
+  --       -- ['*'] = require('distant.settings').chip_default(),
+  --       -- Any settings defined here are applied to all hosts
+  --       ['*'] = {
+  --         distant = {
+  --           args = '--shutdown-after 60',
+  --         },
+  --         file = {
+  --           mappings = {
+  --             ['-'] = dactions.up,
+  --           },
+  --         },
+  --         dir = {
+  --           mappings = {
+  --             ['<Return>'] = dactions.edit,
+  --             ['-']        = dactions.up,
+  --             ['K']        = dactions.mkdir,
+  --             ['N']        = dactions.newfile,
+  --             ['R']        = dactions.rename,
+  --             ['D']        = dactions.remove,
+  --           }
+  --         },
+  --       },
+  --       ['cedar.cs.berkeley.edu'] = {
+  --         -- distant = {
+  --         --   bin = '/path/to/distant',
+  --         -- },
+  --         lsp = {
+  --           ['ocamllsp'] = {
+  --             cmd = { '/home/ff/cs164/.opam/default/bin/ocamllsp' },
+  --             filetypes = { 'ocaml' },
+  --             root_dir = '/home/cc/cs164/fa22/class/cs164-aak',
+  --             -- on_attach = function()
+  --             --   nnoremap('gD', '<CMD>lua vim.lsp.buf.declaration()<CR>')
+  --             --   nnoremap('gd', '<CMD>lua vim.lsp.buf.definition()<CR>')
+  --             --   nnoremap('gh', '<CMD>lua vim.lsp.buf.hover()<CR>')
+  --             --   nnoremap('gi', '<CMD>lua vim.lsp.buf.implementation()<CR>')
+  --             --   nnoremap('gr', '<CMD>lua vim.lsp.buf.references()<CR>')
+  --             -- end,
+  --           },
+  --         },
+  --       },
+  --     }
+  --   end
   -- },
 }
 
