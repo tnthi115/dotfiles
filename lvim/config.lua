@@ -306,10 +306,18 @@ lvim.builtin.which_key.mappings["d"] = {
 --   Q = { "<cmd>lua require('persistence').stop()<CR>", "Quit without saving session" },
 -- }
 
--- -- Distant
+-- Distant
 -- lvim.builtin.which_key.mappings["D"] = {
 --   name = "+Distant",
+--   -- dactions = require("distant.nav.actions"),
 --   l = { "<cmd>DistantLaunch cedar.cs.berkeley.edu mode=ssh ssh.user=cs164-aak<CR>", "Launch cs164" },
+--   o = { "<cmd>DistantOpen .<CR>", "Open root dir" },
+--   e = { "<cmd>lua require('distant.nav.actions').edit()<CR>", "Edit file" },
+--   u = { "<cmd>lua require('distant.nav.actions').up()<CR>", "Go up dir" },
+--   k = { "<cmd>lua require('distant.nav.actions').mkdir()<CR>", "Mkdir" },
+--   n = { "<cmd>lua require('distant.nav.actions').newfile()<CR>", "Create new file" },
+--   r = { "<cmd>lua require('distant.nav.actions').rename()<CR>", "Rename file" },
+--   d = { "<cmd>lua require('distant.nav.actions').remove()<CR>", "Remove file" },
 -- }
 
 -- TODO: User Config for predefined plugins
@@ -480,51 +488,51 @@ lvim.plugins = {
   -- {
   --   "chipsenkbeil/distant.nvim",
   --   config = function()
-  --     local dactions = require('distant.nav.actions')
+  --     -- local dactions = require('distant.nav.actions')
   --     require('distant').setup {
   --       -- Applies Chip's personal settings to every machine you connect to
   --       --
   --       -- 1. Ensures that distant servers terminate with no connections
   --       -- 2. Provides navigation bindings for remote directories
   --       -- 3. Provides keybinding to jump into a remote file's parent directory
-  --       -- ['*'] = require('distant.settings').chip_default(),
+  --       ['*'] = require('distant.settings').chip_default(),
   --       -- Any settings defined here are applied to all hosts
-  --       ['*'] = {
-  --         distant = {
-  --           args = '--shutdown-after 60',
-  --         },
-  --         file = {
-  --           mappings = {
-  --             ['-'] = dactions.up,
-  --           },
-  --         },
-  --         dir = {
-  --           mappings = {
-  --             ['<Return>'] = dactions.edit,
-  --             ['-']        = dactions.up,
-  --             ['K']        = dactions.mkdir,
-  --             ['N']        = dactions.newfile,
-  --             ['R']        = dactions.rename,
-  --             ['D']        = dactions.remove,
-  --           }
-  --         },
-  --       },
+  --       -- ['*'] = {
+  --       --   distant = {
+  --       --     args = '--shutdown-after 60',
+  --       --   },
+  --       --   file = {
+  --       --     mappings = {
+  --       --       ['-'] = dactions.up,
+  --       --     },
+  --       --   },
+  --       --   dir = {
+  --       --     mappings = {
+  --       --       ['<Return>'] = dactions.edit,
+  --       --       ['-']        = dactions.up,
+  --       --       ['K']        = dactions.mkdir,
+  --       --       ['N']        = dactions.newfile,
+  --       --       ['R']        = dactions.rename,
+  --       --       ['D']        = dactions.remove,
+  --       --     }
+  --       --   },
+  --       -- },
   --       ['cedar.cs.berkeley.edu'] = {
-  --         -- distant = {
-  --         --   bin = '/path/to/distant',
-  --         -- },
+  --         distant = {
+  --           bin = '/home/cc/cs164/fa22/class/cs164-aak/distant/distant',
+  --         },
   --         lsp = {
   --           ['ocamllsp'] = {
   --             cmd = { '/home/ff/cs164/.opam/default/bin/ocamllsp' },
   --             filetypes = { 'ocaml' },
-  --             root_dir = '/home/cc/cs164/fa22/class/cs164-aak',
-  --             -- on_attach = function()
-  --             --   nnoremap('gD', '<CMD>lua vim.lsp.buf.declaration()<CR>')
-  --             --   nnoremap('gd', '<CMD>lua vim.lsp.buf.definition()<CR>')
-  --             --   nnoremap('gh', '<CMD>lua vim.lsp.buf.hover()<CR>')
-  --             --   nnoremap('gi', '<CMD>lua vim.lsp.buf.implementation()<CR>')
-  --             --   nnoremap('gr', '<CMD>lua vim.lsp.buf.references()<CR>')
-  --             -- end,
+  --             root_dir = '/home/cc/cs164/fa22/class/cs164-aak/hw0-tnthi115',
+  --             on_attach = function()
+  --               vim.cmd("nnoremap('gD', '<CMD>lua vim.lsp.buf.declaration()<CR>')")
+  --               vim.cmd("nnoremap('gd', '<CMD>lua vim.lsp.buf.definition()<CR>')")
+  --               vim.cmd("nnoremap('gh', '<CMD>lua vim.lsp.buf.hover()<CR>')")
+  --               vim.cmd("nnoremap('gi', '<CMD>lua vim.lsp.buf.implementation()<CR>')")
+  --               vim.cmd("nnoremap('gr', '<CMD>lua vim.lsp.buf.references()<CR>')")
+  --             end,
   --           },
   --         },
   --       },
