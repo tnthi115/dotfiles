@@ -99,7 +99,7 @@ alias oldnvim="\nvim"
 alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 
-alias nfi="neofetch --wpm --source /media/sf_Downloads/Background\ Photos/gruvbox/sushi.jpg"
+alias nfi="neofetch --wpm --source /media/sf_Downloads/Background\ Photos/gruvbox/anime-gruv-light.png"
 alias rw="nitrogen --set-scaled --random /media/sf_Downloads/Background Photos/gruvbox"
 alias tn="notify-send -i ~/.config/awesome/awesome-wm-widgets/battery-widget/spaceman.jpg -t 10000 'test' 'hello this is a test notification!'"
 alias obsidian="/opt/obsidian/Obsidian-0.15.9.AppImage"
