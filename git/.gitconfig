@@ -1,7 +1,13 @@
+[user]
+	email = tnthi115@berkeley.edu
+	name = Tymon Thi
 [credential]
 	helper = store
-[user]
-	email = t.thi@f5.com
+[safe]
+	directory = /media/sf_Downloads/tymon-obsidian
+	directory = /home/user/Classes/cs164/mnt/cs164-aak/hw0-tnthi
+	directory = /home/user/Classes/cs164/mnt/cs164-aak/hw0-tnthi115
+	directory = /home/user/Classes/cs164/cs164-aak/discussion/sec1-tnthi115
 [alias]
     lg = lg1
     lg1 = lg1-specific --all
