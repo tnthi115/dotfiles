@@ -22,6 +22,8 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
+-- lvim.lsp.automatic_servers_installation = true
+lvim.lsp.installer.setup.automatic_installation = true
 
 -- Lualine
 -- local components = require("lvim.core.lualine.components")
@@ -229,6 +231,10 @@ lvim.keys.normal_mode["<C-Up>"] = ":resize -2<CR>"
 lvim.keys.normal_mode["<C-Down>"] = ":resize +2<CR>"
 lvim.keys.normal_mode["<C-Left>"] = ":vertical resize +2<CR>"
 lvim.keys.normal_mode["<C-Right>"] = ":vertical resize -2<CR>"
+
+-- Remap H and L to move between buffers.
+lvim.keys.normal_mode["<S-H>"] = "<cmd>BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["<S-L>"] = "<cmd>BufferLineCycleNext<CR>"
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -636,3 +642,5 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "python", "java", "xml", "tcl" },
   command = "setlocal shiftwidth=4 softtabstop=4 expandtab",
 })
+
+-- require'lspconfig'.pyright.setup{}
