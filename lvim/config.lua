@@ -23,7 +23,7 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 -- lvim.lsp.automatic_servers_installation = true
-lvim.lsp.installer.setup.automatic_installation = true
+-- lvim.lsp.installer.setup.automatic_installation = true
 
 -- Lualine
 -- local components = require("lvim.core.lualine.components")
