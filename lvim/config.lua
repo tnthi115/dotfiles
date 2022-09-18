@@ -525,13 +525,13 @@ lvim.plugins = {
   --       -- },
   --       ['cedar.cs.berkeley.edu'] = {
   --         distant = {
-  --           bin = '/home/cc/cs164/fa22/class/cs164-aak/distant/distant',
+  --           bin = '/home/cc/cs164/fa22/class/cs164-aak/.distant/distant_lua.so',
   --         },
   --         lsp = {
   --           ['ocamllsp'] = {
   --             cmd = { '/home/ff/cs164/.opam/default/bin/ocamllsp' },
   --             filetypes = { 'ocaml' },
-  --             root_dir = '/home/cc/cs164/fa22/class/cs164-aak/hw0-tnthi115',
+  --             root_dir = '/home/cc/cs164/fa22/class/cs164-aak/hw2-tnthi115',
   --             on_attach = function()
   --               vim.cmd("nnoremap('gD', '<CMD>lua vim.lsp.buf.declaration()<CR>')")
   --               vim.cmd("nnoremap('gd', '<CMD>lua vim.lsp.buf.definition()<CR>')")
