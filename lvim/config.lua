@@ -355,7 +355,7 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
 -- bufferline remove buffer title for NvimTree
-lvim.builtin.bufferline.options.offsets[2] = nil
+-- lvim.builtin.bufferline.options.offsets[2] = nil
 -- lvim.builtin.bufferline.options.offsets[2].text = ""
 -- lvim.builtin.bufferline.options.offsets[2].highlight = "BufferTabpageFill"
 
