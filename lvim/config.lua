@@ -41,7 +41,6 @@ lvim.lsp.installer.setup.automatic_installation = false
 -- }
 lvim.builtin.lualine.style = "lvim"
 -- lvim.colorscheme = "onedarker"
--- lvim.colorscheme = "tokyonight"
 -- lvim.colorscheme = "vscode"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -89,8 +88,11 @@ lvim.colorscheme = "gruvbox-material"
 -- gruvbox-baby
 -- lvim.colorscheme = "gruvbox-baby"
 
+-- tokyonight
+-- lvim.colorscheme = "tokyonight-night"
+
 -- catppuccin
--- vim.g.catppuccin_flavour =  "macchiato" -- latte, frappe, macchiato, mocha
+-- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 -- lvim.colorscheme = "catppuccin"
 -- local catppuccin = require("catppuccin")
 -- catppuccin.setup()
@@ -105,9 +107,11 @@ lvim.colorscheme = "gruvbox-material"
 -- lvim.colorscheme = "kanagawa"
 
 -- rose-pine
+-- lvim.colorscheme = "rose-pine"
+
 -- require('rose-pine').setup({
 --   --- @usage 'main' | 'moon'
---   dark_variant = 'moon',
+--   dark_variant = 'main',
 --   bold_vert_split = false,
 --   dim_nc_background = false,
 --   disable_background = false,
@@ -150,16 +154,18 @@ lvim.colorscheme = "gruvbox-material"
 -- })
 -- -- set bufferline fill color
 -- lvim.builtin.bufferline.highlights = { background = {
---   gui = "italic",
+--   -- gui = "italic",
+--   italic = true,
 -- },
 --   buffer_selected = {
---     gui = "bold",
+--     -- gui = "bold",
+--     bold = true,
 --   },
 --   fill = {
+--     bg = "#2a273f"
 --   },
 -- }
--- lvim.builtin.bufferline.highlights.fill.guibg = "#2a273f"
--- lvim.colorscheme = "rose-pine"
+-- -- lvim.builtin.bufferline.highlights.fill.guibg = "#2a273f" -- this is for moon
 
 -- VIM SETS --
 vim.opt.background = "dark"
