@@ -628,6 +628,20 @@ require('numb').setup {
   centered_peeking = true, -- Peeked line will be centered relative to window
 }
 
+-- Configure alpha dashboard
+-- lvim.builtin.alpha.dashboard.section.header.val = {
+--   "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+--   " ▄▄▄█████▓ ███▄    █ ▄▄▄█████▓ ",
+--   " ▓  ██▒ ▓▒ ██ ▀█   █ ▓  ██▒ ▓▒ ",
+--   " ▒ ▓██░ ▒░▓██  ▀█ ██▒▒ ▓██░ ▒░ ",
+--   " ░ ▓██▓ ░ ▓██▒  ▐▌██▒░ ▓██▓ ░  ",
+--   "   ▒██▒ ░ ▒██░   ▓██░  ▒██▒ ░  ",
+--   "   ▒ ░░   ░ ▒░   ▒ ▒   ▒ ░░    ",
+--   "     ░    ░ ░░   ░ ▒░    ░     ",
+--   "   ░         ░   ░ ░   ░       ",
+--   "                   ░           ",
+-- }
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
 --   pattern = { "*.json", "*.jsonc" },
