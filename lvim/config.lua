@@ -403,7 +403,7 @@ formatters.setup {
   -- { name = "black" },
   -- need to "pip install yapf"
   -- { command = "yapf", filetypes = { "python" } },
-  { command = "isort", filetypes = { "python" } },
+  -- { command = "isort", filetypes = { "python" } },
   -- {
   --   -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
   --   command = "prettier",
