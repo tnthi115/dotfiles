@@ -65,19 +65,25 @@ vim.g.gruvbox_material_diagnostic_text_highlight = 1
 -- call gruvbox_material#highlight('NormalFloat', s:palette.fg1, s:palette.bg0)
 -- call gruvbox_material#highlight('FloatBorder', s:palette.grey1, s:palette.bg0)
 -- bufferline color adjustment
--- lvim.builtin.bufferline.highlights = { background = {
---   gui = "italic",
--- },
---   buffer_selected = {
---     gui = "bold",
---   },
---   fill = {
---   },
--- }
+lvim.builtin.bufferline.highlights = {
+  background = {
+    -- gui = "italic",
+    italic = true,
+  },
+  buffer_selected = {
+    -- gui = "bold",
+    bold = true,
+  },
+  fill = {
+    bg = "#282828",
+    -- bg = "#1d2021",
+  },
+}
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#2F343F"
 -- lualine inactive color for gruvbox_material colorscheme
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#32302f"
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#40423D"
+-- lvim.builtin.bufferline.highlights.fill.guibg = "#282828"
 lvim.colorscheme = "gruvbox-material"
 
 -- everforest
