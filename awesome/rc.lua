@@ -738,4 +738,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Autostart programs
 awful.spawn.with_shell("compton")
-awful.spawn.with_shell("nitrogen --set-scaled --random /media/sf_Downloads/wallpapers/gruvbox")
+-- awful.spawn.with_shell("nitrogen --set-scaled --random /media/sf_Downloads/wallpapers/gruvbox")
+awful.spawn.with_shell("nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/gruvbox")
