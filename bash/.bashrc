@@ -100,7 +100,7 @@ alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 
 # personal aliases
-alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/anime-gruv-light.png"
+alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
 # alias rw="nitrogen --set-scaled --random /media/sf_Downloads/wallpapers/gruvbox"
 alias rw="nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/gruvbox"
 alias tn="notify-send -i ~/.config/awesome/awesome-wm-widgets/battery-widget/spaceman.jpg -t 10000 'test' 'hello this is a test notification!'"
