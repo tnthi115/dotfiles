@@ -267,6 +267,13 @@ lvim.builtin.telescope.defaults.mappings = {
 }
 
 -- WHICH-KEY --
+-- lvim.builtin.which_key.icons.separator = "->"
+-- lvim.builtin.which_key.icons.group = "+"
+-- lvim.builtin.which_key.icons = {
+--   breadcrumb = lvim.icons.ui.DoubleChevronRight, -- symbol used in the command line area that shows your active key combo
+--   separator = "->",
+--   group = "+",
+-- }
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 -- Add TroubleToggle
@@ -342,7 +349,7 @@ lvim.builtin.which_key.mappings["d"] = {
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
+-- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
@@ -477,18 +484,18 @@ lvim.plugins = {
       vim.g.mkdp_auto_start = 1
     end,
   },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    setup = function()
-      vim.g.indentLine_enabled = 1
-      vim.g.indent_blankline_char = "▏"
-      vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
-      vim.g.indent_blankline_buftype_exclude = { "terminal" }
-      vim.g.indent_blankline_show_trailing_blankline_indent = false
-      vim.g.indent_blankline_show_first_indent_level = false
-    end
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   event = "BufRead",
+  --   setup = function()
+  --     vim.g.indentLine_enabled = 1
+  --     vim.g.indent_blankline_char = "▏"
+  --     vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
+  --     vim.g.indent_blankline_buftype_exclude = { "terminal" }
+  --     vim.g.indent_blankline_show_trailing_blankline_indent = false
+  --     vim.g.indent_blankline_show_first_indent_level = false
+  --   end
+  -- },
   { "ray-x/lsp_signature.nvim" },
   { "norcalli/nvim-colorizer.lua" },
   { "nacro90/numb.nvim" },
