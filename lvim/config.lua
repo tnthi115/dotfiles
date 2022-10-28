@@ -432,7 +432,7 @@ formatters.setup {
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   -- { command = "flake8", filetypes = { "python" } },
-  { command = "pylint", filetypes = { "python" } },
+  -- { command = "pylint", filetypes = { "python" } },
   {
     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "shellcheck",
@@ -672,7 +672,8 @@ require('numb').setup {
 
 -- set indentation to 4 spaces for certain files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "python", "java", "xml", "tcl", "markdown" },
+  -- pattern = { "python", "java", "xml", "tcl", "markdown", "css" },
+  pattern = { "java", "xml", "tcl", "markdown", "css" },
   command = "setlocal shiftwidth=4 softtabstop=4 expandtab",
 })
 
