@@ -46,6 +46,7 @@ lvim.builtin.lualine.style = "lvim"
 -- lvim.use_icons = false
 
 -- COLORSCHEME --
+lvim.transparent_window = true
 -- gruvbox-material
 vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
 vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
@@ -65,20 +66,20 @@ vim.g.gruvbox_material_diagnostic_text_highlight = 1
 -- call gruvbox_material#highlight('NormalFloat', s:palette.fg1, s:palette.bg0)
 -- call gruvbox_material#highlight('FloatBorder', s:palette.grey1, s:palette.bg0)
 -- bufferline color adjustment
-lvim.builtin.bufferline.highlights = {
-  background = {
-    -- gui = "italic",
-    italic = true,
-  },
-  buffer_selected = {
-    -- gui = "bold",
-    bold = true,
-  },
-  fill = {
-    bg = "#282828",
-    -- bg = "#1d2021",
-  },
-}
+-- lvim.builtin.bufferline.highlights = {
+--   background = {
+--     -- gui = "italic",
+--     italic = true,
+--   },
+--   buffer_selected = {
+--     -- gui = "bold",
+--     bold = true,
+--   },
+--   fill = {
+--     bg = "#282828",
+--     -- bg = "#1d2021",
+--   },
+-- }
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#2F343F"
 -- lualine inactive color for gruvbox_material colorscheme
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#32302f"
@@ -376,7 +377,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- bufferline remove buffer title for NvimTree
 -- lvim.builtin.bufferline.options.offsets[2] = nil
 -- lvim.builtin.bufferline.options.offsets[2].text = ""
--- lvim.builtin.bufferline.options.offsets[2].highlight = "BufferTabpageFill"
+lvim.builtin.bufferline.options.offsets[2].highlight = "BufferTabpageFill"
 
 -- Add session button to dashboard.
 -- Edit alpha/dashboard.lua
