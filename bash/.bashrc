@@ -175,6 +175,12 @@ export EDITOR="lvim"
 # Setting for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
+# Enable fzf keybindings for Bash
+source /usr/share/doc/fzf/examples/key-bindings.bash
+
+# Enable fuzzy auto-completion for Bash
+# source /usr/share/doc/fzf/examples/completion.bash
+
 set -o vi
 # colorscript random
 
