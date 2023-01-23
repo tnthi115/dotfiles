@@ -1,5 +1,3 @@
--- vim:foldmethod=marker
-
 -- ▄▄▄█████▓ ███▄    █ ▄▄▄█████▓
 -- ▓  ██▒ ▓▒ ██ ▀█   █ ▓  ██▒ ▓▒
 -- ▒ ▓██░ ▒░▓██  ▀█ ██▒▒ ▓██░ ▒░
@@ -469,6 +467,7 @@ lvim.builtin.which_key.mappings["bp"] = {
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   -- need to "pip install black"
+  -- can install with mason.nvim
   -- { command = "black", filetypes = { "python" } },
   -- { name = "black" },
   -- need to "pip install yapf"
@@ -883,3 +882,5 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 -- }}}
+
+-- vim:foldmethod=marker
