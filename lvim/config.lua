@@ -47,20 +47,23 @@ lvim.builtin.lualine.style = "lvim"
 
 -- COLORSCHEME --
 lvim.transparent_window = true
+
 -- gruvbox-material
+local bg_color = "#1d2021"
 vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
 vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
 vim.g.gruvbox_material_visual = "blue background"
 vim.g.gruvbox_material_menu_selection_background = "blue"
 vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
-vim.g.gruvbox_material_better_performance = 1
+-- vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_statusline_style = "default"
 vim.g.gruvbox_material_diagnostic_line_highlight = 1
 vim.g.gruvbox_material_diagnostic_text_highlight = 1
 -- vim.cmd([[highlight lualine_x_diagnostics_hint_normal guifg=#32302f guibg=#32302f]])
 -- vim.g.gruvbox_material_diagnostic_text_highlight = 1
--- vim.api.nvim_set_hl(0, "WhichKeyFloat", {fg = "#32302f", bg = "#32302f"})
--- vim.api.nvim_set_hl(0, "FloatBorder", {bg = "#32302f"})
+-- vim.api.nvim_set_hl(0, "WhichKeyFloat", { fg = "#1d2021", bg = "#1d2021" })
+-- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#1d2021" })
+-- lvim.builtin.nvimtree.highlights.NvimTreeEndOfBuffer.guibg = "#1d2021"
 -- lvim.builtin.which_key.setup.window.border = "single" -- none, single, double, shadow
 -- change in /home/user/.local/lunarvim/site/pack/packer/start/gruvbox-material/gruvbox-material.vim
 -- call gruvbox_material#highlight('NormalFloat', s:palette.fg1, s:palette.bg0)
@@ -85,7 +88,14 @@ vim.g.gruvbox_material_diagnostic_text_highlight = 1
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#32302f"
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#40423D"
 -- lvim.builtin.bufferline.highlights.fill.guibg = "#282828"
+-- Override these highlight groups
+vim.cmd [[au ColorScheme * hi NvimTreeEndOfBuffer ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
 lvim.colorscheme = "gruvbox-material"
+
+-- gruvbox
+-- lvim.colorscheme = "gruvbox"
 
 -- everforest
 -- vim.g.everforest_background = "hard"
@@ -280,7 +290,7 @@ lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Project
 -- Add TroubleToggle
 lvim.builtin.which_key.mappings["E"] = {
   -- name = "+Trouble",
-  name = "+Errors",
+  name = "Errors",
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
@@ -302,7 +312,7 @@ lvim.builtin.which_key.mappings["m"] = {
 }
 -- Terminal
 lvim.builtin.which_key.mappings["t"] = {
-  name = "+Terminal",
+  name = "Terminal",
   t = { "<cmd>ToggleTerm<CR>", "Toggle" },
   f = { "<cmd>ToggleTerm direction=float<CR>", "Float" },
   v = { "<cmd>ToggleTerm direction=vertical size=50<CR>", "Vertical" },
@@ -321,7 +331,7 @@ lvim.builtin.which_key.mappings["C"] = {
   "<cmd>ColorizerToggle<CR>", "Toggle Color"
 }
 -- Show full path of current buffer
-lvim.builtin.which_key.mappings["d"] = {
+lvim.builtin.which_key.mappings["bp"] = {
   "<cmd>echo expand('%:p)')<CR>", "Show Buffer Path"
 }
 -- Persistence (sessions)
@@ -377,7 +387,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- bufferline remove buffer title for NvimTree
 -- lvim.builtin.bufferline.options.offsets[2] = nil
 -- lvim.builtin.bufferline.options.offsets[2].text = ""
-lvim.builtin.bufferline.options.offsets[2].highlight = "BufferTabpageFill"
+-- lvim.builtin.bufferline.options.offsets[2].highlight = "BufferTabpageFill"
+lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 
 -- Add session button to dashboard.
 -- Edit alpha/dashboard.lua
@@ -450,6 +461,8 @@ linters.setup {
 
 -- ADDITIONAL PLUGINS --
 lvim.plugins = {
+  -- { "ChristianChiarulli/nvcode-color-schemes.vim" },
+  -- { "gruvbox-community/gruvbox" },
   -- { "ellisonleao/gruvbox.nvim" },
   -- { "morhetz/gruvbox" },
   -- { "folke/tokyonight.nvim" },
@@ -692,6 +705,8 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Additional Plugins
 table.insert(lvim.plugins, {
   "p00f/clangd_extensions.nvim",
+  -- cmake integration
+  "cdelledonne/vim-cmake",
 })
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
@@ -796,3 +811,21 @@ lvim.builtin.dap.on_config_done = function(dap)
 
   dap.configurations.c = dap.configurations.cpp
 end
+
+-- vim-cmake configuration
+vim.cmd [[let g:cmake_link_compile_commands = 1]]
+vim.cmd [[let g:cmake_default_config = "build"]]
+-- vim.cmd [[let g:cmake_build_dir_location = "build"]]
+
+-- cmake which-key bindings for c++ files
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "cpp" },
+  callback = function()
+    lvim.builtin.which_key.mappings["j"] = {
+      name = "C++",
+      g = { "<cmd>CMakeGenerate<cr>", "CMake Generate" },
+      b = { "<cmd>CMakeBuild<cr>", "CMake Build" },
+      c = { "<cmd>CMakeClose<cr>", "Close CMake Console" },
+    }
+  end,
+})
