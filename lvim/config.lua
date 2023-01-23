@@ -1,4 +1,5 @@
---
+-- vim:foldmethod=marker
+
 -- ▄▄▄█████▓ ███▄    █ ▄▄▄█████▓
 -- ▓  ██▒ ▓▒ ██ ▀█   █ ▓  ██▒ ▓▒
 -- ▒ ▓██░ ▒░▓██  ▀█ ██▒▒ ▓██░ ▒░
@@ -17,9 +18,9 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
--- general
+-- General lvim builtin plugin settings {{{
+
 lvim.log.level = "warn"
 lvim.format_on_save = true
 -- lvim.lsp.automatic_servers_installation = true
@@ -45,10 +46,49 @@ lvim.builtin.lualine.style = "lvim"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
--- COLORSCHEME --
+-- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
+-- lvim.builtin.notify.active = true
+lvim.builtin.terminal.active = true
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+
+-- if you don't want all the parsers change this to a table of the ones you want
+lvim.builtin.treesitter.ensure_installed = {
+  "bash",
+  "c",
+  -- "javascript",
+  "json",
+  "lua",
+  "python",
+  -- "typescript",
+  -- "tsx",
+  -- "css",
+  -- "rust",
+  "java",
+  -- "yaml",
+}
+
+lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.highlight.enabled = true
+
+-- bufferline remove buffer title for NvimTree
+-- lvim.builtin.bufferline.options.offsets[2] = nil
+-- lvim.builtin.bufferline.options.offsets[2].text = ""
+-- lvim.builtin.bufferline.options.offsets[2].highlight = "BufferTabpageFill"
+lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
+
+-- }}}
+
+-- Colorscheme {{{
+
 lvim.transparent_window = true
 
--- gruvbox-material
+-- gruvbox-material {{{
+
+lvim.colorscheme = "gruvbox-material"
+
 local bg_color = "#1d2021"
 vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
 vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
@@ -92,38 +132,64 @@ vim.g.gruvbox_material_diagnostic_text_highlight = 1
 vim.cmd [[au ColorScheme * hi NvimTreeEndOfBuffer ctermbg=none guibg=bg_color]]
 vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
 vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
-lvim.colorscheme = "gruvbox-material"
 
--- gruvbox
+-- }}}
+
+-- gruvbox {{{
+
 -- lvim.colorscheme = "gruvbox"
 
--- everforest
+-- }}}
+
+-- everforest {{{
+
 -- vim.g.everforest_background = "hard"
 -- vim.g.everforest_diagnostic_virtual_text = "colored"
 -- lvim.colorscheme = "everforest"
 
--- gruvbox-baby
+-- }}}
+
+-- gruvbox-baby {{{
+
 -- lvim.colorscheme = "gruvbox-baby"
 
--- tokyonight
+-- }}}
+
+-- tokyonight {{{
+
 -- lvim.colorscheme = "tokyonight-night"
 
--- catppuccin
+-- }}}
+
+-- catppuccin {{{
+
 -- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 -- lvim.colorscheme = "catppuccin"
 -- local catppuccin = require("catppuccin")
 -- catppuccin.setup()
 
--- tokyodark
+-- }}}
+
+-- tokyodark {{{
+
 -- lvim.colorscheme = "tokyodark"
 
--- moonlight
+-- }}}
+
+-- moonlight {{{
+
 -- lvim.colorscheme = "moonlight"
 
--- kanagawa
+-- }}}
+
+-- kanagawa {{{
+
 -- lvim.colorscheme = "kanagawa"
 
--- rose-pine
+-- }}}
+
+-- rose-pine {{{
+
 -- lvim.colorscheme = "rose-pine"
 
 -- require('rose-pine').setup({
@@ -184,7 +250,12 @@ lvim.colorscheme = "gruvbox-material"
 -- }
 -- -- lvim.builtin.bufferline.highlights.fill.guibg = "#2a273f" -- this is for moon
 
--- VIM SETS --
+-- }}}
+
+-- }}}
+
+-- Vim Sets {{{
+
 vim.opt.background = "dark"
 vim.opt.backup = false -- creates a backup file
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
@@ -235,7 +306,10 @@ vim.opt.sidescrolloff = 8
 vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
 -- vim.cmd("set winbar=%=%m\ %f") -- set winbar (TODO: broken syntax)
 
--- KEYMAPPINGS [view all the defaults by pressing <leader>Lk] --
+-- }}}
+
+-- Keymappings [view all the defaults by pressing <leader>Lk] {{{
+
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
@@ -277,7 +351,13 @@ lvim.builtin.telescope.defaults.mappings = {
   },
 }
 
--- WHICH-KEY --
+-- }}}
+
+-- Which-key {{{
+
+-- Turn on which-key help for bindings for folds, spelling and others prefixed with z
+lvim.builtin.which_key.setup.plugins.presets.z = true
+
 -- lvim.builtin.which_key.icons.separator = "->"
 -- lvim.builtin.which_key.icons.group = "+"
 -- lvim.builtin.which_key.icons = {
@@ -356,44 +436,9 @@ lvim.builtin.which_key.mappings["bp"] = {
 --   d = { "<cmd>lua require('distant.nav.actions').remove()<CR>", "Remove file" },
 -- }
 
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.alpha.active = true
-lvim.builtin.alpha.mode = "dashboard"
--- lvim.builtin.notify.active = true
-lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+-- }}}
 
--- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  -- "javascript",
-  "json",
-  "lua",
-  "python",
-  -- "typescript",
-  -- "tsx",
-  -- "css",
-  -- "rust",
-  "java",
-  -- "yaml",
-}
-
-lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
-
--- bufferline remove buffer title for NvimTree
--- lvim.builtin.bufferline.options.offsets[2] = nil
--- lvim.builtin.bufferline.options.offsets[2].text = ""
--- lvim.builtin.bufferline.options.offsets[2].highlight = "BufferTabpageFill"
-lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
-
--- Add session button to dashboard.
--- Edit alpha/dashboard.lua
-
--- generic LSP settings --
+-- Generic LSP settings {{{
 
 -- ---@usage disable automatic installation of servers
 -- lvim.lsp.automatic_servers_installation = false
@@ -459,7 +504,35 @@ linters.setup {
   -- },
 }
 
--- ADDITIONAL PLUGINS --
+-- }}}
+
+-- Autocommands (https://neovim.io/doc/user/autocmd.html) {{{
+
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   pattern = { "*.json", "*.jsonc" },
+--   -- enable wrap mode for json files only
+--   command = "setlocal wrap",
+-- })
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "zsh",
+--   callback = function()
+--     -- let treesitter use bash highlight for zsh files as well
+--     require("nvim-treesitter.highlight").attach(0, "bash")
+--   end,
+-- })
+--   pattern = "zsh",
+
+-- set indentation to 4 spaces for certain files
+vim.api.nvim_create_autocmd("FileType", {
+  -- pattern = { "python", "java", "xml", "tcl", "markdown", "css" },
+  pattern = { "java", "xml", "tcl", "markdown", "css" },
+  command = "setlocal shiftwidth=4 softtabstop=4 expandtab",
+})
+
+-- }}}
+
+-- Additional plugins {{{
+
 lvim.plugins = {
   -- { "ChristianChiarulli/nvcode-color-schemes.vim" },
   -- { "gruvbox-community/gruvbox" },
@@ -669,31 +742,10 @@ require('numb').setup {
 --   "                   ░           ",
 -- }
 
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.json", "*.jsonc" },
---   -- enable wrap mode for json files only
---   command = "setlocal wrap",
--- })
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "zsh",
---   callback = function()
---     -- let treesitter use bash highlight for zsh files as well
---     require("nvim-treesitter.highlight").attach(0, "bash")
---   end,
--- })
---   pattern = "zsh",
+-- }}}
 
--- set indentation to 4 spaces for certain files
-vim.api.nvim_create_autocmd("FileType", {
-  -- pattern = { "python", "java", "xml", "tcl", "markdown", "css" },
-  pattern = { "java", "xml", "tcl", "markdown", "css" },
-  command = "setlocal shiftwidth=4 softtabstop=4 expandtab",
-})
+-- C++ LSP and DAP setup {{{
 
--- require'lspconfig'.pyright.setup{}
-
--- C++ LSP and DAP setup --
 -- lvim.format_on_save = false
 -- lvim.lsp.diagnostics.virtual_text = true
 
@@ -829,3 +881,5 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     }
   end,
 })
+
+-- }}}
