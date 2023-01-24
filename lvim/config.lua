@@ -331,6 +331,12 @@ lvim.keys.normal_mode["<C-Right>"] = ":vertical resize -2<CR>"
 lvim.keys.normal_mode["<S-H>"] = "<cmd>BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode["<S-L>"] = "<cmd>BufferLineCycleNext<CR>"
 
+-- Center cursor when paging up/down and when cycling through search terms.
+lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
+lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
+lvim.keys.normal_mode["n"] = "nzzzv"
+lvim.keys.normal_mode["N"] = "Nzzzv"
+
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 local _, actions = pcall(require, "telescope.actions")
@@ -398,10 +404,10 @@ lvim.builtin.which_key.mappings["t"] = {
   T = { "<cmd>ToggleTerm direction=tab<CR>", "Tab" },
 }
 -- Bufferline
-lvim.builtin.which_key.mappings[","] = {
+lvim.builtin.which_key.mappings["b,"] = {
   "<cmd>BufferLineMovePrev<CR>", "Move Buffer Left"
 }
-lvim.builtin.which_key.mappings["."] = {
+lvim.builtin.which_key.mappings["b."] = {
   "<cmd>BufferLineMoveNext<CR>", "Move Buffer Right"
 }
 -- Colorizer
@@ -874,9 +880,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     lvim.builtin.which_key.mappings["j"] = {
       name = "C++",
-      g = { "<cmd>CMakeGenerate<cr>", "CMake Generate" },
-      b = { "<cmd>CMakeBuild<cr>", "CMake Build" },
-      c = { "<cmd>CMakeClose<cr>", "Close CMake Console" },
+      g = { "<cmd>CMakeGenerate<cr>", "CMakeGenerate" },
+      b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
+      q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
+      c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
     }
   end,
 })

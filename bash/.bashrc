@@ -93,6 +93,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # vim aliases
+alias v="lvim"
 alias vim="lvim"
 # alias nvim="lvim"
 alias oldnvim="\nvim"
