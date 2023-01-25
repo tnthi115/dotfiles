@@ -20,7 +20,7 @@ an executable
 -- General lvim builtin plugin settings {{{
 
 lvim.log.level = "warn"
-lvim.format_on_save = true
+lvim.format_on_save = false
 -- lvim.lsp.automatic_servers_installation = true
 lvim.lsp.installer.setup.automatic_installation = false
 
@@ -855,13 +855,16 @@ lvim.builtin.dap.on_config_done = function(dap)
       request = "launch",
       program = function()
         local path
-        vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd() .. "/build/" }, function(input)
+        -- vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd() .. "/build/" }, function(input)
+        vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd() .. "/Debug/" }, function(input)
           path = input
         end)
         vim.cmd [[redraw]]
         return path
       end,
-      cwd = "${workspaceFolder}",
+      -- for cs184, executable should be run with cwd = build/
+      -- cwd = "${workspaceFolder}",
+      cwd = "${workspaceFolder}/Debug",
       stopOnEntry = false,
     },
   }
@@ -880,10 +883,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     lvim.builtin.which_key.mappings["j"] = {
       name = "C++",
-      g = { "<cmd>CMakeGenerate<cr>", "CMakeGenerate" },
+      -- Clean previous build system first before generating the new one
+      G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
+      g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
+      d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
       b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
       q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
       c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
+      s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
+      S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
     }
   end,
 })
