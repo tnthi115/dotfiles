@@ -78,6 +78,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- lvim.builtin.bufferline.options.offsets[2].highlight = "BufferTabpageFill"
 lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 
+-- lvim.builtin.telescope.theme = "default"
+
 -- }}}
 
 -- Colorscheme {{{
@@ -445,6 +447,11 @@ lvim.builtin.which_key.mappings["bp"] = {
 
 -- Generic LSP settings {{{
 
+local cmp = require "cmp"
+
+-- Remap suggestion window close to ctrl + a (from ctrl + e)
+lvim.keys.insert_mode["<C-a>"] = cmp.mapping.abort()
+
 -- ---@usage disable automatic installation of servers
 -- lvim.lsp.automatic_servers_installation = false
 
@@ -552,20 +559,20 @@ lvim.plugins = {
   -- { "sainnhe/edge" },
   -- { "Mofiqul/vscode.nvim" },
   -- { "luisiacc/gruvbox-baby" },
-  { "sainnhe/everforest" },
+  -- { "sainnhe/everforest" },
   -- { "tiagovla/tokyodark.nvim" },
   -- { "shaunsingh/moonlight.nvim" },
   -- { "rebelot/kanagawa.nvim" },
   -- { "frenzyexists/aquarium-vim" },
   -- { "catppuccin/nvim", as = "catppuccin" },
-  {
-    "rose-pine/neovim"
-    -- as = 'rose-pine',
-    -- tag = 'v1.*',
-    -- config = function()
-    --     vim.cmd('colorscheme rose-pine')
-    -- end
-  },
+  -- {
+  --   "rose-pine/neovim"
+  --   -- as = 'rose-pine',
+  --   -- tag = 'v1.*',
+  --   -- config = function()
+  --   --     vim.cmd('colorscheme rose-pine')
+  --   -- end
+  -- },
 
   -- Error diagnostics
   {
