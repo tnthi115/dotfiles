@@ -954,10 +954,11 @@ table.insert(lvim.plugins, {
       },
       suggestion = {
         enabled = true,
-        auto_trigger = false,
+        auto_trigger = true,
         debounce = 75,
         keymap = {
-          accept = "<M-l>",
+          -- accept = "<M-l>",
+          accept = "<S-CR>",
           accept_word = false,
           accept_line = false,
           next = "<M-]>",
@@ -986,6 +987,22 @@ table.insert(lvim.plugins, {
     })
   end,
 })
+
+-- Use Copilot as a cmp source
+-- table.insert(lvim.plugins, {
+--   "zbirenbaum/copilot-cmp",
+--   after = { "copilot.lua" },
+--   config = function ()
+--     require("copilot_cmp").setup({
+--       method = "getCompletionsCycling",
+--       formatters = {
+--         label = require("copilot_cmp.format").format_label_text,
+--         insert_text = require("copilot_cmp.format").format_insert_text,
+--         preview = require("copilot_cmp.format").deindent,
+--       },
+--     })
+--   end
+-- })
 
 -- }}}
 
