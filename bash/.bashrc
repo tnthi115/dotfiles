@@ -99,6 +99,7 @@ alias nvim="lvim"
 alias oldnvim="\nvim"
 alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
+alias vf="vim \$(fzf)"
 
 # personal aliases
 alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
@@ -106,7 +107,7 @@ alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpaper
 alias rw="nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/gruvbox"
 alias tn="notify-send -i ~/.config/awesome/awesome-wm-widgets/battery-widget/spaceman.jpg -t 10000 'test' 'hello this is a test notification!'"
 alias obsidian="/opt/obsidian/Obsidian-0.15.9.AppImage"
-alias cs164-sshfs="sudo sshfs -o allow_other cs164-aak@cedar.cs.berkeley.edu:/home/cc/cs164/fa22/class/cs164-aak/ ~/Classes/cs164/cs164-aak -o IdentityFile=/home/user/.ssh/id_ed25519 && pushd ~/Classes/cs164/cs164-aak"
+# alias cs164-sshfs="sudo sshfs -o allow_other cs164-aak@cedar.cs.berkeley.edu:/home/cc/cs164/fa22/class/cs164-aak/ ~/Classes/cs164/cs164-aak -o IdentityFile=/home/user/.ssh/id_ed25519 && pushd ~/Classes/cs164/cs164-aak"
 alias lg="lazygit"
 
 # Add an "alert" alias for long running commands.  Use like so:
