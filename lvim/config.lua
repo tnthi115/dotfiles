@@ -893,7 +893,6 @@ end
 -- vim-cmake configuration
 vim.cmd [[let g:cmake_link_compile_commands = 1]]
 vim.cmd [[let g:cmake_default_config = "build"]]
--- vim.cmd [[let g:cmake_build_dir_location = "build"]]
 
 -- cmake which-key bindings for c++ files
 -- vim.api.nvim_create_autocmd({ "FileType" }, {
