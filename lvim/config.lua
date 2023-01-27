@@ -56,6 +56,7 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
+  "cpp",
   -- "javascript",
   "json",
   "lua",
@@ -513,11 +514,12 @@ linters.setup {
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html) {{{
 
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.json", "*.jsonc" },
---   -- enable wrap mode for json files only
---   command = "setlocal wrap",
--- })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.json", "*.jsonc" },
+  -- enable wrap mode for json files only
+  command = "setlocal wrap",
+})
+
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
 --   callback = function()
@@ -529,8 +531,8 @@ linters.setup {
 
 -- set indentation to 4 spaces for certain files
 vim.api.nvim_create_autocmd("FileType", {
-  -- pattern = { "python", "java", "xml", "tcl", "markdown", "css" },
-  pattern = { "java", "xml", "tcl", "markdown", "css" },
+  pattern = { "python", "java", "xml", "tcl", "markdown", "css" },
+  -- pattern = { "java", "xml", "tcl", "markdown", "css" },
   command = "setlocal shiftwidth=4 softtabstop=4 expandtab",
 })
 
@@ -539,6 +541,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Additional plugins {{{
 
 lvim.plugins = {
+  -- Colorschemes
   -- { "ChristianChiarulli/nvcode-color-schemes.vim" },
   -- { "gruvbox-community/gruvbox" },
   -- { "ellisonleao/gruvbox.nvim" },
@@ -563,11 +566,17 @@ lvim.plugins = {
     --     vim.cmd('colorscheme rose-pine')
     -- end
   },
+
+  -- Error diagnostics
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
+
+  -- Git diffview
   { "sindrets/diffview.nvim" },
+
+  -- Markdown previewer
   {
     "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
@@ -576,21 +585,17 @@ lvim.plugins = {
       vim.g.mkdp_auto_start = 1
     end,
   },
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   event = "BufRead",
-  --   setup = function()
-  --     vim.g.indentLine_enabled = 1
-  --     vim.g.indent_blankline_char = "▏"
-  --     vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
-  --     vim.g.indent_blankline_buftype_exclude = { "terminal" }
-  --     vim.g.indent_blankline_show_trailing_blankline_indent = false
-  --     vim.g.indent_blankline_show_first_indent_level = false
-  --   end
-  -- },
+
+  -- Function signature viewer
   { "ray-x/lsp_signature.nvim" },
+
+  -- View colors from color codes
   { "norcalli/nvim-colorizer.lua" },
+
+  -- Incremental line number search
   { "nacro90/numb.nvim" },
+
+  -- Vim sessions
   -- {
   --   "folke/persistence.nvim",
   --   event = "BufReadPre", -- this will only start session saving when an actual file was opened
@@ -602,6 +607,8 @@ lvim.plugins = {
   --     }
   --   end,
   -- },
+  --
+  -- -- Remote editing
   -- {
   --   "chipsenkbeil/distant.nvim",
   --   config = function()
@@ -658,12 +665,15 @@ lvim.plugins = {
   -- },
 }
 
--- Configure markdown-preview
+-- Configure markdown-preview {{{
+
 vim.g.mkdp_browser = "/usr/bin/firefox"
 vim.g.mkdp_theme = "light"
 vim.g.mkdp_auto_close = 0
 
--- Configure lsp_signature
+-- }}}
+
+-- Configure lsp_signature {{{
 local cfg = {
   debug = false, -- set to true to enable debug logging
   log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
@@ -725,7 +735,10 @@ require 'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use 
 -- require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
 require 'lsp_signature'.on_attach(cfg) -- no need to specify bufnr if you don't use toggle_key
 
--- Configure numb
+-- }}}
+
+-- Configure numb {{{
+
 require('numb').setup {
   show_numbers = true, -- Enable 'number' for the window while peeking
   show_cursorline = true, -- Enable 'cursorline' for the window while peeking
@@ -733,7 +746,9 @@ require('numb').setup {
   centered_peeking = true, -- Peeked line will be centered relative to window
 }
 
--- Configure alpha dashboard
+--- }}}
+
+-- Configure alpha dashboard {{{
 -- lvim.builtin.alpha.dashboard.section.header.val = {
 --   "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 --   " ▄▄▄█████▓ ███▄    █ ▄▄▄█████▓ ",
@@ -747,10 +762,13 @@ require('numb').setup {
 --   "                   ░           ",
 -- }
 
+--- }}}
+
 -- }}}
 
 -- C++ LSP and DAP setup {{{
 
+-- TODO: maybe move this under Generic LSP settings
 -- lvim.format_on_save = false
 -- lvim.lsp.diagnostics.virtual_text = true
 
@@ -908,6 +926,67 @@ lvim.builtin.which_key.mappings["j"] = {
   s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
   S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
 }
+
+-- }}}
+
+-- Github Copilot {{{
+
+table.insert(lvim.plugins, {
+  "zbirenbaum/copilot.lua",
+  cmd = "Copilot",
+  event = "InsertEnter",
+  config = function()
+    -- require("copilot").setup({})
+    require('copilot').setup({
+      panel = {
+        enabled = true,
+        auto_refresh = false,
+        keymap = {
+          jump_prev = "[[",
+          jump_next = "]]",
+          accept = "<CR>",
+          refresh = "gr",
+          open = "<M-CR>"
+        },
+        layout = {
+          position = "bottom", -- | top | left | right
+          ratio = 0.4
+        },
+      },
+      suggestion = {
+        enabled = true,
+        auto_trigger = false,
+        debounce = 75,
+        keymap = {
+          accept = "<M-l>",
+          accept_word = false,
+          accept_line = false,
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+        },
+      },
+      filetypes = {
+        -- Default
+        yaml = false,
+        markdown = false,
+        help = false,
+        gitcommit = false,
+        gitrebase = false,
+        hgcommit = false,
+        svn = false,
+        cvs = false,
+        ["."] = false,
+
+        -- ["*"] = false, -- disable for all other filetypes and ignore default 'filetypes'
+        -- lua = true,
+        -- cpp = true,
+      },
+      copilot_node_command = 'node', -- Node.js version must be > 16.x
+      server_opts_overrides = {},
+    })
+  end,
+})
 
 -- }}}
 
