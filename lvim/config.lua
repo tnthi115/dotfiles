@@ -964,8 +964,9 @@ table.insert(lvim.plugins, {
         auto_trigger = true,
         debounce = 75,
         keymap = {
-          -- accept = "<M-l>",
-          accept = "<S-CR>",
+          accept = "<M-l>",
+          -- doesn't work in tmux
+          -- accept = "<S-CR>",
           accept_word = false,
           accept_line = false,
           next = "<M-]>",

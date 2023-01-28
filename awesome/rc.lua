@@ -110,7 +110,10 @@ local menu_terminal = { "open terminal", terminal }
 if has_fdo then
   mymainmenu = freedesktop.menu.build({
     before = { menu_awesome },
-    after = { menu_terminal }
+    after = {
+      { "Obsidian", "/opt/obsidian/Obsidian-0.15.9.AppImage", "/opt/obsidian/obsidian.png"},
+      menu_terminal
+    }
   })
 else
   mymainmenu = awful.menu({
