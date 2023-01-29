@@ -306,6 +306,7 @@ vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
 vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
 -- vim.cmd("set winbar=%=%m\ %f") -- set winbar (TODO: broken syntax)
+-- vim.opt.foldmethod = "marker"
 
 -- }}}
 
