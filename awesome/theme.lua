@@ -15,6 +15,7 @@ local theme = {}
 
 theme.font = "Hack Nerd Font Regular 9"
 
+-- grey theme
 -- theme.bg_normal   = "#222222"
 theme.bg_normal   = "#1d2021"
 -- theme.bg_focus    = "#32302f"
@@ -27,20 +28,21 @@ theme.bg_urgent   = "#f2594b"
 theme.bg_minimize = "#1c1920"
 theme.bg_systray  = theme.bg_normal
 
--- theme.fg_normal   = "#aaaaaa"
+theme.fg_normal   = "#aaaaaa"
 -- theme.fg_normal   = "#e2cca9"
 -- theme.fg_normal = "#d5d0c2"
 -- theme.fg_normal   = "#f2e5bc"
 -- theme.fg_normal   = "#fbf1c7"
 -- theme.fg_normal   = "#928374"
-theme.fg_normal   = "#a89984"
--- theme.fg_focus    = "#ffffff"
-theme.fg_focus    = "#e2cca9"
+-- theme.fg_normal   = "#a89984"
+theme.fg_focus    = "#ffffff"
+-- theme.fg_focus    = "#e2cca9"
 -- theme.fg_focus    = "#f2e5bc"
 -- theme.fg_normal   = "#e2cca9"
 theme.fg_urgent   = "#ffffff"
-theme.fg_minimize = "#928374"
-theme.fg_layout    = "#e2cca9"
+-- theme.fg_minimize   = "#ffffff"
+theme.fg_minimize = "#999999"
+-- theme.fg_layout    = "#e2cca9"
 
 theme.useless_gap   = dpi(5)
 theme.border_width  = dpi(1)
@@ -49,9 +51,28 @@ theme.border_normal = "#000000"
 theme.border_focus  = "#6e635d"
 -- theme.border_focus  = "#928374"
 
+-- gruvbox
+-- theme.bg_normal   = "#1d2021"
+-- theme.bg_focus    = "#282828"
+-- theme.bg_urgent   = "#f2594b"
+-- -- TODO: change
+-- theme.bg_minimize = "#1c1920"
+-- theme.bg_systray  = theme.bg_normal
+
+-- theme.fg_normal   = "#a89984"
+-- theme.fg_focus    = "#e2cca9"
+-- theme.fg_urgent    = "#f2e5bc"
+-- theme.fg_minimize = "#928374"
+-- theme.fg_layout    = "#e2cca9"
+
+-- theme.useless_gap   = dpi(5)
+-- theme.border_width  = dpi(1)
+-- theme.border_normal = "#000000"
+-- theme.border_focus  = "#6e635d"
+
 theme.border_marked = "#91231c"
 
--- TODO: recolor widget icons
+-- TODO: recolor widget icons for gruvbox
 
 -- There are other variable sets
 -- overriding the default one when
@@ -140,6 +161,7 @@ theme.layout_cornerne   = themes_path .. "default/layouts/cornernew.png"
 theme.layout_cornersw   = themes_path .. "default/layouts/cornersww.png"
 theme.layout_cornerse   = themes_path .. "default/layouts/cornersew.png"
 
+-- gruvbox recolor
 -- theme.layout_fairh      = gcolor.recolor_image(themes_path .. "default/layouts/fairhw.png", theme.fg_layout)
 -- theme.layout_fairv      = gcolor.recolor_image(themes_path .. "default/layouts/fairvw.png", theme.fg_layout)
 -- theme.layout_floating   = gcolor.recolor_image(themes_path .. "default/layouts/floatingw.png", theme.fg_layout)
