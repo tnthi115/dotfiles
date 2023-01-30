@@ -87,7 +87,18 @@ lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 
 -- Colorscheme {{{
 
+-- lvim.transparent_window = true
 lvim.transparent_window = true
+
+-- lunar {{{
+
+-- lvim.colorscheme = "lunar"
+-- local bg_color = "#1a1b26"
+-- vim.cmd [[au ColorScheme * hi VertSplit ctermbg=none guibg=bg_color]]
+-- vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
+-- vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
+
+-- }}}
 
 -- gruvbox-material {{{
 
@@ -194,8 +205,6 @@ vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
 
 -- rose-pine {{{
 
--- lvim.colorscheme = "rose-pine"
-
 -- require('rose-pine').setup({
 --   --- @usage 'main' | 'moon'
 --   dark_variant = 'main',
@@ -203,7 +212,7 @@ vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
 --   dim_nc_background = false,
 --   disable_background = false,
 --   disable_float_background = false,
---   disable_italics = true,
+--   disable_italics = false,
 
 --   --- @usage string hex value or named color from rosepinetheme.com/palette
 --   groups = {
@@ -235,24 +244,33 @@ vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
 --   -- Change specific vim highlight groups
 --   highlight_groups = {
 --     ColorColumn = { bg = 'rose' },
+--     WhichKeyFloat = { bg = 'base' },
+--     NormalFloat = { bg = 'base' },
+--     FloatBorder = { bg = 'base' },
 --     -- lualine_b_inactive = { guibg = 'surface' },
 --     -- lualine_c_inactive = { guibg = 'surface' },
 --   }
 -- })
 -- -- set bufferline fill color
--- lvim.builtin.bufferline.highlights = { background = {
---   -- gui = "italic",
---   italic = true,
--- },
---   buffer_selected = {
---     -- gui = "bold",
---     bold = true,
---   },
---   fill = {
---     bg = "#2a273f"
---   },
--- }
+-- -- lvim.builtin.bufferline.highlights = { background = {
+-- --   -- gui = "italic",
+-- --   italic = true,
+-- -- },
+-- --   buffer_selected = {
+-- --     -- gui = "bold",
+-- --     bold = true,
+-- --   },
+-- --   fill = {
+-- --     bg = "#2a273f"
+-- --   },
+-- -- }
 -- -- lvim.builtin.bufferline.highlights.fill.guibg = "#2a273f" -- this is for moon
+
+-- lvim.colorscheme = "rose-pine"
+
+-- local bg_color = "#232136"
+-- vim.cmd [[au ColorScheme * hi WhichKeyFloat ctermbg=none guibg=bg_color]]
+-- vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
 
 -- }}}
 
