@@ -9,6 +9,8 @@ local dpi = xresources.apply_dpi
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
+local gcolor = require("gears.color")
+
 local theme = {}
 
 theme.font = "Hack Nerd Font Regular 9"
@@ -21,13 +23,24 @@ theme.bg_normal   = "#1d2021"
 theme.bg_focus    = "#282828"
 -- theme.bg_urgent   = "#ff0000"
 theme.bg_urgent   = "#f2594b"
-theme.bg_minimize = "#444444"
+-- TODO: change
+theme.bg_minimize = "#1c1920"
 theme.bg_systray  = theme.bg_normal
 
-theme.fg_normal   = "#aaaaaa"
-theme.fg_focus    = "#ffffff"
+-- theme.fg_normal   = "#aaaaaa"
+-- theme.fg_normal   = "#e2cca9"
+-- theme.fg_normal = "#d5d0c2"
+-- theme.fg_normal   = "#f2e5bc"
+-- theme.fg_normal   = "#fbf1c7"
+-- theme.fg_normal   = "#928374"
+theme.fg_normal   = "#a89984"
+-- theme.fg_focus    = "#ffffff"
+theme.fg_focus    = "#e2cca9"
+-- theme.fg_focus    = "#f2e5bc"
+-- theme.fg_normal   = "#e2cca9"
 theme.fg_urgent   = "#ffffff"
-theme.fg_minimize = "#ffffff"
+theme.fg_minimize = "#928374"
+theme.fg_layout    = "#e2cca9"
 
 theme.useless_gap   = dpi(5)
 theme.border_width  = dpi(1)
@@ -37,6 +50,8 @@ theme.border_focus  = "#6e635d"
 -- theme.border_focus  = "#928374"
 
 theme.border_marked = "#91231c"
+
+-- TODO: recolor widget icons
 
 -- There are other variable sets
 -- overriding the default one when
@@ -68,8 +83,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
--- menu_[border_color|border_width]
-theme.menu_submenu_icon = themes_path .. "default/submenu.png"
+-- menu_[border_color|border_width] theme.menu_submenu_icon = themes_path .. "default/submenu.png"
 theme.menu_height       = dpi(15)
 theme.menu_width        = dpi(150)
 
@@ -125,6 +139,23 @@ theme.layout_cornernw   = themes_path .. "default/layouts/cornernww.png"
 theme.layout_cornerne   = themes_path .. "default/layouts/cornernew.png"
 theme.layout_cornersw   = themes_path .. "default/layouts/cornersww.png"
 theme.layout_cornerse   = themes_path .. "default/layouts/cornersew.png"
+
+-- theme.layout_fairh      = gcolor.recolor_image(themes_path .. "default/layouts/fairhw.png", theme.fg_layout)
+-- theme.layout_fairv      = gcolor.recolor_image(themes_path .. "default/layouts/fairvw.png", theme.fg_layout)
+-- theme.layout_floating   = gcolor.recolor_image(themes_path .. "default/layouts/floatingw.png", theme.fg_layout)
+-- theme.layout_magnifier  = gcolor.recolor_image(themes_path .. "default/layouts/magnifierw.png", theme.fg_layout)
+-- theme.layout_max        = gcolor.recolor_image(themes_path .. "default/layouts/maxw.png", theme.fg_layout)
+-- theme.layout_fullscreen = gcolor.recolor_image(themes_path .. "default/layouts/fullscreenw.png", theme.fg_layout)
+-- theme.layout_tilebottom = gcolor.recolor_image(themes_path .. "default/layouts/tilebottomw.png", theme.fg_layout)
+-- theme.layout_tileleft   = gcolor.recolor_image(themes_path .. "default/layouts/tileleftw.png", theme.fg_layout)
+-- theme.layout_tile       = gcolor.recolor_image(themes_path .. "default/layouts/tilew.png", theme.fg_layout)
+-- theme.layout_tiletop    = gcolor.recolor_image(themes_path .. "default/layouts/tiletopw.png", theme.fg_layout)
+-- theme.layout_spiral     = gcolor.recolor_image(themes_path .. "default/layouts/spiralw.png", theme.fg_layout)
+-- theme.layout_dwindle    = gcolor.recolor_image(themes_path .. "default/layouts/dwindlew.png", theme.fg_layout)
+-- theme.layout_cornernw   = gcolor.recolor_image(themes_path .. "default/layouts/cornernww.png", theme.fg_layout)
+-- theme.layout_cornerne   = gcolor.recolor_image(themes_path .. "default/layouts/cornernew.png", theme.fg_layout)
+-- theme.layout_cornersw   = gcolor.recolor_image(themes_path .. "default/layouts/cornersww.png", theme.fg_layout)
+-- theme.layout_cornerse   = gcolor.recolor_image(themes_path .. "default/layouts/cornersew.png", theme.fg_layout)
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(

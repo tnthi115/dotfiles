@@ -8,6 +8,9 @@
 --   ░         ░   ░ ░   ░
 --                   ░
 
+-- Tymon Thi (tnthi115)
+-- https://github.com/tnthi115
+
 --[[
 lvim is the global options object
 
@@ -977,19 +980,20 @@ table.insert(lvim.plugins, {
       },
       filetypes = {
         -- Default
-        yaml = false,
-        markdown = false,
-        help = false,
-        gitcommit = false,
-        gitrebase = false,
-        hgcommit = false,
-        svn = false,
-        cvs = false,
-        ["."] = false,
+        -- yaml = false,
+        -- markdown = false,
+        -- help = false,
+        -- gitcommit = false,
+        -- gitrebase = false,
+        -- hgcommit = false,
+        -- svn = false,
+        -- cvs = false,
+        -- ["."] = false,
 
-        -- ["*"] = false, -- disable for all other filetypes and ignore default 'filetypes'
+        ["*"] = false, -- disable for all other filetypes and ignore default 'filetypes'
         -- lua = true,
-        -- cpp = true,
+        cpp = true,
+        python = true,
       },
       copilot_node_command = 'node', -- Node.js version must be > 16.x
       server_opts_overrides = {},

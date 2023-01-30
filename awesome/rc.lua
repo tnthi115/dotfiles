@@ -64,7 +64,7 @@ editor_cmd = terminal .. " -e " .. editor
 -- beautiful.useless_gap = 3
 
 -- Window snapping
-awful.mouse.snap.edge_enabled = false
+awful.mouse.snap.edge_enabled = true
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -111,7 +111,7 @@ if has_fdo then
   mymainmenu = freedesktop.menu.build({
     before = { menu_awesome },
     after = {
-      { "Obsidian", "/opt/obsidian/Obsidian-0.15.9.AppImage", "/opt/obsidian/obsidian.png"},
+      { "Obsidian", "/opt/obsidian/Obsidian-0.15.9.AppImage", "/opt/obsidian/obsidian.png" },
       menu_terminal
     }
   })
