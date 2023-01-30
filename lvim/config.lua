@@ -415,10 +415,10 @@ lvim.builtin.which_key.mappings["gv"] = {
 lvim.builtin.which_key.mappings["gq"] = {
   "<cmd>DiffviewClose<CR>", "Close Diffview"
 }
--- Markdown Preview
-lvim.builtin.which_key.mappings["m"] = {
-  "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
-}
+-- -- Markdown Preview
+-- lvim.builtin.which_key.mappings["m"] = {
+--   "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
+-- }
 -- Terminal
 lvim.builtin.which_key.mappings["t"] = {
   name = "Terminal",
@@ -608,10 +608,8 @@ lvim.plugins = {
   -- Markdown previewer
   {
     "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
-    ft = "markdown",
-    config = function()
-      vim.g.mkdp_auto_start = 1
+    build = function()
+      vim.fn["mkdp#util#install"]()
     end,
   },
 
@@ -697,8 +695,17 @@ lvim.plugins = {
 -- Configure markdown-preview {{{
 
 vim.g.mkdp_browser = "/usr/bin/firefox"
-vim.g.mkdp_theme = "light"
+-- vim.g.mkdp_theme = "light"
 vim.g.mkdp_auto_close = 0
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "markdown" },
+  callback = function()
+    lvim.builtin.which_key.mappings["m"] = {
+      "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
+    }
+  end,
+})
 
 -- }}}
 
@@ -924,36 +931,36 @@ vim.cmd [[let g:cmake_link_compile_commands = 1]]
 vim.cmd [[let g:cmake_default_config = "build"]]
 
 -- cmake which-key bindings for c++ files
--- vim.api.nvim_create_autocmd({ "FileType" }, {
---   pattern = { "cpp" },
---   callback = function()
---     lvim.builtin.which_key.mappings["j"] = {
---       name = "C++",
---       -- Clean previous build system first before generating the new one
---       G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
---       g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
---       d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
---       b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
---       q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
---       c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
---       s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
---       S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
---     }
---   end,
--- })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "cpp" },
+  callback = function()
+    lvim.builtin.which_key.mappings["j"] = {
+      name = "C++",
+      -- Clean previous build system first before generating the new one
+      G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
+      g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
+      d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
+      b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
+      q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
+      c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
+      s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
+      S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
+    }
+  end,
+})
 
-lvim.builtin.which_key.mappings["j"] = {
-  name = "CMake",
-  -- Clean previous build system first before generating the new one
-  G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
-  g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
-  d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
-  b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
-  q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
-  c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
-  s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
-  S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
-}
+-- lvim.builtin.which_key.mappings["j"] = {
+--   name = "CMake",
+--   -- Clean previous build system first before generating the new one
+--   G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
+--   g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
+--   d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
+--   b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
+--   q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
+--   c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
+--   s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
+--   S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
+-- }
 
 -- }}}
 
