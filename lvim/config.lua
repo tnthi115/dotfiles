@@ -920,11 +920,69 @@ lvim.builtin.dap.on_config_done = function(dap)
       -- cwd = "${workspaceFolder}",
       cwd = "${workspaceFolder}/Debug",
       stopOnEntry = false,
+      -- args = function()
+      --   local args
+      --   -- vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd() .. "/build/" }, function(input)
+      --   vim.ui.input({ prompt = "Args: ", default = "" }, function(input)
+      --     for word in input:gmatch("%w+") do table.insert(args, word) end
+      --   end)
+      --   vim.cmd [[redraw]]
+      --   return args
+      -- end,
+      -- args = function()
+      --   local args = { "hello", "hi", }
+      --   vim.cmd [[redraw]]
+      --   return args
+      -- end,
+      args = {},
     },
   }
 
   dap.configurations.c = dap.configurations.cpp
 end
+
+-- local last_cmd = ""
+
+-- local debug = function ()
+--   -- fills in the last used cmd, use <Ctrl-U> to remove
+--   local cmd
+--   -- vim.ui.input({ prompt = "DAP launch cmd: " .. vim.loop.cwd() .. "/Debug/", default = last_cmd }, function(input)
+--   vim.ui.input({ prompt = "DAP launch cmd: ", default = vim.loop.cwd() .. "/Debug/" }, function(input)
+--     cmd = input
+--   end)
+--   if cmd == "" then return end
+
+--   last_cmd = cmd
+
+--   -- split command in program and list of args
+--   local program = nil
+--   local args = nil
+--   local splits = vim.split(cmd, " ")
+--   if #splits > 0 then  -- probably better to exit the function if this fails
+--       program = splits[1]
+--       if #splits > 1 then
+--           table.remove(splits, 1)
+--           args = splits
+--       end
+--   end
+
+--   local config = {
+--       name = "Launch File",
+--       type = "codelldb",
+--       request = "launch",
+--       program = program,
+--       cwd = '${workspaceFolder}/Debug',
+--       stopOnEntry = false,
+--       args = args,
+--       runInTerminal = false,
+--   }
+--   local dap = require('dap')
+--   dap.run(config)
+-- end
+
+-- lvim.builtin.which_key.mappings["dS"] = {
+
+-- }
 
 -- vim-cmake configuration
 vim.cmd [[let g:cmake_link_compile_commands = 1]]
