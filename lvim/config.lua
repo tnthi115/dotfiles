@@ -380,6 +380,11 @@ lvim.builtin.telescope.defaults.mappings = {
   },
 }
 
+-- nvim-gdb
+-- vim.keymap.del("n", "<leader>dd")
+lvim.keys.normal_mode["<leader>dG"] = ":GdbStart gdb -q "
+-- vim.cmd[[nnoremap <leader>dG :GdbStart gdb -q]]
+
 -- }}}
 
 -- Which-key {{{
@@ -463,6 +468,18 @@ lvim.builtin.which_key.mappings["bp"] = {
 --   n = { "<cmd>lua require('distant.nav.actions').newfile()<CR>", "Create new file" },
 --   r = { "<cmd>lua require('distant.nav.actions').rename()<CR>", "Rename file" },
 --   d = { "<cmd>lua require('distant.nav.actions').remove()<CR>", "Remove file" },
+-- }
+
+-- nvim-gdb
+lvim.builtin.which_key.mappings["dB"] = {
+  "<cmd>GdbBreakpointToggle<CR>", "GDB Breakpoint"
+}
+
+-- nvim-dap
+-- remap d to D
+-- lvim.builtin.which_key.mappings["dd"] = {}
+-- lvim.builtin.which_key.mappings["dD"] = {
+--   "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect"
 -- }
 
 -- }}}
@@ -690,6 +707,12 @@ lvim.plugins = {
   --     }
   --   end
   -- },
+
+  -- nvim gdb
+  {
+    "sakhnik/nvim-gdb",
+    build = ":!./install.sh"
+  },
 }
 
 -- Configure markdown-preview {{{
