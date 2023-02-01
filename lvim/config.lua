@@ -1012,36 +1012,36 @@ vim.cmd [[let g:cmake_link_compile_commands = 1]]
 vim.cmd [[let g:cmake_default_config = "build"]]
 
 -- cmake which-key bindings for c++ files
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "cpp" },
-  callback = function()
-    lvim.builtin.which_key.mappings["j"] = {
-      name = "C++",
-      -- Clean previous build system first before generating the new one
-      G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
-      g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
-      d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
-      b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
-      q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
-      c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
-      s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
-      S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
-    }
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   pattern = { "cpp" },
+--   callback = function()
+--     lvim.builtin.which_key.mappings["j"] = {
+--       name = "C++",
+--       -- Clean previous build system first before generating the new one
+--       G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
+--       g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
+--       d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
+--       b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
+--       q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
+--       c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
+--       s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
+--       S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
+--     }
+--   end,
+-- })
 
--- lvim.builtin.which_key.mappings["j"] = {
---   name = "CMake",
---   -- Clean previous build system first before generating the new one
---   G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
---   g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
---   d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
---   b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
---   q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
---   c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
---   s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
---   S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
--- }
+lvim.builtin.which_key.mappings["j"] = {
+  name = "CMake",
+  -- Clean previous build system first before generating the new one
+  G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
+  g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
+  d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
+  b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
+  q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
+  c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
+  s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
+  S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
+}
 
 -- }}}
 
