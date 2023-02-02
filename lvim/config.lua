@@ -582,6 +582,11 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "setlocal shiftwidth=4 softtabstop=4 expandtab",
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"markdown", "html", "xhtml" },
+  command = "setlocal wrap",
+})
+
 -- }}}
 
 -- Additional plugins {{{
@@ -721,14 +726,18 @@ vim.g.mkdp_browser = "/usr/bin/firefox"
 -- vim.g.mkdp_theme = "light"
 vim.g.mkdp_auto_close = 0
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "markdown" },
-  callback = function()
-    lvim.builtin.which_key.mappings["m"] = {
-      "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
-    }
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   pattern = { "markdown" },
+--   callback = function()
+--     lvim.builtin.which_key.mappings["m"] = {
+--       "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
+--     }
+--   end,
+-- })
+
+lvim.builtin.which_key.mappings["m"] = {
+  "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
+}
 
 -- }}}
 
@@ -780,7 +789,7 @@ local cfg = {
   shadow_blend = 36, -- if you using shadow as border use this set the opacity
   shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
   timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
-  toggle_key = nil, -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+  toggle_key = "<M-p>", -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
 
   select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
   move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor between current win and floating
