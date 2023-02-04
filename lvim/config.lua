@@ -357,8 +357,8 @@ lvim.keys.normal_mode["<S-H>"] = "<cmd>BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode["<S-L>"] = "<cmd>BufferLineCycleNext<CR>"
 
 -- Center cursor when paging up/down and when cycling through search terms.
-lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
-lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
+-- lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
+-- lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
 lvim.keys.normal_mode["n"] = "nzzzv"
 lvim.keys.normal_mode["N"] = "Nzzzv"
 
@@ -519,6 +519,7 @@ lvim.keys.insert_mode["<C-a>"] = cmp.mapping.abort()
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
+  { command = "markdownlint", filetypes = { "markdown" } },
   -- need to "pip install black"
   -- can install with mason.nvim
   -- { command = "black", filetypes = { "python" } },
@@ -542,7 +543,8 @@ local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   -- { command = "flake8", filetypes = { "python" } },
   -- { command = "pylint", filetypes = { "python" } },
-  { command = "cpplint", filetypes = { "cpp" } },
+  -- { command = "cpplint", filetypes = { "cpp" } },
+  { command = "markdownlint", filetypes = { "markdown" } },
   {
     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "shellcheck",
@@ -1132,6 +1134,14 @@ lvim.builtin.which_key.mappings["j"] = {
 --     })
 --   end
 -- })
+
+-- }}}
+
+-- Marksman {{{
+
+-- require'lspconfig'.marksman.setup{}
+local options = {}
+require("lvim.lsp.manager").setup("marksman", options)
 
 -- }}}
 
