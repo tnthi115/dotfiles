@@ -552,11 +552,12 @@ linters.setup {
     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
     extra_args = { "--severity", "warning" },
   },
-  -- {
-  --   command = "codespell",
-  --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-  --   filetypes = { "javascript", "python", "shell" },
-  -- },
+  {
+    command = "codespell",
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    -- filetypes = { "javascript", "python", "shell" },
+    filetypes = { "markdown" },
+  },
 }
 
 -- }}}
@@ -586,8 +587,20 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"markdown", "html", "xhtml" },
+  pattern = { "markdown", "html", "xhtml" },
   command = "setlocal wrap",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  -- pattern = {"markdown", "html", "xhtml" },
+  pattern = { "markdown" },
+  command = "setlocal spell",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  -- pattern = { "markdown", "html", "xhtml" },
+  pattern = { "markdown" },
+  command = "setlocal complete+=kspell",
 })
 
 -- }}}
