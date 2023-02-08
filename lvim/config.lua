@@ -392,6 +392,9 @@ lvim.keys.normal_mode["<leader>dG"] = ":GdbStart gdb -q "
 -- Turn on which-key help for bindings for folds, spelling and others prefixed with z
 lvim.builtin.which_key.setup.plugins.presets.z = true
 
+-- Turn on which-key help for C-W.
+lvim.builtin.which_key.setup.plugins.presets.windows = true
+
 -- lvim.builtin.which_key.icons.separator = "->"
 -- lvim.builtin.which_key.icons.group = "+"
 -- lvim.builtin.which_key.icons = {
