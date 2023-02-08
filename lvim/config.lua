@@ -629,12 +629,14 @@ lvim.plugins = {
   -- { "frenzyexists/aquarium-vim" },
   -- { "catppuccin/nvim", as = "catppuccin" },
   -- {
-  --   "rose-pine/neovim"
-  --   -- as = 'rose-pine',
-  --   -- tag = 'v1.*',
-  --   -- config = function()
-  --   --     vim.cmd('colorscheme rose-pine')
-  --   -- end
+  --   "rose-pine/neovim",
+  --   name = "rose-pine",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("rose-pine").setup()
+  --     vim.cmd("colorscheme rose-pine")
+  --   end
   -- },
 
   -- Error diagnostics
