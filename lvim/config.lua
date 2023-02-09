@@ -451,6 +451,10 @@ lvim.builtin.which_key.mappings["C"] = {
 lvim.builtin.which_key.mappings["bp"] = {
   "<cmd>echo expand('%:p)')<CR>", "Show Buffer Path"
 }
+-- Fuzzy search in current buffer
+lvim.builtin.which_key.mappings["s/"] = {
+  "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Search current buffer"
+}
 -- Persistence (sessions)
 -- lvim.builtin.which_key.mappings["S"] = {
 --   name = "Session",
@@ -955,7 +959,7 @@ local clangd_flags = {
   -- "--limit-references=1000",
   -- "--limit-resutls=1000",
   -- "--malloc-trim",
-  -- "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
+  "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
   -- "--header-insertion=never",
   -- "--query-driver=<list-of-white-listed-complers>"
 }
