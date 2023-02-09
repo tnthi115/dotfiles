@@ -329,6 +329,9 @@ vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
 -- vim.cmd("set winbar=%=%m\ %f") -- set winbar (TODO: broken syntax)
 vim.opt.foldlevel = 0
 vim.opt.foldmethod = "marker"
+vim.opt.list = true
+vim.opt.listchars = { eol  = "↲", tab = "▸ ", trail = "·" }
+vim.opt.showbreak = "↪"
 
 -- }}}
 
