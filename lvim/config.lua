@@ -835,6 +835,12 @@ lvim.plugins = {
     "cdelledonne/vim-cmake",
     ft = { "c", "cpp" },
   },
+
+  -- prettier vim.ui.select and vim.ui.input
+  -- {
+  --   "stevearc/dressing.nvim",
+  --   -- lazy = true,
+  -- },
 }
 
 -- Configure markdown-preview {{{
