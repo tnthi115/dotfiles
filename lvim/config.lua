@@ -424,10 +424,11 @@ lvim.builtin.which_key.mappings["gv"] = {
 lvim.builtin.which_key.mappings["gq"] = {
   "<cmd>DiffviewClose<CR>", "Close Diffview"
 }
--- -- Markdown Preview
--- lvim.builtin.which_key.mappings["m"] = {
---   "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
--- }
+-- Markdown Preview
+-- TODO: add this to ftplugin/markdown.lua eventually
+lvim.builtin.which_key.mappings["m"] = {
+  "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
+}
 -- Terminal
 lvim.builtin.which_key.mappings["t"] = {
   name = "Terminal",
@@ -651,7 +652,10 @@ lvim.plugins = {
   },
 
   -- Git diffview
-  { "sindrets/diffview.nvim" },
+  {
+    "sindrets/diffview.nvim",
+    cmd = "DiffviewOpen",
+  },
 
   -- Markdown previewer
   {
@@ -659,16 +663,26 @@ lvim.plugins = {
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
+    ft = "markdown",
   },
 
   -- Function signature viewer
-  { "ray-x/lsp_signature.nvim" },
+  {
+    "ray-x/lsp_signature.nvim",
+    lazy = true,
+  },
 
   -- View colors from color codes
-  { "norcalli/nvim-colorizer.lua" },
+  {
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+  },
 
   -- Incremental line number search
-  { "nacro90/numb.nvim" },
+  {
+    "nacro90/numb.nvim",
+    lazy = true,
+  },
 
   -- Vim sessions
   -- {
@@ -742,7 +756,8 @@ lvim.plugins = {
   -- nvim gdb
   {
     "sakhnik/nvim-gdb",
-    build = ":!./install.sh"
+    build = ":!./install.sh",
+    ft = { "c", "cpp" },
   },
   -- {
   --   "folke/zen-mode.nvim",
@@ -807,6 +822,16 @@ lvim.plugins = {
   --     }
   --   end
   -- },
+
+  -- C++ clangd and cmake integration made lazy
+  {
+    "p00f/clangd_extensions.nvim",
+    ft = { "c", "cpp" },
+  },
+  {
+    "cdelledonne/vim-cmake",
+    ft = { "c", "cpp" },
+  },
 }
 
 -- Configure markdown-preview {{{
@@ -824,9 +849,9 @@ vim.g.mkdp_auto_close = 0
 --   end,
 -- })
 
-lvim.builtin.which_key.mappings["m"] = {
-  "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
-}
+-- lvim.builtin.which_key.mappings["m"] = {
+--   "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
+-- }
 
 -- }}}
 
@@ -935,11 +960,12 @@ require('numb').setup {
 -- lvim.builtin.treesitter.ensure_installed = { "cpp", "c" }
 
 -- Additional Plugins
-table.insert(lvim.plugins, {
-  "p00f/clangd_extensions.nvim",
-  -- cmake integration
-  "cdelledonne/vim-cmake",
-})
+-- Make these lazy by adding to list of additional plugins
+-- table.insert(lvim.plugins, {
+--   "p00f/clangd_extensions.nvim",
+--   -- cmake integration
+--   "cdelledonne/vim-cmake",
+-- })
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 
@@ -1230,5 +1256,3 @@ local options = {}
 require("lvim.lsp.manager").setup("marksman", options)
 
 -- }}}
-
--- vim:foldmethod=marker
