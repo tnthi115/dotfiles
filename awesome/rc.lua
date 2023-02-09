@@ -745,5 +745,3 @@ awful.spawn.with_shell("compton")
 -- awful.spawn.with_shell("nitrogen --set-scaled --random /media/sf_Downloads/wallpapers/gruvbox")
 awful.spawn.with_shell("nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/gruvbox")
 -- awful.spawn.with_shell("nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/lunar-tokyo-night/")
-
--- vim:foldmethod=marker

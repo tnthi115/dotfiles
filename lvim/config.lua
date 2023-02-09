@@ -276,7 +276,7 @@ vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
 
 -- }}}
 
--- Vim Sets {{{
+-- Options {{{
 
 vim.opt.background = "dark"
 vim.opt.backup = false -- creates a backup file
@@ -310,7 +310,7 @@ vim.opt.title = true -- set the title of window to the value of the titlestring
 vim.opt.titlestring = "%<%F | %l/%L - nvim" -- what the title of the window will be set to
 vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
 vim.opt.undofile = true -- enable persistent undo
-vim.opt.updatetime = 300 -- faster completion
+vim.opt.updatetime = 250 -- faster completion
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
@@ -327,7 +327,8 @@ vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
 vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
 -- vim.cmd("set winbar=%=%m\ %f") -- set winbar (TODO: broken syntax)
--- vim.opt.foldmethod = "marker"
+vim.opt.foldlevel = 0
+vim.opt.foldmethod = "marker"
 
 -- }}}
 
