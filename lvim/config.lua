@@ -327,7 +327,7 @@ vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
 vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
 -- vim.cmd("set winbar=%=%m\ %f") -- set winbar (TODO: broken syntax)
-vim.opt.foldlevel = 0
+-- vim.opt.foldlevel = 0
 vim.opt.foldmethod = "marker"
 vim.opt.list = true
 vim.opt.listchars = { eol  = "↲", tab = "▸ ", trail = "·" }
@@ -388,6 +388,14 @@ lvim.builtin.telescope.defaults.mappings = {
 -- vim.keymap.del("n", "<leader>dd")
 lvim.keys.normal_mode["<leader>dG"] = ":GdbStart gdb -q "
 -- vim.cmd[[nnoremap <leader>dG :GdbStart gdb -q]]
+
+-- Folding
+-- Close current fold when open. Always open next fold.
+lvim.keys.normal_mode["zj"] = "zcjjzOzz"
+-- Close current fold when open. Always open previous fold.
+lvim.keys.normal_mode["zk"] = "zckkzOzz"
+-- Close all folds except the current one. [f]ocus the current fold.
+lvim.keys.normal_mode["zf"] = "zMzvzz"
 
 -- }}}
 
@@ -467,7 +475,6 @@ lvim.builtin.which_key.mappings["s/"] = {
 --   l = { "<cmd>lua require('persistence').load({ last = true })<CR>", "Restore last session" },
 --   Q = { "<cmd>lua require('persistence').stop()<CR>", "Quit without saving session" },
 -- }
-
 -- Distant
 -- lvim.builtin.which_key.mappings["D"] = {
 --   name = "+Distant",
@@ -481,17 +488,27 @@ lvim.builtin.which_key.mappings["s/"] = {
 --   r = { "<cmd>lua require('distant.nav.actions').rename()<CR>", "Rename file" },
 --   d = { "<cmd>lua require('distant.nav.actions').remove()<CR>", "Remove file" },
 -- }
-
 -- nvim-gdb
 lvim.builtin.which_key.mappings["dB"] = {
   "<cmd>GdbBreakpointToggle<CR>", "GDB Breakpoint"
 }
-
 -- nvim-dap
 -- remap d to D
 -- lvim.builtin.which_key.mappings["dd"] = {}
 -- lvim.builtin.which_key.mappings["dD"] = {
 --   "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect"
+-- }
+-- Folding
+-- lvim.builtin.which_key.mappings["zj"] = {
+--   "zcjjzOzz", "Open next fold"
+-- }
+-- -- Close current fold when open. Always open previous fold.
+-- lvim.builtin.which_key.mappings["zk"] = {
+--   "zckkzOzz", "Open previous fold"
+-- }
+-- -- Close all folds except the current one.
+-- lvim.builtin.which_key.mappings["zv"] = {
+--   "zMzvzz", "Close all folds except current one"
 -- }
 
 -- }}}
