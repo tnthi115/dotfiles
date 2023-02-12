@@ -17,6 +17,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+-- -- Lain library
+-- local lain = require("lain")
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
@@ -175,6 +177,19 @@ local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 -- Logout menu widget
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 
+-- Net Speed Widget
+-- local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
+
+-- local markup = lain.util.markup
+
+-- Memory widget
+-- local memicon = wibox.widget.imagebox(theme.widget_mem)
+-- local memory = lain.widget.mem({
+--     settings = function()
+--         widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "M "))
+--     end
+-- })
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
   awful.button({}, 1, function(t) t:view_only() end),
@@ -295,6 +310,7 @@ awful.screen.connect_for_each_screen(function(s)
       --   widget_width = 20,
       --   timeout = 5,
       -- }),
+      -- net_speed_widget(),
       volume_widget({
         widget_type = "icon_and_text",
         step = "2",
