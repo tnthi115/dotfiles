@@ -420,16 +420,16 @@ lvim.builtin.which_key.setup.plugins.presets.g = true
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 -- Add TroubleToggle
-lvim.builtin.which_key.mappings["E"] = {
-  -- name = "+Trouble",
-  name = "Errors",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
-}
+-- lvim.builtin.which_key.mappings["E"] = {
+--   -- name = "+Trouble",
+--   name = "Errors",
+--   r = { "<cmd>Trouble lsp_references<cr>", "References" },
+--   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+--   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+--   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+--   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+--   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
+-- }
 -- Add diffview open to git submenu
 lvim.builtin.which_key.mappings["gv"] = {
   "<cmd>DiffviewOpen<CR>", "Open Diffview"
@@ -588,7 +588,7 @@ linters.setup {
     command = "codespell",
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
     -- filetypes = { "javascript", "python", "shell" },
-    filetypes = { "markdown" },
+    filetypes = { "markdown", "html", "xhtml" },
   },
 }
 
@@ -669,10 +669,10 @@ lvim.plugins = {
   -- },
 
   -- Error diagnostics
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
+  -- {
+  --   "folke/trouble.nvim",
+  --   cmd = "TroubleToggle",
+  -- },
 
   -- Git diffview
   {
