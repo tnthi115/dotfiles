@@ -112,6 +112,16 @@ alias obsidian="/opt/obsidian/Obsidian-0.15.9.AppImage"
 alias lg="lazygit"
 alias hx="/opt/helix/helix-22.12-x86_64.AppImage"
 alias r="ranger"
+# [b]ookmark, fast switcher between dirs on the stack using fzf
+# first sed removes leading whitespace
+# second sed removes everything after then number (which relies on the space after the number)
+alias b='pushd +"$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')"'
+
+# personal functions
+# function bookmark () {
+#   dir=$(dirs -v | fzf | awk `{print $1}`)
+#   pushd +"$dir" || return
+# }
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -215,6 +225,7 @@ eval "$(starship init bash)"
 
 # zoxide
 # eval "$(zoxide init bash)"
+
 
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
