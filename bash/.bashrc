@@ -116,6 +116,7 @@ alias r="ranger"
 # first sed removes leading whitespace
 # second sed removes everything after then number (which relies on the space after the number)
 alias b='pushd +"$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')"'
+alias cs='colorscript -r'
 
 # personal functions
 # function bookmark () {
