@@ -17,6 +17,8 @@ success_symbol = "[λ](bold green)" # The "success_symbol" segment is being set 
 error_symbol = "[λ](bold red)"
 # success_symbol = "[∮](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
 # error_symbol = "[∮](bold red)"
+# Warning: only supported in cmd, fish, and zsh.
+vimcmd_symbol = "[∮](bold green)" 
 
 # Make prompt a single line instead of two.
 [line_break]

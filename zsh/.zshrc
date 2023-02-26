@@ -38,6 +38,9 @@ alias vf="vim \$(fzf)"
 
 # }}}
 
+# Setting for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
 # zsh-autocomplete {{{
 # 
 # # The code below sets all of Autocomplete's settings to their default values. To
@@ -204,10 +207,25 @@ bindkey -M menuselect 'right' vi-forward-char
 # Fix backspace bug when switching modes
 bindkey "^?" backward-delete-char
 
-# Source plugins
-# sudo apt-get install zsh-syntax-highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# https://github.com/zsh-users/zsh-autosuggestions
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Fun stuff
+T=1
+number=$RANDOM
+# let "number %= $BINARY"
+let "number >>= 14"
+if [ "$number" -eq $T ]
+then
+  neofetch
+else
+  colorscript -r
+fi
+
+# Starship prompt
 source <(/usr/local/bin/starship init zsh --print-full-init)
 # eval "$(starship init bash)"
+
+# Source plugins
+# https://github.com/zsh-users/zsh-autosuggestions
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+# sudo apt-get install zsh-syntax-highlighting
+# Should be last.
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
