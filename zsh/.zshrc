@@ -227,14 +227,14 @@ fi
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
-# Starship prompt
-source <(/usr/local/bin/starship init zsh --print-full-init)
-# eval "$(starship init bash)"
-
 # Source plugins
 # How to install: https://github.com/zsh-users/zsh-autosuggestions
 # Right arrow, END, or alt+l (vi cmd mode right) to accept suggestion.
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # Should be last.
 # How to instal: sudo apt-get install zsh-syntax-highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Starship prompt
+source <(/usr/local/bin/starship init zsh --print-full-init)
+# eval "$(starship init bash)"
