@@ -147,6 +147,7 @@ vim.g.gruvbox_material_diagnostic_text_highlight = 1
 vim.cmd [[au ColorScheme * hi NvimTreeEndOfBuffer ctermbg=none guibg=bg_color]]
 vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
 vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi Folded ctermbg=none guibg=bg_color]]
 
 -- }}}
 
