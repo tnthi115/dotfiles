@@ -4,15 +4,37 @@
 #promptinit
 #prompt adam1
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 setopt histignorealldups sharehistory
 
 # Use vi keybindings
 bindkey -v
+export KEYTIMEOUT=1
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+# Keep 1000 lines of history within the shell and save it to ~/.cache/zsh/history
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.cache/zsh/history
+
+# Exports {{{
+
+# Add cargo to path
+export PATH="$PATH:/home/user/.cargo/bin"
+
+# Add lvim to path
+export PATH="$PATH:/home/user/.local/bin/"
+
+# Set editor.
+export EDITOR="lvim"
+
+# Setting for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+# }}}
+
+# Aliases {{{
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -26,20 +48,47 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# Aliases {{{
-
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias b="pushd +\$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')"
-alias v='vim'
+
+# vim aliases
+alias v="lvim"
+alias vim="lvim"
+alias nvim="lvim"
+alias oldnvim="\nvim"
+alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 alias vf="vim \$(fzf)"
 
+# personal aliases
+alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
+# alias rw="nitrogen --set-scaled --random /media/sf_Downloads/wallpapers/gruvbox"
+alias rwg="nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/gruvbox"
+alias rwl="nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/lunar-tokyo-night"
+alias tn="notify-send -i ~/.config/awesome/awesome-wm-widgets/battery-widget/spaceman.jpg -t 10000 'test' 'hello this is a test notification!'"
+alias obsidian="/opt/obsidian/Obsidian-0.15.9.AppImage"
+# alias cs164-sshfs="sudo sshfs -o allow_other cs164-aak@cedar.cs.berkeley.edu:/home/cc/cs164/fa22/class/cs164-aak/ ~/Classes/cs164/cs164-aak -o IdentityFile=/home/user/.ssh/id_ed25519 && pushd ~/Classes/cs164/cs164-aak"
+alias lg="lazygit"
+alias hx="/opt/helix/helix-22.12-x86_64.AppImage"
+alias r="ranger"
+# [b]ookmark, fast switcher between dirs on the stack using fzf
+# first sed removes leading whitespace
+# second sed removes everything after then number (which relies on the space after the number)
+alias b="pushd +\$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')"
+alias cs='colorscript -r'
+
 # }}}
 
+# FZF {{{
+
 # Setting for fzf
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+# export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+# Keybindings
+# source /usr/share/doc/fzf/examples/completion.zsh
+
+# }}}
 
 # zsh-autocomplete {{{
 # 
@@ -145,6 +194,8 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # }}}
 
+# Completion {{{
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
@@ -184,10 +235,6 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
-# vi mode
-bindkey -v
-export KEYTIMEOUT=1
-
 # Enable searching through history
 bindkey '^R' history-incremental-pattern-search-backward
 
@@ -209,10 +256,11 @@ bindkey -M menuselect 'right' vi-forward-char
 # Fix backspace bug when switching modes
 bindkey "^?" backward-delete-char
 
+# }}}
+
 # Fun stuff
 T=1
 number=$RANDOM
-# let "number %= $BINARY"
 let "number >>= 14"
 if [ "$number" -eq $T ]
 then
