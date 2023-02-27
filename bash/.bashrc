@@ -88,35 +88,35 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# alias ll='ls -alF'
+# alias la='ls -A'
+# alias l='ls -CF'
 
-# vim aliases
-alias v="lvim"
-alias vim="lvim"
-alias nvim="lvim"
-alias oldnvim="\nvim"
-alias oldvim="\vim"
-alias vimf="vim \$(fzf)"
-alias vf="vim \$(fzf)"
+# # vim aliases
+# alias v="lvim"
+# alias vim="lvim"
+# alias nvim="lvim"
+# alias oldnvim="\nvim"
+# alias oldvim="\vim"
+# alias vimf="vim \$(fzf)"
+# alias vf="vim \$(fzf)"
 
-# personal aliases
-alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
-# alias rw="nitrogen --set-scaled --random /media/sf_Downloads/wallpapers/gruvbox"
-alias rwg="nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/gruvbox"
-alias rwl="nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/lunar-tokyo-night"
-alias tn="notify-send -i ~/.config/awesome/awesome-wm-widgets/battery-widget/spaceman.jpg -t 10000 'test' 'hello this is a test notification!'"
-alias obsidian="/opt/obsidian/Obsidian-0.15.9.AppImage"
-# alias cs164-sshfs="sudo sshfs -o allow_other cs164-aak@cedar.cs.berkeley.edu:/home/cc/cs164/fa22/class/cs164-aak/ ~/Classes/cs164/cs164-aak -o IdentityFile=/home/user/.ssh/id_ed25519 && pushd ~/Classes/cs164/cs164-aak"
-alias lg="lazygit"
-alias hx="/opt/helix/helix-22.12-x86_64.AppImage"
-alias r="ranger"
-# [b]ookmark, fast switcher between dirs on the stack using fzf
-# first sed removes leading whitespace
-# second sed removes everything after then number (which relies on the space after the number)
-alias b='pushd +"$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')"'
-alias cs='colorscript -r'
+# # personal aliases
+# alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
+# # alias rw="nitrogen --set-scaled --random /media/sf_Downloads/wallpapers/gruvbox"
+# alias rwg="nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/gruvbox"
+# alias rwl="nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/lunar-tokyo-night"
+# alias tn="notify-send -i ~/.config/awesome/awesome-wm-widgets/battery-widget/spaceman.jpg -t 10000 'test' 'hello this is a test notification!'"
+# alias obsidian="/opt/obsidian/Obsidian-0.15.9.AppImage"
+# # alias cs164-sshfs="sudo sshfs -o allow_other cs164-aak@cedar.cs.berkeley.edu:/home/cc/cs164/fa22/class/cs164-aak/ ~/Classes/cs164/cs164-aak -o IdentityFile=/home/user/.ssh/id_ed25519 && pushd ~/Classes/cs164/cs164-aak"
+# alias lg="lazygit"
+# alias hx="/opt/helix/helix-22.12-x86_64.AppImage"
+# alias r="ranger"
+# # [b]ookmark, fast switcher between dirs on the stack using fzf
+# # first sed removes leading whitespace
+# # second sed removes everything after then number (which relies on the space after the number)
+# alias b='pushd +"$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')"'
+# alias cs='colorscript -r'
 
 # personal functions
 # function bookmark () {
@@ -133,8 +133,12 @@ alias cs='colorscript -r'
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+# if [ -f ~/.bash_aliases ]; then
+#     . ~/.bash_aliases
+# fi
+
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
 fi
 
 # enable programmable completion features (you don't need to enable
