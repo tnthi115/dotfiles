@@ -6,23 +6,23 @@ TODO: add screenshots and description
 
 You will need `git` and GNU `stow`.
 
-```bash
+```sh
 sudo apt install git stow
 ```
 
 Clone into your `$HOME` or `~` directory.
 
-```bash
+```sh
 git clone https://github.com/tnthi115/dotfiles.git
 ```
 
 Run `stow` to symlink everything or just select what you want:
 
-```bash
+```sh
 stow */ # Everything (the '/' ignores the README.md)
 ```
 
-```bash
+```sh
 stow zsh # Just my zsh config
 ```
 
