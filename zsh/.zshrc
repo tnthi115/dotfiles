@@ -285,4 +285,3 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Starship prompt
 source <(/usr/local/bin/starship init zsh --print-full-init)
-# eval "$(starship init bash)"
