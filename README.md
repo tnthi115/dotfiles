@@ -4,12 +4,20 @@
 
 ## Installation
 
-You will need `git` and GNU `stow`.
+You will need [Git](https://git-scm.com/) and [GNU
+Stow](https://www.gnu.org/software/stow/).
 
 On Ubuntu:
 
 ```sh
-sudo apt install git stow
+sudo apt update
+sudo apt-get install git stow
+```
+
+On MacOS/OS X:
+
+```sh
+brew install git stow
 ```
 
 Clone into your `$HOME` or `~` directory:
