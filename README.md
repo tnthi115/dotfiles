@@ -44,7 +44,7 @@ stow */ # Everything (the '/' grabs all directories and ignores files (e.g. READ
 stow zsh # Just my zsh config
 ```
 
-Note: `stow` doesn't assume `$HOME` (`~`) as the target directory, and instead
+**Note:** `stow` doesn't assume `$HOME` (`~`) as the target directory, and instead
 defaults to the parent of the current directory, which is why the above
 commands work properly. If for some reason you want to clone to another
 directory rather than your home directory (e.g. ~/repos/, ~/Git/, etc.), you
