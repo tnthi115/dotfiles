@@ -8,7 +8,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-setopt histignorealldups sharehistory
+# setopt histignorealldups sharehistory
+setopt histignorealldups
 
 # Use vi keybindings
 bindkey -v
