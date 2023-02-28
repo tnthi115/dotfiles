@@ -514,6 +514,10 @@ lvim.builtin.which_key.mappings["dB"] = {
 -- lvim.builtin.which_key.mappings["zv"] = {
 --   "zMzvzz", "Close all folds except current one"
 -- }
+-- HTML/webpage preview
+lvim.builtin.which_key.mappings["M"] = {
+  "<cmd>!firefox %<CR>", "HTML Preview"
+}
 
 -- }}}
 
