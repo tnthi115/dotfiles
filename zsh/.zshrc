@@ -60,6 +60,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # Keybindings
 # source /usr/share/doc/fzf/examples/completion.zsh
+source $HOME/fzf-key-bindings.zsh
 
 # }}}
 
