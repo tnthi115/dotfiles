@@ -13,6 +13,9 @@ alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 alias vf="vim \$(fzf)"
 
+# git aliases
+alias gs="git status"
+
 # personal aliases
 alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
 # alias rw="nitrogen --set-scaled --random /media/sf_Downloads/wallpapers/gruvbox"
