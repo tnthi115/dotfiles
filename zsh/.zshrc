@@ -31,6 +31,9 @@ export PATH="$PATH:/home/user/.local/bin/"
 # Set editor.
 export EDITOR="lvim"
 
+# Set manpager to be lvim.
+export MANPAGER="lvim +Man!"
+
 # }}}
 
 # Aliases {{{
@@ -238,9 +241,13 @@ number=$RANDOM
 let "number >>= 14"
 if [ "$number" -eq $T ]
 then
-  neofetch
+  if command -v neofetch &> /dev/null; then
+    neofetch
+  fi
 else
+  if command -v colorscript &> /dev/null; then
   colorscript -r
+  fi
 fi
 
 # Syntax highlighting settings
@@ -248,6 +255,9 @@ fi
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+
+# Keybindings
+# bindkey '^ ' autosuggest-accept
 
 # Source plugins
 # How to install: https://github.com/zsh-users/zsh-autosuggestions
