@@ -34,6 +34,10 @@ export EDITOR="lvim"
 # Set manpager to be lvim.
 export MANPAGER="lvim +Man!"
 
+# Set 'time' output to look like bash's.
+export TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S'
+# TIMEFMT=$'%J\n%U user\n%S system\n%P cpu\n%*E total'
+
 # }}}
 
 # Aliases {{{
