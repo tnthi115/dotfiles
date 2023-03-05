@@ -884,6 +884,7 @@ lvim.plugins = {
   -- Lua
   {
     "folke/todo-comments.nvim",
+    event = "User FileOpened",
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup {
