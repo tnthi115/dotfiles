@@ -655,6 +655,12 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "setlocal complete+=kspell",
 })
 
+-- Turn off auto comment after hitting 'o' or 'O' in Normal mode.
+-- See :help fo-table
+vim.api.nvim_create_autocmd("BufEnter", {
+  command = "setlocal formatoptions-=o"
+})
+
 -- }}}
 
 -- Additional plugins {{{
