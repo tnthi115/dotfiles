@@ -15,6 +15,7 @@ alias vf="vim \$(fzf)"
 
 # git aliases
 alias gs="git status"
+alias gl="git log"
 
 # personal aliases
 alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
