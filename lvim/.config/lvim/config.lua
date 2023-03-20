@@ -84,7 +84,7 @@ lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 -- lvim.builtin.telescope.theme = "default"
 
 -- Enable cmp cmdline.
-lvim.builtin.cmp.cmdline.enable = true
+-- lvim.builtin.cmp.cmdline.enable = true
 
 -- }}}
 
