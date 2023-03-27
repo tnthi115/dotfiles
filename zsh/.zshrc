@@ -23,10 +23,10 @@ HISTFILE=~/.cache/zsh/history
 # Exports {{{
 
 # Add cargo to path
-export PATH="$PATH:/home/user/.cargo/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # Add lvim to path
-export PATH="$PATH:/home/user/.local/bin/"
+export PATH="$PATH:$HOME/.local/bin/"
 
 # Set editor.
 export EDITOR="lvim"
