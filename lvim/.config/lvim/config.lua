@@ -636,7 +636,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- set indentation to 4 spaces for certain files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "python", "java", "xml", "tcl", "markdown", "css" },
+  pattern = { "python", "java", "xml", "tcl", "markdown", "css", "html", "xhtml" },
   -- pattern = { "java", "xml", "tcl", "markdown", "css" },
   command = "setlocal shiftwidth=4 softtabstop=4 expandtab",
 })
@@ -973,6 +973,11 @@ lvim.plugins = {
         },
       }
     end
+  },
+  -- vim-glsl
+  {
+    "tikhomirov/vim-glsl",
+    ft = { "glsl" },
   },
 }
 
