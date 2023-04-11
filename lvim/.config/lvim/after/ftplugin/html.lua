@@ -13,7 +13,7 @@ local opts = {
 }
 
 local mappings = {
-  m = { "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview" }
+  M = { "<cmd>!firefox %<CR>", "HTML Preview" }
 }
 
 which_key.register(mappings, opts)

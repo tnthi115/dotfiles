@@ -459,9 +459,9 @@ lvim.builtin.which_key.mappings["gq"] = {
 }
 -- Markdown Preview
 -- TODO: add this to ftplugin/markdown.lua eventually
-lvim.builtin.which_key.mappings["m"] = {
-  "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
-}
+-- lvim.builtin.which_key.mappings["m"] = {
+--   "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
+-- }
 -- Terminal
 lvim.builtin.which_key.mappings["t"] = {
   name = "Terminal",
@@ -533,6 +533,7 @@ lvim.builtin.which_key.mappings["dB"] = {
 --   "zMzvzz", "Close all folds except current one"
 -- }
 -- HTML/webpage preview
+-- TODO: add this to ftplugin/html.lua and/or ftplugin/xhtml.lua
 lvim.builtin.which_key.mappings["M"] = {
   "<cmd>!firefox %<CR>", "HTML Preview"
 }
@@ -1301,18 +1302,18 @@ vim.cmd [[let g:cmake_default_config = "build"]]
 --   end,
 -- })
 
-lvim.builtin.which_key.mappings["j"] = {
-  name = "CMake",
-  -- Clean previous build system first before generating the new one
-  G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
-  g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
-  d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
-  b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
-  q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
-  c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
-  s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
-  S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
-}
+-- lvim.builtin.which_key.mappings["j"] = {
+--   name = "CMake",
+--   -- Clean previous build system first before generating the new one
+--   G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
+--   g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
+--   d = { "<cmd>CMakeGenerate Debug<cr>", "CMakeGenerate Debug" },
+--   b = { "<cmd>CMakeBuild<cr>", "CMakeBuild" },
+--   q = { "<cmd>CMakeClose<cr>", "CMakeClose" },
+--   c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
+--   s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
+--   S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
+-- }
 
 -- }}}
 
