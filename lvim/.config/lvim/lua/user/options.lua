@@ -1,3 +1,261 @@
+-- General lvim builtin plugin settings {{{
+
+lvim.log.level = "warn"
+lvim.format_on_save = false
+-- lvim.lsp.automatic_servers_installation = true
+lvim.lsp.installer.setup.automatic_installation = false
+
+-- Lualine
+-- local components = require("lvim.core.lualine.components")
+-- lvim.builtin.lualine.sections.lualine_a = { "mode" }
+-- lvim.builtin.lualine.inactive_sections.lualine_x = { components.scrollbar }
+-- lvim.builtin.lualine.options.component_separators =  { left = "", right = "" }
+-- lvim.builtin.lualine.options.section_separators = { left = "" }
+-- lvim.builtin.lualine.sections.lualine_y = {
+--   components.spaces,
+--   components.location
+-- }
+-- lvim.builtin.lualine.sections.lualine_z = {
+--   components.scrollbar,
+--   components.location
+-- }
+lvim.builtin.lualine.style = "lvim"
+-- lvim.colorscheme = "onedarker"
+-- lvim.colorscheme = "vscode"
+-- to disable icons and use a minimalist setup, uncomment the following
+-- lvim.use_icons = false
+
+-- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
+-- lvim.builtin.notify.active = true
+lvim.builtin.terminal.active = true
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+
+-- bufferline remove buffer title for NvimTree
+-- lvim.builtin.bufferline.options.offsets[2] = nil
+-- lvim.builtin.bufferline.options.offsets[2].text = ""
+-- lvim.builtin.bufferline.options.offsets[2].highlight = "BufferTabpageFill"
+lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
+
+-- lvim.builtin.telescope.theme = "default"
+
+-- Enable cmp cmdline.
+-- lvim.builtin.cmp.cmdline.enable = true
+
+-- Configure alpha dashboard {{{
+-- lvim.builtin.alpha.dashboard.section.header.val = {
+--   "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+--   " ▄▄▄█████▓ ███▄    █ ▄▄▄█████▓ ",
+--   " ▓  ██▒ ▓▒ ██ ▀█   █ ▓  ██▒ ▓▒ ",
+--   " ▒ ▓██░ ▒░▓██  ▀█ ██▒▒ ▓██░ ▒░ ",
+--   " ░ ▓██▓ ░ ▓██▒  ▐▌██▒░ ▓██▓ ░  ",
+--   "   ▒██▒ ░ ▒██░   ▓██░  ▒██▒ ░  ",
+--   "   ▒ ░░   ░ ▒░   ▒ ▒   ▒ ░░    ",
+--   "     ░    ░ ░░   ░ ▒░    ░     ",
+--   "   ░         ░   ░ ░   ░       ",
+--   "                   ░           ",
+-- }
+
+--- }}}
+
+-- }}}
+
+-- Colorscheme {{{
+
+-- lvim.transparent_window = true
+lvim.transparent_window = true
+
+-- lunar {{{
+
+-- lvim.colorscheme = "lunar"
+-- local bg_color = "#1a1b26"
+-- vim.cmd [[au ColorScheme * hi VertSplit ctermbg=none guibg=bg_color]]
+-- vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
+-- vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
+
+-- }}}
+
+-- gruvbox-material {{{
+
+lvim.colorscheme = "gruvbox-material"
+
+local bg_color = "#1d2021"
+vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
+vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
+vim.g.gruvbox_material_visual = "blue background"
+vim.g.gruvbox_material_menu_selection_background = "blue"
+vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
+-- vim.g.gruvbox_material_better_performance = 1
+vim.g.gruvbox_material_statusline_style = "default"
+vim.g.gruvbox_material_diagnostic_line_highlight = 1
+vim.g.gruvbox_material_diagnostic_text_highlight = 1
+-- vim.cmd([[highlight lualine_x_diagnostics_hint_normal guifg=#32302f guibg=#32302f]])
+-- vim.g.gruvbox_material_diagnostic_text_highlight = 1
+-- vim.api.nvim_set_hl(0, "WhichKeyFloat", { fg = "#1d2021", bg = "#1d2021" })
+-- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#1d2021" })
+-- lvim.builtin.nvimtree.highlights.NvimTreeEndOfBuffer.guibg = "#1d2021"
+-- lvim.builtin.which_key.setup.window.border = "single" -- none, single, double, shadow
+-- change in /home/user/.local/lunarvim/site/pack/packer/start/gruvbox-material/gruvbox-material.vim
+-- call gruvbox_material#highlight('NormalFloat', s:palette.fg1, s:palette.bg0)
+-- call gruvbox_material#highlight('FloatBorder', s:palette.grey1, s:palette.bg0)
+-- bufferline color adjustment
+-- lvim.builtin.bufferline.highlights = {
+--   background = {
+--     -- gui = "italic",
+--     italic = true,
+--   },
+--   buffer_selected = {
+--     -- gui = "bold",
+--     bold = true,
+--   },
+--   fill = {
+--     bg = "#282828",
+--     -- bg = "#1d2021",
+--   },
+-- }
+-- lvim.builtin.bufferline.highlights.fill.guibg = "#2F343F"
+-- lualine inactive color for gruvbox_material colorscheme
+-- lvim.builtin.bufferline.highlights.fill.guibg = "#32302f"
+-- lvim.builtin.bufferline.highlights.fill.guibg = "#40423D"
+-- lvim.builtin.bufferline.highlights.fill.guibg = "#282828"
+-- Override these highlight groups
+vim.cmd [[au ColorScheme * hi NvimTreeEndOfBuffer ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi Folded ctermbg=none guibg=bg_color]]
+
+-- }}}
+
+-- gruvbox {{{
+
+-- lvim.colorscheme = "gruvbox"
+
+-- }}}
+
+-- everforest {{{
+
+-- vim.g.everforest_background = "hard"
+-- vim.g.everforest_diagnostic_virtual_text = "colored"
+-- lvim.colorscheme = "everforest"
+
+-- }}}
+
+-- gruvbox-baby {{{
+
+-- lvim.colorscheme = "gruvbox-baby"
+
+-- }}}
+
+-- tokyonight {{{
+
+-- lvim.colorscheme = "tokyonight-night"
+
+-- }}}
+
+-- catppuccin {{{
+
+-- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+-- lvim.colorscheme = "catppuccin"
+-- local catppuccin = require("catppuccin")
+-- catppuccin.setup()
+
+-- }}}
+
+-- tokyodark {{{
+
+-- lvim.colorscheme = "tokyodark"
+
+-- }}}
+
+-- moonlight {{{
+
+-- lvim.colorscheme = "moonlight"
+
+-- }}}
+
+-- kanagawa {{{
+
+-- lvim.colorscheme = "kanagawa"
+
+-- }}}
+
+-- rose-pine {{{
+
+-- require('rose-pine').setup({
+--   --- @usage 'main' | 'moon'
+--   dark_variant = 'main',
+--   bold_vert_split = false,
+--   dim_nc_background = false,
+--   disable_background = false,
+--   disable_float_background = false,
+--   disable_italics = false,
+
+--   --- @usage string hex value or named color from rosepinetheme.com/palette
+--   groups = {
+--     background = 'base',
+--     panel = 'surface',
+--     -- panel = 'gold',
+--     border = 'highlight_med',
+--     comment = 'muted',
+--     link = 'iris',
+--     punctuation = 'subtle',
+
+--     error = 'love',
+--     hint = 'iris',
+--     info = 'foam',
+--     warn = 'gold',
+
+--     headings = {
+--       h1 = 'iris',
+--       h2 = 'foam',
+--       h3 = 'rose',
+--       h4 = 'gold',
+--       h5 = 'pine',
+--       h6 = 'foam',
+--     }
+--     -- or set all headings at once
+--     -- headings = 'subtle'
+--   },
+
+--   -- Change specific vim highlight groups
+--   highlight_groups = {
+--     ColorColumn = { bg = 'rose' },
+--     WhichKeyFloat = { bg = 'base' },
+--     NormalFloat = { bg = 'base' },
+--     FloatBorder = { bg = 'base' },
+--     -- lualine_b_inactive = { guibg = 'surface' },
+--     -- lualine_c_inactive = { guibg = 'surface' },
+--   }
+-- })
+-- -- set bufferline fill color
+-- -- lvim.builtin.bufferline.highlights = { background = {
+-- --   -- gui = "italic",
+-- --   italic = true,
+-- -- },
+-- --   buffer_selected = {
+-- --     -- gui = "bold",
+-- --     bold = true,
+-- --   },
+-- --   fill = {
+-- --     bg = "#2a273f"
+-- --   },
+-- -- }
+-- -- lvim.builtin.bufferline.highlights.fill.guibg = "#2a273f" -- this is for moon
+
+-- lvim.colorscheme = "rose-pine"
+
+-- local bg_color = "#232136"
+-- vim.cmd [[au ColorScheme * hi WhichKeyFloat ctermbg=none guibg=bg_color]]
+-- vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
+
+-- }}}
+
+-- }}}
+
+-- Options {{{
+
 vim.opt.background = "dark"
 vim.opt.backup = false -- creates a backup file
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
@@ -52,3 +310,5 @@ vim.opt.foldmethod = "marker"
 vim.opt.list = true
 vim.opt.listchars = { eol  = "↲", tab = "▸ ", trail = "·" }
 vim.opt.showbreak = "↪"
+
+-- }}}
