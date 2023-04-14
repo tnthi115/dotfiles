@@ -131,6 +131,6 @@ lvim.builtin.which_key.mappings["M"] = {
 lvim.builtin.which_key.mappings[";"] = nil
 -- lvim.builtin.which_key.mappings["c"] = nil
 -- lvim.builtin.which_key.mappings["L"] = nil
-lvim.builtin.which_key.mappings["s"] = nil
+-- lvim.builtin.which_key.mappings["s"] = nil
 lvim.builtin.which_key.mappings["w"] = nil
 lvim.builtin.which_key.mappings["q"] = nil
