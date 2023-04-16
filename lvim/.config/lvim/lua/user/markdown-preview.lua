@@ -1,4 +1,8 @@
 -- Configure markdown-preview
+local status_ok, markdown_preview = pcall(require, "markdown_preview")
+if not status_ok then
+  return
+end
 
 vim.g.mkdp_browser = "/usr/bin/firefox"
 -- vim.g.mkdp_theme = "light"
