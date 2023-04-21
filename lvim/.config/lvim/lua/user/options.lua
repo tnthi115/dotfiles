@@ -64,7 +64,6 @@ lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 
 -- Colorscheme {{{
 
--- lvim.transparent_window = true
 lvim.transparent_window = true
 
 -- lunar {{{
@@ -228,67 +227,88 @@ vim.cmd [[au ColorScheme * hi Folded ctermbg=none guibg=bg_color]]
 -- rose-pine {{{
 
 -- require('rose-pine').setup({
---   --- @usage 'main' | 'moon'
---   dark_variant = 'main',
---   bold_vert_split = false,
---   dim_nc_background = false,
---   disable_background = false,
---   disable_float_background = false,
---   disable_italics = false,
+-- 	--- @usage 'auto'|'main'|'moon'|'dawn'
+-- 	variant = 'auto',
+-- 	--- @usage 'main'|'moon'|'dawn'
+-- 	dark_variant = 'main',
+-- 	bold_vert_split = false,
+-- 	dim_nc_background = false,
+-- 	disable_background = true,
+-- 	disable_float_background = true,
+-- 	disable_italics = false,
 
---   --- @usage string hex value or named color from rosepinetheme.com/palette
---   groups = {
---     background = 'base',
---     panel = 'surface',
---     -- panel = 'gold',
---     border = 'highlight_med',
---     comment = 'muted',
---     link = 'iris',
---     punctuation = 'subtle',
+-- 	--- @usage string hex value or named color from rosepinetheme.com/palette
+-- 	groups = {
+-- 		background = 'base',
+-- 		background_nc = '_experimental_nc',
+-- 		panel = 'surface',
+-- 		panel_nc = 'base',
+-- 		border = 'highlight_med',
+-- 		comment = 'muted',
+-- 		link = 'iris',
+-- 		punctuation = 'subtle',
 
---     error = 'love',
---     hint = 'iris',
---     info = 'foam',
---     warn = 'gold',
+-- 		error = 'love',
+-- 		hint = 'iris',
+-- 		info = 'foam',
+-- 		warn = 'gold',
 
---     headings = {
---       h1 = 'iris',
---       h2 = 'foam',
---       h3 = 'rose',
---       h4 = 'gold',
---       h5 = 'pine',
---       h6 = 'foam',
---     }
---     -- or set all headings at once
---     -- headings = 'subtle'
---   },
+-- 		headings = {
+-- 			h1 = 'iris',
+-- 			h2 = 'foam',
+-- 			h3 = 'rose',
+-- 			h4 = 'gold',
+-- 			h5 = 'pine',
+-- 			h6 = 'foam',
+-- 		}
+-- 		-- or set all headings at once
+-- 		-- headings = 'subtle'
+-- 	},
 
+-- 	-- Change specific vim highlight groups
+-- 	-- https://github.com/rose-pine/neovim/wiki/Recipes
 --   -- Change specific vim highlight groups
---   highlight_groups = {
+-- 	highlight_groups = {
 --     ColorColumn = { bg = 'rose' },
 --     WhichKeyFloat = { bg = 'base' },
 --     NormalFloat = { bg = 'base' },
 --     FloatBorder = { bg = 'base' },
+--     -- GitSignsAdd = { fg = 'foam' },
+--     -- GitSignsChange = { fg = 'gold' },
+--     -- GitSignsChange = { fg = 'pine' },
+--     GitSignsDelete = { fg = 'love' },
+--     -- lualine_c_diff_added_normal = { fg = 'foam' },
 --     -- lualine_b_inactive = { guibg = 'surface' },
 --     -- lualine_c_inactive = { guibg = 'surface' },
---   }
--- })
--- -- set bufferline fill color
--- -- lvim.builtin.bufferline.highlights = { background = {
--- --   -- gui = "italic",
--- --   italic = true,
--- -- },
--- --   buffer_selected = {
--- --     -- gui = "bold",
--- --     bold = true,
--- --   },
--- --   fill = {
--- --     bg = "#2a273f"
--- --   },
--- -- }
--- -- lvim.builtin.bufferline.highlights.fill.guibg = "#2a273f" -- this is for moon
 
+-- 		-- Blend colours against the "base" background
+-- 		-- CursorLine = { bg = 'foam', blend = 10 },
+-- 		-- StatusLine = { fg = 'love', bg = 'love', blend = 10 },
+-- 	}
+-- })
+
+-- -- Set colorscheme after options
+-- -- vim.cmd('colorscheme rose-pine')
 -- lvim.colorscheme = "rose-pine"
+
+-- lvim.builtin.lualine.sections.lualine_c.diff.diff_color.added = "#9ccfd8"
+-- lvim.builtin.lualine.sections.lualine_c.diff.diff_color.modified = "#f6c177"
+-- lvim.builtin.lualine.sections.lualine_c.diff.diff_color.deleted = "#eb6f92"
+
+-- set bufferline fill color
+-- lvim.builtin.bufferline.highlights = { background = {
+--   -- gui = "italic",
+--   italic = true,
+-- },
+--   buffer_selected = {
+--     -- gui = "bold",
+--     bold = true,
+--   },
+--   fill = {
+--     bg = "#2a273f"
+--   },
+-- }
+-- lvim.builtin.bufferline.highlights.fill.guibg = "#2a273f" -- this is for moon
 
 -- local bg_color = "#232136"
 -- vim.cmd [[au ColorScheme * hi WhichKeyFloat ctermbg=none guibg=bg_color]]
