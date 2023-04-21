@@ -17,7 +17,7 @@ lvim.plugins = {
   -- { "shaunsingh/moonlight.nvim" },
   -- { "rebelot/kanagawa.nvim" },
   -- { "frenzyexists/aquarium-vim" },
-  -- { "catppuccin/nvim", as = "catppuccin" },
+  -- { "catppuccin/nvim", name = "catppuccin" },
   -- {
   --   "rose-pine/neovim",
   --   name = "rose-pine",
