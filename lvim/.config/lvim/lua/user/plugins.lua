@@ -8,7 +8,10 @@ lvim.plugins = {
   -- { "morhetz/gruvbox" },
   -- { "folke/tokyonight.nvim" },
   -- {"lunarvim/colorschemes"},
-  { "sainnhe/gruvbox-material" },
+  {
+    "sainnhe/gruvbox-material",
+    -- lazy = true,
+  },
   -- { "sainnhe/edge" },
   -- { "Mofiqul/vscode.nvim" },
   -- { "luisiacc/gruvbox-baby" },
@@ -214,6 +217,7 @@ lvim.plugins = {
   -- prettier vim.ui.select and vim.ui.input
   {
     "stevearc/dressing.nvim",
+    event = "VeryLazy",
     -- lazy = true,
     -- init = function()
     --   ---@diagnostic disable-next-line: duplicate-set-field
@@ -239,4 +243,17 @@ lvim.plugins = {
     "tikhomirov/vim-glsl",
     ft = { "glsl" },
   },
+  -- noice
+  {
+    "folke/noice.nvim",
+    event = "UIEnter",
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      -- "rcarriga/nvim-notify",
+    }
+  }
 }
