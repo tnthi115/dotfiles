@@ -18,10 +18,10 @@ lvim.plugins = {
   -- { "rebelot/kanagawa.nvim" },
   -- { "frenzyexists/aquarium-vim" },
   -- { "catppuccin/nvim", name = "catppuccin" },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-  },
+  -- {
+  --   "rose-pine/neovim",
+  --   name = "rose-pine",
+  -- },
 
   -- Error diagnostics
   -- {
@@ -212,10 +212,22 @@ lvim.plugins = {
   },
 
   -- prettier vim.ui.select and vim.ui.input
-  -- {
-  --   "stevearc/dressing.nvim",
-  --   -- lazy = true,
-  -- },
+  {
+    "stevearc/dressing.nvim",
+    -- lazy = true,
+    -- init = function()
+    --   ---@diagnostic disable-next-line: duplicate-set-field
+    --   vim.ui.select = function(...)
+    --     require("lazy").load({ plugins = { "dressing.nvim" } })
+    --     return vim.ui.select(...)
+    --   end
+    --   ---@diagnostic disable-next-line: duplicate-set-field
+    --   vim.ui.input = function(...)
+    --     require("lazy").load({ plugins = { "dressing.nvim" } })
+    --     return vim.ui.input(...)
+    --   end
+    -- end,
+  },
   -- Lua
   {
     "folke/todo-comments.nvim",
