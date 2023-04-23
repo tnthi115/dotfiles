@@ -149,6 +149,11 @@ lvim.builtin.which_key.mappings["z"] = {
   "<cmd>ZenMode<CR>", "Zen Mode"
 }
 
+-- Add close Buffer to buffers submenu.
+lvim.builtin.which_key.mappings["bc"] = {
+   "<cmd>BufferKill<CR>", "Close Buffer"
+}
+
 -- Disable some default mappings
 lvim.builtin.which_key.mappings[";"] = nil
 lvim.builtin.which_key.mappings["w"] = nil

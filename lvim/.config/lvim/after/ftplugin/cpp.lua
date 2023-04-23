@@ -13,7 +13,7 @@ local opts = {
 }
 
 local mappings = {
-  j = {
+  c = {
   name = "CMake",
     -- Clean previous build system first before generating the new one
     G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
