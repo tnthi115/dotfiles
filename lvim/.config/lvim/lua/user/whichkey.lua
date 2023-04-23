@@ -16,6 +16,7 @@ lvim.builtin.which_key.setup.plugins.presets.g = true
 --   separator = "->",
 --   group = "+",
 -- }
+
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 -- Add TroubleToggle
@@ -29,19 +30,23 @@ lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Project
 --   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
 --   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
 -- }
+
 -- Add diffview open to git submenu
 lvim.builtin.which_key.mappings["gv"] = {
   "<cmd>DiffviewOpen<CR>", "Open Diffview"
 }
+
 -- Diffview close
 lvim.builtin.which_key.mappings["gq"] = {
   "<cmd>DiffviewClose<CR>", "Close Diffview"
 }
+
 -- Markdown Preview
 -- TODO: add this to ftplugin/markdown.lua eventually
 -- lvim.builtin.which_key.mappings["m"] = {
 --   "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview"
 -- }
+
 -- Terminal
 lvim.builtin.which_key.mappings["t"] = {
   name = "Terminal",
@@ -51,6 +56,7 @@ lvim.builtin.which_key.mappings["t"] = {
   h = { "<cmd>ToggleTerm direction=horizontal<CR>", "Horizontal" },
   T = { "<cmd>ToggleTerm direction=tab<CR>", "Tab" },
 }
+
 -- Bufferline
 lvim.builtin.which_key.mappings["b,"] = {
   "<cmd>BufferLineMovePrev<CR>", "Move Buffer Left"
@@ -58,18 +64,22 @@ lvim.builtin.which_key.mappings["b,"] = {
 lvim.builtin.which_key.mappings["b."] = {
   "<cmd>BufferLineMoveNext<CR>", "Move Buffer Right"
 }
+
 -- Colorizer
 lvim.builtin.which_key.mappings["C"] = {
   "<cmd>ColorizerToggle<CR>", "Toggle Color"
 }
+
 -- Show full path of current buffer
 lvim.builtin.which_key.mappings["bp"] = {
   "<cmd>echo expand('%:p)')<CR>", "Show Buffer Path"
 }
+
 -- Fuzzy search in current buffer
 lvim.builtin.which_key.mappings["s/"] = {
   "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Search current buffer"
 }
+
 -- Persistence (sessions)
 -- lvim.builtin.which_key.mappings["S"] = {
 --   name = "Session",
@@ -77,6 +87,7 @@ lvim.builtin.which_key.mappings["s/"] = {
 --   l = { "<cmd>lua require('persistence').load({ last = true })<CR>", "Restore last session" },
 --   Q = { "<cmd>lua require('persistence').stop()<CR>", "Quit without saving session" },
 -- }
+
 -- Distant
 -- lvim.builtin.which_key.mappings["D"] = {
 --   name = "+Distant",
@@ -90,16 +101,19 @@ lvim.builtin.which_key.mappings["s/"] = {
 --   r = { "<cmd>lua require('distant.nav.actions').rename()<CR>", "Rename file" },
 --   d = { "<cmd>lua require('distant.nav.actions').remove()<CR>", "Remove file" },
 -- }
+
 -- nvim-gdb
 lvim.builtin.which_key.mappings["dB"] = {
   "<cmd>GdbBreakpointToggle<CR>", "GDB Breakpoint"
 }
+
 -- nvim-dap
 -- remap d to D
 -- lvim.builtin.which_key.mappings["dd"] = {}
 -- lvim.builtin.which_key.mappings["dD"] = {
 --   "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect"
 -- }
+
 -- Folding
 -- lvim.builtin.which_key.mappings["zj"] = {
 --   "zcjjzOzz", "Open next fold"
@@ -112,11 +126,13 @@ lvim.builtin.which_key.mappings["dB"] = {
 -- lvim.builtin.which_key.mappings["zv"] = {
 --   "zMzvzz", "Close all folds except current one"
 -- }
+
 -- HTML/webpage preview
 -- TODO: add this to ftplugin/html.lua and/or ftplugin/xhtml.lua
 lvim.builtin.which_key.mappings["M"] = {
   "<cmd>!firefox %<CR>", "HTML Preview"
 }
+
 -- lvim.builtin.which_key.mappings["o"] = {
 --   name = "Options",
 --   c = { "<cmd>lua lvim.builtin.cmp.active = false<cr>", "Completion off" },
@@ -128,9 +144,12 @@ lvim.builtin.which_key.mappings["M"] = {
 --   -- t = { '<cmd>lua require("user.functions").toggle_tabline()<cr>', "Tabline" },
 -- }
 
+-- Zen Mode
+lvim.builtin.which_key.mappings["z"] = {
+  "<cmd>ZenMode<CR>", "Zen Mode"
+}
+
+-- Disable some default mappings
 lvim.builtin.which_key.mappings[";"] = nil
--- lvim.builtin.which_key.mappings["c"] = nil
--- lvim.builtin.which_key.mappings["L"] = nil
--- lvim.builtin.which_key.mappings["s"] = nil
 lvim.builtin.which_key.mappings["w"] = nil
 lvim.builtin.which_key.mappings["q"] = nil
