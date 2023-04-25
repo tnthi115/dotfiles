@@ -154,6 +154,13 @@ lvim.builtin.which_key.mappings["bc"] = {
    "<cmd>BufferKill<CR>", "Close Buffer"
 }
 
+-- Add CellularAutomaton
+lvim.builtin.which_key.mappings["ba"] = {
+  name = "Cellular Automaton",
+  r = { "<cmd>CellularAutomaton make_it_rain<CR>", "Make it Rain" },
+  g = { "<cmd>CellularAutomaton game_of_life<CR>", "Make it Rain" },
+}
+
 -- Disable some default mappings
 lvim.builtin.which_key.mappings[";"] = nil
 lvim.builtin.which_key.mappings["w"] = nil
