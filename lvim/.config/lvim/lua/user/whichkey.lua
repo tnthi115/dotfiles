@@ -1,5 +1,10 @@
 -- Which-key
 
+-- Disable some default mappings
+lvim.builtin.which_key.mappings[";"] = nil
+lvim.builtin.which_key.mappings["w"] = nil
+lvim.builtin.which_key.mappings["q"] = nil
+
 -- Turn on which-key help for bindings for folds, spelling and others prefixed with z
 lvim.builtin.which_key.setup.plugins.presets.z = true
 
@@ -161,7 +166,52 @@ lvim.builtin.which_key.mappings["ba"] = {
   g = { "<cmd>CellularAutomaton game_of_life<CR>", "Make it Rain" },
 }
 
--- Disable some default mappings
-lvim.builtin.which_key.mappings[";"] = nil
-lvim.builtin.which_key.mappings["w"] = nil
-lvim.builtin.which_key.mappings["q"] = nil
+-- Refactoring
+lvim.builtin.which_key.mappings["r"] = {
+  name = "Refactoring",
+}
+lvim.builtin.which_key.vmappings["r"] = {
+  name = "Refactoring",
+}
+
+-- local normal_mode_r_opts = {
+--   mode = "n", -- NORMAL mode
+--   prefix = "r",
+--   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+--   silent = true, -- use `silent` when creating keymaps
+--   noremap = true, -- use `noremap` when creating keymaps
+--   nowait = true, -- use `nowait` when creating keymaps
+-- }
+
+-- local visual_mode_r_opts = {
+--   mode = "v", -- NORMAL mode
+--   prefix = "r",
+--   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+--   silent = true, -- use `silent` when creating keymaps
+--   noremap = true, -- use `noremap` when creating keymaps
+--   nowait = true, -- use `nowait` when creating keymaps
+-- }
+
+-- local status_ok, which_key = pcall(require, "which-key")
+-- if not status_ok then
+--   return
+-- end
+
+-- local normal_mode_r_mappings = {
+--   -- Inline variable can also pick up the identifier currently under the cursor without visual mode
+--   i = { "<cmd>lua require('refactoring').refactor('Inline Variable')<CR>", "Inline Variable" },
+--   -- Extract block doesn't need visual mode
+--   b = { "<Cmd>lua require('refactoring').refactor('Extract Block')<CR>", "Extract Block" },
+--   B = { "<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>", "Extract Block To File" },
+-- }
+
+-- local visual_mode_r_mappings = {
+--   e = { "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>", "Extract Function" },
+--   f = { "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>", "Extract Function To File" },
+--   v = { "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>", "Extract Variable" },
+--   i = { "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", "Inline Variable" },
+-- }
+
+
+-- which_key.register(normal_mode_r_mappings, normal_mode_r_opts)
+-- which_key.register(visual_mode_r_mappings, visual_mode_r_opts)
