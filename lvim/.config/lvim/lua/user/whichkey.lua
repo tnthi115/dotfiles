@@ -1,6 +1,7 @@
 -- Which-key
 
 -- Disable some default mappings
+lvim.builtin.which_key.mappings["c"] = nil
 -- lvim.builtin.which_key.mappings[";"] = nil
 lvim.builtin.which_key.mappings["w"] = nil
 lvim.builtin.which_key.mappings["q"] = nil

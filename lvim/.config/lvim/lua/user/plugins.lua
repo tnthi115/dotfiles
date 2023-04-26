@@ -152,13 +152,13 @@ lvim.plugins = {
   },
   {
     "cdelledonne/vim-cmake",
-    ft = { "c", "cpp" },
+    ft = { "cpp", "cmake" },
   },
 
   -- prettier vim.ui.select and vim.ui.input
   {
     "stevearc/dressing.nvim",
-    event = "VeryLazy",
+    event = "User FileOpened",
     -- lazy = true,
     -- init = function()
     --   ---@diagnostic disable-next-line: duplicate-set-field
@@ -182,10 +182,10 @@ lvim.plugins = {
   },
 
   -- vim-glsl
-  {
-    "tikhomirov/vim-glsl",
-    ft = { "glsl" },
-  },
+  -- {
+  --   "tikhomirov/vim-glsl",
+  --   ft = { "glsl" },
+  -- },
 
   -- noice
   -- {
@@ -204,7 +204,7 @@ lvim.plugins = {
   -- nvim-treesitter-context
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = "VeryLazy",
+    event = "User FileOpened",
     config = function()
       require'treesitter-context'.setup{
         enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
