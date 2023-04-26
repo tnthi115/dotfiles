@@ -1,5 +1,7 @@
 -- Keymappings [view all the defaults by pressing <leader>Lk]
 
+local map = vim.keymap.set
+
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
@@ -61,16 +63,19 @@ lvim.keys.normal_mode["zk"] = "zckkzOzz"
 lvim.keys.normal_mode["zf"] = "zMzvzz"
 
 -- todo-comments
-vim.keymap.set("n", "]t", function()
+map("n", "]t", function()
   require("todo-comments").jump_next()
 end, { desc = "Next todo comment" })
 
-vim.keymap.set("n", "[t", function()
+map("n", "[t", function()
   require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 
 -- You can also specify a list of valid jump keywords
 
--- vim.keymap.set("n", "]t", function()
+-- map("n", "]t", function()
 --   require("todo-comments").jump_next({keywords = { "ERROR", "WARNING" }})
 -- end, { desc = "Next error/warning todo comment" })
+
+-- Clear search with <esc>
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })

@@ -5,6 +5,7 @@ lvim.builtin.which_key.mappings["c"] = nil
 -- lvim.builtin.which_key.mappings[";"] = nil
 lvim.builtin.which_key.mappings["w"] = nil
 lvim.builtin.which_key.mappings["q"] = nil
+lvim.builtin.which_key.mappings["h"] = nil
 
 -- Turn on which-key help for bindings for folds, spelling and others prefixed with z
 lvim.builtin.which_key.setup.plugins.presets.z = true
