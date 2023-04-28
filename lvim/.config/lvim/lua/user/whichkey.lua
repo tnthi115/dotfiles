@@ -144,10 +144,10 @@ lvim.builtin.which_key.mappings["dB"] = {
 
 -- HTML/webpage preview
 -- TODO: add this to ftplugin/html.lua and/or ftplugin/xhtml.lua
-lvim.builtin.which_key.mappings["M"] = {
-  "<cmd>!firefox %<CR>",
-  "HTML Preview",
-}
+-- lvim.builtin.which_key.mappings["M"] = {
+--   "<cmd>!firefox %<CR>",
+--   "HTML Preview",
+-- }
 
 -- lvim.builtin.which_key.mappings["o"] = {
 --   name = "Options",
