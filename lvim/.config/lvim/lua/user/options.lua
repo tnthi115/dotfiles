@@ -2,10 +2,6 @@
 
 lvim.log.level = "warn"
 -- lvim.format_on_save = false
-lvim.format_on_save.enabled = true
-lvim.format_on_save.pattern = "*.lua"
--- lvim.lsp.automatic_servers_installation = true
-lvim.lsp.installer.setup.automatic_installation = false
 
 -- Lualine
 -- local components = require("lvim.core.lualine.components")
@@ -30,6 +26,7 @@ lvim.builtin.lualine.style = "lvim"
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
+-- lvim.builtin.nvimtree.active = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 

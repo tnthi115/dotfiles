@@ -3,6 +3,21 @@
 require "user.lsp.languages.cpp"
 require "user.lsp.languages.markdown"
 
+lvim.format_on_save.enabled = true
+lvim.format_on_save.pattern = "*.lua"
+lvim.lsp.installer.setup.automatic_installation = false
+
+lvim.lsp.installer.setup.ensure_installed = {
+  -- "lua-language-server",
+  "lua_ls",
+  -- "stylua",
+  "marksman",
+  "clangd",
+  "pyright",
+  -- "markdownlint",
+  -- "shellcheck",
+}
+
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
@@ -56,6 +71,7 @@ lvim.keys.insert_mode["<C-a>"] = cmp.mapping.abort()
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
+  -- { command = "beautysh", filetypes = { "sh", "bash", "zsh" } },
   { command = "markdownlint", filetypes = { "markdown" } },
   { command = "stylua", filetypes = { "lua" } },
   -- { command = "clang-format", filetypes = { "cpp" } },
