@@ -5,7 +5,7 @@ if not status_ok then
   return
 end
 
-noice.setup({
+noice.setup {
   cmdline = {
     enabled = true, -- enables the Noice cmdline UI
     view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
@@ -232,13 +232,13 @@ noice.setup({
   status = {}, --- @see section on statusline components
   ---@type NoiceFormatOptions
   format = {}, --- @see section on formatting
-})
+}
 
 local status_ok, notify = pcall(require, "notify")
 if not status_ok then
   return
 end
 
-notify.setup({
+notify.setup {
   background_colour = "#000000",
-})
+}

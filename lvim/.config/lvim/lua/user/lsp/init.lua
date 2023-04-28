@@ -57,6 +57,7 @@ lvim.keys.insert_mode["<C-a>"] = cmp.mapping.abort()
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "markdownlint", filetypes = { "markdown" } },
+  { command = "stylua", filetypes = { "lua" } },
   -- { command = "clang-format", filetypes = { "cpp" } },
   -- need to "pip install black"
   -- can install with mason.nvim

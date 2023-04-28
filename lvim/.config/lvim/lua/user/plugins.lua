@@ -143,6 +143,9 @@ lvim.plugins = {
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
+    keys = {
+      { "<leader>z", "<cmd>ZenMode<CR>", desc = "Zen Mode" },
+    },
   },
 
   -- C++ clangd and cmake integration made lazy
@@ -206,73 +209,103 @@ lvim.plugins = {
     "nvim-treesitter/nvim-treesitter-context",
     event = "User FileOpened",
     config = function()
-      require'treesitter-context'.setup{
+      require("treesitter-context").setup {
         enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
         max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
         min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
         line_numbers = true,
         multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
-        trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-        mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+        trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+        mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
         -- Separator between context and content. Should be a single character string, like '-'.
         -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
         separator = nil,
         zindex = 20, -- The Z-index of the context window
       }
       -- vim.cmd[[hi TreesitterContextBottom gui=underline guisp=Grey]]
-      vim.cmd[[hi TreesitterContext guibg=#282828]]
+      vim.cmd [[hi TreesitterContext guibg=#282828]]
     end,
+    keys = {
+      {
+        "<leader>Tt",
+        "<cmd>TSContextToggle<CR>",
+        mode = "n",
+        desc = "Toggle Treesitter Context",
+      },
+    },
   },
 
   -- cellular-automaton for fun animations
   {
     "eandrju/cellular-automaton.nvim",
     cmd = "CellularAutomaton",
+    keys = {
+      { "<leader>bar", "<cmd>CellularAutomaton make_it_rain<CR>", mode = "n", desc = "Make it Rain" },
+      { "<leader>bag", "<cmd>CellularAutomaton game_of_life<CR>", mode = "n", desc = "Game of Life" },
+    },
   },
 
   -- refactoring
   {
     "ThePrimeagen/refactoring.nvim",
+    -- stylua: ignore
     keys = {
       -- visual mode
-      { "<leader>re", "<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>", mode = "v", desc = "Extract Function" },
-      { "<leader>rf", "<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>", mode = "v", desc = "Extract Function To File" },
-      { "<leader>rv", "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>", mode = "v", desc = "Extract Variable" },
-      { "<leader>ri", "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", mode = "v", desc = "Inline Variable" },
+      { "<leader>re", "<Esc><cmd>lua require('refactoring').refactor('Extract Function')<CR>", mode = "v", desc = "Extract Function" },
+      { "<leader>rf", "<Esc><cmd>lua require('refactoring').refactor('Extract Function To File')<CR>", mode = "v", desc = "Extract Function To File" },
+      { "<leader>rv", "<Esc><cmd>lua require('refactoring').refactor('Extract Variable')<CR>", mode = "v", desc = "Extract Variable" },
+      { "<leader>ri", "<Esc><cmd>lua require('refactoring').refactor('Inline Variable')<CR>", mode = "v", desc = "Inline Variable" },
       -- normal mode
       -- Inline variable can also pick up the identifier currently under the cursor without visual mode
       { "<leader>ri", "<cmd>lua require('refactoring').refactor('Inline Variable')<CR>", mode = "n", desc = "Inline Variable" },
-      { "<leader>rb", "<Cmd>lua require('refactoring').refactor('Extract Block')<CR>", mode = "n", desc = "Extract Block" },
+      { "<leader>rb", "<cmd>lua require('refactoring').refactor('Extract Block')<CR>", mode = "n", desc = "Extract Block" },
       -- Extract block doesn't need visual mode
-      { "<leader>rB", "<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>", mode = "n", desc = "Extract Block To File" },
+      { "<leader>rB", "<cmd>lua require('refactoring').refactor('Extract Block To File')<CR>", mode = "n", desc = "Extract Block To File" },
     },
     dependencies = {
-        {"nvim-lua/plenary.nvim"},
-        {"nvim-treesitter/nvim-treesitter"}
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-treesitter/nvim-treesitter" },
     },
     config = function()
-      require('refactoring').setup({
+      require("refactoring").setup {
         prompt_func_return_type = {
-            go = true,
-            java = true,
-            cpp = true,
-            c = true,
-            h = false,
-            hpp = false,
-            cxx = false,
+          go = true,
+          java = true,
+          cpp = true,
+          c = true,
+          h = false,
+          hpp = false,
+          cxx = false,
         },
         prompt_func_param_type = {
-            go = true,
-            java = true,
-            cpp = true,
-            c = true,
-            h = false,
-            hpp = false,
-            cxx = false,
+          go = true,
+          java = true,
+          cpp = true,
+          c = true,
+          h = false,
+          hpp = false,
+          cxx = false,
         },
         printf_statements = {},
         print_var_statements = {},
-      })
+      }
     end,
-  }
+  },
+
+  -- search/replace in multiple files
+  {
+    "nvim-pack/nvim-spectre",
+    -- stylua: ignore
+    keys = {
+      { "<leader>ss", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+    },
+    opts = {
+      default = {
+        find = {
+          cmd = "rg",
+          options = { "ignore-case", "hidden" },
+        },
+      },
+    },
+  },
 }

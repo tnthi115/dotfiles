@@ -1,7 +1,9 @@
 -- General lvim builtin plugin settings {{{
 
 lvim.log.level = "warn"
-lvim.format_on_save = false
+-- lvim.format_on_save = false
+lvim.format_on_save.enabled = true
+lvim.format_on_save.pattern = "*.lua"
 -- lvim.lsp.automatic_servers_installation = true
 lvim.lsp.installer.setup.automatic_installation = false
 
@@ -19,16 +21,14 @@ lvim.lsp.installer.setup.automatic_installation = false
 --   components.scrollbar,
 --   components.location
 -- }
+
 lvim.builtin.lualine.style = "lvim"
--- lvim.colorscheme = "onedarker"
--- lvim.colorscheme = "vscode"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
--- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
@@ -372,7 +372,7 @@ vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
 -- vim.opt.foldlevel = 0
 vim.opt.foldmethod = "marker"
 vim.opt.list = true
-vim.opt.listchars = { eol  = "↲", tab = "▸ ", trail = "·" }
+vim.opt.listchars = { eol = "↲", tab = "▸ ", trail = "·" }
 vim.opt.showbreak = "↪"
 
 -- }}}

@@ -40,12 +40,14 @@ lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Project
 
 -- Add diffview open to git submenu
 lvim.builtin.which_key.mappings["gv"] = {
-  "<cmd>DiffviewOpen<CR>", "Open Diffview"
+  "<cmd>DiffviewOpen<CR>",
+  "Open Diffview",
 }
 
 -- Diffview close
 lvim.builtin.which_key.mappings["gq"] = {
-  "<cmd>DiffviewClose<CR>", "Close Diffview"
+  "<cmd>DiffviewClose<CR>",
+  "Close Diffview",
 }
 
 -- Markdown Preview
@@ -66,25 +68,30 @@ lvim.builtin.which_key.mappings["t"] = {
 
 -- Bufferline
 lvim.builtin.which_key.mappings["b,"] = {
-  "<cmd>BufferLineMovePrev<CR>", "Move Buffer Left"
+  "<cmd>BufferLineMovePrev<CR>",
+  "Move Buffer Left",
 }
 lvim.builtin.which_key.mappings["b."] = {
-  "<cmd>BufferLineMoveNext<CR>", "Move Buffer Right"
+  "<cmd>BufferLineMoveNext<CR>",
+  "Move Buffer Right",
 }
 
 -- Colorizer
 lvim.builtin.which_key.mappings["C"] = {
-  "<cmd>ColorizerToggle<CR>", "Toggle Color"
+  "<cmd>ColorizerToggle<CR>",
+  "Toggle Color",
 }
 
 -- Show full path of current buffer
 lvim.builtin.which_key.mappings["bp"] = {
-  "<cmd>echo expand('%:p)')<CR>", "Show Buffer Path"
+  "<cmd>echo expand('%:p)')<CR>",
+  "Show Buffer Path",
 }
 
 -- Fuzzy search in current buffer
 lvim.builtin.which_key.mappings["s/"] = {
-  "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Search current buffer"
+  "<cmd>Telescope current_buffer_fuzzy_find<CR>",
+  "Search current buffer",
 }
 
 -- Persistence (sessions)
@@ -111,7 +118,8 @@ lvim.builtin.which_key.mappings["s/"] = {
 
 -- nvim-gdb
 lvim.builtin.which_key.mappings["dB"] = {
-  "<cmd>GdbBreakpointToggle<CR>", "GDB Breakpoint"
+  "<cmd>GdbBreakpointToggle<CR>",
+  "GDB Breakpoint",
 }
 
 -- nvim-dap
@@ -137,7 +145,8 @@ lvim.builtin.which_key.mappings["dB"] = {
 -- HTML/webpage preview
 -- TODO: add this to ftplugin/html.lua and/or ftplugin/xhtml.lua
 lvim.builtin.which_key.mappings["M"] = {
-  "<cmd>!firefox %<CR>", "HTML Preview"
+  "<cmd>!firefox %<CR>",
+  "HTML Preview",
 }
 
 -- lvim.builtin.which_key.mappings["o"] = {
@@ -151,21 +160,17 @@ lvim.builtin.which_key.mappings["M"] = {
 --   -- t = { '<cmd>lua require("user.functions").toggle_tabline()<cr>', "Tabline" },
 -- }
 
--- Zen Mode
-lvim.builtin.which_key.mappings["z"] = {
-  "<cmd>ZenMode<CR>", "Zen Mode"
-}
-
 -- Add close Buffer to buffers submenu.
 lvim.builtin.which_key.mappings["bc"] = {
-   "<cmd>BufferKill<CR>", "Close Buffer"
+  "<cmd>BufferKill<CR>",
+  "Close Buffer",
 }
 
 -- Add CellularAutomaton
 lvim.builtin.which_key.mappings["ba"] = {
   name = "Cellular Automaton",
-  r = { "<cmd>CellularAutomaton make_it_rain<CR>", "Make it Rain" },
-  g = { "<cmd>CellularAutomaton game_of_life<CR>", "Make it Rain" },
+  -- r = { "<cmd>CellularAutomaton make_it_rain<CR>", "Make it Rain" },
+  -- g = { "<cmd>CellularAutomaton game_of_life<CR>", "Game of Life" },
 }
 
 -- Refactoring
@@ -213,7 +218,6 @@ lvim.builtin.which_key.vmappings["r"] = {
 --   v = { "<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>", "Extract Variable" },
 --   i = { "<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>", "Inline Variable" },
 -- }
-
 
 -- which_key.register(normal_mode_r_mappings, normal_mode_r_opts)
 -- which_key.register(visual_mode_r_mappings, visual_mode_r_opts)
