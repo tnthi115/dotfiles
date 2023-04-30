@@ -4,7 +4,7 @@ require "user.lsp.languages.cpp"
 require "user.lsp.languages.markdown"
 
 lvim.format_on_save.enabled = true
-lvim.format_on_save.pattern = "*.lua"
+-- lvim.format_on_save.pattern = "*.lua"
 lvim.lsp.installer.setup.automatic_installation = false
 
 lvim.lsp.installer.setup.ensure_installed = {
