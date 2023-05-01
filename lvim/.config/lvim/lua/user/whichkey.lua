@@ -221,3 +221,6 @@ lvim.builtin.which_key.vmappings["r"] = {
 
 -- which_key.register(normal_mode_r_mappings, normal_mode_r_opts)
 -- which_key.register(visual_mode_r_mappings, visual_mode_r_opts)
+
+-- Toggle format on save
+lvim.builtin.which_key.mappings["Lt"] = { "<cmd>LvimToggleFormatOnSave<CR>", "Toggle Format on Save" }
