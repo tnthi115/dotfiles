@@ -13,7 +13,7 @@ lvim.lsp.installer.setup.ensure_installed = {
   -- "stylua",
   "marksman",
   "clangd",
-  "pyright",
+  -- "pyright",
   -- "markdownlint",
   -- "shellcheck",
 }
@@ -31,7 +31,7 @@ lvim.builtin.treesitter.ensure_installed = {
   -- "tsx",
   -- "css",
   -- "rust",
-  "java",
+  -- "java",
   -- "yaml",
 }
 

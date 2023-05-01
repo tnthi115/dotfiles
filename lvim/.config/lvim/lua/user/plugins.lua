@@ -45,6 +45,11 @@ lvim.plugins = {
       vim.fn["mkdp#util#install"]()
     end,
     ft = "markdown",
+    config = function()
+      vim.g.mkdp_browser = "/usr/bin/firefox"
+      -- vim.g.mkdp_theme = "light"
+      vim.g.mkdp_auto_close = 0
+    end,
   },
 
   -- Function signature viewer
@@ -60,10 +65,19 @@ lvim.plugins = {
   },
 
   -- Incremental line number search
-  {
-    "nacro90/numb.nvim",
-    lazy = true,
-  },
+  -- {
+  --   "nacro90/numb.nvim",
+  --   lazy = true,
+  --   -- config = function()
+  --   --   require("numb").setup {
+  --   --     show_numbers = true, -- Enable 'number' for the window while peeking
+  --   --     show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+  --   --     hide_relativenumbers = true, -- Enable turning off 'relativenumber' for the window while peeking
+  --   --     number_only = false, -- Peek only when the command is only a number instead of when it starts with a number
+  --   --     centered_peeking = true, -- Peeked line will be centered relative to window
+  --   --   }
+  --   -- end,
+  -- },
 
   -- Vim sessions
   -- {
@@ -149,14 +163,14 @@ lvim.plugins = {
   },
 
   -- C++ clangd and cmake integration made lazy
-  {
-    "p00f/clangd_extensions.nvim",
-    ft = { "c", "cpp" },
-  },
-  {
-    "cdelledonne/vim-cmake",
-    ft = { "cpp", "cmake" },
-  },
+  -- {
+  --   "p00f/clangd_extensions.nvim",
+  --   ft = { "c", "cpp" },
+  -- },
+  -- {
+  --   "cdelledonne/vim-cmake",
+  --   ft = { "cpp", "cmake" },
+  -- },
 
   -- prettier vim.ui.select and vim.ui.input
   {
@@ -306,6 +320,16 @@ lvim.plugins = {
           options = { "ignore-case", "hidden" },
         },
       },
+    },
+  },
+
+  -- vim-surround
+  {
+    "tpope/vim-surround",
+    keys = {
+      "cs",
+      "ds",
+      "ys",
     },
   },
 }

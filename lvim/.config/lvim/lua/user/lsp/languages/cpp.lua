@@ -8,12 +8,19 @@
 -- lvim.builtin.treesitter.ensure_installed = { "cpp", "c" }
 
 -- Additional Plugins
--- Make these lazy by adding to list of additional plugins
--- table.insert(lvim.plugins, {
---   "p00f/clangd_extensions.nvim",
---   -- cmake integration
---   "cdelledonne/vim-cmake",
--- })
+-- C++ clangd extensions and cmake integration
+table.insert(lvim.plugins, {
+  "p00f/clangd_extensions.nvim",
+  ft = { "c", "cpp" },
+})
+table.insert(lvim.plugins, {
+  "cdelledonne/vim-cmake",
+  ft = { "cpp", "cmake" },
+  config = function()
+    vim.cmd [[let g:cmake_link_compile_commands = 1]]
+    vim.cmd [[let g:cmake_default_config = "build"]]
+  end,
+})
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 
@@ -178,10 +185,6 @@ end
 -- lvim.builtin.which_key.mappings["dS"] = {
 
 -- }
-
--- vim-cmake configuration
-vim.cmd [[let g:cmake_link_compile_commands = 1]]
-vim.cmd [[let g:cmake_default_config = "build"]]
 
 -- cmake which-key bindings for c++ files
 -- vim.api.nvim_create_autocmd({ "FileType" }, {

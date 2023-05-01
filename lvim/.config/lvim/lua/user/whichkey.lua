@@ -224,3 +224,8 @@ lvim.builtin.which_key.vmappings["r"] = {
 
 -- Toggle format on save
 lvim.builtin.which_key.mappings["Lt"] = { "<cmd>LvimToggleFormatOnSave<CR>", "Toggle Format on Save" }
+
+lvim.builtin.which_key.mappings["s*"] = {
+  "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') })<CR>",
+  " Search Word Under Cursor",
+}
