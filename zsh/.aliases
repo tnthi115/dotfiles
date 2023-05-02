@@ -13,7 +13,7 @@ alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 alias vf="vim \$(fzf)"
 # alias lv="nvim -u ~/.config/lazyvim/init.lua"
-alias nv="nvim"
+alias nv="\nvim"
 
 # git aliases
 alias gs="git status"
