@@ -9,7 +9,7 @@ dl_url=$( curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/rele
     | grep "browser_download_url.*AppImage" | tail -n 1 | cut -d '"' -f 4 )
 
 if [[ -z "$dl_url" ]]; then
-	echo "missing download link"
+    echo "missing download link"
     echo "usage: install-obsidian.sh"
     exit 1
 fi

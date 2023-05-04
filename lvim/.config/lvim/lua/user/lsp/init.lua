@@ -71,7 +71,7 @@ lvim.keys.insert_mode["<C-a>"] = cmp.mapping.abort()
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  -- { command = "beautysh", filetypes = { "sh", "bash", "zsh" } },
+  { command = "beautysh" },
   { command = "markdownlint", filetypes = { "markdown" } },
   { command = "stylua", filetypes = { "lua" } },
   -- { command = "clang-format", filetypes = { "cpp" } },
