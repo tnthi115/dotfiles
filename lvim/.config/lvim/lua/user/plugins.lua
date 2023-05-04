@@ -377,6 +377,9 @@ lvim.plugins = {
     "j-hui/fidget.nvim",
     event = "LspAttach",
     opts = {
+      text = {
+        spinner = "dots",
+      },
       window = {
         blend = 0,
       },
