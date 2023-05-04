@@ -372,6 +372,7 @@ lvim.plugins = {
     -- end,
   },
 
+  -- fidget - lsp progress info
   {
     "j-hui/fidget.nvim",
     event = "LspAttach",
@@ -382,7 +383,7 @@ lvim.plugins = {
     },
   },
 
-  -- tabnine
+  -- tabnine - ai completion
   -- {
   --   "tzachar/cmp-tabnine",
   --   event = "InsertEnter",
@@ -390,7 +391,7 @@ lvim.plugins = {
   --   dependencies = "hrsh7th/nvim-cmp",
   -- },
 
-  -- vim-smoothie
+  -- vim-smoothie - smooth scrolling
   -- {
   --   "opalmay/vim-smoothie",
   --   keys = {
