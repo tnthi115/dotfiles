@@ -154,6 +154,8 @@ lvim.transparent_window = true
 
 lvim.colorscheme = "tokyonight-night"
 local bg_color = "#1a1b26"
+-- local green = "##9ece6a"
+-- local yellow = "#e0af68"
 vim.cmd [[au ColorScheme * hi NvimTreeWinSeparator ctermbg=none guibg=bg_color]]
 vim.cmd [[au ColorScheme * hi TabLineFill ctermbg=none guibg=bg_color]]
 vim.cmd [[au ColorScheme * hi VertSplit ctermbg=none guibg=bg_color]]
@@ -163,6 +165,11 @@ vim.cmd [[au ColorScheme * hi WhichKeyFloat ctermbg=none guibg=bg_color]]
 vim.cmd [[au ColorScheme * hi WhichKeyFloat ctermbg=none guibg=bg_color]]
 vim.cmd [[au ColorScheme * hi TelescopeNormal ctermbg=none guibg=bg_color]]
 vim.cmd [[au ColorScheme * hi Folded ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextOk ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextHint ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextInfo ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextWarn ctermbg=none guibg=bg_color]]
+vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextError ctermbg=none guibg=bg_color]]
 
 -- }}}
 
