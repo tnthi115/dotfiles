@@ -6,11 +6,11 @@ lvim.plugins = {
   -- { "gruvbox-community/gruvbox" },
   -- { "ellisonleao/gruvbox.nvim" },
   -- { "morhetz/gruvbox" },
-  -- { "folke/tokyonight.nvim" },
+  { "folke/tokyonight.nvim" },
   -- {"lunarvim/colorschemes"},
   {
     "sainnhe/gruvbox-material",
-    -- lazy = true,
+    lazy = true,
   },
   -- { "sainnhe/edge" },
   -- { "Mofiqul/vscode.nvim" },
@@ -270,7 +270,7 @@ lvim.plugins = {
         zindex = 20, -- The Z-index of the context window
       }
       -- vim.cmd[[hi TreesitterContextBottom gui=underline guisp=Grey]]
-      vim.cmd [[hi TreesitterContext guibg=#282828]]
+      -- vim.cmd [[hi TreesitterContext guibg=#282828]]
     end,
     keys = {
       {

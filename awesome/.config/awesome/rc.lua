@@ -916,8 +916,8 @@ tag.connect_signal("property::selected", backham)
 
 awful.spawn.with_shell("compton")
 -- awful.spawn.with_shell("nitrogen --set-scaled --random /media/sf_Downloads/wallpapers/gruvbox")
-awful.spawn.with_shell("nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/gruvbox")
--- awful.spawn.with_shell("nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/lunar-tokyo-night/")
+-- awful.spawn.with_shell("nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/gruvbox")
+awful.spawn.with_shell("nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/lunar-tokyo-night/")
 awful.spawn.with_shell("VBoxClient-all")
 -- TODO: look at the autostart from lxqt/lubuntu DE and add necessary things from there
 

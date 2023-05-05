@@ -16,13 +16,22 @@ local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local colors                                    = {}
--- colors.red                                      = "#f2594b"
-colors.red                                      = "#ea6962"
-colors.green                                    = "#b0b846"
-colors.yellow                                   = "#e3a84e"
-colors.blue                                     = "#80aa93"
-colors.magenta                                  = "#d3869b"
-colors.cyan                                     = "#8bba7f"
+-- gruvbox material
+-- -- colors.red                                      = "#f2594b"
+-- colors.red                                      = "#ea6962"
+-- colors.green                                    = "#b0b846"
+-- colors.yellow                                   = "#e3a84e"
+-- colors.blue                                     = "#80aa93"
+-- colors.magenta                                  = "#d3869b"
+-- colors.cyan                                     = "#8bba7f"
+
+-- tokyonight night
+colors.red                                      = "#f7768e"
+colors.green                                    = "#9ece6a"
+colors.yellow                                   = "#e0af68"
+colors.blue                                     = "#7aa2f7"
+colors.magenta                                  = "#bb9af7"
+colors.cyan                                     = "#7dcfff"
 
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
@@ -39,6 +48,8 @@ theme.icon_theme                                = nil
 -- theme.fg_focus                                  = "#ff8c00"
 -- theme.fg_urgent                                 = "#af1d18"
 -- theme.fg_minimize                               = "#ffffff"
+
+-- Gruvbox Material
 theme.bg_normal                                 = "#1d2021"
 theme.bg_focus                                  = "#282828"
 theme.bg_urgent                                 = "#f2594b"
@@ -53,6 +64,23 @@ theme.fg_normal   = "#a89984"
 theme.fg_focus    = "#e2cca9"
 theme.fg_urgent    = "#f2e5bc"
 theme.fg_minimize = "#928374"
+-------------------
+
+-- Tokynight Night
+theme.bg_normal                                 = "#16161e"
+theme.bg_focus                                  = "#1a1b26"
+theme.bg_urgent                                 = "#db4b4b"
+theme.bg_systray                                = theme.bg_normal
+-- theme.fg_normal                                 = "#aaaaaa"
+-- theme.fg_focus                                  = "#ffffff"
+-- theme.fg_urgent                                 = "#ffffff"
+-- theme.fg_minimize                               = "#999999"
+theme.fg_normal                                 = "#565f89"
+theme.fg_focus                                  = "#c0caf5"
+theme.fg_urgent                                 = "#ffffff"
+theme.fg_minimize                               = "#545c7e"
+------------------
+
 theme.border_width                              = dpi(1)
 -- theme.border_normal                             = "#1c2022"
 -- theme.border_focus                              = "#606060"
@@ -73,11 +101,14 @@ theme.menu_submenu_icon                         = theme.confdir .. "/icons/subme
 theme.widget_cpu                                = gears.color.recolor_image(theme.confdir .. "/icons/cpu.png", colors.red)
 -- theme.widget_weather                            = theme.confdir .. "/icons/dish.png"
 -- theme.widget_fs                                 = theme.confdir .. "/icons/fs.png"
-theme.widget_mem                                = theme.confdir .. "/icons/mem.png"
+-- theme.widget_mem                                = theme.confdir .. "/icons/mem.png"
+theme.widget_mem                                = gears.color.recolor_image(theme.confdir .. "/icons/mem.png", colors.green)
 theme.widget_note                               = theme.confdir .. "/icons/note.png"
 theme.widget_note_on                            = theme.confdir .. "/icons/note_on.png"
-theme.widget_netdown                            = theme.confdir .. "/icons/net_down.png"
-theme.widget_netup                              = theme.confdir .. "/icons/net_up.png"
+-- theme.widget_netdown                            = theme.confdir .. "/icons/net_down.png"
+theme.widget_netdown                            = gears.color.recolor_image(theme.confdir .. "/icons/net_down.png", colors.cyan)
+-- theme.widget_netup                              = theme.confdir .. "/icons/net_up.png"
+theme.widget_netup                              = gears.color.recolor_image(theme.confdir .. "/icons/net_up.png", colors.magenta)
 theme.widget_mail                               = theme.confdir .. "/icons/mail.png"
 theme.widget_batt                               = theme.confdir .. "/icons/bat.png"
 theme.widget_clock                              = gears.color.recolor_image(theme.confdir .. "/icons/clock.png", colors.blue)
