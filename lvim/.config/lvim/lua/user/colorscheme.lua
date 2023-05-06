@@ -19,7 +19,8 @@ local themes = {
 }
 
 local setup_funcs = {
-  lunar = function() -- {{{
+  lunar = function()
+    -- {{{
     local bg_color = "#1a1b26"
     vim.cmd [[au ColorScheme * hi NvimTreeWinSeparator ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi TabLineFill ctermbg=none guibg=bg_color]]
@@ -35,8 +36,10 @@ local setup_funcs = {
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextInfo ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextWarn ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextError ctermbg=none guibg=bg_color]]
-  end, -- }}}
-  gruvbox_material = function() -- {{{
+    -- }}}
+  end,
+  gruvbox_material = function()
+    -- {{{
     local bg_color = "#1d2021"
     vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
     vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
@@ -81,12 +84,16 @@ local setup_funcs = {
     vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi Folded ctermbg=none guibg=bg_color]]
-  end, -- }}}
-  everforest = function() -- {{{
+    -- }}}
+  end,
+  everforest = function()
+    -- {{{
     vim.g.everforest_background = "hard"
     vim.g.everforest_diagnostic_virtual_text = "colored"
-  end, -- }}}
-  tokyonight = function() -- {{{
+    -- }}}
+  end,
+  tokyonight = function()
+    -- {{{
     local bg_color = "#1a1b26"
     -- local green = "##9ece6a"
     -- local yellow = "#e0af68"
@@ -104,8 +111,10 @@ local setup_funcs = {
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextInfo ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextWarn ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextError ctermbg=none guibg=bg_color]]
-  end, -- }}}
-  catppuccin = function() -- {{{
+    -- }}}
+  end,
+  catppuccin = function()
+    -- {{{
     local mocha = require("catppuccin.palettes").get_palette "mocha"
     local catppuccin = require "catppuccin"
     catppuccin.setup {
@@ -160,8 +169,10 @@ local setup_funcs = {
     }
     lvim.colorscheme = "catppuccin"
     vim.cmd.colorscheme "catppuccin"
-  end, -- }}}
-  rose_pine = function() -- {{{
+    -- }}}
+  end,
+  rose_pine = function()
+    -- {{{
     require("rose-pine").setup {
       --- @usage 'auto'|'main'|'moon'|'dawn'
       variant = "auto",
@@ -250,7 +261,8 @@ local setup_funcs = {
     local bg_color = "#232136"
     vim.cmd [[au colorscheme * hi whichkeyfloat ctermbg=none guibg=bg_color]]
     vim.cmd [[au colorscheme * hi floatborder ctermbg=none guibg=bg_color]]
-  end, -- }}}
+    -- }}}
+  end,
 }
 
 lvim.transparent_window = true
