@@ -1,3 +1,5 @@
+---@diagnostic disable: unused-local
+
 -- Colorscheme
 
 -- This table is actually useless, but I'm keeping it as a list of all the
