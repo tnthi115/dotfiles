@@ -56,11 +56,11 @@ lvim.keys.normal_mode["<leader>dG"] = ":GdbStart gdb -q "
 
 -- Folding
 -- Close current fold when open. Always open next fold.
-lvim.keys.normal_mode["zj"] = "zcjjzOzz"
+-- lvim.keys.normal_mode["zj"] = "zcjjzOzz"
 -- Close current fold when open. Always open previous fold.
-lvim.keys.normal_mode["zk"] = "zckkzOzz"
+-- lvim.keys.normal_mode["zk"] = "zckkzOzz"
 -- Close all folds except the current one. [f]ocus the current fold.
-lvim.keys.normal_mode["zf"] = "zMzvzz"
+-- lvim.keys.normal_mode["zf"] = "zMzvzz"
 
 -- todo-comments
 map("n", "]t", function()

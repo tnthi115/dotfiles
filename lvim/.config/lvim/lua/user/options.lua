@@ -1,4 +1,4 @@
--- General lvim builtin plugin settings {{{
+-- General lvim builtin plugin settings
 
 lvim.log.level = "warn"
 -- lvim.format_on_save = false
@@ -41,7 +41,7 @@ lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 -- Enable cmp cmdline.
 -- lvim.builtin.cmp.cmdline.enable = true
 
--- Configure alpha dashboard {{{
+-- Configure alpha dashboard
 -- lvim.builtin.alpha.dashboard.section.header.val = {
 --   "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
 --   " ▄▄▄█████▓ ███▄    █ ▄▄▄█████▓ ",
@@ -55,11 +55,7 @@ lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 --   "                   ░           ",
 -- }
 
---- }}}
-
--- }}}
-
--- Options {{{
+-- Options
 
 vim.opt.background = "dark"
 vim.opt.backup = false -- creates a backup file
@@ -116,5 +112,3 @@ vim.opt.list = true
 -- vim.opt.listchars = { eol = "↲", tab = "▸ ", trail = "·" }
 vim.opt.listchars = { tab = "▸ ", trail = "·" }
 vim.opt.showbreak = "↪"
-
--- }}}
