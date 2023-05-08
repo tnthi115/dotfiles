@@ -55,6 +55,9 @@ lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 --   "                   ░           ",
 -- }
 
+-- Show hidden files in telescope for Project
+lvim.builtin.project.show_hidden = true
+
 -- Options
 
 vim.opt.background = "dark"
