@@ -1,14 +1,17 @@
 [user]
 	email = tnthi115@berkeley.edu
 	name = Tymon Thi
+
 [credential]
 	helper = store
+
 [safe]
 	directory = /media/sf_Downloads/tymon-obsidian
 	directory = /home/user/Classes/cs164/mnt/cs164-aak/hw0-tnthi
 	directory = /home/user/Classes/cs164/mnt/cs164-aak/hw0-tnthi115
 	directory = /home/user/Classes/cs164/cs164-aak/discussion/sec1-tnthi115
 	directory = /media/sf_Downloads/wallpapers
+
 [alias]
   lg = lg1
   lg1 = lg1-specific --all
@@ -20,7 +23,38 @@
   lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
 
   graph = log --all --graph --decorate --oneline
-[core]
-	editor = lvim
+
 [init]
 	defaultBranch = main
+
+# Delta
+[core]
+	editor = lvim
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  features = decorations
+  true-color = always
+
+[delta "interactive"]
+  keep-plus-minus-markers = true
+
+[delta "decorations"]
+  commit-decoration-style = blue ol
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = blue box
+  hunk-header-file-style = red
+  hunk-header-line-number-style = green
+  hunk-header-style = file line-number syntax
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
