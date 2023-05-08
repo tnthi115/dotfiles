@@ -271,6 +271,7 @@ lvim.plugins = {
       }
       -- vim.cmd[[hi TreesitterContextBottom gui=underline guisp=Grey]]
       -- vim.cmd [[hi TreesitterContext guibg=#282828]]
+      vim.cmd [[hi TreesitterContext guibg=none]]
     end,
     keys = {
       {
