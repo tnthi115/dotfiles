@@ -60,7 +60,7 @@ lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 vim.opt.background = "dark"
 vim.opt.backup = false -- creates a backup file
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
-vim.opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
+vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.colorcolumn = "99999" -- fixes indentline for now
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
@@ -86,7 +86,7 @@ vim.opt.termguicolors = true -- set term gui colors (most terminals support this
 vim.opt.timeoutlen = 100 -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.title = true -- set the title of window to the value of the titlestring
 -- vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
-vim.opt.titlestring = "%<%F | %l/%L - nvim" -- what the title of the window will be set to
+-- vim.opt.titlestring = "%<%F | %l/%L - nvim" -- what the title of the window will be set to
 vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
 vim.opt.undofile = true -- enable persistent undo
 vim.opt.updatetime = 250 -- faster completion
@@ -114,3 +114,4 @@ vim.opt.list = true
 -- vim.opt.listchars = { eol = "↲", tab = "▸ ", trail = "·" }
 vim.opt.listchars = { tab = "▸ ", trail = "·" }
 vim.opt.showbreak = "↪"
+vim.opt.laststatus = 3

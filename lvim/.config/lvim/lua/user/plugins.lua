@@ -66,7 +66,7 @@ lvim.plugins = {
   {
     "NvChad/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
-    ft = { "conf", "yaml" },
+    ft = { "conf", "yaml", "tmux" },
     opts = {
       filetypes = { "*" },
       user_default_options = {
