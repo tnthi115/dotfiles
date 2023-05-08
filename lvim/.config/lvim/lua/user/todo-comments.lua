@@ -3,6 +3,7 @@ if not status_ok then
   return
 end
 
+-- Gruvbox Material Mix colors
 local red = "#f2594b"
 local yellow = "#e9b143"
 local blue = "#80aa9e"
@@ -46,8 +47,8 @@ todo_comments.setup {
     multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
     multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
     before = "", -- "fg" or "bg" or empty
-    keyword = "wide", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
-    after = "fg", -- "fg" or "bg" or empty
+    keyword = "wide_bg", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+    after = "empty", -- "fg" or "bg" or empty
     -- pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
     pattern = [[.*<(KEYWORDS)\s*:*]], -- pattern or table of patterns, used for highlightng (vim regex)
     comments_only = true, -- uses treesitter to match keywords in comments only
@@ -63,12 +64,12 @@ todo_comments.setup {
     -- hint = { "DiagnosticHint", "#10B981" },
     -- default = { "Identifier", "#7C3AED" },
     -- test = { "Identifier", "#FF00FF" }
-    error = { "DiagnosticError", "ErrorMsg", red},
-    warning = { "DiagnosticWarn", "WarningMsg", yellow},
-    info = { "DiagnosticInfo", blue},
-    hint = { "DiagnosticHint", green},
-    default = { "Identifier", pink},
-    test = { "Identifier", orange}
+    error = { "DiagnosticError", "ErrorMsg", red },
+    warning = { "DiagnosticWarn", "WarningMsg", yellow },
+    info = { "DiagnosticInfo", blue },
+    hint = { "DiagnosticHint", green },
+    default = { "Identifier", pink },
+    test = { "Identifier", orange },
   },
   search = {
     command = "rg",

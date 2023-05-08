@@ -229,3 +229,6 @@ lvim.builtin.which_key.mappings["s*"] = {
   "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') })<CR>",
   " Search Word Under Cursor",
 }
+
+-- todo-comments
+lvim.builtin.which_key.mappings["sT"] = { "<cmd>TodoTelescope<CR>", "Search Todos" }
