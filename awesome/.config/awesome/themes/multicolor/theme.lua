@@ -36,7 +36,8 @@ colors.cyan                                     = "#7dcfff"
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
 -- theme.wallpaper                                 = theme.confdir .. "/wall.png"
-theme.font                                      = "Hack Nerd Font Regular 9"
+-- theme.font                                      = "Hack Nerd Font Regular 9"
+theme.font                                      = "CaskaydiaCove Nerd Font 9.5"
 theme.icon_theme                                = nil
 -- theme.menu_bg_normal                            = "#000000"
 -- theme.menu_bg_focus                             = "#000000"
@@ -50,20 +51,21 @@ theme.icon_theme                                = nil
 -- theme.fg_minimize                               = "#ffffff"
 
 -- Gruvbox Material
-theme.bg_normal                                 = "#1d2021"
-theme.bg_focus                                  = "#282828"
-theme.bg_urgent                                 = "#f2594b"
--- theme.bg_minimize                               = "#1c1920"
--- theme.bg_minimize                               = "#1c1920"
-theme.bg_systray                                = theme.bg_normal
--- theme.fg_normal                                 = "#aaaaaa"
--- theme.fg_focus                                  = "#ffffff"
--- theme.fg_urgent                                 = "#ffffff"
--- theme.fg_minimize                               = "#999999"
-theme.fg_normal   = "#a89984"
-theme.fg_focus    = "#e2cca9"
-theme.fg_urgent    = "#f2e5bc"
-theme.fg_minimize = "#928374"
+-- theme.bg_normal                                 = "#1d2021"
+-- theme.bg_focus                                  = "#282828"
+-- theme.bg_urgent                                 = "#f2594b"
+-- -- theme.bg_minimize                               = "#1c1920"
+-- -- theme.bg_minimize                               = "#1c1920"
+-- theme.bg_systray                                = theme.bg_normal
+-- -- theme.fg_normal                                 = "#aaaaaa"
+-- -- theme.fg_focus                                  = "#ffffff"
+-- -- theme.fg_urgent                                 = "#ffffff"
+-- -- theme.fg_minimize                               = "#999999"
+-- theme.fg_normal   = "#a89984"
+-- theme.fg_focus    = "#e2cca9"
+-- theme.fg_urgent    = "#f2e5bc"
+-- theme.fg_minimize = "#928374"
+-- theme.border_focus                              = "#6e635d"
 -------------------
 
 -- Tokynight Night
@@ -79,6 +81,7 @@ theme.fg_normal                                 = "#565f89"
 theme.fg_focus                                  = "#c0caf5"
 theme.fg_urgent                                 = "#ffffff"
 theme.fg_minimize                               = "#545c7e"
+theme.border_focus                              = "#545c7e"
 ------------------
 
 theme.border_width                              = dpi(1)
@@ -86,7 +89,6 @@ theme.border_width                              = dpi(1)
 -- theme.border_focus                              = "#606060"
 -- theme.border_marked                             = "#3ca4d8"
 theme.border_normal                             = "#000000"
-theme.border_focus                              = "#6e635d"
 theme.border_marked                             = "#91231c"
 theme.menu_border_width                         = 0
 -- theme.menu_height                               = dpi(15)
