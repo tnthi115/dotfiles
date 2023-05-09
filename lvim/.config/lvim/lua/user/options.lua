@@ -90,7 +90,7 @@ local options = {
   timeoutlen = 100, -- time to wait for a mapped sequence to complete (in milliseconds)
   title = true, -- set the title of window to the value of the titlestring
   -- titlestring = "%<%F%=%l/%L - nvim", -- what the title of the window will be set to
-  -- titlestring = "%<%F | %l/%L - nvim", -- what the title of the window will be set to
+  titlestring = "%<%F | %l/%L - nvim", -- what the title of the window will be set to
   undodir = vim.fn.stdpath "cache" .. "/undo",
   undofile = true, -- enable persistent undo
   updatetime = 250, -- faster completion
