@@ -248,8 +248,8 @@ let "number >>= 14"
 if [ "$number" -eq $T ]
 then
     if command -v neofetch &> /dev/null; then
-        # neofetch
-        nfi
+        neofetch
+        # nfi
     fi
 else
     if command -v colorscript &> /dev/null; then
