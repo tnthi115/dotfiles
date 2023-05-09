@@ -4,7 +4,9 @@ require "user.lsp.languages.cpp"
 require "user.lsp.languages.markdown"
 
 lvim.format_on_save.enabled = true
--- lvim.format_on_save.pattern = "*.lua"
+-- lvim.format_on_save = {
+--   pattern = { "*.lua", "*.cpp", "*.sh", ".*rc" },
+-- }
 lvim.lsp.installer.setup.automatic_installation = false
 
 lvim.lsp.installer.setup.ensure_installed = {
@@ -114,3 +116,11 @@ linters.setup {
     filetypes = { "markdown", "html", "xhtml" },
   },
 }
+
+-- set code actions
+-- local code_actions = require "lvim.lsp.null-ls.code_actions"
+-- code_actions.setup {
+--   {
+--     name = "proselint",
+--   },
+-- }

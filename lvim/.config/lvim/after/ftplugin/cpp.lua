@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+-- Set up cmake keymappings
+
 local opts = {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
@@ -14,7 +16,7 @@ local opts = {
 
 local mappings = {
   c = {
-  name = "CMake",
+    name = "CMake",
     -- Clean previous build system first before generating the new one
     G = { "<cmd>CMakeGenerate!<cr>", "CMakeGenerate!" },
     g = { "<cmd>CMakeGenerate build<cr>", "CMakeGenerate build" },
@@ -24,7 +26,18 @@ local mappings = {
     c = { "<cmd>CMakeClean<cr>", "CMakeClean" },
     s = { "<cmd>CMakeSwitch build<cr>", "CMakeSwitch build" },
     S = { "<cmd>CMakeSwitch Debug<cr>", "CMakeSwitch Debug" },
-  }
+  },
 }
 
 which_key.register(mappings, opts)
+
+-- Lazy load linter and formatter
+-- local linters = require "lvim.lsp.null-ls.linters"
+-- linters.setup {
+--   { command = "cpplint", filetypes = { "cpp" } },
+-- }
+
+-- local formatters = require "lvim.lsp.null-ls.formatters"
+-- formatters.setup {
+--   { command = "clang-format", filetypes = { "cpp" } },
+-- }

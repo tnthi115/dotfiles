@@ -1,3 +1,5 @@
+# vim:foldmethod=marker:foldlevel=0
+
 #!/bin/zsh
 # Set up the prompt
 
