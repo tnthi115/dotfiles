@@ -187,6 +187,8 @@ lvim.plugins = {
     build = ":!./install.sh",
     ft = { "c", "cpp" },
   },
+
+  -- zen-mode
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
@@ -275,7 +277,7 @@ lvim.plugins = {
     end,
     keys = {
       {
-        "<leader>Tt",
+        "<leader>ut",
         "<cmd>TSContextToggle<CR>",
         mode = "n",
         desc = "Toggle Treesitter Context",
@@ -288,8 +290,8 @@ lvim.plugins = {
     "eandrju/cellular-automaton.nvim",
     cmd = "CellularAutomaton",
     keys = {
-      { "<leader>bar", "<cmd>CellularAutomaton make_it_rain<CR>", mode = "n", desc = "Make it Rain" },
-      { "<leader>bag", "<cmd>CellularAutomaton game_of_life<CR>", mode = "n", desc = "Game of Life" },
+      { "<leader>uar", "<cmd>CellularAutomaton make_it_rain<CR>", mode = "n", desc = "Make it Rain" },
+      { "<leader>uag", "<cmd>CellularAutomaton game_of_life<CR>", mode = "n", desc = "Game of Life" },
     },
   },
 

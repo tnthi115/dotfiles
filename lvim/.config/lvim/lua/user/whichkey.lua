@@ -77,10 +77,10 @@ lvim.builtin.which_key.mappings["b."] = {
 }
 
 -- Colorizer
-lvim.builtin.which_key.mappings["C"] = {
-  "<cmd>ColorizerToggle<CR>",
-  "Toggle Color",
-}
+-- lvim.builtin.which_key.mappings["C"] = {
+--   "<cmd>ColorizerToggle<CR>",
+--   "Toggle Color",
+-- }
 
 -- Show full path of current buffer
 lvim.builtin.which_key.mappings["bp"] = {
@@ -166,13 +166,6 @@ lvim.builtin.which_key.mappings["bc"] = {
   "Close Buffer",
 }
 
--- Add CellularAutomaton
-lvim.builtin.which_key.mappings["ba"] = {
-  name = "Cellular Automaton",
-  -- r = { "<cmd>CellularAutomaton make_it_rain<CR>", "Make it Rain" },
-  -- g = { "<cmd>CellularAutomaton game_of_life<CR>", "Game of Life" },
-}
-
 -- Refactoring
 lvim.builtin.which_key.mappings["r"] = {
   name = "Refactoring",
@@ -222,13 +215,32 @@ lvim.builtin.which_key.vmappings["r"] = {
 -- which_key.register(normal_mode_r_mappings, normal_mode_r_opts)
 -- which_key.register(visual_mode_r_mappings, visual_mode_r_opts)
 
--- Toggle format on save
-lvim.builtin.which_key.mappings["Lt"] = { "<cmd>LvimToggleFormatOnSave<CR>", "Toggle Format on Save" }
-
 lvim.builtin.which_key.mappings["s*"] = {
   "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') })<CR>",
-  " Search Word Under Cursor",
+  "Search Word Under Cursor",
 }
 
 -- todo-comments
 lvim.builtin.which_key.mappings["sT"] = { "<cmd>TodoTelescope<CR>", "Search Todos" }
+
+-- Utility function for setting local spacing.
+function set_spaces()
+  vim.ui.input({ prompt = "Number of spaces: " }, function(input)
+    vim.cmd(string.format("setlocal shiftwidth=%s softtabstop=%s expandtab", input, input))
+  end)
+  -- vim.cmd [[redraw]]
+end
+
+-- UI/Toggles
+lvim.builtin.which_key.mappings["u"] = {
+  name = "UI/Toggles",
+  f = { "<cmd>LvimToggleFormatOnSave<CR>", "Toggle Format on Save" },
+  s = { "<cmd>lua set_spaces()<CR>", "Set spaces" },
+  c = { "<cmd>ColorizerToggle<CR>", "Toggle Color" },
+  -- Add CellularAutomaton
+  a = {
+    name = "Cellular Automaton",
+    -- r = { "<cmd>CellularAutomaton make_it_rain<CR>", "Make it Rain" },
+    -- g = { "<cmd>CellularAutomaton game_of_life<CR>", "Game of Life" },
+  },
+}
