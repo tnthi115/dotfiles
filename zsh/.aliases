@@ -20,7 +20,9 @@ alias gs="git status"
 alias gl="git log"
 
 # personal aliases
-alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
+# alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
+# alias nfi="neofetch --wpm --backend kitty --source \$(find /media/sf_Downloads/wallpapers/gruvbox/ -not -path /media/sf_Downloads/wallpapers/gruvbox/ | sort --random-sort | head -1)"
+alias nfi="neofetch --wpm --backend kitty --source \$(find /media/sf_Downloads/wallpapers/lunar-tokyo-night/ -not -path /media/sf_Downloads/wallpapers/lunar-tokyo-night/ | sort --random-sort | head -1)"
 # alias rw="nitrogen --set-scaled --random /media/sf_Downloads/wallpapers/gruvbox"
 alias rwg="nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/gruvbox"
 alias rwl="nitrogen --set-zoom-fill --random /media/sf_Downloads/wallpapers/lunar-tokyo-night"
