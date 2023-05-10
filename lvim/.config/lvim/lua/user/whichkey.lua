@@ -165,6 +165,11 @@ lvim.builtin.which_key.mappings["bc"] = {
   "<cmd>BufferKill<CR>",
   "Close Buffer",
 }
+-- Get current bufnr
+lvim.builtin.which_key.mappings["bN"] = {
+  "<cmd>echo nvim_get_current_buf()<CR>",
+  "Get current bufnr",
+}
 
 -- Refactoring
 lvim.builtin.which_key.mappings["r"] = {
@@ -243,4 +248,5 @@ lvim.builtin.which_key.mappings["u"] = {
     -- r = { "<cmd>CellularAutomaton make_it_rain<CR>", "Make it Rain" },
     -- g = { "<cmd>CellularAutomaton game_of_life<CR>", "Game of Life" },
   },
+  A = { "<cmd>AutoRun<CR>", "AutoRun on Save" },
 }
