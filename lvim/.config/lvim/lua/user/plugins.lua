@@ -53,10 +53,10 @@ lvim.plugins = {
   },
 
   -- Function signature viewer
-  -- {
-  --   "ray-x/lsp_signature.nvim",
-  --   lazy = true,
-  -- },
+  {
+    "ray-x/lsp_signature.nvim",
+    lazy = true,
+  },
 
   -- View colors from color codes
   -- {
