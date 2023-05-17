@@ -40,6 +40,16 @@ export MANPAGER="lvim +Man!"
 export TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S'
 # TIMEFMT=$'%J\n%U user\n%S system\n%P cpu\n%*E total'
 
+# Add emacs/bin to path.
+export PATH="$PATH:$HOME/.config/emacs/bin"
+
+# Add go to path
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/go/bin"
+
+# Add lvim mason to path
+export PATH="$PATH:$HOME/.local/share/lvim/mason/bin"
+
 # }}}
 
 # Aliases {{{
@@ -269,16 +279,16 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 # Source plugins
 # How to install: https://github.com/zsh-users/zsh-autosuggestions
 # Right arrow, END, or alt+l (vi cmd mode right) to accept suggestion.
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+# source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # arch
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Should be last.
 # How to install: sudo apt-get install zsh-syntax-highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # arch
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Starship prompt
-source <(/usr/local/bin/starship init zsh --print-full-init)
+# source <(/usr/local/bin/starship init zsh --print-full-init)
 # arch
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"

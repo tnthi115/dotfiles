@@ -2,7 +2,7 @@
 
 require "user.lsp.languages.cpp"
 require "user.lsp.languages.markdown"
--- require "user.lsp.languages.go"
+require "user.lsp.languages.go"
 
 lvim.format_on_save.enabled = true
 -- lvim.format_on_save = {
@@ -74,6 +74,8 @@ lvim.keys.insert_mode["<C-a>"] = cmp.mapping.abort()
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
+  -- { command = "goimports", filetypes = { "go" } },
+  -- { command = "gofumpt", filetypes = { "go" } },
   { command = "beautysh" },
   { command = "markdownlint", filetypes = { "markdown" } },
   { command = "stylua", filetypes = { "lua" } },
