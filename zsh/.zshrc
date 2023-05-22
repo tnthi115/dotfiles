@@ -79,7 +79,9 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # Keybindings
 # source /usr/share/doc/fzf/examples/completion.zsh
-source $HOME/.fzf-key-bindings.zsh
+if [ -f ~/.fzf-key-bindings.zsh ]; then
+    source $HOME/.fzf-key-bindings.zsh
+fi
 
 # }}}
 
@@ -251,7 +253,8 @@ bindkey "^?" backward-delete-char
 
 # }}}
 
-# Fun stuff
+# Fun stuff {{{
+
 T=1
 number=$RANDOM
 let "number >>= 14"
@@ -267,6 +270,10 @@ else
     fi
 fi
 
+# }}}
+
+# Zsh plugins {{{
+
 # Syntax highlighting settings
 # Disable underline
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
@@ -279,16 +286,24 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 # Source plugins
 # How to install: https://github.com/zsh-users/zsh-autosuggestions
 # Right arrow, END, or alt+l (vi cmd mode right) to accept suggestion.
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null ]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+fi
 # arch
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Should be last.
 # How to install: sudo apt-get install zsh-syntax-highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 # arch
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Starship prompt
-source <(/usr/local/bin/starship init zsh --print-full-init)
+if command -v starship &> /dev/null; then
+    source <(/usr/local/bin/starship init zsh --print-full-init)
+fi
 # arch
 # eval "$(starship init zsh)"
+
+# }}}
