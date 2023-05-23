@@ -1,4 +1,7 @@
-------------------------
+-- Make sure to run the following:
+-- :MasonInstall gopls golangci-lint-langserver delve goimports gofumpt gomodifytags gotests impl
+-- Install golangci-lint: https://golangci-lint.run/usage/install/
+
 -- Treesitter
 ------------------------
 vim.list_extend(lvim.builtin.treesitter.ensure_installed, {
@@ -28,7 +31,7 @@ table.insert(lvim.plugins, {
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "goimports", filetypes = { "go" } },
-  { command = "gofumpt", filetypes = { "go" } },
+  { command = "gofumpt",   filetypes = { "go" } },
 }
 
 -- lvim.format_on_save = {

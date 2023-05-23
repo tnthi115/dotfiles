@@ -24,8 +24,11 @@ HISTFILE=~/.cache/zsh/history
 
 # Exports {{{
 
+# Change cargo home directory
+export CARGO_HOME="/usr/lib/cargo"
+
 # Add cargo to path
-export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$CARGO_HOME/bin"
 
 # Add lvim to path
 export PATH="$PATH:$HOME/.local/bin/"
@@ -41,11 +44,16 @@ export TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S'
 # TIMEFMT=$'%J\n%U user\n%S system\n%P cpu\n%*E total'
 
 # Add emacs/bin to path.
-export PATH="$PATH:$HOME/.config/emacs/bin"
+# export PATH="$PATH:$HOME/.config/emacs/bin"
 
 # Add go to path
 export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/go/bin"
+
+# Add go path to path
+# export GOPATH="/usr/lib/go"
+# export GOPATH="$HOME/go"
+# export GOPATH="$HOME/.local/lib/go"
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Add lvim mason to path
 export PATH="$PATH:$HOME/.local/share/lvim/mason/bin"
