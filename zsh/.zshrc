@@ -20,7 +20,8 @@ export KEYTIMEOUT=1
 # Keep 1000 lines of history within the shell and save it to ~/.cache/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+# HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.zsh_history
 
 # Exports {{{
 
