@@ -1,6 +1,8 @@
 #!/bin/sh
 
-alias ls='/opt/lsd/lsd'
+if command -v lsd &> /dev/null; then
+    alias ls='lsd'
+fi
 
 alias ll='ls -alF'
 alias la='ls -A'
