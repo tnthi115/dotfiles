@@ -43,6 +43,7 @@ alias r="ranger"
 alias b="pushd +\$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')"
 alias cs='colorscript -r'
 
+# fzf colorscheme
 _gen_fzf_default_opts() {
     # local base03="234"
     # local base02="235"
