@@ -42,6 +42,11 @@ alias r="ranger"
 # second sed removes everything after then number (which relies on the space after the number)
 alias b="pushd +\$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')"
 alias cs='colorscript -r'
+if test "$(uname -n)" = "cerebro"; then
+    alias nf="neofetch --ascii_distro lubuntu"
+else
+    alias nf="neofetch"
+fi
 
 # fzf colorscheme
 _gen_fzf_default_opts() {

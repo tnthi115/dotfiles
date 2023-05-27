@@ -288,7 +288,7 @@ let "number >>= 14"
 if [ "$number" -eq $T ]
 then
     if command -v neofetch &> /dev/null; then
-        neofetch
+        nf
         # nfi
     fi
 else
