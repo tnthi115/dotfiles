@@ -169,7 +169,8 @@ mytextclock.font = theme.font
 theme.cal = lain.widget.cal({
     attach_to = { mytextclock },
     notification_preset = {
-        font = "Terminus 10",
+        -- font = "Terminus 10",
+        font = theme.font,
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
@@ -246,7 +247,7 @@ local cpu = lain.widget.cpu({
 local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
 
 -- Logout menu widget
--- local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 
 -- Battery
 -- local baticon = wibox.widget.imagebox(theme.widget_batt)
@@ -380,7 +381,7 @@ function theme.at_screen_connect(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             --s.mylayoutbox,
-            -- logout_menu_widget,
+            logout_menu_widget(),
             s.mytaglist,
             s.mypromptbox,
             -- mpdicon,
@@ -415,11 +416,13 @@ function theme.at_screen_connect(s)
               -- main_color = theme.fg_normal,
               -- mute_color = theme.bg_normal,
               -- with_icon = true,
-              font = "Hack Nerd Font 9",
+              -- font = "Hack Nerd Font 9",
+              font = "CaskaydiaCove Nerd Font 9.5",
             }),
             -- baticon,
             battery_widget({
-              font = "Hack Nerd Font 9",
+              -- font = "Hack Nerd Font 9",
+              font = "CaskaydiaCove Nerd Font 9.5",
               path_to_icons = "/usr/share/icons/Arc/status/symbolic/",
               show_current_level = true,
               margin_left = 5,
