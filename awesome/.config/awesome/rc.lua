@@ -108,7 +108,7 @@ local editor       = os.getenv("EDITOR") or "lvim"
 local browser      = "firefox"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { " DEV", "爵 WWW", " SYS", " NOTES" }
+awful.util.tagnames = { "󰅩 DEV", "󰖟 WWW", " SYS", "󱞂 NOTES" }
 awful.layout.layouts = {
     -- awful.layout.suit.floating,
     awful.layout.suit.tile.left,
