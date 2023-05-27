@@ -64,7 +64,7 @@ export TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S'
 # export PATH="$PATH:$HOME/.config/emacs/bin"
 
 # Add go to path
-if command -v neofetch &> /dev/null; then
+if command -v go &> /dev/null; then
     export PATH="$PATH:/usr/local/go/bin"
 
     # Add go path to path
