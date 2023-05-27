@@ -23,10 +23,26 @@ SAVEHIST=10000
 # HISTFILE=~/.cache/zsh/history
 HISTFILE=~/.zsh_history
 
+case $(uname -n) in
+    cerebro)
+        OS="lubuntu"
+        ;;
+    endeavouros)
+        OS="arch"
+        ;;
+    *)
+        ;;
+esac
+
 # Exports {{{
 
 # Change cargo home directory
-export CARGO_HOME="/usr/lib/cargo"
+if test "$OS" = "lubuntu"; then
+    export CARGO_HOME="/usr/lib/cargo"
+fi
+if test "$OS" = "arch"; then
+    export CARGO_HOME="$HOME/.cargo"
+fi
 
 # Add cargo to path
 export PATH="$PATH:$CARGO_HOME/bin"
@@ -48,13 +64,15 @@ export TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S'
 # export PATH="$PATH:$HOME/.config/emacs/bin"
 
 # Add go to path
-export PATH="$PATH:/usr/local/go/bin"
+if command -v neofetch &> /dev/null; then
+    export PATH="$PATH:/usr/local/go/bin"
 
-# Add go path to path
-# export GOPATH="/usr/lib/go"
-# export GOPATH="$HOME/go"
-# export GOPATH="$HOME/.local/lib/go"
-export PATH="$PATH:$(go env GOPATH)/bin"
+    # Add go path to path
+    # export GOPATH="/usr/lib/go"
+    # export GOPATH="$HOME/go"
+    # export GOPATH="$HOME/.local/lib/go"
+    export PATH="$PATH:$(go env GOPATH)/bin"
+fi
 
 # Add lvim mason to path
 export PATH="$PATH:$HOME/.local/share/lvim/mason/bin"
@@ -295,24 +313,36 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 # Source plugins
 # How to install: https://github.com/zsh-users/zsh-autosuggestions
 # Right arrow, END, or alt+l (vi cmd mode right) to accept suggestion.
-if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null ]; then
-    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+if test "$OS" = "lubuntu"; then
+    if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null ]; then
+        source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+    fi
 fi
 # arch
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if test "$OS" = "arch"; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 # Should be last.
 # How to install: sudo apt-get install zsh-syntax-highlighting
-if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if test "$OS" = "lubuntu"; then
+    if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+        source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    fi
 fi
 # arch
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if test "$OS" = "arch"; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # Starship prompt
-if command -v starship &> /dev/null; then
-    source <(/usr/local/bin/starship init zsh --print-full-init)
+if test "$OS" = "lubuntu"; then
+    if command -v starship &> /dev/null; then
+        source <(/usr/local/bin/starship init zsh --print-full-init)
+    fi
 fi
 # arch
-# eval "$(starship init zsh)"
+if test "$OS" = "arch"; then
+    eval "$(starship init zsh)"
+fi
 
 # }}}
