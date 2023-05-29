@@ -23,20 +23,16 @@ SAVEHIST=10000
 # HISTFILE=~/.cache/zsh/history
 HISTFILE=~/.zsh_history
 
-case $(uname -n) in
-    cerebro)
-        OS="lubuntu"
+case $(lsb_release -i | awk '{print $3}') in
+    Ubuntu)
         CARGO_PATH="/usr/lib/cargo"
         ZSH_AUTOSUGGESTIONS_PATH=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
         ZSH_SYNTAX_HIGHLIGHTING_PATH=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        STARSHIP="source <(/usr/local/bin/starship init zsh --print-full-init)"
         ;;
-    endeavouros)
-        OS="arch"
+    Arch)
         CARGO_PATH="$HOME/.cargo"
         ZSH_AUTOSUGGESTIONS_PATH=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
         ZSH_SYNTAX_HIGHLIGHTING_PATH=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        STARSHIP="eval '$(starship init zsh)'"
         ;;
     *)
         ;;
@@ -325,15 +321,8 @@ if [ -f "$ZSH_SYNTAX_HIGHLIGHTING_PATH" ]; then
     source "$ZSH_SYNTAX_HIGHLIGHTING_PATH" 2>/dev/null
 fi
 
-# Starship prompt
-if test "$OS" = "lubuntu"; then
-    if command -v starship &> /dev/null; then
-        source <(/usr/local/bin/starship init zsh --print-full-init)
-    fi
-elif test "$OS" = "arch"; then
-    if command -v starship &> /dev/null; then
-        eval "$(starship init zsh)"
-    fi
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
 fi
 
 # }}}
