@@ -20,7 +20,6 @@ local themes = {
 
 local setup_funcs = {
   lunar = function()
-    -- {{{
     local bg_color = "#1a1b26"
     vim.cmd [[au ColorScheme * hi NvimTreeWinSeparator ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi TabLineFill ctermbg=none guibg=bg_color]]
@@ -36,13 +35,11 @@ local setup_funcs = {
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextInfo ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextWarn ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextError ctermbg=none guibg=bg_color]]
-    -- }}}
   end,
   gruvbox_material = function()
-    -- {{{
     local bg_color = "#1d2021"
     vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
-    vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
+    vim.g.gruvbox_material_foreground = "mix"  -- material, mix, original
     vim.g.gruvbox_material_visual = "blue background"
     vim.g.gruvbox_material_menu_selection_background = "blue"
     vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
@@ -84,16 +81,12 @@ local setup_funcs = {
     vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi Folded ctermbg=none guibg=bg_color]]
-    -- }}}
   end,
   everforest = function()
-    -- {{{
     vim.g.everforest_background = "hard"
     vim.g.everforest_diagnostic_virtual_text = "colored"
-    -- }}}
   end,
   tokyonight = function()
-    -- {{{
     local bg_color = "#1a1b26"
     -- local green = "##9ece6a"
     -- local yellow = "#e0af68"
@@ -111,15 +104,14 @@ local setup_funcs = {
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextInfo ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextWarn ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextError ctermbg=none guibg=bg_color]]
-    -- }}}
   end,
   catppuccin = function()
-    -- {{{
     local mocha = require("catppuccin.palettes").get_palette "mocha"
     local catppuccin = require "catppuccin"
     catppuccin.setup {
       flavour = "mocha", -- latte, frappe, macchiato, mocha
-      background = { -- :h background
+      background = {
+                         -- :h background
         light = "latte",
         dark = "mocha",
       },
@@ -132,7 +124,7 @@ local setup_funcs = {
         percentage = 0.15,
       },
       no_italic = false, -- Force no italic
-      no_bold = false, -- Force no bold
+      no_bold = false,   -- Force no bold
       styles = {
         comments = { "italic" },
         conditionals = { "italic" },
@@ -169,10 +161,8 @@ local setup_funcs = {
     }
     lvim.colorscheme = "catppuccin"
     vim.cmd.colorscheme "catppuccin"
-    -- }}}
   end,
   rose_pine = function()
-    -- {{{
     require("rose-pine").setup {
       --- @usage 'auto'|'main'|'moon'|'dawn'
       variant = "auto",
@@ -261,7 +251,6 @@ local setup_funcs = {
     local bg_color = "#232136"
     vim.cmd [[au colorscheme * hi whichkeyfloat ctermbg=none guibg=bg_color]]
     vim.cmd [[au colorscheme * hi floatborder ctermbg=none guibg=bg_color]]
-    -- }}}
   end,
 }
 
