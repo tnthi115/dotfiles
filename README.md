@@ -1,6 +1,10 @@
 # dotfiles
 
-![screenshot](dotfiles-screenshot.png)
+[Tokyonight](https://github.com/sainnhe/gruvbox-material)
+![tokyonight](tokyonight-screenshot.png)
+
+[Gruvbox Material](https://github.com/sainnhe/gruvbox-material)
+![gruvbox material](dotfiles-screenshot.png)
 
 ## Installation
 
@@ -54,6 +58,33 @@ should run `stow` with the `--target` flag to specify your home directory:
 stow --target=${HOME} zsh
 ```
 
+## Dependencies
+
+The following list is not comprehensive, but it lists what is important.
+
+- neovim
+  - lunarvim
+- tmux
+- git
+  - lazygit
+  - git-delta
+- alacritty
+- kitty
+  - zsh
+  - starship
+  - neofetch
+  - DT's colorscripts
+- awesomewm
+- rofi
+- hardened firefox
+  - tokyonight theme
+  - gruvbox material theme
+  - ublock origin
+  - vimium
+  - firefox multi-account containers
+  - dark reader
+
 ## TODO
 
-- Create a list of programs installed.
+- [ ] add links
+- [ ] flesh out dependencies more
