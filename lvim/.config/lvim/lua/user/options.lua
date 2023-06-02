@@ -58,6 +58,9 @@ lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 -- Show hidden files in telescope for Project
 lvim.builtin.project.show_hidden = true
 
+-- Make sure all keymappings show up, especially those set in Lazy
+lvim.builtin.which_key.setup.ignore_missing = false
+
 -- Options
 
 local options = {

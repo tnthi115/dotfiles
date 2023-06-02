@@ -11,16 +11,15 @@
 You will need [Git](https://git-scm.com/) and [GNU
 Stow](https://www.gnu.org/software/stow/).
 
-On Ubuntu:
-
 ```sh
+# On Arch
+sudo pacman -S git stow
+
+# On Ubuntu
 sudo apt update
 sudo apt-get install git stow
-```
 
-On MacOS/OS X:
-
-```sh
+# On MacOS/OS X
 brew install git stow
 ```
 

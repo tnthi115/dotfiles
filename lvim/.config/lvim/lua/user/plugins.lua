@@ -70,20 +70,20 @@ lvim.plugins = {
     opts = {
       filetypes = { "*" },
       user_default_options = {
-        RGB = true, -- #RGB hex codes
-        RRGGBB = true, -- #RRGGBB hex codes
-        names = true, -- "Name" codes like Blue or blue
-        RRGGBBAA = false, -- #RRGGBBAA hex codes
-        AARRGGBB = false, -- 0xAARRGGBB hex codes
-        rgb_fn = false, -- CSS rgb() and rgba() functions
-        hsl_fn = false, -- CSS hsl() and hsla() functions
-        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        RGB = true,          -- #RGB hex codes
+        RRGGBB = true,       -- #RRGGBB hex codes
+        names = true,        -- "Name" codes like Blue or blue
+        RRGGBBAA = false,    -- #RRGGBBAA hex codes
+        AARRGGBB = false,    -- 0xAARRGGBB hex codes
+        rgb_fn = false,      -- CSS rgb() and rgba() functions
+        hsl_fn = false,      -- CSS hsl() and hsla() functions
+        css = false,         -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = false,      -- Enable all CSS *functions*: rgb_fn, hsl_fn
         -- Available modes for `mode`: foreground, background,  virtualtext
         mode = "background", -- Set the display mode.
         -- Available methods are false / true / "normal" / "lsp" / "both"
         -- True is same as normal
-        tailwind = false, -- Enable tailwind colors
+        tailwind = false,                               -- Enable tailwind colors
         -- parsers can contain values used in |user_default_options|
         sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
         virtualtext = "■",
@@ -259,13 +259,13 @@ lvim.plugins = {
     event = "User FileOpened",
     config = function()
       require("treesitter-context").setup {
-        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-        min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+        enable = true,            -- Enable this plugin (Can be enabled/disabled later via commands)
+        max_lines = 0,            -- How many lines the window should span. Values <= 0 mean no limit.
+        min_window_height = 0,    -- Minimum editor window height to enable context. Values <= 0 mean no limit.
         line_numbers = true,
         multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
-        trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-        mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
+        trim_scope = "outer",     -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+        mode = "cursor",          -- Line used to calculate context. Choices: 'cursor', 'topline'
         -- Separator between context and content. Should be a single character string, like '-'.
         -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
         separator = nil,
@@ -301,16 +301,58 @@ lvim.plugins = {
     -- stylua: ignore
     keys = {
       -- visual mode
-      { "<leader>re", "<Esc><cmd>lua require('refactoring').refactor('Extract Function')<CR>", mode = "v", desc = "Extract Function" },
-      { "<leader>rf", "<Esc><cmd>lua require('refactoring').refactor('Extract Function To File')<CR>", mode = "v", desc = "Extract Function To File" },
-      { "<leader>rv", "<Esc><cmd>lua require('refactoring').refactor('Extract Variable')<CR>", mode = "v", desc = "Extract Variable" },
-      { "<leader>ri", "<Esc><cmd>lua require('refactoring').refactor('Inline Variable')<CR>", mode = "v", desc = "Inline Variable" },
+      {
+        "<leader>re",
+        "<Esc><cmd>lua require('refactoring').refactor('Extract Function')<CR>",
+        mode = "v",
+        desc =
+        "Extract Function"
+      },
+      {
+        "<leader>rf",
+        "<Esc><cmd>lua require('refactoring').refactor('Extract Function To File')<CR>",
+        mode = "v",
+        desc =
+        "Extract Function To File"
+      },
+      {
+        "<leader>rv",
+        "<Esc><cmd>lua require('refactoring').refactor('Extract Variable')<CR>",
+        mode = "v",
+        desc =
+        "Extract Variable"
+      },
+      {
+        "<leader>ri",
+        "<Esc><cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+        mode = "v",
+        desc =
+        "Inline Variable"
+      },
       -- normal mode
       -- Inline variable can also pick up the identifier currently under the cursor without visual mode
-      { "<leader>ri", "<cmd>lua require('refactoring').refactor('Inline Variable')<CR>", mode = "n", desc = "Inline Variable" },
-      { "<leader>rb", "<cmd>lua require('refactoring').refactor('Extract Block')<CR>", mode = "n", desc = "Extract Block" },
+      {
+        "<leader>ri",
+        "<cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
+        mode = "n",
+        desc =
+        "Inline Variable"
+      },
+      {
+        "<leader>rb",
+        "<cmd>lua require('refactoring').refactor('Extract Block')<CR>",
+        mode = "n",
+        desc =
+        "Extract Block"
+      },
       -- Extract block doesn't need visual mode
-      { "<leader>rB", "<cmd>lua require('refactoring').refactor('Extract Block To File')<CR>", mode = "n", desc = "Extract Block To File" },
+      {
+        "<leader>rB",
+        "<cmd>lua require('refactoring').refactor('Extract Block To File')<CR>",
+        mode = "n",
+        desc =
+        "Extract Block To File"
+      },
     },
     dependencies = {
       { "nvim-lua/plenary.nvim" },
@@ -363,7 +405,7 @@ lvim.plugins = {
   {
     -- "tpope/vim-surround",
     "kylechui/nvim-surround",
-    -- version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
     keys = {
       "cs",
       "ds",
