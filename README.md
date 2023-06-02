@@ -2,11 +2,11 @@
 
 These are my personal configuration files.
 
-[Tokyonight](https://github.com/sainnhe/gruvbox-material)
 ![tokyonight](tokyonight-screenshot.png)
+[Tokyonight](https://github.com/sainnhe/gruvbox-material)
 
+![gruvbox material](gruvbox-material-screenshot.png)
 [Gruvbox Material](https://github.com/sainnhe/gruvbox-material)
-![gruvbox material](dotfiles-screenshot.png)
 
 ## Installation
 
