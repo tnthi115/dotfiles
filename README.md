@@ -1,5 +1,7 @@
 # dotfiles
 
+These are my personal configuration files.
+
 [Tokyonight](https://github.com/sainnhe/gruvbox-material)
 ![tokyonight](tokyonight-screenshot.png)
 
@@ -8,8 +10,21 @@
 
 ## Installation
 
+Make sure to install the [dependencies](#dependencies) listed below. You can
+find a WIP package list in
+[`pkglist.txt`](https://github.com/tnthi115/dotfiles/blob/master/pkglist.txt).
+
+```sh
+# On Arch
+sudo pacman -S --needed - < pkglist.txt
+```
+
+**Warning**: The package names may vary or some may not exist depending on your
+package manager. If so, just look up how to install the packages on your
+system.
+
 You will need [Git](https://git-scm.com/) and [GNU
-Stow](https://www.gnu.org/software/stow/).
+Stow](https://www.gnu.org/software/stow/) to clone and symlink the dotfiles.
 
 ```sh
 # On Arch
@@ -59,29 +74,74 @@ stow --target=${HOME} zsh
 
 ## Dependencies
 
-The following list is not comprehensive, but it lists what is important.
+The following list is not comprehensive, but it includes what is important.
 
-- neovim
-  - lunarvim
-- tmux
-- git
-  - lazygit
-  - git-delta
-- alacritty
-- kitty
-  - zsh
-  - starship
-  - neofetch
-  - DT's colorscripts
-- awesomewm
-- rofi
-- hardened firefox
-  - tokyonight theme
-  - gruvbox material theme
-  - ublock origin
-  - vimium
-  - firefox multi-account containers
-  - dark reader
+### Fonts
+
+Install a [Nerd Font](https://www.nerdfonts.com/font-downloads). My current
+favorites are [CaskaydiaCove Nerd
+Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/CascadiaCode.zip)
+and [Hack Nerd
+Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/Hack.zip).
+
+### Wallpapers
+
+You can clone my wallpapers [repo](https://github.com/tnthi115/wallpapers) if
+you want to use the same collections I've created.
+
+### Neovim
+
+I use [Lunarvim](https://www.lunarvim.org/) as a base config for [neovim](https://neovim.io/).
+
+### Tmux
+
+I use [tmux](https://github.com/tmux/tmux) for "sessionizing" different
+projects so that I can quickly context switch without overhead and easily pick
+up where I left off.
+
+### Lazygit
+
+[Lazygit](url) is super convenient and can be launched within neovim, but learn
+how to use `git` on the command line first! It should be used a time saving
+tool, not a crutch. [Delta](url) makes diffs prettier.
+
+### Kitty
+
+[Kitty](url) supports ligatures, so I like it over [alacritty](url) for now.
+[Fzf](https://github.com/junegunn/fzf) is a must have as well.
+
+### Zsh
+
+I like to use [zsh](https://wiki.archlinux.org/title/zsh) over
+[bash](https://wiki.archlinux.org/title/bash) because of two plugins:
+
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+
+I use [starship](url) for my
+prompt. For some bling, I run [neofetch](url) and [DT's colorscripts](url) in
+my `.zshrc`.
+
+### Awesomewm
+
+I use [awesomewm](url) for my tiling window manager. It has a built in
+application launcher, but you can use [rofi](url) universally.
+[Compton](https://github.com/chjj/compton) is preinstalled on Ubuntu. Use
+[picom](https://github.com/yshui/picom) on Arch.
+
+### Firefox
+
+Use the [Arkenfox user.js](https://github.com/arkenfox/user.js) to harden. [Librewolf](https://librewolf.net/)
+and [Brave](https://brave.com/) are okay alternatives.
+
+#### Extensions
+
+- [Tokyo Night by Milav](https://addons.mozilla.org/en-US/firefox/addon/tokyo-night-milav/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+- [Gruvbox Material Dark by akay](https://addons.mozilla.org/en-US/firefox/addon/gruvbox-material-dark/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+- ublock origin in medium mode
+- vimium
+- firefox multi-account containers
+- dark reader
 
 ## TODO
 
