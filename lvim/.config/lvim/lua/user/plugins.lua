@@ -56,6 +56,9 @@ lvim.plugins = {
   {
     "ray-x/lsp_signature.nvim",
     lazy = true,
+    config = function()
+      require("user.lsp-signature")
+    end,
   },
 
   -- View colors from color codes
@@ -72,7 +75,7 @@ lvim.plugins = {
       user_default_options = {
         RGB = true,          -- #RGB hex codes
         RRGGBB = true,       -- #RRGGBB hex codes
-        names = true,        -- "Name" codes like Blue or blue
+        names = false,       -- "Name" codes like Blue or blue
         RRGGBBAA = false,    -- #RRGGBBAA hex codes
         AARRGGBB = false,    -- 0xAARRGGBB hex codes
         rgb_fn = false,      -- CSS rgb() and rgba() functions
@@ -195,6 +198,9 @@ lvim.plugins = {
     keys = {
       { "<leader>z", "<cmd>ZenMode<CR>", desc = "Zen Mode" },
     },
+    config = function()
+      require("user.zen-mode")
+    end
   },
 
   -- C++ clangd and cmake integration made lazy
@@ -224,6 +230,9 @@ lvim.plugins = {
     --     return vim.ui.input(...)
     --   end
     -- end,
+    config = function()
+      require("user.dressing")
+    end,
   },
 
   -- todo-comments
@@ -231,6 +240,9 @@ lvim.plugins = {
     "folke/todo-comments.nvim",
     event = "User FileOpened",
     dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("user.todo-comments")
+    end,
   },
 
   -- vim-glsl
@@ -251,6 +263,9 @@ lvim.plugins = {
   --     --   If not available, we use `mini` as the fallback
   --     "rcarriga/nvim-notify",
   --   }
+  --   config = function()
+  --     require("user.noice)
+  --   end,
   -- }
 
   -- nvim-treesitter-context
