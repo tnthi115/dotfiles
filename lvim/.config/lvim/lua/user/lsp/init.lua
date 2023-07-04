@@ -10,6 +10,18 @@ lvim.format_on_save.enabled = true
 -- }
 lvim.lsp.installer.setup.automatic_installation = false
 
+-- ensure installed in mason:
+-- "bashls",
+-- "beautysh",
+-- "clangd",
+-- "codespell",
+-- "lua_ls",
+-- "markdownlint",
+-- "marksman",
+-- -- "pyright",
+-- "shellcheck",
+-- "stylua",
+
 lvim.lsp.installer.setup.ensure_installed = {
   -- "lua-language-server",
   "lua_ls",
