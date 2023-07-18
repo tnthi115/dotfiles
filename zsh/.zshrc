@@ -23,20 +23,26 @@ SAVEHIST=10000
 # HISTFILE=~/.cache/zsh/history
 HISTFILE=~/.zsh_history
 
-case $(lsb_release -i | awk '{print $3}') in
-    Ubuntu)
-        CARGO_PATH="/usr/lib/cargo"
-        ZSH_AUTOSUGGESTIONS_PATH=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-        ZSH_SYNTAX_HIGHLIGHTING_PATH=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        ;;
-    Arch)
-        CARGO_PATH="$HOME/.cargo"
-        ZSH_AUTOSUGGESTIONS_PATH=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-        ZSH_SYNTAX_HIGHLIGHTING_PATH=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        ;;
-    *)
-        ;;
-esac
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    case $(lsb_release -i | awk '{print $3}') in
+        Ubuntu)
+            CARGO_PATH="/usr/lib/cargo"
+            ZSH_AUTOSUGGESTIONS_PATH=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+            ZSH_SYNTAX_HIGHLIGHTING_PATH=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+            ;;
+        Arch)
+            CARGO_PATH="$HOME/.cargo"
+            ZSH_AUTOSUGGESTIONS_PATH=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+            ZSH_SYNTAX_HIGHLIGHTING_PATH=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+            ;;
+        *)
+            ;;
+    esac
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    CARGO_PATH="$HOME/.cargo"
+    ZSH_AUTOSUGGESTIONS_PATH=$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    ZSH_SYNTAX_HIGHLIGHTING_PATH=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # Exports {{{
 
