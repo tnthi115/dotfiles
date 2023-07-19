@@ -4,6 +4,8 @@ if command -v lsd &> /dev/null; then
     alias ls='lsd'
 fi
 
+alias rz="source $HOME/.zshrc"
+
 alias ll='ls -alF'
 alias la='ls -A'
 # alias l='ls -CF'
