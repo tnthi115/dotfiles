@@ -80,7 +80,17 @@ local setup_funcs = {
     vim.cmd [[au ColorScheme * hi NvimTreeEndOfBuffer ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi FloatBorder ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi NormalFloat ctermbg=none guibg=bg_color]]
+    vim.cmd [[au ColorScheme * hi WhichKeyFloat ctermbg=none guibg=bg_color]]
+    vim.cmd [[au ColorScheme * hi WhichKeyFloat ctermbg=none guibg=bg_color]]
     vim.cmd [[au ColorScheme * hi Folded ctermbg=none guibg=bg_color]]
+    vim.cmd [[au ColorScheme * hi TabLineFill ctermbg=none guibg=bg_color]]
+    vim.cmd [[au ColorScheme * hi VertSplit ctermbg=none guibg=bg_color]]
+    vim.cmd [[au ColorScheme * hi TelescopeNormal ctermbg=none guibg=bg_color]]
+    vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextOk ctermbg=none guibg=bg_color]]
+    vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextHint ctermbg=none guibg=bg_color]]
+    vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextInfo ctermbg=none guibg=bg_color]]
+    vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextWarn ctermbg=none guibg=bg_color]]
+    vim.cmd [[au ColorScheme * hi DiagnosticVirtualTextError ctermbg=none guibg=bg_color]]
   end,
   everforest = function()
     vim.g.everforest_background = "hard"
@@ -256,7 +266,7 @@ local setup_funcs = {
 
 lvim.transparent_window = true
 
-local theme = themes.lunar
+local theme = themes.gruvbox_material
 lvim.colorscheme = theme
 local setup_func = setup_funcs[theme]
 if setup_func then

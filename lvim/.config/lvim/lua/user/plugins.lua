@@ -10,7 +10,7 @@ lvim.plugins = {
   -- {"lunarvim/colorschemes"},
   {
     "sainnhe/gruvbox-material",
-    lazy = true,
+    -- lazy = true,
   },
   -- { "sainnhe/edge" },
   -- { "Mofiqul/vscode.nvim" },
