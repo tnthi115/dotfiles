@@ -289,18 +289,24 @@ bindkey "^?" backward-delete-char
 
 # Fun stuff {{{
 
-T=1
-number=$RANDOM
-let "number >>= 14"
-if [ "$number" -eq $T ]
-then
+if [[ "$OSTYPE" == "darwin"* ]]; then
     if command -v neofetch &> /dev/null; then
         nf
-        # nfi
     fi
 else
-    if command -v colorscript &> /dev/null; then
-        colorscript -r
+    T=1
+    number=$RANDOM
+    let "number >>= 14"
+    if [ "$number" -eq $T ]
+    then
+        if command -v neofetch &> /dev/null; then
+            nf
+            # nfi
+        fi
+    else
+        if command -v colorscript &> /dev/null; then
+            colorscript -r
+        fi
     fi
 fi
 
