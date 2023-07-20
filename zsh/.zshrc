@@ -46,6 +46,8 @@ fi
 
 # Exports {{{
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Change cargo home directory
 export CARGO_HOME="$CARGO_PATH"
 
@@ -60,6 +62,9 @@ export EDITOR="lvim"
 
 # Set manpager to be lvim.
 export MANPAGER="lvim +Man!"
+
+# Set pager to less.
+export PAGER="less"
 
 # Set 'time' output to look like bash's.
 export TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S'
