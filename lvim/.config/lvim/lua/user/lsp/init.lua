@@ -27,7 +27,7 @@ lvim.lsp.installer.setup.ensure_installed = {
   "lua_ls",
   -- "stylua",
   "marksman",
-  "clangd",
+  -- "clangd",
   -- "pyright",
   -- "markdownlint",
   -- "shellcheck",
