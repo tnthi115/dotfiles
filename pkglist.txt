@@ -18,3 +18,4 @@ neofetch
 awesome
 rofi
 nitrogen
+lsd

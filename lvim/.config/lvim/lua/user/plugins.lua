@@ -435,6 +435,7 @@ lvim.plugins = {
   -- fidget - lsp progress info
   {
     "j-hui/fidget.nvim",
+    version = "legacy",
     event = "LspAttach",
     opts = {
       text = {
