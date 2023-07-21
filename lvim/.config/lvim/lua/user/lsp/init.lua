@@ -1,8 +1,9 @@
 -- Generic LSP Settings
 
-require "user.lsp.languages.cpp"
+-- Comment out when not in use!
+-- require "user.lsp.languages.cpp"
 require "user.lsp.languages.markdown"
--- require "user.lsp.languages.go"
+require "user.lsp.languages.go"
 
 lvim.format_on_save.enabled = true
 -- lvim.format_on_save = {
@@ -90,7 +91,7 @@ formatters.setup {
   -- { command = "gofumpt", filetypes = { "go" } },
   { command = "beautysh" },
   { command = "markdownlint", filetypes = { "markdown" } },
-  -- { command = "stylua", filetypes = { "lua" } },
+  { command = "stylua", filetypes = { "lua" } },
   -- { command = "clang-format", filetypes = { "cpp" } },
   -- need to "pip install black"
   -- can install with mason.nvim

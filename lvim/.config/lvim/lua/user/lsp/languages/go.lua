@@ -18,7 +18,7 @@ table.insert(lvim.plugins, {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-  }
+  },
 })
 table.insert(lvim.plugins, {
   "leoluz/nvim-dap-go",
@@ -30,8 +30,8 @@ table.insert(lvim.plugins, {
 ------------------------
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "goimports", filetypes = { "go" } },
-  { command = "gofumpt",   filetypes = { "go" } },
+  -- { command = "goimports", filetypes = { "go" } },
+  { command = "gofumpt", filetypes = { "go" } },
 }
 
 -- lvim.format_on_save = {

@@ -57,7 +57,7 @@ lvim.plugins = {
     "ray-x/lsp_signature.nvim",
     lazy = true,
     config = function()
-      require("user.lsp-signature")
+      require "user.lsp-signature"
     end,
   },
 
@@ -73,20 +73,20 @@ lvim.plugins = {
     opts = {
       filetypes = { "*" },
       user_default_options = {
-        RGB = true,          -- #RGB hex codes
-        RRGGBB = true,       -- #RRGGBB hex codes
-        names = false,       -- "Name" codes like Blue or blue
-        RRGGBBAA = false,    -- #RRGGBBAA hex codes
-        AARRGGBB = false,    -- 0xAARRGGBB hex codes
-        rgb_fn = false,      -- CSS rgb() and rgba() functions
-        hsl_fn = false,      -- CSS hsl() and hsla() functions
-        css = false,         -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = false,      -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        RGB = true, -- #RGB hex codes
+        RRGGBB = true, -- #RRGGBB hex codes
+        names = false, -- "Name" codes like Blue or blue
+        RRGGBBAA = false, -- #RRGGBBAA hex codes
+        AARRGGBB = false, -- 0xAARRGGBB hex codes
+        rgb_fn = false, -- CSS rgb() and rgba() functions
+        hsl_fn = false, -- CSS hsl() and hsla() functions
+        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
         -- Available modes for `mode`: foreground, background,  virtualtext
         mode = "background", -- Set the display mode.
         -- Available methods are false / true / "normal" / "lsp" / "both"
         -- True is same as normal
-        tailwind = false,                               -- Enable tailwind colors
+        tailwind = false, -- Enable tailwind colors
         -- parsers can contain values used in |user_default_options|
         sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
         virtualtext = "■",
@@ -199,8 +199,8 @@ lvim.plugins = {
       { "<leader>z", "<cmd>ZenMode<CR>", desc = "Zen Mode" },
     },
     config = function()
-      require("user.zen-mode")
-    end
+      require "user.zen-mode"
+    end,
   },
 
   -- C++ clangd and cmake integration made lazy
@@ -231,7 +231,7 @@ lvim.plugins = {
     --   end
     -- end,
     config = function()
-      require("user.dressing")
+      require "user.dressing"
     end,
   },
 
@@ -241,7 +241,7 @@ lvim.plugins = {
     event = "User FileOpened",
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
-      require("user.todo-comments")
+      require "user.todo-comments"
     end,
   },
 
@@ -274,13 +274,13 @@ lvim.plugins = {
     event = "User FileOpened",
     config = function()
       require("treesitter-context").setup {
-        enable = true,            -- Enable this plugin (Can be enabled/disabled later via commands)
-        max_lines = 0,            -- How many lines the window should span. Values <= 0 mean no limit.
-        min_window_height = 0,    -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+        min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
         line_numbers = true,
         multiline_threshold = 20, -- Maximum number of lines to collapse for a single context line
-        trim_scope = "outer",     -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-        mode = "cursor",          -- Line used to calculate context. Choices: 'cursor', 'topline'
+        trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+        mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
         -- Separator between context and content. Should be a single character string, like '-'.
         -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
         separator = nil,
