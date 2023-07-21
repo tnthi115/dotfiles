@@ -91,10 +91,10 @@ _gen_fzf_default_opts() {
     # Comment and uncomment below for the light theme.
 
     # Tokyonight Night color scheme for fzf
-    export FZF_DEFAULT_OPTS="
-    --color fg:-1,bg:-1,hl:$cyan1,fg+:$base2,bg+:$base02,hl+:$cyan1
-    --color info:$green,prompt:$blue,pointer:$red,marker:$blue,spinner:$cyan1
-    "
+    # export FZF_DEFAULT_OPTS="
+    # --color fg:-1,bg:-1,hl:$cyan1,fg+:$base2,bg+:$base02,hl+:$cyan1
+    # --color info:$green,prompt:$blue,pointer:$red,marker:$blue,spinner:$cyan1
+    # "
   ## Solarized Light color scheme for fzf
   #export FZF_DEFAULT_OPTS="
   #  --color fg:-1,bg:-1,hl:$blue,fg+:$base02,bg+:$base2,hl+:$blue
