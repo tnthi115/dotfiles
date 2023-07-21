@@ -46,6 +46,8 @@ fi
 
 # Exports {{{
 
+# export XDG_CONFIG_HOME="$HOME/.config"
+
 # Change cargo home directory
 export CARGO_HOME="$CARGO_PATH"
 
