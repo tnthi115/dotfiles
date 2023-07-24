@@ -75,10 +75,11 @@ lsp_manager.setup("gopls", {
     map("n", "<leader>ct", "<cmd>GoMod tidy<cr>", "Tidy")
     map("n", "<leader>ca", "<cmd>GoTestAdd<Cr>", "Add Test")
     map("n", "<leader>cA", "<cmd>GoTestsAll<Cr>", "Add All Tests")
-    map("n", "<leader>ce", "<cmd>GoTestsExp<Cr>", "Add Exported Tests")
+    map("n", "<leader>cE", "<cmd>GoTestsExp<Cr>", "Add Exported Tests")
     map("n", "<leader>cg", "<cmd>GoGenerate<Cr>", "Go Generate")
     map("n", "<leader>cf", "<cmd>GoGenerate %<Cr>", "Go Generate File")
     map("n", "<leader>cc", "<cmd>GoCmt<Cr>", "Generate Comment")
+    map("n", "<leader>ce", "<cmd>GoIfErr<Cr>", "Generate iferr")
     map("n", "<leader>dT", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Go Test")
   end,
   on_init = require("lvim.lsp").common_on_init,
