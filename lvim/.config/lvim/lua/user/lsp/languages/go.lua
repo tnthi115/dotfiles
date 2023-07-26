@@ -19,6 +19,9 @@ table.insert(lvim.plugins, {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
   },
+  -- build = function()
+  --   vim.cmd [[silent! GoInstallDeps]]
+  -- end,
 })
 table.insert(lvim.plugins, {
   "leoluz/nvim-dap-go",
