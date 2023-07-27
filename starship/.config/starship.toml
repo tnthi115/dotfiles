@@ -3,7 +3,7 @@
 # Get editor completions based on the config schema
 # "$schema" = 'https://starship.rs/config-schema.json'
 
-format = "$time$all"
+format = "$os$time$all"
 
 # Inserts a blank line between shell prompts
 add_newline = false
@@ -38,6 +38,15 @@ format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
 ahead = "⇡${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 behind = "⇣${count}"
+
+# OS
+# cargo install os_info_cli
+# [os]
+# disabled = false
+
+# [os.symbols]
+# Macos = " "
+# Macos = " "
 
 # Time
 [time]
