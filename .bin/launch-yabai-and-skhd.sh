@@ -18,12 +18,11 @@
 
 if pgrep skhd; then
     killall skhd
-else
-    skhd&
 fi
 
 if pgrep yabai; then
     killall yabai
-else
-    yabai&
 fi
+
+skhd&
+yabai&
