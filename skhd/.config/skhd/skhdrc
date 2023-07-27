@@ -159,7 +159,7 @@ alt - d : yabai -m window --close
 ctrl + alt - r : yabai --restart-service"
 
 # add keybindings to open apps
-alt - return : app="Wezterm"; open -n -a $app
+cmd + alt - return : app="Wezterm"; open -n -a $app
 alt - b : app="Google Chrome"; open -n -a $app
 # obsidian is bound in raycast to double tap for fast open and hide
 # alt - o : app="Obsidian"; open -n -a $app
