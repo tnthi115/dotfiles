@@ -156,10 +156,10 @@ alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 alt - d : yabai -m window --close
 
 # e.g. bind to key in skhd:
-ctrl + alt - r : yabai --restart-service"
+ctrl + alt - r : yabai --restart-service
 
 # add keybindings to open apps
-cmd + alt - return : app="Wezterm"; open -n -a $app
-alt - b : app="Google Chrome"; open -n -a $app
+cmd + alt - return : app="Wezterm"; open -n -a "$app"
+cmd + alt - b : app="Google Chrome"; open -n -a "$app"
 # obsidian is bound in raycast to double tap for fast open and hide
 # alt - o : app="Obsidian"; open -n -a $app
