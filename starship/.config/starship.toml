@@ -41,11 +41,11 @@ behind = "⇣${count}"
 
 # OS
 # cargo install os_info_cli
-# [os]
-# disabled = false
+[os]
+disabled = false
 
-# [os.symbols]
-# Macos = " "
+[os.symbols]
+Macos = " "
 # Macos = " "
 
 # Time
