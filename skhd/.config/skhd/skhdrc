@@ -115,12 +115,15 @@ ctrl + alt - 0 : yabai -m space --balance
 # shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
 
 # focus monitor
+# cycle counter clockwise/left
 cmd + alt - p  : yabai -m display --focus prev || yabai -m display --focus last
+# cycle clockwise/right
 cmd + alt - n  : yabai -m display --focus next || yabai -m display --focus first
 # ctrl + alt - 3  : yabai -m display --focus 3
 
 # send window to monitor and follow focus
-# ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
+ctrl + alt - p  : yabai -m window --display prev || yabai -m window --display last; yabai -m display --focus prev || yabai -m display --focus last
+ctrl + alt - n  : yabai -m window --display next || yabai -m window --display first; yabai -m display --focus next || yabai -m display --focus first
 # ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
 
 # move floating window
