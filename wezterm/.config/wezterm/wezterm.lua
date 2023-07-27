@@ -124,6 +124,8 @@ config.window_padding = {
 
 config.window_background_opacity = 0.90
 
+config.window_close_confirmation = "NeverPrompt"
+
 config.keys = {
 	{
 		key = "m",

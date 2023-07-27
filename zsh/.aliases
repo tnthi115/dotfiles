@@ -11,6 +11,10 @@ alias la='ls -A'
 # alias l='ls -CF'
 alias l='ls -F'
 
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 # vim aliases
 alias v="lvim"
 alias vim="lvim"
