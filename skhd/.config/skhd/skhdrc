@@ -89,7 +89,13 @@ ctrl + alt - k : yabai -m window --swap north
 ctrl + alt - l : yabai -m window --swap east
 
 # move managed window
-# shift + cmd - h : yabai -m window --warp east
+ctrl + alt + cmd - h : yabai -m window --warp west
+ctrl + alt + cmd - j : yabai -m window --warp south
+ctrl + alt + cmd - k : yabai -m window --warp north
+ctrl + alt + cmd - l : yabai -m window --warp east
+
+# rotate tree
+alt - r: yabai -m space --rotate 90
 
 # balance size of windows
 ctrl + alt - 0 : yabai -m space --balance
@@ -134,12 +140,24 @@ ctrl + alt - n  : (yabai -m window --display next || yabai -m window --display f
 
 # TODO: make this better
 # increase window size
-ctrl + alt - left : yabai -m window --resize left:-20:0
-ctrl + alt - up : yabai -m window --resize top:0:-20
+# shift + alt - w : yabai -m window --resize top:0:-20
+# shift + alt - d : yabai -m window --resize left:-20:0
 
 # decrease window size
-ctrl + alt - down : yabai -m window --resize bottom:0:-20
-ctrl + alt - right : yabai -m window --resize right:20:0
+# shift + alt - s : yabai -m window --resize bottom:0:-20
+# shift + alt - a : yabai -m window --resize top:0:20
+
+# change left window size
+shift + alt - a : yabai -m window --resize right:-20:0
+shift + alt - s : yabai -m window --resize bottom:0:20
+shift + alt - w : yabai -m window --resize top:0:-20
+shift + alt - d : yabai -m window --resize right:20:0
+
+# change right window size
+ctrl + alt - left : yabai -m window --resize left:-20:0
+ctrl + alt - down : yabai -m window --resize bottom:0:20
+ctrl + alt - up : yabai -m window --resize top:0:-20
+ctrl + alt - right : yabai -m window --resize left:20:0
 
 # set insertion point in focused container
 # ctrl + alt - h : yabai -m window --insert west
@@ -147,6 +165,9 @@ ctrl + alt - right : yabai -m window --resize right:20:0
 # toggle window zoom
 # alt - d : yabai -m window --toggle zoom-parent
 alt - f : yabai -m window --toggle zoom-fullscreen
+
+# toggle padding and gap
+alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 # toggle window split type
 alt - e : yabai -m window --toggle split
