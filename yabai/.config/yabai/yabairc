@@ -72,5 +72,6 @@ yabai -m rule --add app="^zoom.us$" manage=off
 yabai -m rule --add app="^Aviatrix VPN Client$" manage=off
 yabai -m rule --add app="^BIG-IP Edge Client$" manage=off
 yabai -m rule --add app="^Preview$" manage=off
+yabai -m rule --add app="^CrashPlan$" manage=off
 
 echo "yabai configuration loaded.."
