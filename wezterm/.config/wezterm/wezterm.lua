@@ -15,7 +15,8 @@ end
 -- For example, changing the color scheme:
 -- config.color_scheme = 'GruvboxDarkHard'
 -- config.color_scheme = 'Gruvbox dark, hard (base16)'
-config.color_scheme = "Gruvbox Material"
+-- config.color_scheme = "Gruvbox Material"
+config.color_scheme = "Tokyo Night"
 
 config.color_schemes = {
 	["Gruvbox Material"] = {
@@ -103,6 +104,54 @@ config.color_schemes = {
 		-- quick_select_match_bg = { AnsiColor = 'Navy' },
 		-- quick_select_match_fg = { Color = '#ffffff' },
 	},
+	["Tokyo Night"] = {
+		-- The default text color
+		foreground = "#c0caf5",
+		-- The default background color
+		background = "#1a1b26",
+
+		-- Overrides the cell background color when the current cell is occupied by the
+		-- cursor and the cursor style is set to Block
+		cursor_bg = "#c0caf5",
+		-- Overrides the text color when the current cell is occupied by the cursor
+		cursor_fg = "black",
+		-- Specifies the border color of the cursor when the cursor style is set to Block,
+		-- or the color of the vertical or horizontal bar when the cursor style is set to
+		-- Bar or Underline.
+		cursor_border = "#cccccc",
+
+		-- the foreground color of selected text
+		selection_fg = "#c0caf5",
+		-- the background color of selected text
+		selection_bg = "#33467c",
+
+		-- The color of the scrollbar "thumb"; the portion that represents the current viewport
+		scrollbar_thumb = "#222222",
+
+		-- The color of the split lines between panes
+		split = "#7aa2f7",
+
+		ansi = {
+			"#15161e",
+			"#f7768e",
+			"#9ece6a",
+			"#e0af68",
+			"#7aa2f7",
+			"#bb9af7",
+			"#7dcfff",
+			"#a9b1d6",
+		},
+		brights = {
+			"#414868",
+			"#f7768e",
+			"#9ece6a",
+			"#e0af68",
+			"#7aa2f7",
+			"#bb9af7",
+			"#7dcfff",
+			"#c0caf5",
+		},
+	},
 }
 
 config.font = wezterm.font_with_fallback({
@@ -114,6 +163,9 @@ config.font_size = 13.0
 
 -- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
+
+-- config.window_decorations = "TITLE | RESIZE"
+config.window_decorations = "RESIZE"
 
 config.window_padding = {
 	left = 0,

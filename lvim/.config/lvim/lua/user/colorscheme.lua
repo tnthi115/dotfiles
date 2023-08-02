@@ -39,7 +39,7 @@ local setup_funcs = {
   gruvbox_material = function()
     local bg_color = "#1d2021"
     vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
-    vim.g.gruvbox_material_foreground = "mix"  -- material, mix, original
+    vim.g.gruvbox_material_foreground = "mix" -- material, mix, original
     vim.g.gruvbox_material_visual = "blue background"
     vim.g.gruvbox_material_menu_selection_background = "blue"
     vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
@@ -121,7 +121,7 @@ local setup_funcs = {
     catppuccin.setup {
       flavour = "mocha", -- latte, frappe, macchiato, mocha
       background = {
-                         -- :h background
+        -- :h background
         light = "latte",
         dark = "mocha",
       },
@@ -134,7 +134,7 @@ local setup_funcs = {
         percentage = 0.15,
       },
       no_italic = false, -- Force no italic
-      no_bold = false,   -- Force no bold
+      no_bold = false, -- Force no bold
       styles = {
         comments = { "italic" },
         conditionals = { "italic" },
@@ -266,7 +266,7 @@ local setup_funcs = {
 
 lvim.transparent_window = true
 
-local theme = themes.gruvbox_material
+local theme = themes.lunar
 lvim.colorscheme = theme
 local setup_func = setup_funcs[theme]
 if setup_func then
