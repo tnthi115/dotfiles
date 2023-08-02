@@ -53,7 +53,8 @@ utc_time_offset = "-7"
 [gcloud]
 # disabled = true
 symbol = '️󱇶 '
-format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
+# format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
+format = 'on [$symbol($project)]($style) '
 disabled = false
 
 # Use Nerd Font symbols
