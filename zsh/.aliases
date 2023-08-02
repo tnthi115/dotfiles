@@ -58,6 +58,8 @@ fi
 alias tree="tree -a"
 alias ld="lazydocker"
 
+alias kc="kubectl"
+
 # fzf colorscheme
 _gen_fzf_default_opts() {
     # local base03="234"
