@@ -346,7 +346,7 @@ fi
 
 # }}}
 
-# gcloud and kubectl
+# Gcloud and Kubectl {{{
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/t.thi/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/t.thi/google-cloud-sdk/path.zsh.inc'; fi
@@ -356,3 +356,5 @@ if [ -f '/Users/t.thi/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/t.t
 
 # Zsh completion for kubectl
 if command -v kubectl &> /dev/null; then source <(kubectl completion zsh); fi
+
+# }}}
