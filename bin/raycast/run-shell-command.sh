@@ -10,8 +10,9 @@
 # @raycast.argument1 { "type": "text", "placeholder": "command" }
 
 # Documentation:
-# @raycast.description Run a shell command in the terminal
+# @raycast.description Run a shell command in the terminal.
 # @raycast.author Tymon
+# @raycast.authorURL https://github.com/tnthi115
 
 # echo "Hello World! Argument1 value: "$1""
 

@@ -9,7 +9,9 @@
 # @raycast.icon 🤖
 
 # Documentation:
+# @raycast.description Launch yabai and skhd.
 # @raycast.author Tymon
+# @raycast.authorURL https://github.com/tnthi115
 
 # yabai --stop-service
 # skhd --stop-service
