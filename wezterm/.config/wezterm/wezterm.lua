@@ -18,6 +18,8 @@ end
 -- config.color_scheme = "Gruvbox Material"
 config.color_scheme = "Tokyo Night"
 
+config.color_scheme_dirs = { "$HOME/dotfiles/wezterm/colors" }
+
 config.color_schemes = {
 	["Gruvbox Material"] = {
 		-- The default text color
@@ -29,14 +31,14 @@ config.color_schemes = {
 		-- cursor and the cursor style is set to Block
 		cursor_bg = "#cccccc",
 		-- Overrides the text color when the current cell is occupied by the cursor
-		cursor_fg = "black",
+		cursor_fg = "#1d2021",
 		-- Specifies the border color of the cursor when the cursor style is set to Block,
 		-- or the color of the vertical or horizontal bar when the cursor style is set to
 		-- Bar or Underline.
-		cursor_border = "#cccccc",
+		cursor_border = "#d4be98",
 
 		-- the foreground color of selected text
-		selection_fg = "black",
+		selection_fg = "#3c3836",
 		-- the background color of selected text
 		selection_bg = "#fffacd",
 
@@ -65,15 +67,6 @@ config.color_schemes = {
 			"#d3869b",
 			"#89b482",
 			"#dfbf8e",
-
-			-- '#665c54',
-			-- '#f2594b',
-			-- '#b0b846',
-			-- '#e3a84e',
-			-- '#80aa9e',
-			-- '#d3869b',
-			-- '#8bba7f',
-			-- '#d4be98',
 		},
 
 		-- Arbitrary colors of the palette in the range from 16 to 255
@@ -104,54 +97,54 @@ config.color_schemes = {
 		-- quick_select_match_bg = { AnsiColor = 'Navy' },
 		-- quick_select_match_fg = { Color = '#ffffff' },
 	},
-	["Tokyo Night"] = {
-		-- The default text color
-		foreground = "#c0caf5",
-		-- The default background color
-		background = "#1a1b26",
+	-- ["Tokyo Night"] = {
+	-- 	-- The default text color
+	-- 	foreground = "#c0caf5",
+	-- 	-- The default background color
+	-- 	background = "#1a1b26",
 
-		-- Overrides the cell background color when the current cell is occupied by the
-		-- cursor and the cursor style is set to Block
-		cursor_bg = "#c0caf5",
-		-- Overrides the text color when the current cell is occupied by the cursor
-		cursor_fg = "black",
-		-- Specifies the border color of the cursor when the cursor style is set to Block,
-		-- or the color of the vertical or horizontal bar when the cursor style is set to
-		-- Bar or Underline.
-		cursor_border = "#cccccc",
+	-- 	-- Overrides the cell background color when the current cell is occupied by the
+	-- 	-- cursor and the cursor style is set to Block
+	-- 	cursor_bg = "#c0caf5",
+	-- 	-- Overrides the text color when the current cell is occupied by the cursor
+	-- 	cursor_fg = "1a1b26",
+	-- 	-- Specifies the border color of the cursor when the cursor style is set to Block,
+	-- 	-- or the color of the vertical or horizontal bar when the cursor style is set to
+	-- 	-- Bar or Underline.
+	-- 	cursor_border = "#c0caf5",
 
-		-- the foreground color of selected text
-		selection_fg = "#c0caf5",
-		-- the background color of selected text
-		selection_bg = "#33467c",
+	-- 	-- the foreground color of selected text
+	-- 	selection_fg = "#c0caf5",
+	-- 	-- the background color of selected text
+	-- 	selection_bg = "#283457",
 
-		-- The color of the scrollbar "thumb"; the portion that represents the current viewport
-		scrollbar_thumb = "#222222",
+	-- 	-- The color of the scrollbar "thumb"; the portion that represents the current viewport
+	-- 	scrollbar_thumb = "#222222",
 
-		-- The color of the split lines between panes
-		split = "#7aa2f7",
+	-- 	-- The color of the split lines between panes
+	-- 	split = "#7aa2f7",
 
-		ansi = {
-			"#15161e",
-			"#f7768e",
-			"#9ece6a",
-			"#e0af68",
-			"#7aa2f7",
-			"#bb9af7",
-			"#7dcfff",
-			"#a9b1d6",
-		},
-		brights = {
-			"#414868",
-			"#f7768e",
-			"#9ece6a",
-			"#e0af68",
-			"#7aa2f7",
-			"#bb9af7",
-			"#7dcfff",
-			"#c0caf5",
-		},
-	},
+	-- 	ansi = {
+	-- 		"#15161e",
+	-- 		"#f7768e",
+	-- 		"#9ece6a",
+	-- 		"#e0af68",
+	-- 		"#7aa2f7",
+	-- 		"#bb9af7",
+	-- 		"#7dcfff",
+	-- 		"#a9b1d6",
+	-- 	},
+	-- 	brights = {
+	-- 		"#414868",
+	-- 		"#f7768e",
+	-- 		"#9ece6a",
+	-- 		"#e0af68",
+	-- 		"#7aa2f7",
+	-- 		"#bb9af7",
+	-- 		"#7dcfff",
+	-- 		"#c0caf5",
+	-- 	},
+	-- },
 }
 
 config.font = wezterm.font_with_fallback({
