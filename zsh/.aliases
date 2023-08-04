@@ -4,7 +4,7 @@ if command -v lsd &> /dev/null; then
     alias ls='lsd --group-dirs=first'
 fi
 
-alias rz="source $HOME/.zshrc"
+alias rz="source \$HOME/.zshrc"
 
 alias ll='ls -alF'
 alias la='ls -A'
@@ -48,7 +48,10 @@ alias r="ranger"
 # second sed removes everything after then number (which relies on the space after the number)
 alias b="pushd +\$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')"
 # alias p="pushd \$(find . -type d -print | fzf)"
-alias p="pushd \$(fd -H -t d -E .git | fzf)"
+# pushd to any dir starting at $HOME
+alias p="pushd \$(fd -H -t d -E .git . \$HOME | fzf)"
+# pushd to any dir in the cwd
+alias pd="pushd \$(fd -H -t d -E .git | fzf)"
 alias cs='colorscript -r'
 if test "$(uname -n)" = "cerebro"; then
     alias nf="neofetch --ascii_distro lubuntu"
@@ -100,10 +103,10 @@ _gen_fzf_default_opts() {
     # Comment and uncomment below for the light theme.
 
     # Tokyonight Night color scheme for fzf
-    # export FZF_DEFAULT_OPTS="
-    # --color fg:-1,bg:-1,hl:$cyan1,fg+:$base2,bg+:$base02,hl+:$cyan1
-    # --color info:$green,prompt:$blue,pointer:$red,marker:$blue,spinner:$cyan1
-    # "
+    export FZF_DEFAULT_OPTS="
+    --color fg:-1,bg:-1,hl:$cyan1,fg+:$base2,bg+:$base02,hl+:$cyan1
+    --color info:$green,prompt:$blue,pointer:$red,marker:$blue,spinner:$cyan1
+    "
     ## Solarized Light color scheme for fzf
     #export FZF_DEFAULT_OPTS="
     #  --color fg:-1,bg:-1,hl:$blue,fg+:$base02,bg+:$base2,hl+:$blue
@@ -111,5 +114,5 @@ _gen_fzf_default_opts() {
     #"
 }
 
-# _gen_fzf_default_opts
+_gen_fzf_default_opts
 # unset FZF_DEFAULT_OPTS
