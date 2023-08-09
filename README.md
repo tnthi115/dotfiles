@@ -112,6 +112,14 @@ first! `Lazygit` should be used a time saving tool, not a crutch.
 [alacritty](https://github.com/alacritty/alacritty) for now.
 [Fzf](https://github.com/junegunn/fzf) is a must have as well.
 
+### Wezterm
+
+[Wezterm](https://github.com/wez/wezterm) is another GPU accelerated terminal
+written in Rust (btw) that also supports ligatures and is configured in Lua
+(like Neovim, which is fun). Currently, I'm actually liking this better than
+Kitty because the newest versions of Kitty are giving me issues with fonts
+rendering in all bold for whatever reason.
+
 ### Zsh
 
 I like to use [zsh](https://wiki.archlinux.org/title/zsh) over
