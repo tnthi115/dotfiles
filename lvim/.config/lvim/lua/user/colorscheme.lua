@@ -236,7 +236,7 @@ local setup_funcs = {
 
     -- set colorscheme after options
     -- vim.cmd('colorscheme rose-pine')
-    lvim.colorscheme = "rose-pine"
+    -- lvim.colorscheme = "rose-pine"
 
     lvim.builtin.lualine.sections.lualine_c.diff.diff_color.added = "#9ccfd8"
     lvim.builtin.lualine.sections.lualine_c.diff.diff_color.modified = "#f6c177"
@@ -259,8 +259,9 @@ local setup_funcs = {
     lvim.builtin.bufferline.highlights.fill.guibg = "#2a273f" -- this is for moon
 
     local bg_color = "#232136"
-    vim.cmd [[au colorscheme * hi whichkeyfloat ctermbg=none guibg=bg_color]]
-    vim.cmd [[au colorscheme * hi floatborder ctermbg=none guibg=bg_color]]
+    vim.cmd [[au colorscheme * hi FloatBorder ctermbg=none guibg=bg_color]]
+    vim.cmd [[au colorscheme * hi NormalFloat ctermbg=none guibg=bg_color]]
+    vim.cmd [[au colorscheme * hi WhichKeyFloat ctermbg=none guibg=bg_color]]
   end,
 }
 

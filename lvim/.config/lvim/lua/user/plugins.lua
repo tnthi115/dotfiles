@@ -20,11 +20,11 @@ lvim.plugins = {
   -- { "shaunsingh/moonlight.nvim" },
   -- { "rebelot/kanagawa.nvim" },
   -- { "frenzyexists/aquarium-vim" },
-  -- { "catppuccin/nvim", name = "catppuccin" },
-  -- {
-  --   "rose-pine/neovim",
-  --   name = "rose-pine",
-  -- },
+  { "catppuccin/nvim", name = "catppuccin" },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+  },
 
   -- Error diagnostics
   -- {
