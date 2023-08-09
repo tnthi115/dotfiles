@@ -46,7 +46,7 @@ lvim.plugins = {
     end,
     ft = "markdown",
     config = function()
-      vim.g.mkdp_browser = "/usr/bin/firefox"
+      -- vim.g.mkdp_browser = "/usr/bin/firefox"
       -- vim.g.mkdp_theme = "light"
       vim.g.mkdp_auto_close = 0
     end,
