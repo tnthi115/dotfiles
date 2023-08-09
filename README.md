@@ -101,13 +101,15 @@ up where I left off.
 
 ### Lazygit
 
-[Lazygit](url) is super convenient and can be launched within neovim, but learn
-how to use `git` on the command line first! It should be used a time saving
-tool, not a crutch. [Delta](url) makes diffs prettier.
+[Lazygit](https://github.com/jesseduffield/lazygit) is super convenient and can
+be launched within neovim, but learn how to use `git` on the command line
+first! `Lazygit` should be used a time saving tool, not a crutch.
+[Delta](https://github.com/dandavison/delta) makes diffs prettier.
 
 ### Kitty
 
-[Kitty](url) supports ligatures, so I like it over [alacritty](url) for now.
+[Kitty](https://sw.kovidgoyal.net/kitty/) supports ligatures, so I like it over
+[alacritty](https://github.com/alacritty/alacritty) for now.
 [Fzf](https://github.com/junegunn/fzf) is a must have as well.
 
 ### Zsh
@@ -118,14 +120,15 @@ I like to use [zsh](https://wiki.archlinux.org/title/zsh) over
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
-I use [starship](url) for my
-prompt. For some bling, I run [neofetch](url) and [DT's colorscripts](url) in
-my `.zshrc`.
+I use [starship](https://starship.rs/) for my prompt. For some bling, I run
+[neofetch](https://github.com/dylanaraps/neofetch) and [DT's
+colorscripts](https://gitlab.com/dwt1/shell-color-scripts) in my `.zshrc`.
 
 ### Awesomewm
 
-I use [awesomewm](url) for my tiling window manager. It has a built in
-application launcher, but you can use [rofi](url) universally.
+I use [awesomewm](https://awesomewm.org/) for my tiling window manager. It has
+a built in application launcher, but you can use
+[rofi](https://github.com/davatorium/rofi) universally.
 [Compton](https://github.com/chjj/compton) is preinstalled on Ubuntu. Use
 [picom](https://github.com/yshui/picom) on Arch.
 
