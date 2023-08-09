@@ -13,27 +13,26 @@
 # setopt histignorealldups sharehistory
 setopt histignorealldups
 
-# Use vi keybindings
-bindkey -v
-export KEYTIMEOUT=1
-
 # Keep 1000 lines of history within the shell and save it to ~/.cache/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 # HISTFILE=~/.cache/zsh/history
 HISTFILE=~/.zsh_history
 
+# Set variables based on OS
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     case $(lsb_release -i | awk '{print $3}') in
         Ubuntu)
             CARGO_PATH="/usr/lib/cargo"
             ZSH_AUTOSUGGESTIONS_PATH=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
             ZSH_SYNTAX_HIGHLIGHTING_PATH=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+            COPY_CMD="xclip"
             ;;
         Arch)
             CARGO_PATH="$HOME/.cargo"
             ZSH_AUTOSUGGESTIONS_PATH=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
             ZSH_SYNTAX_HIGHLIGHTING_PATH=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+            COPY_CMD="xclip"
             ;;
         *)
             ;;
@@ -42,7 +41,21 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     CARGO_PATH="$HOME/.cargo"
     ZSH_AUTOSUGGESTIONS_PATH=$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     ZSH_SYNTAX_HIGHLIGHTING_PATH=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    COPY_CMD="pbcopy"
 fi
+
+# Use vi keybindings
+bindkey -v
+export KEYTIMEOUT=1
+
+# Yank to the system clipboard in vi-mode
+function vi-yank-xclip {
+    zle vi-yank
+    echo "$CUTBUFFER" | $COPY_CMD -i
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
 
 # Exports {{{
 
