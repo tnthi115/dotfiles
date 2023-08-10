@@ -51,11 +51,11 @@ utc_time_offset = "-7"
 # disabled = true
 
 [gcloud]
-# disabled = true
+disabled = true
+# disabled = false
 symbol = '️󱇶 '
 # format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
 format = 'on [$symbol($project)]($style) '
-disabled = false
 
 # Use Nerd Font symbols
 [aws]
