@@ -2,11 +2,12 @@
 
 These are my personal configuration files.
 
-![tokyonight](tokyonight-screenshot.png)
-[Tokyonight](https://github.com/sainnhe/gruvbox-material)
+[Tokyonight](https://github.com/folke/tokyonight.nvim)
+![macos](scrots/macos.png)
+![tokyonight](scrots/tokyonight.png)
 
-![gruvbox material](gruvbox-material-screenshot.png)
 [Gruvbox Material](https://github.com/sainnhe/gruvbox-material)
+![gruvbox material](scrots/gruvbox-material.png)
 
 ## Installation
 
