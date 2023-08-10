@@ -1,16 +1,20 @@
 #!/bin/sh
 
+# if lsd is installed, use lsd instead of ls
 if command -v lsd &> /dev/null; then
     alias ls='lsd --group-dirs=first'
 fi
 
+# [r]estart/[r]esource [z]shrc
 alias rz="source \$HOME/.zshrc"
 
+# ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 # alias l='ls -CF'
 alias l='ls -F'
 
+# add color to grep
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -30,7 +34,7 @@ alias nv="\nvim"
 alias gs="git status"
 alias gl="git log"
 
-# personal aliases
+# application aliases
 # alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
 # alias nfi="neofetch --wpm --backend kitty --source \$(find /media/sf_Downloads/wallpapers/gruvbox/ -not -path /media/sf_Downloads/wallpapers/gruvbox/ | sort --random-sort | head -1)"
 alias nfi="neofetch --wpm --backend kitty --source \$(find /media/sf_Downloads/wallpapers/lunar-tokyo-night/ -not -path /media/sf_Downloads/wallpapers/lunar-tokyo-night/ | sort --random-sort | head -1)"
@@ -43,6 +47,17 @@ alias obsidian="/opt/obsidian/Obsidian-0.15.9.AppImage"
 alias lg="lazygit"
 alias hx="/opt/helix/helix-22.12-x86_64.AppImage"
 alias r="ranger"
+alias cs='colorscript -r'
+if test "$(uname -n)" = "cerebro"; then
+    alias nf="neofetch --ascii_distro lubuntu"
+else
+    alias nf="neofetch"
+fi
+alias tree="tree -a"
+alias ld="lazydocker"
+alias kc="kubectl"
+
+# "blazingly fast" aliases
 # [b]ookmark, fast switcher between dirs on the stack using fzf
 # first sed removes leading whitespace
 # second sed removes everything after then number (which relies on the space after the number)
@@ -52,16 +67,8 @@ alias b="pushd +\$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:spa
 alias p="pushd \$(fd -H -t d -E .git . \$HOME | fzf)"
 # pushd to any dir in the cwd
 alias pd="pushd \$(fd -H -t d -E .git | fzf)"
-alias cs='colorscript -r'
-if test "$(uname -n)" = "cerebro"; then
-    alias nf="neofetch --ascii_distro lubuntu"
-else
-    alias nf="neofetch"
-fi
-alias tree="tree -a"
-alias ld="lazydocker"
-
-alias kc="kubectl"
+# [t]mux [s]witch session with fzf
+alias ts="tmux switch-client -t \$(tmux ls | fzf | awk '{print \$1}')"
 
 # fzf colorscheme
 _gen_fzf_default_opts() {
