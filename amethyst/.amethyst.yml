@@ -16,7 +16,7 @@
 # layouts - Ordered list of layouts to use by layout key (default tall, wide, fullscreen, and column).
 layouts:
   - tall
-  - tall-right
+  # - tall-right
   # - wide
   # - two-pane
   # - middle-wide
@@ -29,8 +29,8 @@ layouts:
   # - row
   # - widescreen-tall
   # - widescreen-tall-right
-  # - bsp
-  - floating
+  - bsp
+  # - floating
   - fullscreen
 
 # First mod (default option + shift).
@@ -76,12 +76,12 @@ cycle-layout-backward:
 
 # Shrink the main pane by a percentage of the screen dimension as defined by window-resize-step. Note that not all layouts respond to this command.
 shrink-main:
-  mod: mod1
+  mod: mod2
   key: h
 
 # Expand the main pane by a percentage of the screen dimension as defined by window-resize-step. Note that not all layouts respond to this command.
 expand-main:
-  mod: mod1
+  mod: mod2
   key: l
 
 # Increase the number of windows in the main pane. Note that not all layouts respond to this command.
@@ -128,22 +128,22 @@ focus-main:
 
 # Focus the next screen in the list going counter-clockwise.
 focus-screen-ccw:
-  mod: mod1
+  mod: mod3
   key: p
 
 # Focus the next screen in the list going clockwise.
 focus-screen-cw:
-  mod: mod1
+  mod: mod3
   key: n
 
 # Move the currently focused window onto the next screen in the list going counter-clockwise.
 swap-screen-ccw:
-  mod: mod2
+  mod: mod3
   key: h
 
 # Move the currently focused window onto the next screen in the list going clockwise.
 swap-screen-cw:
-  mod: mod2
+  mod: mod3
   key: l
 
 # Swap the position of the currently focused window with the next window in the list going counter-clockwise.
@@ -158,7 +158,7 @@ swap-cw:
 
 # Swap the position of the currently focused window with the main window in the list.
 swap-main:
-  mod: mod2
+  mod: mod3
   key: enter
 
 # Move focus to the n-th screen in the list; e.g., focus-screen-3 will move mouse focus to the 3rd screen. Note that the main window in the given screen will be focused.
@@ -189,12 +189,12 @@ select-wide-layout:
 # Select fullscreen layout
 select-fullscreen-layout:
   mod: mod1
-  key: d
+  key: f
 
 # Select column layout
 select-column-layout:
   mod: mod1
-  key: f
+  key: d
 
 # Move the currently focused window to the space to the left.
 throw-space-left:
@@ -233,8 +233,8 @@ toggle-focus-follows-mouse:
 
 # Automatically quit and reopen Amethyst.
 relaunch-amethyst:
-  mod: mod2
-  key: z
+  mod: mod3
+  key: r
 
 # disable screen padding on in-built display
 disable-screen-padding-on-inbuilt: false
@@ -274,7 +274,7 @@ ignore-menu-bar: false
 float-small-windows: true
 
 # true if the mouse should move position to the center of a window when it becomes focused (default false). Note that this is largely incompatible with focus-follows-mouse.
-mouse-follows-focus: false
+mouse-follows-focus: true
 
 # true if the windows underneath the mouse should become focused as the mouse moves (default false). Note that this is largely incompatible with mouse-follows-focus
 focus-follows-mouse: false
