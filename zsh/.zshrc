@@ -42,6 +42,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     ZSH_AUTOSUGGESTIONS_PATH=$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     ZSH_SYNTAX_HIGHLIGHTING_PATH=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     COPY_CMD="pbcopy"
+    export HOMEBREW_AUTOREMOVE=1
 fi
 
 # Use vi keybindings
