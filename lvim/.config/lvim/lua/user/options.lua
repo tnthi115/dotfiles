@@ -37,7 +37,6 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 lvim.builtin.bufferline.options.offsets[2].highlight = "Directory"
 
 -- lvim.builtin.telescope.theme = "default"
-lvim.builtin.telescope.theme = "center"
 
 -- Enable cmp cmdline.
 -- lvim.builtin.cmp.cmdline.enable = true
