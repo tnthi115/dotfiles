@@ -249,4 +249,6 @@ lvim.builtin.which_key.mappings["u"] = {
     -- g = { "<cmd>CellularAutomaton game_of_life<CR>", "Game of Life" },
   },
   A = { "<cmd>AutoRun<CR>", "AutoRun on Save" },
+  n = { "<cmd>set norelativenumber<CR>", "Set line numbers" },
+  r = { "<cmd>set relativenumber<CR>", "Set relative line numbers" },
 }
