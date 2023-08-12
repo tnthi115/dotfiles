@@ -541,4 +541,8 @@ lvim.plugins = {
   --     -- g:smoothie_redraw_at_finish: Force screen redraw when the animation is finished, which clears sporadic display artifacts which I encountered f.ex. when scrolling through buffers containing emoji. Enabled by default only if both editor and terminal (kitty) supports doing this in a glitch-free way.
   --   end,
   -- },
+  -- {
+  --   "davidsierradz/cmp-conventionalcommits",
+  --   ft = { "gitcommit" },
+  -- },
 }
