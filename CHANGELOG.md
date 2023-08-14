@@ -2,6 +2,7 @@
 
 ### Feat
 
+- **lvim**: add global commitlint config and commitlint linter in lvim
 - change lazygit commitizen custom keybind to "Z" from "C"
 - add commitizen config file
 - change telescope theme to default center from dropdown lvim default
