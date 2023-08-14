@@ -63,12 +63,12 @@ alias kc="kubectl"
 # [b]ookmark, fast switcher between dirs on the stack using fzf
 # first sed removes leading whitespace
 # second sed removes everything after then number (which relies on the space after the number)
-alias b="pushd +\$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')"
+alias b="pushd \"+\$(dirs -v | fzf | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]].*//')\""
 # alias p="pushd \$(find . -type d -print | fzf)"
 # pushd to any dir starting at $HOME
-alias p="pushd \$(fd -H -t d -E .git . \$HOME | fzf)"
+alias p="pushd \"\$(fd -H -t d -E .git . \$HOME | fzf)\""
 # pushd to any dir in the cwd
-alias pd="pushd \$(fd -H -t d -E .git | fzf)"
+alias pd="pushd \"\$(fd -H -t d -E .git | fzf)\""
 # [t]mux [s]witch session with fzf
 alias ts="tmux switch-client -t \$(tmux ls | fzf | awk '{print \$1}')"
 # awk_first() { awk '{print $1}' "$@"; }
