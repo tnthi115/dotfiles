@@ -52,7 +52,7 @@ For example:
 mv ~/.zshrc ~/.zshrc.bak
 ```
 
-Within `~/dotfiles/`, run `stow` to symlink everything or just select what you
+Within `~/dotfiles/`, run `stow` to symlink everything (not recommended) or just select what you
 want:
 
 ```sh
