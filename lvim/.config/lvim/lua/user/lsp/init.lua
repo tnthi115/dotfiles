@@ -114,7 +114,7 @@ formatters.setup {
 -- set additional linters --
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  -- { command = "commitlint" },
+  { command = "commitlint" },
   -- { command = "flake8", filetypes = { "python" } },
   -- { command = "pylint", filetypes = { "python" } },
   -- { command = "cpplint", filetypes = { "cpp" } },
