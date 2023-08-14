@@ -4,7 +4,7 @@ git:
     # useConfig: true
     pager: delta --dark --paging=never
 customCommands:
-  - key: "C"
+  - key: "Z"
     command: "git cz c"
     description: "commit with commitizen"
     context: "files"
