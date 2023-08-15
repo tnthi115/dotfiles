@@ -256,5 +256,5 @@ lvim.builtin.which_key.mappings["u"] = {
 -- telescope-file-browser
 lvim.builtin.which_key.mappings["E"] = {
   "<cmd>Telescope file_browser<CR>",
-  "File Browswer",
+  "File Browser",
 }
