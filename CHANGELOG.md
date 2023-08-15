@@ -10,5 +10,6 @@
 
 ### Fix
 
+- **commitlint**: rename commitlint.config.js to .commitlintrc.js
 - **aliases**: add quotes around the dir path argument to pushd
 - cmp-conventionalcommits plugin to correctly lazy load with configuration
