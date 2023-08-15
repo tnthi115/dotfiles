@@ -2,6 +2,7 @@
 -- :MasonInstall gopls golangci-lint-langserver delve goimports gofumpt gomodifytags gotests impl
 -- Install golangci-lint: https://golangci-lint.run/usage/install/
 
+------------------------
 -- Treesitter
 ------------------------
 vim.list_extend(lvim.builtin.treesitter.ensure_installed, {

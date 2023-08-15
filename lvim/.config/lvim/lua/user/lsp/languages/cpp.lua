@@ -7,7 +7,9 @@
 -- -- auto install treesitter parsers
 -- lvim.builtin.treesitter.ensure_installed = { "cpp", "c" }
 
--- Additional Plugins
+------------------------
+-- Plugins
+------------------------
 -- C++ clangd extensions and cmake integration
 table.insert(lvim.plugins, {
   "p00f/clangd_extensions.nvim",
@@ -23,6 +25,22 @@ table.insert(lvim.plugins, {
 })
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
+
+------------------------
+-- Linting
+------------------------
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { command = "cpplint", filetypes = { "cpp" } },
+}
+
+------------------------
+-- Formatting
+------------------------
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "clang-format", filetypes = { "cpp" } },
+}
 
 -- some settings can only passed as commandline flags, see `clangd --help`
 local clangd_flags = {

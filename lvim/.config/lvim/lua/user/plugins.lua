@@ -6,12 +6,12 @@ lvim.plugins = {
   -- { "gruvbox-community/gruvbox" },
   -- { "ellisonleao/gruvbox.nvim" },
   -- { "morhetz/gruvbox" },
-  { "folke/tokyonight.nvim" },
+  -- { "folke/tokyonight.nvim" },
   -- {"lunarvim/colorschemes"},
-  {
-    "sainnhe/gruvbox-material",
-    -- lazy = true,
-  },
+  -- {
+  --   "sainnhe/gruvbox-material",
+  --   -- lazy = true,
+  -- },
   -- { "sainnhe/edge" },
   -- { "Mofiqul/vscode.nvim" },
   -- { "luisiacc/gruvbox-baby" },
@@ -20,11 +20,11 @@ lvim.plugins = {
   -- { "shaunsingh/moonlight.nvim" },
   -- { "rebelot/kanagawa.nvim" },
   -- { "frenzyexists/aquarium-vim" },
-  { "catppuccin/nvim", name = "catppuccin" },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-  },
+  -- { "catppuccin/nvim", name = "catppuccin" },
+  -- {
+  --   "rose-pine/neovim",
+  --   name = "rose-pine",
+  -- },
 
   -- Error diagnostics
   -- {
