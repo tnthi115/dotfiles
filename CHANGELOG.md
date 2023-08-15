@@ -2,6 +2,7 @@
 
 ### Feat
 
+- **lvim**: add full python language support
 - **lvim**: add global commitlint config and commitlint linter in lvim
 - change lazygit commitizen custom keybind to "Z" from "C"
 - add commitizen config file
@@ -13,3 +14,7 @@
 - **commitlint**: rename commitlint.config.js to .commitlintrc.js
 - **aliases**: add quotes around the dir path argument to pushd
 - cmp-conventionalcommits plugin to correctly lazy load with configuration
+
+### Refactor
+
+- **lvim**: add neotest as a dependency of neotest-python
