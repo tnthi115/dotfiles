@@ -2,6 +2,8 @@
 
 ### Feat
 
+- **lvim**: add telescope-file-browser
+- **lvim**: add yamlls settings
 - **lvim**: add full python language support
 - **lvim**: add global commitlint config and commitlint linter in lvim
 - change lazygit commitizen custom keybind to "Z" from "C"
