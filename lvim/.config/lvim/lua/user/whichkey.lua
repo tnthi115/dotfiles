@@ -252,3 +252,9 @@ lvim.builtin.which_key.mappings["u"] = {
   n = { "<cmd>set norelativenumber<CR>", "Set line numbers" },
   r = { "<cmd>set relativenumber<CR>", "Set relative line numbers" },
 }
+
+-- telescope-file-browser
+lvim.builtin.which_key.mappings["E"] = {
+  "<cmd>Telescope file_browser<CR>",
+  "File Browswer",
+}
