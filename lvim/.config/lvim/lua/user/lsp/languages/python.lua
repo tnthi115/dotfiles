@@ -22,12 +22,9 @@ table.insert(lvim.plugins, {
   ft = "python",
 })
 table.insert(lvim.plugins, {
-  "nvim-neotest/neotest",
-  ft = "python",
-})
-table.insert(lvim.plugins, {
   "nvim-neotest/neotest-python",
   ft = "python",
+  dependencies = "nvim-neotest/neotest",
 })
 
 ------------------------
