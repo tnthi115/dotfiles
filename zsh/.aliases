@@ -13,8 +13,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 # alias l='ls -CF'
 alias l='ls -F'
-alias lt='lsd --tree'
-alias lat='lsd -a --tree'
+alias tree='lsd --tree'
 
 # add color to grep
 alias grep='grep --color=auto'
@@ -55,9 +54,12 @@ if test "$(uname -n)" = "cerebro"; then
 else
     alias nf="neofetch"
 fi
-alias tree="tree -a"
 alias ld="lazydocker"
 alias kc="kubectl"
+# alias rm="rm -i"
+alias mv="mv -i"
+alias cp="cp -i"
+alias mkdir="mkdir -p"
 
 # "blazingly fast" aliases
 # [b]ookmark, fast switcher between dirs on the stack using fzf
