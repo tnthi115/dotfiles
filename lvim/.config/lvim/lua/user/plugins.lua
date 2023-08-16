@@ -53,11 +53,20 @@ lvim.plugins = {
   },
 
   -- Function signature viewer
+  -- {
+  --   "ray-x/lsp_signature.nvim",
+  --   lazy = true,
+  --   config = function()
+  --     require "user.lsp-signature"
+  --   end,
+  -- },
+
   {
-    "ray-x/lsp_signature.nvim",
-    lazy = true,
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    event = "LspAttach",
+    dependencies = "hrsh7th/nvim-cmp",
     config = function()
-      require "user.lsp-signature"
+      table.insert(lvim.builtin.cmp.sources, { name = "nvim_lsp_signature_help" })
     end,
   },
 
