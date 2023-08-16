@@ -19,13 +19,7 @@ reload "user.lsp"
 reload "user.whichkey"
 reload "user.autorun"
 reload "user.colorscheme"
--- reload "user.lsp-signature"
--- reload "user.numb"
--- reload "user.todo-comments"
 -- reload "user.copilot"
--- reload "user.dressing"
--- reload "user.noice"
--- reload "user.zen-mode"
 
 -- local bg_color = "#1d2021"
 -- vim.cmd [[au ColorScheme * hi NvimTreeEndOfBuffer ctermbg=none guibg=bg_color]]
