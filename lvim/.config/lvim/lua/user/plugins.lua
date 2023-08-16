@@ -33,10 +33,10 @@ lvim.plugins = {
   -- },
 
   -- Git diffview
-  {
-    "sindrets/diffview.nvim",
-    cmd = "DiffviewOpen",
-  },
+  -- {
+  --   "sindrets/diffview.nvim",
+  --   cmd = "DiffviewOpen",
+  -- },
 
   -- Markdown previewer
   {
@@ -541,22 +541,34 @@ lvim.plugins = {
   --     -- g:smoothie_redraw_at_finish: Force screen redraw when the animation is finished, which clears sporadic display artifacts which I encountered f.ex. when scrolling through buffers containing emoji. Enabled by default only if both editor and terminal (kitty) supports doing this in a glitch-free way.
   --   end,
   -- },
+
   {
     "davidsierradz/cmp-conventionalcommits",
     ft = { "gitcommit" },
+    dependencies = "hrsh7th/nvim-cmp",
     config = function()
       require "user.gitcommit"
     end,
   },
+
   {
     "nvim-telescope/telescope-file-browser.nvim",
+    keys = {
+      { "<leader>E", "<cmd>Telescope file_browser<CR>", desc = "File Browser" },
+    },
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     config = function()
+      local actions = require("lvim.utils.modules").require_on_exported_call "telescope.actions"
       lvim.builtin.telescope.extensions.file_browser = {
         theme = "ivy",
-        -- dsiables netrw and use telescope-file-browser in its place
+        -- disables netrw and use telescope-file-browser in its place
         hijack_netrw = true,
         hidden = true,
+        mappings = {
+          ["n"] = {
+            ["l"] = actions.select_default,
+          },
+        },
       }
       require("telescope").load_extension "file_browser"
     end,
