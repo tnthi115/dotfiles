@@ -2,6 +2,7 @@
 
 ### Feat
 
+- **aliases**: add new alias for tree, rm, cp, mv, mkdir
 - **lvim**: add telescope-file-browser
 - **lvim**: add yamlls settings
 - **lvim**: add full python language support
