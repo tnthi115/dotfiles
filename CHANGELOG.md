@@ -2,6 +2,7 @@
 
 ### Feat
 
+- **lvim**: add --strict flag to mypy
 - **lvim**: update golang language support
 - **lvim**: add cmp-nvim-lsp-signature-help to replace lsp_signature.nvim
 - **aliases**: add new alias for tree, rm, cp, mv, mkdir
@@ -16,6 +17,8 @@
 
 ### Fix
 
+- **zsh**: remove hardcoded go path export
+- **lvim**: remove golines and install golangci-lint through mason
 - **lvim**: typo in file browser whichkey description
 - **commitlint**: rename commitlint.config.js to .commitlintrc.js
 - **aliases**: add quotes around the dir path argument to pushd
