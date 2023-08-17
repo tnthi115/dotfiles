@@ -2,6 +2,7 @@
 
 ### Feat
 
+- **lvim**: update golang language support
 - **lvim**: add cmp-nvim-lsp-signature-help to replace lsp_signature.nvim
 - **aliases**: add new alias for tree, rm, cp, mv, mkdir
 - **lvim**: add telescope-file-browser
@@ -22,5 +23,6 @@
 
 ### Refactor
 
+- **lvim**: remove comments in config.lua
 - **lvim**: clean up some plugin configuration
 - **lvim**: add neotest as a dependency of neotest-python
