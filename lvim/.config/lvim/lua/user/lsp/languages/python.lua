@@ -41,7 +41,7 @@ formatters.setup { { name = "black" } }
 local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup { { command = "flake8", filetypes = { "python" } } }
 linters.setup { { command = "ruff", filetypes = { "python" } } }
-linters.setup { { command = "mypy", filetypes = { "python" } } }
+linters.setup { { command = "mypy", filetypes = { "python" }, extra_args = { "--strict" } } }
 
 ------------------------
 -- Dap
