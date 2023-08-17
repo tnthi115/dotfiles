@@ -1,6 +1,7 @@
 -- Make sure to run the following:
 -- :MasonInstall gopls golangci-lint-langserver delve goimports-reviser gofumpt gomodifytags gotests impl golines
 -- Install golangci-lint: https://golangci-lint.run/usage/install/
+-- ^ Now in mason
 
 ------------------------
 -- Treesitter
@@ -39,7 +40,7 @@ formatters.setup {
   -- { command = "goimports", filetypes = { "go" } },
   { command = "gofumpt", filetypes = { "go" } },
   { command = "goimports-reviser", filetypes = { "go" } },
-  { command = "golines", filetypes = { "go" } },
+  -- { command = "golines", filetypes = { "go" } },
 }
 
 -- lvim.format_on_save = {
@@ -79,7 +80,7 @@ lsp_manager.setup("gopls", {
 
       vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
     end
-    map("n", "<leader>ci", "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies")
+    -- map("n", "<leader>ci", "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies")
     map("n", "<leader>ct", "<cmd>GoMod tidy<cr>", "Tidy")
     map("n", "<leader>ca", "<cmd>GoTestAdd<Cr>", "Add Test")
     map("n", "<leader>cA", "<cmd>GoTestsAll<Cr>", "Add All Tests")
