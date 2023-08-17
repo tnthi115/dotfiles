@@ -1,5 +1,5 @@
 -- Make sure to run the following:
--- :MasonInstall gopls golangci-lint-langserver delve goimports gofumpt gomodifytags gotests impl
+-- :MasonInstall gopls golangci-lint-langserver delve goimports-reviser gofumpt gomodifytags gotests impl golines
 -- Install golangci-lint: https://golangci-lint.run/usage/install/
 
 ------------------------
@@ -34,8 +34,12 @@ table.insert(lvim.plugins, {
 ------------------------
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "goimports", filetypes = { "go" } },
+  -- goimports not needed, gofumpt is a super set or gopls handles missing imports?
+  -- https://www.phind.com/search?cache=8152b2a2-73ab-41f2-8506-33ae3a33d3d7
+  -- { command = "goimports", filetypes = { "go" } },
   { command = "gofumpt", filetypes = { "go" } },
+  { command = "goimports-reviser", filetypes = { "go" } },
+  { command = "golines", filetypes = { "go" } },
 }
 
 -- lvim.format_on_save = {
@@ -84,6 +88,7 @@ lsp_manager.setup("gopls", {
     map("n", "<leader>cf", "<cmd>GoGenerate %<Cr>", "Go Generate File")
     map("n", "<leader>cc", "<cmd>GoCmt<Cr>", "Generate Comment")
     map("n", "<leader>ce", "<cmd>GoIfErr<Cr>", "Generate iferr")
+    map("n", "<leader>cT", "<cmd>GoTagAdd<Cr>", "Add Tags")
     map("n", "<leader>dT", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Go Test")
   end,
   on_init = require("lvim.lsp").common_on_init,
@@ -93,7 +98,7 @@ lsp_manager.setup("gopls", {
       usePlaceholders = true,
       gofumpt = true,
       codelenses = {
-        generate = false,
+        generate = true,
         gc_details = true,
         test = true,
         tidy = true,
