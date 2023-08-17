@@ -89,7 +89,7 @@ export TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S'
 
 # Add go to path
 if command -v go &> /dev/null; then
-    export PATH="$PATH:/usr/local/go/bin"
+    # export PATH="$PATH:/usr/local/go/bin"
 
     # Add go path to path
     # export GOPATH="/usr/lib/go"
