@@ -148,16 +148,22 @@ ctrl + alt - n  : (yabai -m window --display next || yabai -m window --display f
 # shift + alt - a : yabai -m window --resize top:0:20
 
 # change left window size
-shift + alt - a : yabai -m window --resize right:-20:0
-shift + alt - s : yabai -m window --resize bottom:0:20
-shift + alt - w : yabai -m window --resize top:0:-20
-shift + alt - d : yabai -m window --resize right:20:0
+# shift + alt - a : yabai -m window --resize right:-20:0
+# shift + alt - s : yabai -m window --resize bottom:0:20
+# shift + alt - w : yabai -m window --resize top:0:-20
+# shift + alt - d : yabai -m window --resize right:20:0
 
 # change right window size
-ctrl + alt - left : yabai -m window --resize left:-20:0
-ctrl + alt - down : yabai -m window --resize bottom:0:20
-ctrl + alt - up : yabai -m window --resize top:0:-20
-ctrl + alt - right : yabai -m window --resize left:20:0
+# ctrl + alt - left : yabai -m window --resize left:-20:0
+# ctrl + alt - down : yabai -m window --resize bottom:0:20
+# ctrl + alt - up : yabai -m window --resize top:0:-20
+# ctrl + alt - right : yabai -m window --resize left:20:0
+
+# better window resizing thanks to https://github.com/koekeishiya/yabai/issues/200
+ctrl + alt - left : yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null
+ctrl + alt - down : yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null
+ctrl + alt - up : yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null
+ctrl + alt - right : yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null
 
 # set insertion point in focused container
 # ctrl + alt - h : yabai -m window --insert west
