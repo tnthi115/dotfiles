@@ -2,6 +2,7 @@
 
 ### Feat
 
+- **lvim**: add usort for python formatting
 - **lvim**: add --strict flag to mypy
 - **lvim**: update golang language support
 - **lvim**: add cmp-nvim-lsp-signature-help to replace lsp_signature.nvim
@@ -26,6 +27,7 @@
 
 ### Refactor
 
+- **lvim**: remove telescope-file-browser plugin
 - **lvim**: remove comments in config.lua
 - **lvim**: clean up some plugin configuration
 - **lvim**: add neotest as a dependency of neotest-python
