@@ -560,26 +560,26 @@ lvim.plugins = {
     end,
   },
 
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    keys = {
-      { "<leader>E", "<cmd>Telescope file_browser<CR>", desc = "File Browser" },
-    },
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    config = function()
-      local actions = require("lvim.utils.modules").require_on_exported_call "telescope.actions"
-      lvim.builtin.telescope.extensions.file_browser = {
-        theme = "ivy",
-        -- disables netrw and use telescope-file-browser in its place
-        hijack_netrw = true,
-        hidden = true,
-        mappings = {
-          ["n"] = {
-            ["l"] = actions.select_default,
-          },
-        },
-      }
-      require("telescope").load_extension "file_browser"
-    end,
-  },
+  -- {
+  --   "nvim-telescope/telescope-file-browser.nvim",
+  --   keys = {
+  --     { "<leader>E", "<cmd>Telescope file_browser<CR>", desc = "File Browser" },
+  --   },
+  --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     local actions = require("lvim.utils.modules").require_on_exported_call "telescope.actions"
+  --     lvim.builtin.telescope.extensions.file_browser = {
+  --       theme = "ivy",
+  --       -- disables netrw and use telescope-file-browser in its place
+  --       hijack_netrw = true,
+  --       hidden = true,
+  --       mappings = {
+  --         ["n"] = {
+  --           ["l"] = actions.select_default,
+  --         },
+  --       },
+  --     }
+  --     require("telescope").load_extension "file_browser"
+  --   end,
+  -- },
 }
