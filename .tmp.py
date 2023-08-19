@@ -7,42 +7,47 @@
 
 import random
 
+
 # create a player class
 class Player:
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
-        self.guess = None
+        self.guess
 
-    def get_guess(self):
+    def get_guess(self) -> None:
         self.guess = int(input("Enter a number: "))
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
+
 
 # create a game class
 class Game:
-    def __init__(self, player1, player2):
+    def __init__(self, player1: Player, player2: Player):
         self.player1 = player1
         self.player2 = player2
-        self.random_number = None
-        self.winner = None
+        self.random_number
+        self.winner
 
-    def get_random_number(self):
+    def get_random_number(self) -> None:
         self.random_number = random.randint(1, 10)
 
-    def get_winner(self):
+    def get_winner(self) -> None:
         if self.player1.guess == self.player2.guess:
             self.winner = "Tie"
-        elif abs(self.player1.guess - self.random_number) < abs(self.player2.guess - self.random_number):
-            self.winner = self.player1
+        elif abs(self.player1.guess - self.random_number) < abs(
+            self.player2.guess - self.random_number
+        ):
+            self.winner = self.player1.__str__()
         else:
-            self.winner = self.player2
+            self.winner = self.player2.__str__()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.winner} wins!"
 
+
 # create game loop
-def main():
+def main() -> None:
     player1 = Player("Player 1")
     player2 = Player("Player 2")
     game = Game(player1, player2)
@@ -62,6 +67,7 @@ def main():
         main()
     else:
         print("Thanks for playing!")
+
 
 if __name__ == "__main__":
     main()

@@ -41,7 +41,9 @@ formatters.setup { { name = "usort" } }
 ------------------------
 local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup { { command = "flake8", filetypes = { "python" } } }
-linters.setup { { command = "ruff", filetypes = { "python" } } }
+linters.setup {
+  { command = "ruff", filetypes = { "python" }, extra_args = { "--extend-select=W,N,A,C4,SIM,TCH,PL,RUF" } },
+}
 linters.setup { { command = "mypy", filetypes = { "python" }, extra_args = { "--strict" } } }
 
 ------------------------
