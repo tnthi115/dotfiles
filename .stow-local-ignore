@@ -24,3 +24,13 @@ _darcs
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
+
+firefox
+sketchybar
+dynamic-island-sketchy
+browser-extensions
+scrots
+bin
+\.mypy_cache
+\.rose-pine-theme
+\.ruff_cache
