@@ -2,6 +2,7 @@
 
 ### Feat
 
+- **lvim**: add extra rules for ruff, auto imports for pyright, and format .tmp.py
 - **lvim**: add usort for python formatting
 - **lvim**: add --strict flag to mypy
 - **lvim**: update golang language support
@@ -27,6 +28,7 @@
 
 ### Refactor
 
+- **yabai**: add better window resizing keybinds in skhd
 - **lvim**: remove telescope-file-browser plugin
 - **lvim**: remove comments in config.lua
 - **lvim**: clean up some plugin configuration
