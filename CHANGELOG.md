@@ -2,6 +2,7 @@
 
 ### Feat
 
+- **lvim**: add WIP java language settings
 - **lvim**: add extra rules for ruff, auto imports for pyright, and format .tmp.py
 - **lvim**: add usort for python formatting
 - **lvim**: add --strict flag to mypy
@@ -28,6 +29,7 @@
 
 ### Refactor
 
+- **lvim**: clean up python and markdown language settings
 - **yabai**: add better window resizing keybinds in skhd
 - **lvim**: remove telescope-file-browser plugin
 - **lvim**: remove comments in config.lua
