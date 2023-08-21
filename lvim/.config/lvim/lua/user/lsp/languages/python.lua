@@ -31,8 +31,7 @@ table.insert(lvim.plugins, {
 -- Formatting
 ------------------------
 local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup { { name = "black" } }
-formatters.setup { { name = "usort" } }
+formatters.setup { { name = "black" }, { name = "usort" } }
 -- lvim.format_on_save.enabled = true
 -- lvim.format_on_save.pattern = { "*.py" }
 
@@ -43,8 +42,8 @@ local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup { { command = "flake8", filetypes = { "python" } } }
 linters.setup {
   { command = "ruff", filetypes = { "python" }, extra_args = { "--extend-select=W,N,A,C4,SIM,TCH,PL,RUF" } },
+  { command = "mypy", filetypes = { "python" }, extra_args = { "--strict" } },
 }
-linters.setup { { command = "mypy", filetypes = { "python" }, extra_args = { "--strict" } } }
 
 ------------------------
 -- Dap

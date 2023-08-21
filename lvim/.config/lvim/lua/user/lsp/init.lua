@@ -28,7 +28,7 @@ lvim.lsp.installer.setup.ensure_installed = {
   -- "lua-language-server",
   "lua_ls",
   -- "stylua",
-  "marksman",
+  -- "marksman",
   -- "clangd",
   -- "pyright",
   -- "markdownlint",
@@ -39,7 +39,7 @@ lvim.lsp.installer.setup.ensure_installed = {
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
-  "cpp",
+  -- "cpp",
   -- "javascript",
   "json",
   "lua",
@@ -91,7 +91,7 @@ formatters.setup {
   -- { command = "goimports", filetypes = { "go" } },
   -- { command = "gofumpt", filetypes = { "go" } },
   { command = "beautysh" },
-  { command = "markdownlint", filetypes = { "markdown" } },
+  -- { command = "markdownlint", filetypes = { "markdown" } },
   { command = "stylua", filetypes = { "lua" } },
   -- { command = "clang-format", filetypes = { "cpp" } },
   -- need to "pip install black"
@@ -119,7 +119,7 @@ linters.setup {
   -- { command = "flake8", filetypes = { "python" } },
   -- { command = "pylint", filetypes = { "python" } },
   -- { command = "cpplint", filetypes = { "cpp" } },
-  { command = "markdownlint", filetypes = { "markdown" } },
+  -- { command = "markdownlint", filetypes = { "markdown" } },
   {
     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "shellcheck",
