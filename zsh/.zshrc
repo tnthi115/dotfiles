@@ -101,6 +101,9 @@ fi
 # Add lvim mason to path
 export PATH="$PATH:$HOME/.local/share/lvim/mason/bin"
 
+# Add openjdk@11 to path
+export PATH="$PATH:/opt/homebrew/opt/openjdk@11/bin"
+
 # }}}
 
 # Aliases {{{
