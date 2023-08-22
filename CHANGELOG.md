@@ -2,6 +2,7 @@
 
 ### Feat
 
+- **tmux**: add transparent background instead of using $thm_black
 - **lvim**: add WIP java language settings
 - **lvim**: add extra rules for ruff, auto imports for pyright, and format .tmp.py
 - **lvim**: add usort for python formatting
@@ -20,6 +21,8 @@
 
 ### Fix
 
+- **lvim**: remove deprecated anchor setting for dressing.nvim
+- **lvim**: add back markdown linter and formatter universally in lsp/init.lua
 - **zsh**: remove hardcoded go path export
 - **lvim**: remove golines and install golangci-lint through mason
 - **lvim**: typo in file browser whichkey description
@@ -29,6 +32,8 @@
 
 ### Refactor
 
+- **lvim**: uncomment after/ftplugin/java.lua and add early return
+- **lvim**: rename gitcommit.lua to conventionalcommits.lua and add gitcommit to codespell filetypes
 - **lvim**: clean up python and markdown language settings
 - **yabai**: add better window resizing keybinds in skhd
 - **lvim**: remove telescope-file-browser plugin
