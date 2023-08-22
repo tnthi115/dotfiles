@@ -556,7 +556,7 @@ lvim.plugins = {
     ft = { "gitcommit" },
     dependencies = "hrsh7th/nvim-cmp",
     config = function()
-      require "user.gitcommit"
+      require "user.conventionalcommits"
     end,
   },
 
