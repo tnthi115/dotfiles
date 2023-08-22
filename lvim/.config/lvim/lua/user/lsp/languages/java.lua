@@ -1,5 +1,6 @@
 -- Make sure to run the following:
 -- :MasonInstall jdtls google_java_format java-debug-adapter
+-- Install Java with brew: brew install java11
 -- Install Java with sdkman: https://sdkman.io/
 -- https://github.com/sdkman/homebrew-tap
 

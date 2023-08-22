@@ -52,8 +52,8 @@ For example:
 mv ~/.zshrc ~/.zshrc.bak
 ```
 
-Within `~/dotfiles/`, run `stow` to symlink everything (not recommended) or just select what you
-want:
+Within `~/dotfiles/`, run `stow` to symlink everything (not recommended) or
+just select what you want:
 
 ```sh
 stow */ # Everything (the '/' grabs all directories and ignores files (e.g. README.md))
