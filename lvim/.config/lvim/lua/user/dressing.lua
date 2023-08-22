@@ -4,7 +4,7 @@ if not status_ok then
   return
 end
 
-dressing.setup({
+dressing.setup {
   input = {
     -- Set to false to disable the vim.ui.input implementation
     enabled = true,
@@ -22,7 +22,8 @@ dressing.setup({
     start_in_insert = true,
 
     -- These are passed to nvim_open_win
-    anchor = "SW",
+    -- Deprecated: dressing no longer accepts an 'anchor' option. Use the 'override' function to change the anchor
+    -- anchor = "SW",
     border = "rounded",
     -- 'editor' and 'win' will default to being centered
     relative = "cursor",
@@ -159,4 +160,4 @@ dressing.setup({
     -- see :help dressing_get_config
     get_config = nil,
   },
-})
+}
