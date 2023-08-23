@@ -167,6 +167,14 @@ local vopts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
+-- Utility function for setting Java runtime
+function get_runtime_name()
+  vim.ui.select({ "JavaSE-11", "JavaSE-17" }, { prompt = "select" }, function(input)
+    require("jdtls").set_runtime(input)
+  end)
+  -- vim.cmd [[redraw]]
+end
+
 local mappings = {
   c = {
     name = "Java",
@@ -175,6 +183,8 @@ local mappings = {
     c = { "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant" },
     t = { "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method" },
     T = { "<Cmd>lua require'jdtls'.test_class()<CR>", "Test Class" },
+    -- r = { "<Cmd>lua require'jdtls'.set_runtime()<CR>", "Test Class" },
+    r = { "<Cmd>lua get_runtime_name()<CR>", "Test Class" },
     u = { "<Cmd>JdtUpdateConfig<CR>", "Update Config" },
   },
 }
