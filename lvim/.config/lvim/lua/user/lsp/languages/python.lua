@@ -14,8 +14,12 @@ vim.list_extend(lvim.builtin.treesitter.ensure_installed, {
 ------------------------
 -- Plugins
 ------------------------
+-- table.insert(lvim.plugins, {
+--   "ChristianChiarulli/swenv.nvim",
+--   ft = "python",
+-- })
 table.insert(lvim.plugins, {
-  "ChristianChiarulli/swenv.nvim",
+  "AckslD/swenv.nvim",
   ft = "python",
 })
 table.insert(lvim.plugins, {

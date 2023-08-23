@@ -81,6 +81,10 @@ local config = {
         updateBuildConfiguration = "interactive",
         runtimes = {
           {
+            name = "JavaSE-1.8",
+            path = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/8.0.382-amzn",
+          },
+          {
             name = "JavaSE-11",
             -- path = "~/.sdkman/candidates/java/11.0.17-tem",
             path = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/11.0.20-amzn",
