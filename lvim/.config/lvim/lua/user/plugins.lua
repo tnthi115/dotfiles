@@ -588,7 +588,8 @@ lvim.plugins = {
   -- Ensure installed for all Mason tools, not just LSPs
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    dependencies = "williamboman/mason.nvim",
+    event = "LspAttach",
+    cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
     config = function()
       require("mason-tool-installer").setup {
         -- a list of all tools you want to ensure are installed upon
@@ -683,6 +684,11 @@ lvim.plugins = {
         -- Default: nil
         -- debounce_hours = 5, -- at least 5 hours between attempts to install/update
       }
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function()
+          vim.cmd "MasonToolsInstall"
+        end,
+      })
     end,
   },
 }
