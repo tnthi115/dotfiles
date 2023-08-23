@@ -53,7 +53,7 @@ lvim.builtin.treesitter.ensure_installed = {
   -- "yaml",
 }
 
-lvim.builtin.treesitter.ignore_install = { "haskell" }
+-- lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
 local cmp = require "cmp"

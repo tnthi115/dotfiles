@@ -28,50 +28,50 @@ table.insert(lvim.plugins, {
   dependencies = "nvim-neotest/neotest",
 })
 
-------------------------
--- Formatting
-------------------------
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup { { name = "black" }, { name = "usort" } }
--- lvim.format_on_save.enabled = true
--- lvim.format_on_save.pattern = { "*.py" }
+-- ------------------------
+-- -- Formatting
+-- ------------------------
+-- local formatters = require "lvim.lsp.null-ls.formatters"
+-- formatters.setup { { name = "black" }, { name = "usort" } }
+-- -- lvim.format_on_save.enabled = true
+-- -- lvim.format_on_save.pattern = { "*.py" }
 
-------------------------
--- Linting
-------------------------
-local linters = require "lvim.lsp.null-ls.linters"
--- linters.setup { { command = "flake8", filetypes = { "python" } } }
-linters.setup {
-  { command = "ruff", filetypes = { "python" }, extra_args = { "--extend-select=W,N,A,C4,SIM,TCH,PL,RUF" } },
-  { command = "mypy", filetypes = { "python" }, extra_args = { "--strict" } },
-}
+-- ------------------------
+-- -- Linting
+-- ------------------------
+-- local linters = require "lvim.lsp.null-ls.linters"
+-- -- linters.setup { { command = "flake8", filetypes = { "python" } } }
+-- linters.setup {
+--   { command = "ruff", filetypes = { "python" }, extra_args = { "--extend-select=W,N,A,C4,SIM,TCH,PL,RUF" } },
+--   { command = "mypy", filetypes = { "python" }, extra_args = { "--strict" } },
+-- }
 
-------------------------
--- Dap
-------------------------
-lvim.builtin.dap.active = true
-local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
-pcall(function()
-  require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
-end)
+-- ------------------------
+-- -- Dap
+-- ------------------------
+-- lvim.builtin.dap.active = true
+-- local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+-- pcall(function()
+--   require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
+-- end)
 
-------------------------
--- Testing
-------------------------
-require("neotest").setup {
-  adapters = {
-    require "neotest-python" {
-      -- Extra arguments for nvim-dap configuration
-      -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
-      dap = {
-        justMyCode = false,
-        console = "integratedTerminal",
-      },
-      args = { "--log-level", "DEBUG", "--quiet" },
-      runner = "pytest",
-    },
-  },
-}
+-- ------------------------
+-- -- Testing
+-- ------------------------
+-- require("neotest").setup {
+--   adapters = {
+--     require "neotest-python" {
+--       -- Extra arguments for nvim-dap configuration
+--       -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
+--       dap = {
+--         justMyCode = false,
+--         console = "integratedTerminal",
+--       },
+--       args = { "--log-level", "DEBUG", "--quiet" },
+--       runner = "pytest",
+--     },
+--   },
+-- }
 
 -- Mappings in after/ftplugin/python.lua
 

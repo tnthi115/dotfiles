@@ -17,7 +17,7 @@ reload "user.keymaps"
 reload "user.autocommands"
 reload "user.lsp"
 reload "user.whichkey"
-reload "user.autorun"
+-- reload "user.autorun"
 reload "user.colorscheme"
 -- reload "user.copilot"
 
