@@ -61,6 +61,7 @@ lvim.plugins = {
   --   end,
   -- },
 
+  -- Function signature help in cmp
   {
     "hrsh7th/cmp-nvim-lsp-signature-help",
     event = "LspAttach",
@@ -551,6 +552,7 @@ lvim.plugins = {
   --   end,
   -- },
 
+  -- Conventional commits completion in cmp
   {
     "davidsierradz/cmp-conventionalcommits",
     ft = { "gitcommit" },
@@ -583,6 +585,7 @@ lvim.plugins = {
   --   end,
   -- },
 
+  -- Ensure installed for all Mason tools, not just LSPs
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     dependencies = "williamboman/mason.nvim",
