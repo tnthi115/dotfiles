@@ -42,7 +42,18 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     ZSH_AUTOSUGGESTIONS_PATH=$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     ZSH_SYNTAX_HIGHLIGHTING_PATH=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     COPY_CMD="pbcopy"
+
+    # Autoremove after every brew uninstall command.
     export HOMEBREW_AUTOREMOVE=1
+
+    # Homebrew zsh completion: https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+    if type brew &>/dev/null
+    then
+        FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+        # autoload -Uz compinit
+        # compinit
+    fi
 fi
 
 # Use vi keybindings
