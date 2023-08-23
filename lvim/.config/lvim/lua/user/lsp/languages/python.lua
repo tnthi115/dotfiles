@@ -1,6 +1,7 @@
 -- Make sure to run the following:
 -- :MasonInstall pyright flake8 black debugpy
--- swap out flake8 for fuff and mypy
+-- swap out flake8 for ruff and mypy
+-- :MasonInstall pyright ruff mypy usort black debugpy
 -- Install pytest
 
 ------------------------

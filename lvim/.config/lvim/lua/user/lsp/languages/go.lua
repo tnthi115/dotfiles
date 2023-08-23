@@ -1,5 +1,5 @@
 -- Make sure to run the following:
--- :MasonInstall gopls golangci-lint-langserver delve goimports-reviser gofumpt gomodifytags gotests impl golines
+-- :MasonInstall gopls golangci-lint golangci-lint-langserver goimports-reviser gofumpt gomodifytags impl golines gotests delve
 -- Install golangci-lint: https://golangci-lint.run/usage/install/
 -- ^ Now in mason
 
