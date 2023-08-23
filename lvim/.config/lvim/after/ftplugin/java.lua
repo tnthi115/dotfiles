@@ -1,3 +1,5 @@
+-- https://medium.com/@chrisatmachine/lunarvim-as-a-java-ide-da65c4a77fb4
+
 ------------------------
 -- LSP
 ------------------------
@@ -55,11 +57,11 @@ local config = {
     "java.base/java.util=ALL-UNNAMED",
     "--add-opens",
     "java.base/java.lang=ALL-UNNAMED",
-    "-javaagent:" .. home .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+    "-javaagent:" .. home .. "/.local/share/lvim/mason/packages/jdtls/lombok.jar",
     "-jar",
-    vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+    vim.fn.glob(home .. "/.local/share/lvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     "-configuration",
-    home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. os_config,
+    home .. "/.local/share/lvim/mason/packages/jdtls/config_" .. os_config,
     -- "-jar",
     -- "/opt/jdtls-0.57.0/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar",
     -- "-configuration",
@@ -168,12 +170,13 @@ local vopts = {
 }
 
 -- Utility function for setting Java runtime
-function get_runtime_name()
-  vim.ui.select({ "JavaSE-11", "JavaSE-17" }, { prompt = "select" }, function(input)
-    require("jdtls").set_runtime(input)
-  end)
-  -- vim.cmd [[redraw]]
-end
+-- Not needed, but keeping for now for future reference
+-- function get_runtime_name()
+--   vim.ui.select({ "JavaSE-11", "JavaSE-17" }, { prompt = "select" }, function(input)
+--     require("jdtls").set_runtime(input)
+--   end)
+--   -- vim.cmd [[redraw]]
+-- end
 
 local mappings = {
   c = {
@@ -183,9 +186,9 @@ local mappings = {
     c = { "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant" },
     t = { "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method" },
     T = { "<Cmd>lua require'jdtls'.test_class()<CR>", "Test Class" },
-    -- r = { "<Cmd>lua require'jdtls'.set_runtime()<CR>", "Test Class" },
-    r = { "<Cmd>lua get_runtime_name()<CR>", "Test Class" },
-    u = { "<Cmd>JdtUpdateConfig<CR>", "Update Config" },
+    r = { "<Cmd>lua require'jdtls'.set_runtime()<CR>", "Set Runtime" },
+    -- u = { "<Cmd>JdtUpdateConfig<CR>", "Update Config" },
+    u = { "<Cmd>lua require'jdtls'.update_project_config()<CR>", "Update Config" },
   },
 }
 
@@ -200,4 +203,4 @@ local vmappings = {
 
 which_key.register(mappings, opts)
 which_key.register(vmappings, vopts)
-which_key.register(vmappings, vopts)
+-- which_key.register(vmappings, vopts)
