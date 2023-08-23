@@ -2,6 +2,11 @@
 
 ### Feat
 
+- **lvim**: add autocommand to call `:MasonToolsInstall` on `LspAttach` event
+- **lvim**: add mason-tool-installer to ensure mason packages are installed with code
+- **lvim**: add binding for setting runtime with select function (java still partially broken)
+- **lvim**: install java with sdkman and enable java language features in lvim
+- **zsh**: add java openjdk@11 to path
 - **tmux**: add transparent background instead of using $thm_black
 - **lvim**: add WIP java language settings
 - **lvim**: add extra rules for ruff, auto imports for pyright, and format .tmp.py
@@ -21,6 +26,9 @@
 
 ### Fix
 
+- **lvim**: fix deprecation warnings for fidget and dressing
+- **lvim**: add iferr to golang mason ensure installed
+- **lvim**: java language support
 - **lvim**: remove deprecated anchor setting for dressing.nvim
 - **lvim**: add back markdown linter and formatter universally in lsp/init.lua
 - **zsh**: remove hardcoded go path export
@@ -32,6 +40,8 @@
 
 ### Refactor
 
+- **lvim**: move nvim-gdb plugin to lsp/languages/cpp.lua
+- **lvim**: move lsp, formatter, linter setup to ftplugin/ instead of lsp/languages for golang, java, and python
 - **lvim**: uncomment after/ftplugin/java.lua and add early return
 - **lvim**: rename gitcommit.lua to conventionalcommits.lua and add gitcommit to codespell filetypes
 - **lvim**: clean up python and markdown language settings
