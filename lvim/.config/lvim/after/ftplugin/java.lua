@@ -1,8 +1,3 @@
-local active = false
-if not active then
-  return
-end
-
 ------------------------
 -- LSP
 ------------------------
@@ -65,6 +60,10 @@ local config = {
     vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     "-configuration",
     home .. "/.local/share/nvim/mason/packages/jdtls/config_" .. os_config,
+    -- "-jar",
+    -- "/opt/jdtls-0.57.0/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar",
+    -- "-configuration",
+    -- "/opt/jdtls-0.57.0/config_" .. os_config,
     "-data",
     workspace_dir,
   },
@@ -81,11 +80,16 @@ local config = {
         runtimes = {
           {
             name = "JavaSE-11",
-            path = "~/.sdkman/candidates/java/11.0.17-tem",
+            -- path = "~/.sdkman/candidates/java/11.0.17-tem",
+            path = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/11.0.20-amzn",
           },
+          -- {
+          --   name = "JavaSE-18",
+          --   path = "~/.sdkman/candidates/java/18.0.2-sem",
+          -- },
           {
-            name = "JavaSE-18",
-            path = "~/.sdkman/candidates/java/18.0.2-sem",
+            name = "JavaSE-17",
+            path = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/17.0.8-tem",
           },
         },
       },

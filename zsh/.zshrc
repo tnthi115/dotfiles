@@ -102,7 +102,13 @@ fi
 export PATH="$PATH:$HOME/.local/share/lvim/mason/bin"
 
 # Add openjdk@11 to path
-export PATH="$PATH:/opt/homebrew/opt/openjdk@11/bin"
+# export PATH="$PATH:/opt/homebrew/opt/openjdk@11/bin"
+
+# SDKMAN
+if command -v brew &> /dev/null; then
+    export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+    [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+fi
 
 # }}}
 
