@@ -195,11 +195,11 @@ lvim.plugins = {
   -- },
 
   -- nvim gdb
-  {
-    "sakhnik/nvim-gdb",
-    build = ":!./install.sh",
-    ft = { "c", "cpp" },
-  },
+  -- {
+  --   "sakhnik/nvim-gdb",
+  --   build = ":!./install.sh",
+  --   ft = { "c", "cpp" },
+  -- },
 
   -- zen-mode
   {

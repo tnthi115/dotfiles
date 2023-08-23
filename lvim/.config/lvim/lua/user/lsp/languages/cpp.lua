@@ -23,6 +23,11 @@ table.insert(lvim.plugins, {
     vim.cmd [[let g:cmake_default_config = "build"]]
   end,
 })
+table.insert(lvim.plugins, {
+  "sakhnik/nvim-gdb",
+  build = ":!./install.sh",
+  ft = { "c", "cpp" },
+})
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 
