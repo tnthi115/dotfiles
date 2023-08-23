@@ -619,13 +619,14 @@ lvim.plugins = {
           "gopls",
           "golangci-lint",
           "golangci-lint-langserver",
-          "goimports-reviser",
           "gofumpt",
+          "goimports-reviser",
           "gomodifytags",
-          "impl",
-          "golines",
-          "delve",
           "gotests",
+          "impl",
+          "iferr",
+          "delve",
+          -- "golines",
 
           -- Java
           "jdtls",
