@@ -2,6 +2,9 @@
 
 ### Feat
 
+- **lvim**: add WIP toggle_bufferline() and add working toggle number and relativenumber
+- **zsh**: add zsh completion for brew
+- **lvim**: add JavaSE-1.8 runtime and original swenv.nvim plugin
 - **lvim**: add autocommand to call `:MasonToolsInstall` on `LspAttach` event
 - **lvim**: add mason-tool-installer to ensure mason packages are installed with code
 - **lvim**: add binding for setting runtime with select function (java still partially broken)
@@ -40,6 +43,7 @@
 
 ### Refactor
 
+- **aliases**: add command check for ranger alias
 - **lvim**: move nvim-gdb plugin to lsp/languages/cpp.lua
 - **lvim**: move lsp, formatter, linter setup to ftplugin/ instead of lsp/languages for golang, java, and python
 - **lvim**: uncomment after/ftplugin/java.lua and add early return
