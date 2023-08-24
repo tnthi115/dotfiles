@@ -70,6 +70,7 @@ lsp_manager.setup("pyright", {
   end,
   on_init = require("lvim.lsp").common_on_init,
   capabilities = require("lvim.lsp").common_capabilities(),
+  single_file_support = true,
   settings = {
     pyright = {
       disableLanguageServices = false,
