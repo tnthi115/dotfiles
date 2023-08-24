@@ -75,9 +75,16 @@ stow --target=${HOME} zsh
 
 ## Dependencies
 
-The following list is not comprehensive, but it includes what is important.
+The following list is not comprehensive, but it includes what is important. It
+is broken down by OS:
 
-### Fonts
+- [Shared](#shared) (across all OSes)
+- [Linux](#linux)
+- [MacOS](#macos)
+
+### Shared
+
+#### Fonts
 
 Install a [Nerd Font](https://www.nerdfonts.com/font-downloads). My current
 favorites are [CaskaydiaCove Nerd
@@ -85,35 +92,35 @@ Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/CascadiaC
 and [Hack Nerd
 Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/Hack.zip).
 
-### Wallpapers
+#### Wallpapers
 
 You can clone my wallpapers [repo](https://github.com/tnthi115/wallpapers) if
 you want to use the same collections I've created.
 
-### Neovim
+#### Neovim
 
 I use [Lunarvim](https://www.lunarvim.org/) as a base config for [neovim](https://neovim.io/).
 
-### Tmux
+#### Tmux
 
 I use [tmux](https://github.com/tmux/tmux) for "sessionizing" different
 projects so that I can quickly context switch without overhead and easily pick
 up where I left off.
 
-### Lazygit
+#### Lazygit
 
 [Lazygit](https://github.com/jesseduffield/lazygit) is super convenient and can
 be launched within neovim, but learn how to use `git` on the command line
 first! `Lazygit` should be used a time saving tool, not a crutch.
 [Delta](https://github.com/dandavison/delta) makes diffs prettier.
 
-### Kitty
+#### Kitty
 
 [Kitty](https://sw.kovidgoyal.net/kitty/) supports ligatures, so I like it over
 [alacritty](https://github.com/alacritty/alacritty) for now.
 [Fzf](https://github.com/junegunn/fzf) is a must have as well.
 
-### Wezterm
+#### Wezterm
 
 [Wezterm](https://github.com/wez/wezterm) is another GPU accelerated terminal
 written in Rust (btw) that also supports ligatures and is configured in Lua
@@ -121,7 +128,7 @@ written in Rust (btw) that also supports ligatures and is configured in Lua
 Kitty because the newest versions of Kitty are giving me issues with fonts
 rendering in all bold for whatever reason.
 
-### Zsh
+#### Zsh
 
 I like to use [zsh](https://wiki.archlinux.org/title/zsh) over
 [bash](https://wiki.archlinux.org/title/bash) because of two plugins:
@@ -133,15 +140,7 @@ I use [starship](https://starship.rs/) for my prompt. For some bling, I run
 [neofetch](https://github.com/dylanaraps/neofetch) and [DT's
 colorscripts](https://gitlab.com/dwt1/shell-color-scripts) in my `.zshrc`.
 
-### Awesomewm
-
-I use [awesomewm](https://awesomewm.org/) for my tiling window manager. It has
-a built in application launcher, but you can use
-[rofi](https://github.com/davatorium/rofi) universally.
-[Compton](https://github.com/chjj/compton) is preinstalled on Ubuntu. Use
-[picom](https://github.com/yshui/picom) on Arch.
-
-### Firefox
+#### Firefox
 
 Use the [Arkenfox user.js](https://github.com/arkenfox/user.js) to harden. [Librewolf](https://librewolf.net/)
 and [Brave](https://brave.com/) are okay alternatives.
@@ -155,7 +154,36 @@ and [Brave](https://brave.com/) are okay alternatives.
 - firefox multi-account containers
 - dark reader
 
+### Linux
+
+#### Awesomewm
+
+I use [awesomewm](https://awesomewm.org/) for my tiling window manager. It has
+a built in application launcher, but you can use
+[rofi](https://github.com/davatorium/rofi) universally.
+[Compton](https://github.com/chjj/compton) is preinstalled on Ubuntu. Use
+[picom](https://github.com/yshui/picom) on Arch.
+
+### MacOS
+
+#### Raycast
+
+[Raycast](https://www.raycast.com/) is an blazingly fast, batteries-included
+run launcher for MacOS only (unfortunately). I really enjoy its extensibility
+and the workflow it allows me to have, especially combined with
+[Yabai](#yabai).
+
+#### Yabai
+
+[Yabai](https://github.com/koekeishiya/yabai) is a tiling window manager for
+MacOS, with very similar architecture to
+[bspwm](https://github.com/baskerville/bspwm) +
+[sxhkd](https://github.com/baskerville/sxhkd) on Linux and
+[komorebi](https://github.com/LGUG2Z/komorebi) +
+[whkd](https://github.com/LGUG2Z/whkd) on Windows.
+
 ## TODO
 
 - [ ] add links
 - [ ] flesh out dependencies more
+- [ ] add brew packages file
