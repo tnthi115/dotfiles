@@ -56,6 +56,38 @@ pcall(function()
 end)
 
 ------------------------
+-- LSP
+------------------------
+-- Settings managed by LspSettings
+
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+
+-- local lsp_manager = require "lvim.lsp.manager"
+
+-- lsp_manager.setup("pyright", {
+--   on_attach = function(client, bufnr)
+--     require("lvim.lsp").common_on_attach(client, bufnr)
+--   end,
+--   on_init = require("lvim.lsp").common_on_init,
+--   capabilities = require("lvim.lsp").common_capabilities(),
+--   settings = {
+--     pyright = {
+--       disableLanguageServices = false,
+--       disableOrganizeImports = false,
+--     },
+--     python = {
+--       analysis = {
+--         autoImportCompletions = true,
+--         autoSearchPaths = true,
+--         diagnosticMode = "workspace", -- openFilesOnly, workspace
+--         typeCheckingMode = "basic", -- off, basic, strict
+--         useLibraryCodeForTypes = true,
+--       },
+--     },
+--   },
+-- })
+
+------------------------
 -- Testing
 ------------------------
 require("neotest").setup {

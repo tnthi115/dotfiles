@@ -1,3 +1,6 @@
 {
-  "redhat.telemetry.enabled": false,
+  "yaml.completion": true,
+  "yaml.format.enable": true,
+  "yaml.hover": true,
+  "redhat.telemetry.enabled": false
 }
