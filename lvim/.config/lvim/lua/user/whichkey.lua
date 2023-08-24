@@ -236,6 +236,18 @@ function set_spaces()
   -- vim.cmd [[redraw]]
 end
 
+-- TODO: figure out how to make lvim.builtin.bufferline.active state persist
+-- Toggle bufferline plugin and showtabline
+function toggle_bufferline()
+  local active = lvim.builtin.bufferline.active
+  if active then
+    vim.cmd "set showtabline=1"
+  else
+    vim.cmd "set showtabline=2"
+  end
+  lvim.builtin.bufferline.active = not active
+end
+
 -- UI/Toggles
 lvim.builtin.which_key.mappings["u"] = {
   name = "UI/Toggles",
@@ -249,6 +261,8 @@ lvim.builtin.which_key.mappings["u"] = {
     -- g = { "<cmd>CellularAutomaton game_of_life<CR>", "Game of Life" },
   },
   A = { "<cmd>AutoRun<CR>", "AutoRun on Save" },
-  n = { "<cmd>set norelativenumber<CR>", "Set line numbers" },
-  r = { "<cmd>set relativenumber<CR>", "Set relative line numbers" },
+  n = { "<cmd>set number!<CR>", "Toggle Line Numbers" },
+  r = { "<cmd>set relativenumber!<CR>", "Toggle Relative Line Numbers" },
+  b = { "<cmd>lua toggle_bufferline()<CR>", "Toggle Bufferline" },
+  -- t is toggle treesitter context
 }

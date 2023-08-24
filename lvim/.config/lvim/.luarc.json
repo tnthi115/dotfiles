@@ -1,8 +1,9 @@
 {
-    "diagnostics.globals": [
-        "vim",
-        "lvim",
-        "reload",
-        "set_spaces"
-    ]
+  "diagnostics.globals": [
+    "vim",
+    "lvim",
+    "reload",
+    "set_spaces",
+    "toggle_bufferline",
+  ]
 }
