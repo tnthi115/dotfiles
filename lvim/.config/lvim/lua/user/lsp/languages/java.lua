@@ -16,7 +16,11 @@ vim.list_extend(lvim.builtin.treesitter.ensure_installed, {
 ------------------------
 table.insert(lvim.plugins, {
   "mfussenegger/nvim-jdtls",
-  ft = { "java" },
+  -- For whatever reason this plugin needs to be loaded before the LspAttach
+  -- event (I think), otherwise jdtls will be loaded with default settings.
+  -- event = "User FileOpened",
+  event = "LspAttach",
+  -- ft = { "java" },
 })
 
 ------------------------
