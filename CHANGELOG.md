@@ -2,6 +2,12 @@
 
 ### Feat
 
+- **macos**: add macos/KeyBindings dir to stow DefaultKeyBindings.dict on macos
+- **lvim**: add bandit security linting to ruff
+- **lvim**: add treesitter ensure installed to lsp/languages/cpp.lua
+- **lvim**: add single_file_support = true to pyright lsp settings
+- **lvim**: add more lsp settings to pyright and yamlls and add commented out pyright settings in ftplugin/python.lua
+- **raycast**: add raycast config
 - **lvim**: add WIP toggle_bufferline() and add working toggle number and relativenumber
 - **zsh**: add zsh completion for brew
 - **lvim**: add JavaSE-1.8 runtime and original swenv.nvim plugin
@@ -29,6 +35,7 @@
 
 ### Fix
 
+- **lvim**: lazy load nvim-jdtls on LspAttach event instead of ft = java
 - **lvim**: fix deprecation warnings for fidget and dressing
 - **lvim**: add iferr to golang mason ensure installed
 - **lvim**: java language support
@@ -43,6 +50,7 @@
 
 ### Refactor
 
+- **lvim**: move pyright settings to lsp server configuration in ftplugin/python.lua and remove lspsettings/pyright.json
 - **aliases**: add command check for ranger alias
 - **lvim**: move nvim-gdb plugin to lsp/languages/cpp.lua
 - **lvim**: move lsp, formatter, linter setup to ftplugin/ instead of lsp/languages for golang, java, and python
