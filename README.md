@@ -188,7 +188,12 @@ TODO
 
 - [Change MacOS
   Keybindings](https://blog.victormendonca.com/2020/04/27/how-to-change-macos-key-bindings/)
-  to bind ctrl + left and ctrl + right to move one word at a time
+  to bind ctrl + left and ctrl + right to move one word at a time:
+
+```sh
+stow macos/KeyBindings
+```
+
 - Remap mission control to alt + up
   - Remap space swapping to alt + {1,2,3,4}
 
@@ -197,3 +202,4 @@ TODO
 - [ ] add links
 - [ ] flesh out dependencies more
 - [ ] add brew packages file
+- [ ] maybe organize directories into shared, macos, linux
