@@ -590,6 +590,9 @@ lvim.plugins = {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     event = "LspAttach",
     cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
+    keys = {
+      { "<leader>lu", "<cmd>MasonToolsUpdate<CR>", desc = "Mason Tools Update" },
+    },
     config = function()
       require("mason-tool-installer").setup {
         -- a list of all tools you want to ensure are installed upon
@@ -654,6 +657,11 @@ lvim.plugins = {
           "black",
           "debugpy",
 
+          -- SQL
+          -- "sqlls",
+          -- "sqlfluff",
+          -- "sqlfmt",
+
           -- Yaml
           "yaml-language-server",
         },
@@ -662,7 +670,7 @@ lvim.plugins = {
         -- are available the tool will be updated. This setting does not
         -- affect :MasonToolsUpdate or :MasonToolsInstall.
         -- Default: false
-        auto_update = false,
+        auto_update = true,
 
         -- automatically install / update on startup. If set to false nothing
         -- will happen on startup. You can use :MasonToolsInstall or
@@ -689,6 +697,7 @@ lvim.plugins = {
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function()
           vim.cmd "MasonToolsInstall"
+          -- vim.cmd "MasonToolsUpdate"
         end,
       })
     end,
