@@ -1,11 +1,13 @@
--- TODO: maybe move this under Generic LSP settings
--- lvim.format_on_save = false
--- lvim.lsp.diagnostics.virtual_text = true
+-- Make sure to run the following:
+-- :MasonInstall clangd codelldb
 
--- lvim.builtin.treesitter.highlight.enable = true
-
--- -- auto install treesitter parsers
--- lvim.builtin.treesitter.ensure_installed = { "cpp", "c" }
+------------------------
+-- Treesitter
+------------------------
+vim.list_extend(lvim.builtin.treesitter.ensure_installed, {
+  -- "c",
+  "cpp",
+})
 
 ------------------------
 -- Plugins
@@ -28,6 +30,8 @@ table.insert(lvim.plugins, {
   build = ":!./install.sh",
   ft = { "c", "cpp" },
 })
+
+-- TODO: move everything under this comment to ftplugin/cpp.lua and test
 
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 
