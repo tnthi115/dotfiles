@@ -182,6 +182,16 @@ MacOS, with very similar architecture to
 [komorebi](https://github.com/LGUG2Z/komorebi) +
 [whkd](https://github.com/LGUG2Z/whkd) on Windows.
 
+#### Keybindings
+
+TODO
+
+- [Change MacOS
+  Keybindings](https://blog.victormendonca.com/2020/04/27/how-to-change-macos-key-bindings/)
+  to bind ctrl + left and ctrl + right to move one word at a time
+- Remap mission control to alt + up
+  - Remap space swapping to alt + {1,2,3,4}
+
 ## TODO
 
 - [ ] add links
