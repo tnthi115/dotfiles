@@ -697,7 +697,7 @@ lvim.plugins = {
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function()
           vim.cmd "MasonToolsInstall"
-          -- vim.cmd "MasonToolsUpdate"
+          vim.cmd "MasonToolsUpdate"
         end,
       })
     end,
