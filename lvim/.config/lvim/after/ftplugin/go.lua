@@ -43,6 +43,27 @@ formatters.setup {
   -- { command = "golines", filetypes = { "go" } },
 }
 
+------------------------
+-- Linting
+----------------------
+-- local linters = require "lvim.lsp.null-ls.linters"
+-- linters.setup {
+--   {
+--     command = "golangci-lint",
+--     filetypes = { "go", "gomod" },
+--     -- extra_args = { "-E=gosec,unparam" },
+--     -- extra_args = { "--enable-all" },
+--     extra_args = {
+--       "--enable-all",
+--       "--disable",
+--       "deadcode,lll,wsl",
+--       "--out-format",
+--       "json",
+--       "--issues-exit-code=1",
+--     },
+--   },
+-- }
+
 -- lvim.format_on_save = {
 --   pattern = { "*.go" },
 -- }
@@ -67,6 +88,21 @@ lsp_manager.setup("golangci_lint_ls", {
   -- cmd = "golangci_lint_langserver",
   on_init = require("lvim.lsp").common_on_init,
   capabilities = require("lvim.lsp").common_capabilities(),
+  init_options = {
+    command = {
+      "golangci-lint",
+      "run",
+      "--enable-all",
+      "--disable",
+      "deadcode,exhaustruct,gci,gofmt,gofumpt,goimports,golint,lll,maligned,misspell,nlreturn,nonamedreturns,nosnakecase,revive,scopelint,structcheck,tagalign,tagliatelle,varcheck,varnamelen,whitespace,wsl",
+      "--out-format",
+      "json",
+      "--issues-exit-code=1",
+    },
+  },
+  -- settings = {
+  --   golangci_lint_ls = {},
+  -- },
 })
 
 lsp_manager.setup("gopls", {
@@ -96,7 +132,15 @@ lsp_manager.setup("gopls", {
   capabilities = require("lvim.lsp").common_capabilities(),
   settings = {
     gopls = {
+      completeUnimported = true,
       usePlaceholders = true,
+      analyses = {
+        unusedparams = true,
+        shadow = true,
+        unusedwrite = true,
+        useany = true,
+        -- nilness = true,
+      },
       gofumpt = true,
       codelenses = {
         generate = true,
