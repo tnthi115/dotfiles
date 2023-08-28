@@ -81,76 +81,76 @@ dapgo.setup()
 ------------------------
 -- LSP
 ------------------------
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "gopls" })
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "gopls" })
 
-local lsp_manager = require "lvim.lsp.manager"
-lsp_manager.setup("golangci_lint_ls", {
-  -- cmd = "golangci_lint_langserver",
-  on_init = require("lvim.lsp").common_on_init,
-  capabilities = require("lvim.lsp").common_capabilities(),
-  init_options = {
-    command = {
-      "golangci-lint",
-      "run",
-      "--enable-all",
-      "--disable",
-      "deadcode,exhaustruct,gci,gofmt,gofumpt,goimports,golint,lll,maligned,misspell,nlreturn,nonamedreturns,nosnakecase,revive,scopelint,structcheck,tagalign,tagliatelle,varcheck,varnamelen,whitespace,wsl",
-      "--out-format",
-      "json",
-      "--issues-exit-code=1",
-    },
-  },
-  -- settings = {
-  --   golangci_lint_ls = {},
-  -- },
-})
+-- local lsp_manager = require "lvim.lsp.manager"
+-- lsp_manager.setup("golangci_lint_ls", {
+--   -- cmd = "golangci_lint_langserver",
+--   on_init = require("lvim.lsp").common_on_init,
+--   capabilities = require("lvim.lsp").common_capabilities(),
+--   init_options = {
+--     command = {
+--       "golangci-lint",
+--       "run",
+--       "--enable-all",
+--       "--disable",
+--       "deadcode,exhaustruct,gci,gofmt,gofumpt,goimports,golint,lll,maligned,misspell,nlreturn,nonamedreturns,nosnakecase,revive,scopelint,structcheck,tagalign,tagliatelle,varcheck,varnamelen,whitespace,wsl",
+--       "--out-format",
+--       "json",
+--       "--issues-exit-code=1",
+--     },
+--   },
+--   -- settings = {
+--   --   golangci_lint_ls = {},
+--   -- },
+-- })
 
-lsp_manager.setup("gopls", {
-  on_attach = function(client, bufnr)
-    require("lvim.lsp").common_on_attach(client, bufnr)
-    -- local _, _ = pcall(vim.lsp.codelens.refresh)
-    -- local map = function(mode, lhs, rhs, desc)
-    --   if desc then
-    --     desc = desc
-    --   end
+-- lsp_manager.setup("gopls", {
+--   on_attach = function(client, bufnr)
+--     require("lvim.lsp").common_on_attach(client, bufnr)
+--     -- local _, _ = pcall(vim.lsp.codelens.refresh)
+--     -- local map = function(mode, lhs, rhs, desc)
+--     --   if desc then
+--     --     desc = desc
+--     --   end
 
-    --   vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
-    -- end
-    -- -- map("n", "<leader>ci", "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies")
-    -- map("n", "<leader>ct", "<cmd>GoMod tidy<cr>", "Tidy")
-    -- map("n", "<leader>ca", "<cmd>GoTestAdd<Cr>", "Add Test")
-    -- map("n", "<leader>cA", "<cmd>GoTestsAll<Cr>", "Add All Tests")
-    -- map("n", "<leader>cE", "<cmd>GoTestsExp<Cr>", "Add Exported Tests")
-    -- map("n", "<leader>cg", "<cmd>GoGenerate<Cr>", "Go Generate")
-    -- map("n", "<leader>cf", "<cmd>GoGenerate %<Cr>", "Go Generate File")
-    -- map("n", "<leader>cc", "<cmd>GoCmt<Cr>", "Generate Comment")
-    -- map("n", "<leader>ce", "<cmd>GoIfErr<Cr>", "Generate iferr")
-    -- map("n", "<leader>cT", "<cmd>GoTagAdd<Cr>", "Add Tags")
-    -- map("n", "<leader>dT", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Go Test")
-  end,
-  on_init = require("lvim.lsp").common_on_init,
-  capabilities = require("lvim.lsp").common_capabilities(),
-  settings = {
-    gopls = {
-      completeUnimported = true,
-      usePlaceholders = true,
-      analyses = {
-        unusedparams = true,
-        shadow = true,
-        unusedwrite = true,
-        useany = true,
-        -- nilness = true,
-      },
-      gofumpt = true,
-      codelenses = {
-        generate = true,
-        gc_details = true,
-        test = true,
-        tidy = true,
-      },
-    },
-  },
-})
+--     --   vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
+--     -- end
+--     -- -- map("n", "<leader>ci", "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies")
+--     -- map("n", "<leader>ct", "<cmd>GoMod tidy<cr>", "Tidy")
+--     -- map("n", "<leader>ca", "<cmd>GoTestAdd<Cr>", "Add Test")
+--     -- map("n", "<leader>cA", "<cmd>GoTestsAll<Cr>", "Add All Tests")
+--     -- map("n", "<leader>cE", "<cmd>GoTestsExp<Cr>", "Add Exported Tests")
+--     -- map("n", "<leader>cg", "<cmd>GoGenerate<Cr>", "Go Generate")
+--     -- map("n", "<leader>cf", "<cmd>GoGenerate %<Cr>", "Go Generate File")
+--     -- map("n", "<leader>cc", "<cmd>GoCmt<Cr>", "Generate Comment")
+--     -- map("n", "<leader>ce", "<cmd>GoIfErr<Cr>", "Generate iferr")
+--     -- map("n", "<leader>cT", "<cmd>GoTagAdd<Cr>", "Add Tags")
+--     -- map("n", "<leader>dT", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Go Test")
+--   end,
+--   on_init = require("lvim.lsp").common_on_init,
+--   capabilities = require("lvim.lsp").common_capabilities(),
+--   settings = {
+--     gopls = {
+--       completeUnimported = true,
+--       usePlaceholders = true,
+--       analyses = {
+--         unusedparams = true,
+--         shadow = true,
+--         unusedwrite = true,
+--         useany = true,
+--         -- nilness = true,
+--       },
+--       gofumpt = true,
+--       codelenses = {
+--         generate = true,
+--         gc_details = true,
+--         test = true,
+--         tidy = true,
+--       },
+--     },
+--   },
+-- })
 
 local status_ok, gopher = pcall(require, "gopher")
 if not status_ok then
