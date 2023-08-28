@@ -72,25 +72,25 @@ lsp_manager.setup("golangci_lint_ls", {
 lsp_manager.setup("gopls", {
   on_attach = function(client, bufnr)
     require("lvim.lsp").common_on_attach(client, bufnr)
-    local _, _ = pcall(vim.lsp.codelens.refresh)
-    local map = function(mode, lhs, rhs, desc)
-      if desc then
-        desc = desc
-      end
+    -- local _, _ = pcall(vim.lsp.codelens.refresh)
+    -- local map = function(mode, lhs, rhs, desc)
+    --   if desc then
+    --     desc = desc
+    --   end
 
-      vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
-    end
-    -- map("n", "<leader>ci", "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies")
-    map("n", "<leader>ct", "<cmd>GoMod tidy<cr>", "Tidy")
-    map("n", "<leader>ca", "<cmd>GoTestAdd<Cr>", "Add Test")
-    map("n", "<leader>cA", "<cmd>GoTestsAll<Cr>", "Add All Tests")
-    map("n", "<leader>cE", "<cmd>GoTestsExp<Cr>", "Add Exported Tests")
-    map("n", "<leader>cg", "<cmd>GoGenerate<Cr>", "Go Generate")
-    map("n", "<leader>cf", "<cmd>GoGenerate %<Cr>", "Go Generate File")
-    map("n", "<leader>cc", "<cmd>GoCmt<Cr>", "Generate Comment")
-    map("n", "<leader>ce", "<cmd>GoIfErr<Cr>", "Generate iferr")
-    map("n", "<leader>cT", "<cmd>GoTagAdd<Cr>", "Add Tags")
-    map("n", "<leader>dT", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Go Test")
+    --   vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
+    -- end
+    -- -- map("n", "<leader>ci", "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies")
+    -- map("n", "<leader>ct", "<cmd>GoMod tidy<cr>", "Tidy")
+    -- map("n", "<leader>ca", "<cmd>GoTestAdd<Cr>", "Add Test")
+    -- map("n", "<leader>cA", "<cmd>GoTestsAll<Cr>", "Add All Tests")
+    -- map("n", "<leader>cE", "<cmd>GoTestsExp<Cr>", "Add Exported Tests")
+    -- map("n", "<leader>cg", "<cmd>GoGenerate<Cr>", "Go Generate")
+    -- map("n", "<leader>cf", "<cmd>GoGenerate %<Cr>", "Go Generate File")
+    -- map("n", "<leader>cc", "<cmd>GoCmt<Cr>", "Generate Comment")
+    -- map("n", "<leader>ce", "<cmd>GoIfErr<Cr>", "Generate iferr")
+    -- map("n", "<leader>cT", "<cmd>GoTagAdd<Cr>", "Add Tags")
+    -- map("n", "<leader>dT", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Go Test")
   end,
   on_init = require("lvim.lsp").common_on_init,
   capabilities = require("lvim.lsp").common_capabilities(),
@@ -123,8 +123,8 @@ gopher.setup {
   },
 }
 
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
+local status_ok_1, which_key = pcall(require, "which-key")
+if not status_ok_1 then
   return
 end
 
@@ -139,7 +139,20 @@ local opts = {
 
 local mappings = {
   c = {
-    name = "Go",
+    name = "Code",
+    g = {
+      name = "Go",
+      t = { "<cmd>GoMod tidy<cr>", "Tidy" },
+      a = { "<cmd>GoTestAdd<Cr>", "Add Test" },
+      A = { "<cmd>GoTestsAll<Cr>", "Add All Tests" },
+      E = { "<cmd>GoTestsExp<Cr>", "Add Exported Tests" },
+      g = { "<cmd>GoGenerate<Cr>", "Go Generate" },
+      f = { "<cmd>GoGenerate %<Cr>", "Go Generate File" },
+      c = { "<cmd>GoCmt<Cr>", "Generate Comment" },
+      e = { "<cmd>GoIfErr<Cr>", "Generate iferr" },
+      T = { "<cmd>GoTagAdd<Cr>", "Add Tags" },
+      d = { "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Go Test" },
+    },
   },
 }
 
