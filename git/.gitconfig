@@ -24,6 +24,8 @@
 
   graph = log --all --graph --decorate --oneline
 
+  statdiff = diff --stat
+
 [init]
 	defaultBranch = main
 
