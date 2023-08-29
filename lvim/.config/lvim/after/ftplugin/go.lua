@@ -152,8 +152,8 @@ dapgo.setup()
 --   },
 -- })
 
-local status_ok, gopher = pcall(require, "gopher")
-if not status_ok then
+local gopher_ok, gopher = pcall(require, "gopher")
+if not gopher_ok then
   return
 end
 
@@ -167,15 +167,16 @@ gopher.setup {
   },
 }
 
-local status_ok_1, which_key = pcall(require, "which-key")
-if not status_ok_1 then
+local which_key_ok, which_key = pcall(require, "which-key")
+if not which_key_ok then
   return
 end
 
 local opts = {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  -- buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  buffer = vim.api.nvim_get_current_buf(), -- Local mappings
   silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = true, -- use `nowait` when creating keymaps
@@ -183,20 +184,17 @@ local opts = {
 
 local mappings = {
   c = {
-    name = "Code",
-    g = {
-      name = "Go",
-      t = { "<cmd>GoMod tidy<cr>", "Tidy" },
-      a = { "<cmd>GoTestAdd<Cr>", "Add Test" },
-      A = { "<cmd>GoTestsAll<Cr>", "Add All Tests" },
-      E = { "<cmd>GoTestsExp<Cr>", "Add Exported Tests" },
-      g = { "<cmd>GoGenerate<Cr>", "Go Generate" },
-      f = { "<cmd>GoGenerate %<Cr>", "Go Generate File" },
-      c = { "<cmd>GoCmt<Cr>", "Generate Comment" },
-      e = { "<cmd>GoIfErr<Cr>", "Generate iferr" },
-      T = { "<cmd>GoTagAdd<Cr>", "Add Tags" },
-      d = { "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Go Test" },
-    },
+    name = "Go",
+    t = { "<cmd>GoMod tidy<cr>", "Tidy" },
+    a = { "<cmd>GoTestAdd<Cr>", "Add Test" },
+    A = { "<cmd>GoTestsAll<Cr>", "Add All Tests" },
+    E = { "<cmd>GoTestsExp<Cr>", "Add Exported Tests" },
+    g = { "<cmd>GoGenerate<Cr>", "Go Generate" },
+    f = { "<cmd>GoGenerate %<Cr>", "Go Generate File" },
+    c = { "<cmd>GoCmt<Cr>", "Generate Comment" },
+    e = { "<cmd>GoIfErr<Cr>", "Generate iferr" },
+    T = { "<cmd>GoTagAdd<Cr>", "Add Tags" },
+    d = { "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Go Test" },
   },
 }
 

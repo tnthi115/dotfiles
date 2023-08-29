@@ -114,7 +114,8 @@ end
 local opts = {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  -- buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  buffer = vim.api.nvim_get_current_buf(), -- Local mappings
   silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = true, -- use `nowait` when creating keymaps
@@ -122,26 +123,16 @@ local opts = {
 
 local mappings = {
   c = {
-    -- name = "Python",
-    -- -- Switch virtual environment
-    -- e = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
-    -- -- Testing
-    -- m = { "<cmd>lua require('neotest').run.run()<cr>", "Test Method" },
-    -- c = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" },
-    -- s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" },
-    name = "Code",
-    p = {
-      name = "Python",
-      -- Switch virtual environment
-      e = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
-      -- Testing
-      m = { "<cmd>lua require('neotest').run.run()<cr>", "Test Method" },
-      c = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" },
-      s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" },
-      -- Dap
-      M = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Test Method DAP" },
-      C = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" },
-    },
+    name = "Python",
+    -- Switch virtual environment
+    e = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
+    -- Testing
+    m = { "<cmd>lua require('neotest').run.run()<cr>", "Test Method" },
+    c = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" },
+    s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" },
+    -- Dap
+    M = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Test Method DAP" },
+    C = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" },
   },
 }
 
