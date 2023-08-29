@@ -651,7 +651,8 @@ lvim.plugins = {
 
           -- Python
           "pyright",
-          "ruff",
+          "ruff-lsp",
+          -- "ruff",
           "mypy",
           "usort",
           "black",

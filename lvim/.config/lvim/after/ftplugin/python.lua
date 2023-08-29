@@ -1,7 +1,7 @@
 -- -- Make sure to run the following:
 -- -- :MasonInstall pyright flake8 black debugpy
 -- -- swap out flake8 for ruff and mypy
--- -- :MasonInstall pyright ruff mypy usort black debugpy
+-- -- :MasonInstall pyright ruff-lsp ruff mypy usort black debugpy
 -- -- Install pytest
 
 -- ------------------------
@@ -42,7 +42,7 @@ formatters.setup { { name = "black" }, { name = "usort" } }
 local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup { { command = "flake8", filetypes = { "python" } } }
 linters.setup {
-  { command = "ruff", filetypes = { "python" }, extra_args = { "--extend-select=W,N,S,A,C4,SIM,TCH,PL,RUF" } },
+  -- { command = "ruff", filetypes = { "python" }, extra_args = { "--extend-select=W,N,S,A,C4,SIM,TCH,PL,RUF" } },
   { command = "mypy", filetypes = { "python" }, extra_args = { "--strict" } },
 }
 
@@ -84,6 +84,22 @@ lsp_manager.setup("pyright", {
         typeCheckingMode = "basic", -- off, basic, strict
         useLibraryCodeForTypes = true,
       },
+    },
+  },
+})
+
+lsp_manager.setup("ruff_lsp", {
+  on_attach = function(client, bufnr)
+    require("lvim.lsp").common_on_attach(client, bufnr)
+    -- Disable hover in favor of Pyright.
+    client.server_capabilities.hoverProvider = false
+  end,
+  on_init = require("lvim.lsp").common_on_init,
+  capabilities = require("lvim.lsp").common_capabilities(),
+  init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = { "--extend-select=W,N,S,A,C4,SIM,TCH,PL,RUF" },
     },
   },
 })
