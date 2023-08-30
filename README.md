@@ -164,6 +164,8 @@ a built in application launcher, but you can use
 [Compton](https://github.com/chjj/compton) is preinstalled on Ubuntu. Use
 [picom](https://github.com/yshui/picom) on Arch.
 
+I will probably switch to bspwm or qtile in the future.
+
 ### MacOS
 
 #### Raycast
@@ -191,10 +193,10 @@ TODO
   to bind ctrl + left and ctrl + right to move one word at a time:
 
 ```sh
-stow macos/KeyBindings
+stow KeyBindings
 ```
 
-- Remap mission control to alt + up
+- Remap mission control to alt + up in keyboard shortcut settings
   - Remap space swapping to alt + {1,2,3,4}
 
 ## TODO
