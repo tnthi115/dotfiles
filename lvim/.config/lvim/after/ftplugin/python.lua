@@ -44,6 +44,7 @@ local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   -- { command = "ruff", filetypes = { "python" }, extra_args = { "--extend-select=W,N,S,A,C4,SIM,TCH,PL,RUF" } },
   { command = "mypy", filetypes = { "python" }, extra_args = { "--strict" } },
+  -- { command = "mypy", filetypes = { "python" } },
 }
 
 ------------------------
@@ -99,7 +100,7 @@ lsp_manager.setup("ruff_lsp", {
   init_options = {
     settings = {
       -- Any extra CLI arguments for `ruff` go here.
-      args = { "--extend-select=W,N,S,A,C4,SIM,TCH,PL,RUF" },
+      args = { "--extend-select=W,N,S,A,C4,SIM,TCH,PL,AIR,RUF" },
     },
   },
 })
