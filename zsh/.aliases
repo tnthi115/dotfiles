@@ -79,6 +79,13 @@ alias ts="tmux switch-client -t \$(tmux ls | fzf | awk '{print \$1}')"
 # alias ts="tmux switch-client -t \$(tmux ls | fzf | awk_first)"
 # ts() { tmux switch-client -t "$(tmux ls | fzf | awk '{print $1}')"; }
 
+# switch python virtual environments
+swenv() {
+    venv=$(fd -t d -d 1 . $HOME/venvs | fzf)
+    source $venv/bin/activate
+
+}
+
 # fzf colorscheme
 _gen_fzf_default_opts() {
     # local base03="234"

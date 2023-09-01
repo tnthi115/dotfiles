@@ -67,8 +67,8 @@ symbol = " "
 [c]
 symbol = " "
 
-[conda]
-symbol = " "
+# [conda]
+# symbol = " "
 
 [dart]
 symbol = " "
