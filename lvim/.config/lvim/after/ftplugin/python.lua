@@ -43,7 +43,13 @@ local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup { { command = "flake8", filetypes = { "python" } } }
 linters.setup {
   -- { command = "ruff", filetypes = { "python" }, extra_args = { "--extend-select=W,N,S,A,C4,SIM,TCH,PL,RUF" } },
-  { command = "mypy", filetypes = { "python" }, extra_args = { "--strict" } },
+  {
+    command = "mypy",
+    filetypes = { "python" },
+    -- Add --python-executable flag so that if we are using a virtual environment, we use the python interpreter of that environment instead of the global one.
+    -- Equivalent command: mypy --strict --python-executable=$(which python)
+    extra_args = { "--strict", "--python-executable=" .. io.popen("which python"):read("*a"):gsub("[\n\r]", "") },
+  },
   -- { command = "mypy", filetypes = { "python" } },
 }
 
