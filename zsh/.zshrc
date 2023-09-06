@@ -158,7 +158,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # Use modern completion system
 autoload -Uz compinit
-compinit
+# compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -195,7 +195,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots) # Include hidden files.
 
 # Enable searching through history
 bindkey '^R' history-incremental-pattern-search-backward
@@ -313,3 +313,4 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+conda deactivate
