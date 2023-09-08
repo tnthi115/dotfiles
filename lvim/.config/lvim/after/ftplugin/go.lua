@@ -40,6 +40,9 @@ formatters.setup {
   -- { command = "goimports", filetypes = { "go" } },
   { command = "gofumpt", filetypes = { "go" } },
   { command = "goimports-reviser", filetypes = { "go" } },
+  -- { command = "goimports-reviser", filetypes = { "go" }, extra_args = { "-set-alias" } },
+  -- { command = "goimports-reviser", filetypes = { "go" }, extra_args = { "-company-prefixes" } },
+  -- { command = "goimports-reviser", filetypes = { "go" }, extra_args = { "-company-prefixes", "-set-alias" } },
   -- { command = "golines", filetypes = { "go" } },
 }
 

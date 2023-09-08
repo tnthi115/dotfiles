@@ -64,7 +64,6 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "gopls" })
 
 local lsp_manager = require "lvim.lsp.manager"
 lsp_manager.setup("golangci_lint_ls", {
-  -- cmd = "golangci_lint_langserver",
   on_init = require("lvim.lsp").common_on_init,
   capabilities = require("lvim.lsp").common_capabilities(),
   init_options = {
@@ -73,7 +72,7 @@ lsp_manager.setup("golangci_lint_ls", {
       "run",
       "--enable-all",
       "--disable",
-      "deadcode,exhaustruct,gci,gofmt,gofumpt,goimports,golint,lll,maligned,misspell,nlreturn,nonamedreturns,nosnakecase,revive,scopelint,structcheck,tagalign,tagliatelle,varcheck,varnamelen,whitespace,wsl",
+      "deadcode,exhaustivestruct,gci,gofmt,gofumpt,goimports,golint,ifshort,interfacer,lll,maligned,misspell,nlreturn,nonamedreturns,nosnakecase,revive,scopelint,structcheck,tagalign,tagliatelle,varcheck,varnamelen,whitespace,wsl",
       "--out-format",
       "json",
       "--issues-exit-code=1",
