@@ -711,7 +711,7 @@ lvim.plugins = {
     event = "LspAttach",
     dependencies = "nvim-treesitter/nvim-treesitter",
     keys = {
-      { "<leader>ng", "<cmd>lua require('neogen').generate()<CR>", desc = "Generate annotation" },
+      { "<leader>nn", "<cmd>lua require('neogen').generate()<CR>", desc = "Generate annotation" },
       {
         "<leader>nf",
         "<cmd>lua require('neogen').generate({ type = 'func' })<CR>",
