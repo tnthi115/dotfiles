@@ -6,7 +6,7 @@ require "user.lsp.languages.markdown"
 require "user.lsp.languages.go"
 require "user.lsp.languages.python"
 require "user.lsp.languages.java"
--- require "user.lsp.languages.sql"
+require "user.lsp.languages.sql"
 
 lvim.format_on_save.enabled = true
 -- lvim.format_on_save = {

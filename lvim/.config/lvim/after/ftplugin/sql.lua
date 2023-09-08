@@ -1,9 +1,9 @@
 ------------------------
 -- Formatting
 ------------------------
-local formatters = require "lvim.lsp.null-ls.formatters"
+-- local formatters = require "lvim.lsp.null-ls.formatters"
 -- Limited DDL and DML support currently. https://github.com/tconbeer/sqlfmt/issues/262
-formatters.setup { { name = "sqlfmt" }, filetypes = { "sql" } }
+-- formatters.setup { { name = "sqlfmt" }, filetypes = { "sql" } }
 
 ------------------------
 -- Linting
@@ -11,6 +11,7 @@ formatters.setup { { name = "sqlfmt" }, filetypes = { "sql" } }
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { command = "sqlfluff", filetypes = { "sql" } },
+  -- { command = "sqlfluff", filetypes = { "sql" }, extra_args = { "--dialect=mysql" } },
 }
 
 ------------------------
@@ -24,4 +25,13 @@ lsp_manager.setup("sqlls", {
   end,
   on_init = require("lvim.lsp").common_on_init,
   capabilities = require("lvim.lsp").common_capabilities(),
+  -- init_options = {
+  --   command = {
+  --     "sql-language-server",
+  --     "--dialect",
+  --     "mysql",
+  --   },
+  -- },
 })
+
+vim.cmd [[setlocal shiftwidth=4 softtabstop=4 expandtab]]

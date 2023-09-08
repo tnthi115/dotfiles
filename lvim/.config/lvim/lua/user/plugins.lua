@@ -659,9 +659,9 @@ lvim.plugins = {
           "debugpy",
 
           -- SQL
-          -- "sqlls",
-          -- "sqlfluff",
-          -- "sqlfmt",
+          "sqlls",
+          "sqlfluff",
+          "sqlfmt",
 
           -- Yaml
           "yaml-language-server",
