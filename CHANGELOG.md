@@ -2,6 +2,10 @@
 
 ### Feat
 
+- **lvim**: add keybind for new cellular automaton scramble animation
+- **lvim**: add neogen plugin for docstring/annotation generation for multiple languages
+- **lvim**: add minimal sql support
+- **lvim**: add docstring linter to ruff
 - **lvim**: add --python-executable flag to mypy command to use the current python interpreter for when in a virtual environment
 - **zsh**: install zap plugin manager, but currently not using
 - **lvim**: add airflow linting in ruff
@@ -44,6 +48,7 @@
 
 ### Fix
 
+- **lvim**: remove deprecated linters in golanci-lint
 - **tmux**: transparency of status bar
 - **lvim**: move golangci-lint-ls and gopls setup back to lsp/languages/go.lua for now so it starts up correctly
 - move macos/KeyBindings to Keybindings so stow will work
