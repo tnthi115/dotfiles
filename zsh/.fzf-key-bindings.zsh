@@ -81,7 +81,7 @@ fzf-cd-widget() {
     return 0
   fi
   zle push-line # Clear buffer. Auto-restored on next prompt.
-  BUFFER="builtin cd -- ${(q)dir}"
+  BUFFER="builtin pushd -- ${(q)dir}"
   zle accept-line
   local ret=$?
   unset dir # ensure this doesn't end up appearing in prompt expansion
