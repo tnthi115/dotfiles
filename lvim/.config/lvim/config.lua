@@ -19,6 +19,7 @@ reload "user.lsp"
 reload "user.whichkey"
 -- reload "user.autorun"
 reload "user.colorscheme"
+reload "user.treesitter-textobjects"
 -- reload "user.copilot"
 
 -- local bg_color = "#1d2021"
