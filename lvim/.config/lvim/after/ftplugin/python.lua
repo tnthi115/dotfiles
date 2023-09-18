@@ -106,7 +106,8 @@ lsp_manager.setup("ruff_lsp", {
   init_options = {
     settings = {
       -- Any extra CLI arguments for `ruff` go here.
-      args = { "--extend-select=W,N,D,S,A,C4,SIM,TCH,PL,AIR,RUF" },
+      -- See https://beta.ruff.rs/docs/rules/
+      args = { "--extend-select=W,N,D,S,A,C4,ISC,ICN,PT,RET,SIM,TID,TCH,PL,TRY,AIR,PERF,FURB,RUF" },
     },
   },
 })
