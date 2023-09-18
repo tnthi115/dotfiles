@@ -2,6 +2,11 @@
 
 ### Feat
 
+- **lvim**: add treesitter-textobjects to lvim
+- **lvim**: add more python ruff linters
+- change fzf alt-c keybind to use pushd instead of cd
+- update neogen config with better comments and golang section
+- **lvim**: change todo-comments to highlight todos outside of comments as well
 - **lvim**: add keybind for new cellular automaton scramble animation
 - **lvim**: add neogen plugin for docstring/annotation generation for multiple languages
 - **lvim**: add minimal sql support
@@ -67,6 +72,7 @@
 
 ### Refactor
 
+- **lvim**: change neogen generate() keybind to nn from ng
 - **zsh**: comment out extra compinit
 - **lvim**: change language keybindings to be local to the attached buffer instead of global
 - **lvim**: move all language keybinds to Code -> lang -> keys to allow multiple lang keybinds at the same time
