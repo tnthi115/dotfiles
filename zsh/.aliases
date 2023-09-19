@@ -81,14 +81,19 @@ alias ts="tmux switch-client -t \$(tmux ls | fzf | awk '{print \$1}')"
 
 # switch python virtual environments
 swenv() {
-    # if [ -d ".venv" ]; then
-    #     venv=$(cat <(fd -t d -d 1 . .venv) <(fd -t d -d 1 . $HOME/venvs) | fzf)
-    # else
-    #     venv=$(fd -t d -d 1 . $HOME/venvs | fzf)
-    # fi
-    venv=$(cat <(fd -t d -d 1 . .venv) <(fd -t d -d 1 . $HOME/venvs) | fzf)
-    source $venv/bin/activate
+    local venv_path_list
+    # venv_path_list=$(echo ".venv $HOME/venvs" | awk '{ gsub(" ", "\n"); print }')
+    # venv_path_list=("$HOME/venvs")
+    [ -d ".venv" ] && venv_path_list+=(".venv")
+    [ -d "$HOME/venvs" ] && venv_path_list+=("$HOME/venvs")
 
+    if command -v fd &> /dev/null; then
+        venv=$(printf "%s\n" "${venv_path_list[@]}" | xargs -I {} fd -t d -d 1 . {} | fzf)
+    else
+        venv=$(printf "%s\n" "${venv_path_list[@]}" | xargs -I {} find {} -path "{}" -o -print -maxdepth 1 -type d | fzf)
+    fi
+
+    source "$venv/bin/activate"
 }
 
 # fzf colorscheme
