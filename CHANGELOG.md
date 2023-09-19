@@ -2,6 +2,7 @@
 
 ### Feat
 
+- **aliases**: add current directory .venv to swenv shell function
 - **lvim**: add treesitter-textobjects to lvim
 - **lvim**: add more python ruff linters
 - change fzf alt-c keybind to use pushd instead of cd
