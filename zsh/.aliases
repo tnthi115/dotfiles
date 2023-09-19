@@ -81,7 +81,12 @@ alias ts="tmux switch-client -t \$(tmux ls | fzf | awk '{print \$1}')"
 
 # switch python virtual environments
 swenv() {
-    venv=$(fd -t d -d 1 . $HOME/venvs | fzf)
+    # if [ -d ".venv" ]; then
+    #     venv=$(cat <(fd -t d -d 1 . .venv) <(fd -t d -d 1 . $HOME/venvs) | fzf)
+    # else
+    #     venv=$(fd -t d -d 1 . $HOME/venvs | fzf)
+    # fi
+    venv=$(cat <(fd -t d -d 1 . .venv) <(fd -t d -d 1 . $HOME/venvs) | fzf)
     source $venv/bin/activate
 
 }
