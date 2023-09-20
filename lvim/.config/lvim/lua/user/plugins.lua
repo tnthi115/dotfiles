@@ -620,6 +620,12 @@ lvim.plugins = {
           -- Dockerfile
           "dockerfile-language-server",
 
+          -- C++
+          -- "clangd",
+          -- "cpplint",
+          -- "clang-format",
+          -- "codelldb",
+
           -- Golang
           "gopls",
           "golangci-lint",

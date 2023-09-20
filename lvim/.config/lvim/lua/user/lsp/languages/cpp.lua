@@ -1,5 +1,5 @@
 -- Make sure to run the following:
--- :MasonInstall clangd codelldb
+-- :MasonInstall clangd codelldb cpplint
 
 ------------------------
 -- Treesitter
@@ -17,14 +17,16 @@ table.insert(lvim.plugins, {
   "p00f/clangd_extensions.nvim",
   ft = { "c", "cpp" },
 })
-table.insert(lvim.plugins, {
-  "cdelledonne/vim-cmake",
-  ft = { "cpp", "cmake" },
-  config = function()
-    vim.cmd [[let g:cmake_link_compile_commands = 1]]
-    vim.cmd [[let g:cmake_default_config = "build"]]
-  end,
-})
+if vim.fn.executable "cmake" == 1 then
+  table.insert(lvim.plugins, {
+    "cdelledonne/vim-cmake",
+    ft = { "cpp", "cmake" },
+    config = function()
+      vim.cmd [[let g:cmake_link_compile_commands = 1]]
+      vim.cmd [[let g:cmake_default_config = "build"]]
+    end,
+  })
+end
 table.insert(lvim.plugins, {
   "sakhnik/nvim-gdb",
   build = ":!./install.sh",
@@ -38,18 +40,18 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 ------------------------
 -- Linting
 ------------------------
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  { command = "cpplint", filetypes = { "cpp" } },
-}
+-- local linters = require "lvim.lsp.null-ls.linters"
+-- linters.setup {
+--   { command = "cpplint", filetypes = { "cpp" } },
+-- }
 
 ------------------------
 -- Formatting
 ------------------------
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { command = "clang-format", filetypes = { "cpp" } },
-}
+-- local formatters = require "lvim.lsp.null-ls.formatters"
+-- formatters.setup {
+--   { command = "clang-format", filetypes = { "cpp" } },
+-- }
 
 -- some settings can only passed as commandline flags, see `clangd --help`
 local clangd_flags = {
