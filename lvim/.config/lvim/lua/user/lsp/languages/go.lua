@@ -3,6 +3,8 @@
 -- Install golangci-lint: https://golangci-lint.run/usage/install/
 -- ^ Now in mason
 
+-- TODO: check out https://github.com/ray-x/go.nvim for a more complete 1 plugin package
+
 ------------------------
 -- Treesitter
 ------------------------
@@ -86,6 +88,7 @@ lsp_manager.setup("golangci_lint_ls", {
 lsp_manager.setup("gopls", {
   on_attach = function(client, bufnr)
     require("lvim.lsp").common_on_attach(client, bufnr)
+    require("inlay-hints").on_attach(client, bufnr)
     -- local _, _ = pcall(vim.lsp.codelens.refresh)
     -- local map = function(mode, lhs, rhs, desc)
     --   if desc then
@@ -125,6 +128,10 @@ lsp_manager.setup("gopls", {
         gc_details = true,
         test = true,
         tidy = true,
+      },
+      hints = {
+        assignVariableTypes = true,
+        parameterNames = true,
       },
     },
   },
