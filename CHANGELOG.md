@@ -2,6 +2,9 @@
 
 ### Feat
 
+- **lvim**: change todo-comment highlighting to highlight only bg
+- **tmux**: add keybind to swap tmux session with popup window
+- **lvim**: add inlay hints settings to gopls in preparation for neovim inlay hints in 0.10
 - **aliases**: add current directory .venv to swenv shell function
 - **lvim**: add treesitter-textobjects to lvim
 - **lvim**: add more python ruff linters
@@ -73,6 +76,8 @@
 
 ### Refactor
 
+- **lvim**: clean up cpp language configuration, but not using cpp
+- **aliases**: improve swenv() function to use an array of paths and check for fd
 - **lvim**: change neogen generate() keybind to nn from ng
 - **zsh**: comment out extra compinit
 - **lvim**: change language keybindings to be local to the attached buffer instead of global
