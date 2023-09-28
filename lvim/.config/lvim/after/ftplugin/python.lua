@@ -51,6 +51,7 @@ linters.setup {
     extra_args = { "--strict", "--python-executable=" .. io.popen("which python"):read("*a"):gsub("[\n\r]", "") },
   },
   -- { command = "mypy", filetypes = { "python" } },
+  { command = "pylint", filetypes = { "python" } },
 }
 
 ------------------------
@@ -107,7 +108,7 @@ lsp_manager.setup("ruff_lsp", {
     settings = {
       -- Any extra CLI arguments for `ruff` go here.
       -- See https://beta.ruff.rs/docs/rules/
-      args = { "--extend-select=W,N,D,S,A,C4,ISC,ICN,PT,RET,SIM,TID,TCH,PL,TRY,AIR,PERF,FURB,RUF" },
+      args = { "--extend-select=W,N,D,UP,S,A,C4,ISC,ICN,PT,RET,SIM,TID,TCH,PL,TRY,AIR,PERF,FURB,RUF" },
     },
   },
 })
