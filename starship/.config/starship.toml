@@ -57,6 +57,9 @@ symbol = '️󱇶 '
 # format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
 format = 'on [$symbol($project)]($style) '
 
+[kubernetes]
+disabled = true
+
 # Use Nerd Font symbols
 [aws]
 symbol = "  "

@@ -19,7 +19,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("FileType", {
   -- pattern = { "python", "java", "xml", "tcl", "markdown", "css", "html", "xhtml" },
   -- pattern = { "python", "java", "xml", "tcl", "css", "sh", "bash", "zsh" },
-  pattern = { "python", "xml", "tcl", "css", "sh", "bash", "zsh" },
+  -- pattern = { "python", "xml", "tcl", "css", "sh", "bash", "zsh" },
+  pattern = { "python", "xml", "tcl", "css" },
   -- pattern = { "java", "xml", "tcl", "markdown", "css" },
   command = "setlocal shiftwidth=4 softtabstop=4 expandtab",
 })

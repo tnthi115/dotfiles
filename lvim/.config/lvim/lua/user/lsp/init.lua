@@ -92,7 +92,8 @@ local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   -- { command = "goimports", filetypes = { "go" } },
   -- { command = "gofumpt", filetypes = { "go" } },
-  { command = "beautysh" },
+  -- { command = "beautysh" },
+  { command = "shfmt" },
   { command = "markdownlint", filetypes = { "markdown" } },
   { command = "stylua", filetypes = { "lua" } },
   -- { command = "clang-format", filetypes = { "cpp" } },

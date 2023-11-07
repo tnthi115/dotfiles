@@ -609,6 +609,7 @@ lvim.plugins = {
           -- Shell
           "bash-language-server",
           "beautysh",
+          "shfmt",
           "shellcheck",
 
           -- Spelling
