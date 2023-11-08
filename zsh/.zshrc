@@ -80,7 +80,7 @@ export CARGO_HOME="$CARGO_PATH"
 export PATH="$PATH:$CARGO_HOME/bin"
 
 # Add lvim to path
-export PATH="$PATH:$HOME/.local/bin/"
+export PATH="$PATH:$HOME/.local/bin"
 
 # Set editor.
 export EDITOR="lvim"
@@ -120,6 +120,9 @@ if command -v brew &> /dev/null; then
     export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
     [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 fi
+
+# Add f5-bin to path
+[[ -d $HOME/f5-bin ]] && export PATH="$PATH:$HOME/f5-bin"
 
 # }}}
 
