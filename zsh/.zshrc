@@ -107,6 +107,8 @@ if command -v go &> /dev/null; then
     # export GOPATH="$HOME/go"
     # export GOPATH="$HOME/.local/lib/go"
     export PATH="$PATH:$(go env GOPATH)/bin"
+    export GOPATH="$(go env GOPATH)"
+    export GOPRIVATE=gopkg.volterra.us
 fi
 
 # Add lvim mason to path
