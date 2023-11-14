@@ -1,0 +1,39 @@
+[language-server.gopls]
+command = "gopls"
+config = { completeUnimported = true, usePlaceholders = true, analyses = { unusedparams = true, shadow = true, unusedwrite = true, useany = true }, gofumpt = true, codelenses = { generate = true, gc_details = true, test = true, tidy = true } }
+
+[language-server.golangci-lint-lsp]
+command = "golangci-lint-langserver"
+config = { command = [
+  "golangci-lint",
+  "run",
+  "--enable-all",
+  "--disable",
+  "deadcode,depguard,exhaustivestruct,gci,gofmt,golint,ifshort,interfacer,lll,maligned,misspell,nlreturn,nonamedreturns,nosnakecase,revive,scopelint,structcheck,tagalign,tagliatelle,varcheck,whitespace,wsl",
+  "--out-format",
+  "json",
+  "--issues-exit-code=1",
+] }
+
+[[language]]
+name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+roots = ["go.work", "go.mod"]
+auto-format = true
+comment-token = "//"
+formatter = { command = "goimports-reviser" }
+# language-servers = [
+#   { name = "gopls" },
+#   { name = "golangci-lint-lsp", only-features = [
+#     "code-action",
+#     "diagostics",
+#   ] },
+# ]
+language-servers = ["gopls", "golangci-lint-lsp"]
+indent = { tab-width = 2, unit = " " }
+
+[[language]]
+name = "gomod"
+indent = { tab-width = 2, unit = " " }
