@@ -80,6 +80,7 @@ if not dap_ok then
 end
 
 dapgo.setup()
+require("gopher.dap").setup()
 
 ------------------------
 -- LSP

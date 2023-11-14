@@ -75,10 +75,11 @@ lsp_manager.setup("golangci_lint_ls", {
       "--enable-all",
       "--disable",
       -- "deadcode,exhaustivestruct,gci,gofmt,gofumpt,goimports,golint,ifshort,interfacer,lll,maligned,misspell,nlreturn,nonamedreturns,nosnakecase,revive,scopelint,structcheck,tagalign,tagliatelle,varcheck,varnamelen,whitespace,wsl",
-      "deadcode,exhaustivestruct,gci,gofmt,golint,ifshort,interfacer,lll,maligned,misspell,nlreturn,nonamedreturns,nosnakecase,revive,scopelint,structcheck,tagalign,tagliatelle,varcheck,whitespace,wsl",
+      "deadcode,depguard,exhaustivestruct,gci,gofmt,golint,ifshort,interfacer,lll,maligned,misspell,nlreturn,nonamedreturns,nosnakecase,revive,scopelint,structcheck,tagalign,tagliatelle,varcheck,whitespace,wsl",
       "--out-format",
       "json",
       "--issues-exit-code=1",
+      -- "--go=1.18",
     },
   },
   -- settings = {
@@ -89,7 +90,6 @@ lsp_manager.setup("golangci_lint_ls", {
 lsp_manager.setup("gopls", {
   on_attach = function(client, bufnr)
     require("lvim.lsp").common_on_attach(client, bufnr)
-    require("inlay-hints").on_attach(client, bufnr)
     -- local _, _ = pcall(vim.lsp.codelens.refresh)
     -- local map = function(mode, lhs, rhs, desc)
     --   if desc then

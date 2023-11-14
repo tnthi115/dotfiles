@@ -705,7 +705,7 @@ lvim.plugins = {
       -- Create autocommand to automatically installed missing tools on the LspAttach event.
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function()
-          vim.cmd "MasonToolsInstall"
+          -- vim.cmd "MasonToolsInstall"
           vim.cmd "MasonToolsUpdate"
         end,
       })
