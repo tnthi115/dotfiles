@@ -13,7 +13,11 @@ local opts = {
 }
 
 local mappings = {
-  m = { "<cmd>MarkdownPreviewToggle<CR>", "Markdown Preview" },
+  c = {
+    name = "Markdown",
+    m = { "<cmd>MarkdownPreviewToggle<CR>", "Preview in browser" },
+    c = { ":setlocal <C-R>=&conceallevel ? 'conceallevel=0' : 'conceallevel=1'<CR><CR>", "Toggle conceallevel" },
+  },
 }
 
 which_key.register(mappings, opts)
@@ -28,3 +32,5 @@ which_key.register(mappings, opts)
 -- formatters.setup {
 --   { command = "markdownlint", filetypes = { "markdown" } },
 -- }
+
+vim.cmd [[setlocal conceallevel=1]]
