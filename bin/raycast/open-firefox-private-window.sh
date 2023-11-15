@@ -13,4 +13,4 @@
 # @raycast.author Tymon
 # @raycast.authorURL https://github.com/tnthi115
 
-open -n -a Firefox --args -private-window
+open -n -a Firefox --args -private-window -P "hardened"
