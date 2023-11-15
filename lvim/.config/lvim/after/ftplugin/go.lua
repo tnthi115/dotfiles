@@ -40,9 +40,11 @@ formatters.setup {
   -- { command = "goimports", filetypes = { "go" } },
   { command = "gofumpt", filetypes = { "go" } },
   -- { command = "goimports-reviser", filetypes = { "go" } },
-  -- { command = "goimports-reviser", filetypes = { "go" }, extra_args = { "-set-alias" } },
-  -- { command = "goimports-reviser", filetypes = { "go" }, extra_args = { "-company-prefixes" } },
-  { command = "goimports-reviser", filetypes = { "go" }, extra_args = { "-company-prefixes", "-set-alias" } },
+  {
+    command = "goimports-reviser",
+    filetypes = { "go" },
+    extra_args = { "-company-prefixes=gopkg.volterra.us", "-set-alias", "-use-cache" },
+  },
   -- { command = "golines", filetypes = { "go" } },
 }
 
