@@ -99,6 +99,16 @@ swenv() {
     source "$venv/bin/activate"
 }
 
+# marix get-user-certs for all 4 envs
+matrix_all_certs() {
+  if command -v matrix &>/dev/null; then
+    matrix get-user-cert -e demo1
+    matrix get-user-cert -e crt
+    matrix get-user-cert -e staging
+    matrix get-user-cert -e prod
+  fi
+}
+
 # fzf colorscheme
 _gen_fzf_default_opts() {
     # local base03="234"
