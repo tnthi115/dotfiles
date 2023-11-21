@@ -109,6 +109,12 @@ matrix_all_certs() {
   fi
 }
 
+gc_login() {
+  export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+  kubectl config use-context gke_devtest-293809_us-east4_gc01-int-ves-io
+  kubectl cluster-info 2> /dev/null || (gcloud auth login --project=devtest-293809 && gcloud container clusters get-credentials gc01-int-ves-io --region us-east4)
+}
+
 # fzf colorscheme
 _gen_fzf_default_opts() {
     # local base03="234"
