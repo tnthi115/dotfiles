@@ -126,6 +126,16 @@ fi
 # Add f5-bin to path
 [[ -d $HOME/f5-bin ]] && export PATH="$PATH:$HOME/f5-bin"
 
+# Set for ollama ogpt.nvim plugin
+if command -v ollama &> /dev/null && [[ -d /Users/t.thi/.local/share/lunarvim/site/pack/lazy/opt/ogpt.nvim
+ ]]; then
+  export OPENAI_API_HOST=http://localhost:11434
+  export OPENAI_API_KEY=" "
+else
+  unset OPENAI_API_HOST
+  unset OPENAI_API_KEY
+fi
+
 # }}}
 
 # Aliases {{{
