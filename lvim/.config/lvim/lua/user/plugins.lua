@@ -27,10 +27,39 @@ lvim.plugins = {
   -- },
 
   -- Error diagnostics
-  -- {
-  --   "folke/trouble.nvim",
-  --   cmd = "TroubleToggle",
-  -- },
+  {
+    "folke/trouble.nvim",
+    event = "LspAttach",
+    cmd = "TroubleToggle",
+    config = function()
+      local which_key_ok, which_key = pcall(require, "which-key")
+      if not which_key_ok then
+        return
+      end
+      local opts = {
+        mode = "n", -- NORMAL mode
+        prefix = "<leader>",
+        buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+        silent = true, -- use `silent` when creating keymaps
+        noremap = true, -- use `noremap` when creating keymaps
+        nowait = true, -- use `nowait` when creating keymaps
+      }
+      local mappings = {
+        l = {
+          E = {
+            name = "Trouble (Errors)",
+            r = { "<cmd>Trouble lsp_references<cr>", "References" },
+            f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+            d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+            q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+            l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+            w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
+          },
+        },
+      }
+      which_key.register(mappings, opts)
+    end,
+  },
 
   -- Git diffview
   -- {
@@ -787,4 +816,133 @@ lvim.plugins = {
   --     }
   --   end,
   -- },
+
+  -- ollama integration
+  {
+    "David-Kunz/gen.nvim",
+    event = "VeryLazy",
+    config = function()
+      -- require("gen").model = "mistral:latest"
+
+      local which_key_ok, which_key = pcall(require, "which-key")
+      if not which_key_ok then
+        return
+      end
+
+      local opts = {
+        mode = "n", -- NORMAL mode
+        prefix = "<leader>",
+        buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+        silent = true, -- use `silent` when creating keymaps
+        noremap = true, -- use `noremap` when creating keymaps
+        nowait = true, -- use `nowait` when creating keymaps
+      }
+
+      local mappings = {
+        G = {
+          name = "Gen",
+          g = { "<cmd>Gen<CR>", "Gen" },
+          a = { "<cmd>Gen Ask<CR>", "Gen Ask" },
+          c = { "<cmd>Gen Change<CR>", "Gen Change" },
+          G = { "<cmd>Gen Enhance_Grammar_Spelling<CR>", "Gen Enhance_Grammar_Spelling" },
+          w = { "<cmd>Gen Enhance_Wording<CR>", "Gen Enhance_Wording" },
+          s = { "<cmd>Gen Make_Consice<CR>", "Gen Make_Consice" },
+          l = { "<cmd>Gen Make_List<CR>", "Gen Make_List" },
+          t = { "<cmd>Gen Make_Table<CR>", "Gen Make_Table" },
+          r = { "<cmd>Gen Review_Code<CR>", "Gen Review_Code" },
+          e = { "<cmd>Gen Enhance_Code<CR>", "Gen Enhance_Code" },
+          C = { "<cmd>Gen Change_Code<CR>", "Gen Change_Code" },
+        },
+      }
+
+      local vopts = {
+        mode = "n", -- NORMAL mode
+        prefix = "<leader>",
+        buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+        silent = true, -- use `silent` when creating keymaps
+        noremap = true, -- use `noremap` when creating keymaps
+        nowait = true, -- use `nowait` when creating keymaps
+      }
+
+      local vmappings = {
+        G = {
+          name = "Gen",
+          g = { "<cmd>'<,'>Gen<CR>", "Gen" },
+          a = { "<cmd>'<,'>Gen Ask<CR>", "Gen Ask" },
+          c = { "<cmd>'<,'>Gen Change<CR>", "Gen Change" },
+          G = { "<cmd>'<,'>Gen Enhance_Grammar_Spelling<CR>", "Gen Enhance_Grammar_Spelling" },
+          w = { "<cmd>'<,'>Gen Enhance_Wording<CR>", "Gen Enhance_Wording" },
+          s = { "<cmd>'<,'>Gen Make_Consice<CR>", "Gen Make_Consice" },
+          l = { "<cmd>'<,'>Gen Make_List<CR>", "Gen Make_List" },
+          t = { "<cmd>'<,'>Gen Make_Table<CR>", "Gen Make_Table" },
+          r = { "<cmd>'<,'>Gen Review_Code<CR>", "Gen Review_Code" },
+          e = { "<cmd>'<,'>Gen Enhance_Code<CR>", "Gen Enhance_Code" },
+          C = { "<cmd>'<,'>Gen Change_Code<CR>", "Gen Change_Code" },
+        },
+      }
+
+      which_key.register(mappings, opts)
+      which_key.register(vmappings, vopts)
+    end,
+  },
+
+  -- opgt - fork of jackMort/ChatGPT.nvim that uses ollama
+  {
+    "huynle/ogpt.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      local opts = {
+        edit_with_instructions = {
+          keymaps = {
+            use_output_as_input = "<C-a>",
+          },
+        },
+        -- show_quickfixes_cmd = "copen",
+      }
+
+      require("chatgpt").setup(opts)
+
+      local which_key_ok, which_key = pcall(require, "which-key")
+      if not which_key_ok then
+        return
+      end
+
+      opts = {
+        mode = { "n", "v" }, -- NORMAL and VISUAL mode
+        prefix = "<leader>",
+        buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+        silent = true, -- use `silent` when creating keymaps
+        noremap = true, -- use `noremap` when creating keymaps
+        nowait = true, -- use `nowait` when creating keymaps
+      }
+
+      local mappings = {
+        o = {
+          name = "Ollama",
+          c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
+          a = { "<cmd>ChatGPTActAs<CR>", "ChatGPTActAs" },
+          e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction" },
+          C = { "<cmd>ChatGPTRun complete_code<CR>", "Complete Code" },
+          G = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction" },
+          t = { "<cmd>ChatGPTRun translate<CR>", "Translate" },
+          k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords" },
+          d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring" },
+          A = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests" },
+          o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code" },
+          s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize" },
+          f = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs" },
+          x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code" },
+          r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit" },
+          l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis" },
+        },
+      }
+
+      which_key.register(mappings, opts)
+    end,
+  },
 }

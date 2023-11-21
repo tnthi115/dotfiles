@@ -123,7 +123,7 @@ local options = {
   list = true,
   -- listchars = { eol = "↲", tab = "▸ ", trail = "·" },
   listchars = { tab = "▸ ", trail = "·" },
-  showbreak = "↪",
+  -- showbreak = "↪",
   laststatus = 3,
   ruler = false,
 }
