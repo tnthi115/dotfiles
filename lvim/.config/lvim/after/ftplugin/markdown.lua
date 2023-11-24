@@ -33,4 +33,4 @@ which_key.register(mappings, opts)
 --   { command = "markdownlint", filetypes = { "markdown" } },
 -- }
 
-vim.cmd [[setlocal conceallevel=1]]
+-- vim.cmd [[setlocal conceallevel=1]]
