@@ -102,12 +102,18 @@ swenv() {
 # marix get-user-certs for all 4 envs
 matrix_all_certs() {
   if command -v matrix &>/dev/null; then
+    echo "Getting certs for demo1"
     matrix get-user-cert -e demo1
+    echo "Getting certs for crt"
     matrix get-user-cert -e crt
+    echo "Getting certs for staging"
     matrix get-user-cert -e staging
+    echo "Getting certs for prod"
     matrix get-user-cert -e prod
   fi
 }
+
+alias mac="matrix_all_certs"
 
 gc_login() {
   export USE_GKE_GCLOUD_AUTH_PLUGIN=True
