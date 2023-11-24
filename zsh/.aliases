@@ -1,12 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 # if lsd is installed, use lsd instead of ls
-if command -v lsd &> /dev/null; then
-    alias ls='lsd --group-dirs=first'
+if command -v lsd &>/dev/null; then
+	alias ls='lsd --group-dirs=first'
 fi
 
 # [r]estart/[r]esource [z]shrc
 alias rz="source \$HOME/.zshrc"
+alias ra="source \$HOME/.aliases"
 
 # ls aliases
 alias ll='ls -alF'
@@ -47,14 +48,14 @@ alias obsidian="/opt/obsidian/Obsidian-0.15.9.AppImage"
 # alias cs164-sshfs="sudo sshfs -o allow_other cs164-aak@cedar.cs.berkeley.edu:/home/cc/cs164/fa22/class/cs164-aak/ ~/Classes/cs164/cs164-aak -o IdentityFile=/home/user/.ssh/id_ed25519 && pushd ~/Classes/cs164/cs164-aak"
 alias lg="lazygit"
 # alias hx="/opt/helix/helix-22.12-x86_64.AppImage"
-if command -v ranger &> /dev/null; then
-    alias r="ranger"
+if command -v ranger &>/dev/null; then
+	alias r="ranger"
 fi
 alias cs='colorscript -r'
 if test "$(uname -n)" = "cerebro"; then
-    alias nf="neofetch --ascii_distro lubuntu"
+	alias nf="neofetch --ascii_distro lubuntu"
 else
-    alias nf="neofetch"
+	alias nf="neofetch"
 fi
 alias ld="lazydocker"
 alias kc="kubectl"
@@ -81,95 +82,95 @@ alias ts="tmux switch-client -t \$(tmux ls | fzf | awk '{print \$1}')"
 
 # switch python virtual environments
 swenv() {
-    command -v deactivate &>/dev/null && deactivate
-    venv_path_list=(".")
-    # venv_path_list=$(echo ".venv $HOME/venvs" | awk '{ gsub(" ", "\n"); print }')
-    [ -d "$HOME/venvs" ] && venv_path_list+=("$HOME/venvs")
+	command -v deactivate &>/dev/null && deactivate
+	venv_path_list=(".")
+	# venv_path_list=$(echo ".venv $HOME/venvs" | awk '{ gsub(" ", "\n"); print }')
+	[ -d "$HOME/venvs" ] && venv_path_list+=("$HOME/venvs")
 
-    # find all directories that contain pyvenv.cfg
-    # find . -type f -name "pyvenv.cfg" -exec dirname {} \;
-    venv=$(printf "%s\n" "${venv_path_list[@]}" | xargs -I % find % -type f -name "pyvenv.cfg" -exec dirname {} \; | fzf)
+	# find all directories that contain pyvenv.cfg
+	# find . -type f -name "pyvenv.cfg" -exec dirname {} \;
+	venv=$(printf "%s\n" "${venv_path_list[@]}" | xargs -I % find % -type f -name "pyvenv.cfg" -exec dirname {} \; | fzf)
 
-    # if command -v fd &> /dev/null; then
-    #     venv=$(printf "%s\n" "${venv_path_list[@]}" | xargs -I {} fd -t d -d 1 . {} | fzf)
-    # else
-    #     venv=$(printf "%s\n" "${venv_path_list[@]}" | xargs -I {} find {} -path "{}" -o -print -maxdepth 1 -type d | fzf)
-    # fi
+	# if command -v fd &> /dev/null; then
+	#     venv=$(printf "%s\n" "${venv_path_list[@]}" | xargs -I {} fd -t d -d 1 . {} | fzf)
+	# else
+	#     venv=$(printf "%s\n" "${venv_path_list[@]}" | xargs -I {} find {} -path "{}" -o -print -maxdepth 1 -type d | fzf)
+	# fi
 
-    source "$venv/bin/activate"
+	source "$venv/bin/activate"
 }
 
 # marix get-user-certs for all 4 envs
 matrix_all_certs() {
-  if command -v matrix &>/dev/null; then
-    echo "Getting certs for demo1"
-    matrix get-user-cert -e demo1
-    echo "Getting certs for crt"
-    matrix get-user-cert -e crt
-    echo "Getting certs for staging"
-    matrix get-user-cert -e staging
-    echo "Getting certs for prod"
-    matrix get-user-cert -e prod
-  fi
+	if command -v matrix &>/dev/null; then
+		echo "Getting certs for demo1"
+		matrix get-user-cert -e demo1
+		echo "Getting certs for crt"
+		matrix get-user-cert -e crt
+		echo "Getting certs for staging"
+		matrix get-user-cert -e staging
+		echo "Getting certs for prod"
+		matrix get-user-cert -e prod
+	fi
 }
 
 alias mac="matrix_all_certs"
 
 gc_login() {
-  export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-  kubectl config use-context gke_devtest-293809_us-east4_gc01-int-ves-io
-  kubectl cluster-info 2> /dev/null || (gcloud auth login --project=devtest-293809 && gcloud container clusters get-credentials gc01-int-ves-io --region us-east4)
+	export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+	kubectl config use-context gke_devtest-293809_us-east4_gc01-int-ves-io
+	kubectl cluster-info 2>/dev/null || (gcloud auth login --project=devtest-293809 && gcloud container clusters get-credentials gc01-int-ves-io --region us-east4)
 }
 
 # fzf colorscheme
 _gen_fzf_default_opts() {
-    # local base03="234"
-    # local base02="235"
-    # local base01="240"
-    # local base00="241"
-    # local base0="244"
-    # local base1="245"
-    # local base2="254"
-    # local base3="230"
-    # local yellow="136"
-    # local orange="166"
-    # local red="160"
-    # local magenta="125"
-    # local violet="61"
-    # local blue="33"
-    # local cyan="37"
-    # local green="64"
-    # Uncomment for truecolor, if your terminal supports it.
-    base03="#002b36"
-    base02="#292e42"
-    base01="#1a1b26"
-    base00="#16161e"
-    base0="#839496"
-    base1="#93a1a1"
-    base2="#c0caf5"
-    base3="#a9b1d6"
-    yellow="#e0af68"
-    orange="#ff9e64"
-    red="#f7768e"
-    magenta="#bb9af7"
-    violet="#bb9af7"
-    blue="#7aa2f7"
-    cyan="#7dcfff"
-    cyan1="#27a1b9"
-    green="#9ece6a"
+	# local base03="234"
+	# local base02="235"
+	# local base01="240"
+	# local base00="241"
+	# local base0="244"
+	# local base1="245"
+	# local base2="254"
+	# local base3="230"
+	# local yellow="136"
+	# local orange="166"
+	# local red="160"
+	# local magenta="125"
+	# local violet="61"
+	# local blue="33"
+	# local cyan="37"
+	# local green="64"
+	# Uncomment for truecolor, if your terminal supports it.
+	base03="#002b36"
+	base02="#292e42"
+	base01="#1a1b26"
+	base00="#16161e"
+	base0="#839496"
+	base1="#93a1a1"
+	base2="#c0caf5"
+	base3="#a9b1d6"
+	yellow="#e0af68"
+	orange="#ff9e64"
+	red="#f7768e"
+	magenta="#bb9af7"
+	violet="#bb9af7"
+	blue="#7aa2f7"
+	cyan="#7dcfff"
+	cyan1="#27a1b9"
+	green="#9ece6a"
 
-    # Comment and uncomment below for the light theme.
+	# Comment and uncomment below for the light theme.
 
-    # Tokyonight Night color scheme for fzf
-    export FZF_DEFAULT_OPTS="
+	# Tokyonight Night color scheme for fzf
+	export FZF_DEFAULT_OPTS="
     --color fg:-1,bg:-1,hl:$cyan1,fg+:$base2,bg+:$base02,hl+:$cyan1
     --color info:$green,prompt:$blue,pointer:$red,marker:$blue,spinner:$cyan1
     "
-    ## Solarized Light color scheme for fzf
-    #export FZF_DEFAULT_OPTS="
-    #  --color fg:-1,bg:-1,hl:$blue,fg+:$base02,bg+:$base2,hl+:$blue
-    #  --color info:$yellow,prompt:$yellow,pointer:$base03,marker:$base03,spinner:$yellow
-    #"
+	## Solarized Light color scheme for fzf
+	#export FZF_DEFAULT_OPTS="
+	#  --color fg:-1,bg:-1,hl:$blue,fg+:$base02,bg+:$base2,hl+:$blue
+	#  --color info:$yellow,prompt:$yellow,pointer:$base03,marker:$base03,spinner:$yellow
+	#"
 }
 
 _gen_fzf_default_opts

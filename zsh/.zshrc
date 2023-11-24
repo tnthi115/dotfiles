@@ -71,69 +71,8 @@ bindkey -M vicmd 'y' vi-yank-xclip
 
 # Exports {{{
 
-# export XDG_CONFIG_HOME="$HOME/.config"
-
-# Change cargo home directory
-export CARGO_HOME="$CARGO_PATH"
-
-# Add cargo to path
-export PATH="$PATH:$CARGO_HOME/bin"
-
-# Add lvim to path
-export PATH="$PATH:$HOME/.local/bin"
-
-# Set editor.
-export EDITOR="lvim"
-
-# Set manpager to be lvim.
-export MANPAGER="lvim +Man!"
-
-# Set pager to less.
-export PAGER="less"
-
-# Set 'time' output to look like bash's.
-export TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S'
-# TIMEFMT=$'%J\n%U user\n%S system\n%P cpu\n%*E total'
-
-# Add emacs/bin to path.
-# export PATH="$PATH:$HOME/.config/emacs/bin"
-
-# Add go to path
-if command -v go &> /dev/null; then
-    # export PATH="$PATH:/usr/local/go/bin"
-
-    # Add go path to path
-    # export GOPATH="/usr/lib/go"
-    # export GOPATH="$HOME/go"
-    # export GOPATH="$HOME/.local/lib/go"
-    export PATH="$PATH:$(go env GOPATH)/bin"
-    export GOPATH="$(go env GOPATH)"
-    export GOPRIVATE=gopkg.volterra.us
-fi
-
-# Add lvim mason to path
-export PATH="$PATH:$HOME/.local/share/lvim/mason/bin"
-
-# Add openjdk@11 to path
-# export PATH="$PATH:/opt/homebrew/opt/openjdk@11/bin"
-
-# SDKMAN
-if command -v brew &> /dev/null; then
-    export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-    [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-fi
-
-# Add f5-bin to path
-[[ -d $HOME/f5-bin ]] && export PATH="$PATH:$HOME/f5-bin"
-
-# Set for ollama ogpt.nvim plugin
-if command -v ollama &> /dev/null && [[ -d /Users/t.thi/.local/share/lunarvim/site/pack/lazy/opt/ogpt.nvim
- ]]; then
-  export OPENAI_API_HOST=http://localhost:11434
-  export OPENAI_API_KEY=" "
-else
-  unset OPENAI_API_HOST
-  unset OPENAI_API_KEY
+if [ -f ~/.exports ]; then
+  source ~/.exports
 fi
 
 # }}}
