@@ -1,6 +1,6 @@
 [language-server.gopls]
 command = "gopls"
-config = { completeUnimported = true, usePlaceholders = true, analyses = { unusedparams = true, shadow = true, unusedwrite = true, useany = true }, gofumpt = true, codelenses = { generate = true, gc_details = true, test = true, tidy = true } }
+config = { completeUnimported = true, usePlaceholders = true, analyses = { unusedparams = true, shadow = true, unusedwrite = true, useany = true }, gofumpt = true, codelenses = { generate = true, gc_details = true, test = true, tidy = true }, hints = { assignVariableTypes = true, compositeLiteralFields = true, constantValues = true, functionTypeParameters = true, parameterNames = true, rangeVariableTypes = true } }
 
 [language-server.golangci-lint-lsp]
 command = "golangci-lint-langserver"
@@ -23,14 +23,11 @@ file-types = ["go"]
 roots = ["go.work", "go.mod"]
 auto-format = true
 comment-token = "//"
-formatter = { command = "goimports-reviser" }
-# language-servers = [
-#   { name = "gopls" },
-#   { name = "golangci-lint-lsp", only-features = [
-#     "code-action",
-#     "diagostics",
-#   ] },
-# ]
+formatter = { command = "goimports-reviser", args = [
+  "-company-prefixes=gopkg.volterra.us",
+  "-set-alias",
+  "-use-cache",
+] }
 language-servers = ["gopls", "golangci-lint-lsp"]
 indent = { tab-width = 2, unit = " " }
 

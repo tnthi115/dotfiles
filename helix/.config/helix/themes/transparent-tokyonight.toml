@@ -1,3 +1,17 @@
 inherits = "tokyonight"
 
 "ui.background" = { fg = "foreground" }
+"ui.background.separator" = { fg = "gray" }
+"ui.popup" = { fg = "foreground" }
+"ui.popup.info" = { fg = "foreground" }
+"ui.help" = { fg = "foreground" }
+"ui.text" = { fg = "foreground" }
+"ui.menu" = { fg = "foreground" }
+"ui.statusline.separator" = { fg = "yellow" }
+"ui.statusline.normal" = { fg = "#15161e", bg = "blue" }
+"ui.statusline.insert" = { fg = "#15161e", bg = "green" }
+"ui.statusline.select" = { fg = "#15161e", bg = "magenta" }
+# "ui.bufferline" = { fg = "foreground", bg = "none" }
+
+[palette]
+green = "#9ece6a"
