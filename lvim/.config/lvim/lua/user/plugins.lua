@@ -856,7 +856,7 @@ lvim.plugins = {
       }
 
       local vopts = {
-        mode = "n", -- NORMAL mode
+        mode = "v", -- NORMAL mode
         prefix = "<leader>",
         buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
         silent = true, -- use `silent` when creating keymaps
@@ -897,15 +897,22 @@ lvim.plugins = {
     },
     config = function()
       local opts = {
+        api_host_cmd = "echo http://localhost:11434",
         edit_with_instructions = {
           keymaps = {
             use_output_as_input = "<C-a>",
           },
         },
+        api_params = {
+          model = "mistral:latest",
+        },
+        api_edit_params = {
+          model = "mistral:latest",
+        },
         -- show_quickfixes_cmd = "copen",
       }
 
-      require("chatgpt").setup(opts)
+      require("ogpt").setup(opts)
 
       local which_key_ok, which_key = pcall(require, "which-key")
       if not which_key_ok then
@@ -923,22 +930,22 @@ lvim.plugins = {
 
       local mappings = {
         o = {
-          name = "Ollama",
-          c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
-          a = { "<cmd>ChatGPTActAs<CR>", "ChatGPTActAs" },
-          e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction" },
-          C = { "<cmd>ChatGPTRun complete_code<CR>", "Complete Code" },
-          G = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction" },
-          t = { "<cmd>ChatGPTRun translate<CR>", "Translate" },
-          k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords" },
-          d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring" },
-          A = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests" },
-          o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code" },
-          s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize" },
-          f = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs" },
-          x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code" },
-          r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit" },
-          l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis" },
+          name = "OGPT",
+          c = { "<cmd>OGPT<CR>", "OGPT" },
+          a = { "<cmd>OGPTActAs<CR>", "OGPTActAs" },
+          e = { "<cmd>OGPTEditWithInstruction<CR>", "Edit with instruction" },
+          C = { "<cmd>OGPTRun complete_code<CR>", "Complete Code" },
+          G = { "<cmd>OGPTRun grammar_correction<CR>", "Grammar Correction" },
+          t = { "<cmd>OGPTRun translate<CR>", "Translate" },
+          k = { "<cmd>OGPTRun keywords<CR>", "Keywords" },
+          d = { "<cmd>OGPTRun docstring<CR>", "Docstring" },
+          A = { "<cmd>OGPTRun add_tests<CR>", "Add Tests" },
+          o = { "<cmd>OGPTRun optimize_code<CR>", "Optimize Code" },
+          s = { "<cmd>OGPTRun summarize<CR>", "Summarize" },
+          f = { "<cmd>OGPTRun fix_bugs<CR>", "Fix Bugs" },
+          x = { "<cmd>OGPTRun explain_code<CR>", "Explain Code" },
+          r = { "<cmd>OGPTRun roxygen_edit<CR>", "Roxygen Edit" },
+          l = { "<cmd>OGPTRun code_readability_analysis<CR>", "Code Readability Analysis" },
         },
       }
 
