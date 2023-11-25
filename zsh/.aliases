@@ -8,6 +8,7 @@ fi
 # [r]estart/[r]esource [z]shrc
 alias rz="source \$HOME/.zshrc"
 alias ra="source \$HOME/.aliases"
+alias re="source \$HOME/.exports"
 
 # ls aliases
 alias ll='ls -alF'
