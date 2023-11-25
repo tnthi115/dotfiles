@@ -330,12 +330,7 @@ lvim.plugins = {
       vim.cmd [[hi TreesitterContext guibg=none]]
     end,
     keys = {
-      {
-        "<leader>ut",
-        "<cmd>TSContextToggle<CR>",
-        mode = "n",
-        desc = "Toggle Treesitter Context",
-      },
+      { "<leader>ut", "<cmd>TSContextToggle<CR>", mode = "n", desc = "Toggle Treesitter Context" },
     },
   },
 
@@ -356,58 +351,16 @@ lvim.plugins = {
     -- stylua: ignore
     keys = {
       -- visual mode
-      {
-        "<leader>re",
-        "<Esc><cmd>lua require('refactoring').refactor('Extract Function')<CR>",
-        mode = "v",
-        desc =
-        "Extract Function"
-      },
-      {
-        "<leader>rf",
-        "<Esc><cmd>lua require('refactoring').refactor('Extract Function To File')<CR>",
-        mode = "v",
-        desc =
-        "Extract Function To File"
-      },
-      {
-        "<leader>rv",
-        "<Esc><cmd>lua require('refactoring').refactor('Extract Variable')<CR>",
-        mode = "v",
-        desc =
-        "Extract Variable"
-      },
-      {
-        "<leader>ri",
-        "<Esc><cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
-        mode = "v",
-        desc =
-        "Inline Variable"
-      },
+      { "<leader>re", "<Esc><cmd>lua require('refactoring').refactor('Extract Function')<CR>", mode = "v", desc = "Extract Function" },
+      { "<leader>rf", "<Esc><cmd>lua require('refactoring').refactor('Extract Function To File')<CR>", mode = "v", desc = "Extract Function To File" },
+      { "<leader>rv", "<Esc><cmd>lua require('refactoring').refactor('Extract Variable')<CR>", mode = "v", desc = "Extract Variable" },
+      { "<leader>ri", "<Esc><cmd>lua require('refactoring').refactor('Inline Variable')<CR>", mode = "v", desc = "Inline Variable" },
       -- normal mode
       -- Inline variable can also pick up the identifier currently under the cursor without visual mode
-      {
-        "<leader>ri",
-        "<cmd>lua require('refactoring').refactor('Inline Variable')<CR>",
-        mode = "n",
-        desc =
-        "Inline Variable"
-      },
-      {
-        "<leader>rb",
-        "<cmd>lua require('refactoring').refactor('Extract Block')<CR>",
-        mode = "n",
-        desc =
-        "Extract Block"
-      },
+      { "<leader>ri", "<cmd>lua require('refactoring').refactor('Inline Variable')<CR>", mode = "n", desc = "Inline Variable" },
+      { "<leader>rb", "<cmd>lua require('refactoring').refactor('Extract Block')<CR>", mode = "n", desc = "Extract Block" },
       -- Extract block doesn't need visual mode
-      {
-        "<leader>rB",
-        "<cmd>lua require('refactoring').refactor('Extract Block To File')<CR>",
-        mode = "n",
-        desc =
-        "Extract Block To File"
-      },
+      { "<leader>rB", "<cmd>lua require('refactoring').refactor('Extract Block To File')<CR>", mode = "n", desc = "Extract Block To File" },
     },
     dependencies = {
       { "nvim-lua/plenary.nvim" },
@@ -461,11 +414,7 @@ lvim.plugins = {
     -- "tpope/vim-surround",
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    keys = {
-      "cs",
-      "ds",
-      "ys",
-    },
+    keys = { "cs", "ds", "ys" },
     opts = {},
     -- config = function()
     --   require("nvim-surround").setup {}
@@ -746,18 +695,11 @@ lvim.plugins = {
     "danymat/neogen",
     event = "LspAttach",
     dependencies = "nvim-treesitter/nvim-treesitter",
+    -- stylua: ignore
     keys = {
       { "<leader>nn", "<cmd>lua require('neogen').generate()<CR>", desc = "Generate annotation" },
-      {
-        "<leader>nf",
-        "<cmd>lua require('neogen').generate({ type = 'func' })<CR>",
-        desc = "Generate function annotation",
-      },
-      {
-        "<leader>nc",
-        "<cmd>lua require('neogen').generate({ type = 'class' })<CR>",
-        desc = "Generate class annotation",
-      },
+      { "<leader>nf", "<cmd>lua require('neogen').generate({ type = 'func' })<CR>", desc = "Generate function annotation" },
+      { "<leader>nc", "<cmd>lua require('neogen').generate({ type = 'class' })<CR>", desc = "Generate class annotation" },
       { "<leader>nt", "<cmd>lua require('neogen').generate({ type = 'type' })<CR>", desc = "Generate type annotation" },
       { "<leader>nF", "<cmd>lua require('neogen').generate({ type = 'file' })<CR>", desc = "Generate file annotation" },
     },
@@ -893,7 +835,7 @@ lvim.plugins = {
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
+      -- "nvim-telescope/telescope.nvim",
     },
     config = function()
       local opts = {
@@ -951,5 +893,28 @@ lvim.plugins = {
 
       which_key.register(mappings, opts)
     end,
+  },
+
+  -- flash.nvim - navigate code with search labels, enhanced character motions, and Treesitter integration
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {
+      modes = {
+        char = {
+          jump_labels = true,
+        },
+      },
+    },
+    -- stylua: ignore
+    keys = {
+      -- { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      -- { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<C-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
   },
 }
