@@ -160,10 +160,10 @@ lvim.builtin.which_key.mappings["dB"] = {
 --   -- t = { '<cmd>lua require("user.functions").toggle_tabline()<cr>', "Tabline" },
 -- }
 
--- Add close Buffer to buffers submenu.
-lvim.builtin.which_key.mappings["bc"] = {
+-- Add BufferKill to buffers submenu.
+lvim.builtin.which_key.mappings["bk"] = {
   "<cmd>BufferKill<CR>",
-  "Close Buffer",
+  "Kill Buffer",
 }
 -- Get current bufnr
 lvim.builtin.which_key.mappings["bN"] = {
