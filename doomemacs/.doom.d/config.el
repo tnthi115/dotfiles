@@ -132,7 +132,11 @@
 ;; (after! flycheck-inline
 ;;   (with-eval-after-load 'flycheck
 ;;     (add-hook 'flycheck-mode-hook #'global-flycheck-inline-mode)))
-(with-eval-after-load 'flycheck
+;; (with-eval-after-load 'flycheck
+;;   (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+;; (with-eval-after-load 'flycheck
+;;   (add-hook 'flycheck-mode-hook #'global-flycheck-inline-mode))
+(after! flycheck
   (add-hook 'flycheck-mode-hook #'global-flycheck-inline-mode))
 
 ;; (after! git-gutter
@@ -141,3 +145,11 @@
 
 (setq lsp-go-analyses '((shadow . t)
                         (simplifycompositelit . :json-false)))
+
+;; (use-package lsp-pyright
+;;   :ensure t
+;;   :hook (python-mode . (lambda ()
+;;                           (require 'lsp-pyright)
+;;                           (lsp))))  ; or lsp-deferred
+
+;; (lsp-headerline-breadcrumb-mode)
