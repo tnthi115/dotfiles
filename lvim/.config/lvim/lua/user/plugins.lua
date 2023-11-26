@@ -902,7 +902,9 @@ lvim.plugins = {
     ---@type Flash.Config
     opts = {
       modes = {
+        -- `f`, `F`, `t`, `T`, `;` and `,` motions
         char = {
+          enabled = false,
           jump_labels = true,
         },
       },
