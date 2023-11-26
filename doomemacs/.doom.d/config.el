@@ -43,7 +43,7 @@
 (setq org-directory "~/Documents/org/")
 
 ;; FONTS
-(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13 :eight 'regular)
+(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13 :weight 'regular)
       doom-variable-pitch-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13 :weight 'regular)
       doom-big-font (font-spec :family "CaskaydiaCove Nerd Font" :size 20))
 (after! doom-themes
@@ -59,17 +59,17 @@
 (doom/set-frame-opacity 69)
 
 ;; NO WINDOW TITLE
-;; (setq default-frame-alist '((undecorated . t)))
+(add-to-list 'default-frame-alist '(undecorated-round . t))
 
 ;; MARKDOWN
 (custom-set-faces
-  '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "CaskaydiaCove Nerd Font"))))
-  '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.7))))
-  '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.6))))
-  '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.5))))
-  '(markdown-header-face-4 ((t (:inherit markdown-header-face :height 1.4))))
-  '(markdown-header-face-5 ((t (:inherit markdown-header-face :height 1.3))))
-  '(markdown-header-face-6 ((t (:inherit markdown-header-face :height 1.2)))))
+ '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "CaskaydiaCove Nerd Font"))))
+ '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.7))))
+ '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.6))))
+ '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.5))))
+ '(markdown-header-face-4 ((t (:inherit markdown-header-face :height 1.4))))
+ '(markdown-header-face-5 ((t (:inherit markdown-header-face :height 1.3))))
+ '(markdown-header-face-6 ((t (:inherit markdown-header-face :height 1.2)))))
 
 ;; SHELLS
 (setq shell-file-name "/bin/zsh"
@@ -153,3 +153,95 @@
 ;;                           (lsp))))  ; or lsp-deferred
 
 ;; (lsp-headerline-breadcrumb-mode)
+
+;; centaur tabs
+
+
+(after! centaur-tabs
+  (centaur-tabs-group-by-projectile-project) ;;for https://github.com/ema2159/centaur-tabs/issues/181#issuecomment-1075806796
+  (centaur-tabs-headline-match)
+  (setq centaur-tabs-style "wave"
+        centaur-tabs-height 24
+        centaur-tabs-set-icons t
+        centaur-tabs-gray-out-icons #'buffer
+        ;; centaur-tabs-set-bar #'under
+        x-underline-at-descent-line t
+        centaur-tabs-close-button "×"
+        centaur-tabs-modified-marker "•"
+        centaur-tabs-show-new-tab-button nil
+        ;; centaur-tabs-show-count t
+        centaur-tabs-show-navigation-buttons t)
+  ;; (defun centaur-tabs-hide-tab (x)
+  ;;   "Do no to show buffer X in tabs."
+  ;;   (let ((name (format "%s" x)))
+  ;;     (or
+  ;;      ;; Current window is not dedicated window.
+  ;;      (window-dedicated-p (selected-window))
+
+  ;;      ;; Buffer name not match below blacklist.
+  ;;      (string-prefix-p "*epc" name)
+  ;;      (string-prefix-p "*helm" name)
+  ;;      (string-prefix-p "*Helm" name)
+  ;;      (string-prefix-p "*Compile-Log*" name)
+  ;;      (string-prefix-p "*lsp" name)
+  ;;      (string-prefix-p "*company" name)
+  ;;      (string-prefix-p "*Flycheck" name)
+  ;;      (string-prefix-p "*tramp" name)
+  ;;      (string-prefix-p " *Mini" name)
+  ;;      (string-prefix-p "*help" name)
+  ;;      (string-prefix-p "*straight" name)
+  ;;      (string-prefix-p " *temp" name)
+  ;;      (string-prefix-p "*Help" name)
+  ;;      (string-prefix-p "*mybuf" name)
+
+  ;;      (string-prefix-p "*doom" name)
+  ;;      (string-prefix-p "*scratch*" name)
+  ;;      (string-prefix-p "*Messages" name)
+
+  ;;      ;; cpp
+  ;;      (string-prefix-p "*clangd" name)
+  ;;      (string-prefix-p "*clangd::stderr" name)
+  ;;      (string-prefix-p "*ccls*" name)
+  ;;      (string-prefix-p "*ccls::stderr*" name)
+  ;;      (string-prefix-p "*format-all-errors*" name)
+
+  ;;      ;; bash
+  ;;      (string-prefix-p "*bash-ls*" name)
+  ;;      (string-prefix-p "*bash-ls::stderr*" name)
+
+  ;;      ;; org
+  ;;      (string-prefix-p "*Org Preview LaTeX Output*" name)
+  ;;      (string-prefix-p "*elfeed-log*" name)
+
+  ;;      ;; python
+  ;;      (string-prefix-p "*pyright*" name)
+  ;;      (string-prefix-p "*pyright::stderr*" name)
+
+  ;;      ;; other
+  ;;      (string-prefix-p "*Native-compile-Log*" name)
+  ;;      (string-prefix-p "*httpd*" name)
+  ;;      (string-prefix-p "*Shell Command Output" name)
+
+  ;;      ;; Is not magit buffer.
+  ;;      (and (string-prefix-p "magit" name)
+  ;;           (not (file-name-extension name)))
+  ;;      )))
+  (map! :leader :prefix "b"
+        ;; "t n" #'centaur-tabs-forward
+        ;; "t p" #'centaur-tabs-backward
+        :desc "Move buffer to the right" ">" #'centaur-tabs-move-current-tab-to-right
+        :desc "Move buffer to the left" "<" #'centaur-tabs-move-current-tab-to-left
+        (:prefix ("g" . "Tab groups")
+         :desc "Next tab group" ">" #'centaur-tabs-forward-group
+         :desc "Previous tab group" "<" #'centaur-tabs-backward-group)))
+
+(defun tdr/fix-centaur-tabs ()
+  (centaur-tabs-mode -1)
+  (centaur-tabs-mode)
+  (centaur-tabs-headline-match))
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (with-selected-frame frame
+                  (tdr/fix-centaur-tabs)))
+              (tdr/fix-centaur-tabs)))
