@@ -57,10 +57,9 @@ lvim.builtin.treesitter.ensure_installed = {
 -- lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
--- local cmp = require "cmp"
-
 -- Remap suggestion window close to ctrl + a (from ctrl + e)
--- lvim.keys.insert_mode["<C-a>"] = cmp.mapping.abort()
+local cmp = require "cmp"
+lvim.keys.insert_mode["<C-a>"] = cmp.mapping.abort()
 
 -- ---@usage disable automatic installation of servers
 -- lvim.lsp.automatic_servers_installation = false
