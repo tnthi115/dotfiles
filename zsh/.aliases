@@ -101,17 +101,28 @@ swenv() {
 	source "$venv/bin/activate"
 }
 
-# marix get-user-certs for all 4 envs
+# marix get-user-certs for all 4 envs and import to Keychain Access
+# both commands are idempotent
 matrix_all_certs() {
 	if command -v matrix &>/dev/null; then
-		echo "Getting certs for demo1"
-		matrix get-user-cert -e demo1
-		echo "Getting certs for crt"
-		matrix get-user-cert -e crt
-		echo "Getting certs for staging"
-		matrix get-user-cert -e staging
-		echo "Getting certs for prod"
-		matrix get-user-cert -e prod
+		envs_list=("demo1" "crt" "staging" "prod")
+		for env in "${envs_list[@]}"; do
+			# get user certs with matrix
+			printf "Getting certs for %s:\n" "$env"
+			matrix_cmd="matrix get-user-cert -e $env"
+			echo "$matrix_cmd"
+			eval "$matrix_cmd"
+
+			# import usercerts.p12 on the command line, avoiding password dialogue box
+			p12_path="$HOME/.ves-internal/$env/usercerts.p12"
+			printf "Importing %s to Keychain Access:\n" "$p12_path"
+			import_cmd="sudo security import $p12_path -P 'volterra'"
+			echo "$import_cmd"
+			eval "$import_cmd"
+			echo
+		done
+	else
+		echo 'Did you add matrix to your $PATH?\nTry:\n\texport $PATH="$PATH:/path/to/matrix/installation/dir"'
 	fi
 }
 
