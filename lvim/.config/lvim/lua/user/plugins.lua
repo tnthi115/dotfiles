@@ -846,12 +846,14 @@ lvim.plugins = {
           },
         },
         api_params = {
-          model = "mistral:latest",
+          model = "mistral:7b-instruct",
         },
         api_edit_params = {
-          model = "mistral:latest",
+          model = "mistral:7b-instruct",
         },
         -- show_quickfixes_cmd = "copen",
+        -- add custom actions.json
+        actions_paths = {},
       }
 
       require("ogpt").setup(opts)
