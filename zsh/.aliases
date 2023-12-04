@@ -134,6 +134,9 @@ gc_login() {
 	kubectl cluster-info 2>/dev/null || (gcloud auth login --project=devtest-293809 && gcloud container clusters get-credentials gc01-int-ves-io --region us-east4)
 }
 
+# update Brewfile
+alias brewup="brew bundle dump --file=~/dotfiles/Brewfile --force"
+
 # fzf colorscheme
 _gen_fzf_default_opts() {
 	# local base03="234"
