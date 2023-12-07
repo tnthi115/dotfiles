@@ -25,8 +25,8 @@ alias egrep='egrep --color=auto'
 # vim aliases
 alias v="lvim"
 alias vim="lvim"
-alias nvim="lvim"
-alias oldnvim="\nvim"
+# alias nvim="lvim"
+# alias oldnvim="\nvim"
 alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 alias vf="vim \$(fzf)"
