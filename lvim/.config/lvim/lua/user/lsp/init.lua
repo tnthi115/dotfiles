@@ -93,7 +93,8 @@ formatters.setup {
   -- { command = "gofumpt", filetypes = { "go" } },
   -- { command = "beautysh" },
   { command = "shfmt" },
-  { command = "markdownlint", filetypes = { "markdown" } },
+  -- { command = "markdownlint", filetypes = { "markdown" } },
+  { command = "mdformat", filetypes = { "markdown" }, extra_args = { "--number" } },
   { command = "stylua", filetypes = { "lua" } },
   -- { command = "clang-format", filetypes = { "cpp" } },
   -- need to "pip install black"
