@@ -65,3 +65,6 @@ fi
 
 # Doom emacs
 [[ -d $HOME/.emacs.d ]] && export PATH="$PATH:$HOME/.emacs.d/bin/"
+
+# gitlab.nvim api token
+export GITLAB_TOKEN="glpat-gDTD_WiBEiLwXSYyVsxm"

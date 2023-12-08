@@ -252,3 +252,9 @@ if [ -f '/Users/t.thi/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/t.t
 if command -v kubectl &> /dev/null; then source <(kubectl completion zsh); fi
 
 # }}}
+
+# glab - GitLab CLI tool {{{
+
+source <(glab completion -s  zsh)
+
+# }}}

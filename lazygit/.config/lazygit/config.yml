@@ -6,7 +6,18 @@ git:
 customCommands:
   - key: "Z"
     command: "git cz c"
-    description: "commit with commitizen"
+    description: "Commit with commitizen."
     context: "files"
-    loadingText: "opening commitizen commit tool"
+    loadingText: "Opening commitizen commit tool"
+    subprocess: true
+  - key: "m"
+    command: "glab mr create --fill --fill-commit-body --draft --assignee t.thi --remove-source-branch --squash-before-merge --web"
+    description: "Create gitlab MR with glab cli."
+    context: "localBranches"
+    loadingText: "Creating MR"
+    prompts:
+    - type: "confirm"
+      title: "Create MR"
+      body: "Are you sure you want to create the MR?"
+    # showOutput: true
     subprocess: true
