@@ -45,7 +45,7 @@ formatters.setup {
     filetypes = { "go" },
     extra_args = { "-company-prefixes=gopkg.volterra.us", "-set-alias", "-use-cache" },
   },
-  -- { command = "golines", filetypes = { "go" } },
+  -- { command = "golines", filetypes = { "go" }, extra_args = { "-m", "140" } },
 }
 
 ------------------------
@@ -76,6 +76,22 @@ formatters.setup {
 ------------------------
 -- Dap
 ------------------------
+-- local dap = require "dap"
+-- dap.adapters.go = {
+--   type = "executable",
+--   command = "node",
+--   args = { vim.fn.stdpath "data" .. "/mason/bin/go-debug-adapter" },
+-- }
+-- dap.configurations.go = {
+--   {
+--     type = "go",
+--     name = "Debug",
+--     request = "launch",
+--     showLog = false,
+--     program = "${file}",
+--     dlvToolPath = vim.fn.exepath "dlv", -- Adjust to where delve is installed
+--   },
+-- }
 local dap_ok, dapgo = pcall(require, "dap-go")
 if not dap_ok then
   return

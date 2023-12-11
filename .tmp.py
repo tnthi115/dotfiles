@@ -12,7 +12,7 @@ import random
 class Player:
     def __init__(self, name: str):
         self.name = name
-        self.guess
+        # self.guess
 
     def get_guess(self) -> None:
         self.guess = int(input("Enter a number: "))
@@ -26,8 +26,8 @@ class Game:
     def __init__(self, player1: Player, player2: Player):
         self.player1 = player1
         self.player2 = player2
-        self.random_number
-        self.winner
+        # self.random_number
+        # self.winner
 
     def get_random_number(self) -> None:
         self.random_number = random.randint(1, 10)
@@ -60,6 +60,22 @@ def main() -> None:
     game.get_winner()
 
     print(game)
+
+    # gitlab code suggestions
+    # congratulate the winner
+    print(f"Congratulations {game.winner}!")
+    print(f"The random number was {game.random_number}")
+    print(f"{player1} guessed {player1.guess}")
+    print(f"{player2} guessed {player2.guess}")
+
+    # say which player was closer
+    if abs(player1.guess - game.random_number) < abs(
+        player2.guess - game.random_number
+    ):
+        print(f"{player1} was closer to the random number {game.random_number}")
+    else:
+        print(f"{player2} was closer to the random number {game.random_number}")
+    # gitlab code suggestions
 
     # ask if they want to play again
     play_again = input("Do you want to play again? (y/n): ")

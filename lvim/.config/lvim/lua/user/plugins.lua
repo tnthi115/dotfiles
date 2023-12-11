@@ -1113,4 +1113,36 @@ lvim.plugins = {
     --   { "<leader>gLo", "<cmd>lua require('gitlab').open_in_browser()<CR>", desc = "Open in browser" },
     -- },
   },
+
+  -- gitlab duo code suggestions
+  -- for some reason I get a warning when there are other language servers active (e.g. doesn't work when pyright is active):
+  --   warning: multiple different client offset_encodings detected for buffer, this is not supported yet
+  -- but it still works I guess?
+  {
+    "git@gitlab.com:gitlab-org/editor-extensions/gitlab.vim.git",
+    event = { "BufReadPre", "BufNewFile" }, -- Activate when a file is created/opened
+    ft = { "go", "javascript", "python", "ruby" }, -- Activate when a supported filetype is open
+    cond = function()
+      -- Only activate is token is present in environment variable (remove to use interactive workflow)
+      -- I have this shell env var set for gitlab.nvim already, so I can reuse the token here.
+      return vim.env.GITLAB_TOKEN ~= nil and vim.env.GITLAB_TOKEN ~= ""
+    end,
+    -- opts = {
+    --   statusline = {
+    --     enabled = true, -- Hook into the builtin statusline to indicate the status of the GitLab Duo Code Suggestions integration
+    --   },
+    -- },
+    config = function()
+      require("gitlab").setup()
+
+      local notify = vim.notify
+      vim.notify = function(msg, ...)
+        if msg:match "warning: multiple different client offset_encodings" then
+          return
+        end
+
+        notify(msg, ...)
+      end
+    end,
+  },
 }
