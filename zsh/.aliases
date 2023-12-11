@@ -144,6 +144,12 @@ gc_login() {
 	kubectl cluster-info 2>/dev/null || (gcloud auth login --project=devtest-293809 && gcloud container clusters get-credentials gc01-int-ves-io --region us-east4)
 }
 
+az_login() {
+	az login
+	# az account set -s "VES DevTest Manual - Sponsored"
+	az acr login --tenant ves.f5.com --name volterra --subscription "VES DevTest Automated - Sponsored"
+}
+
 # update Brewfile
 alias brewup="brew bundle dump --file=~/dotfiles/Brewfile --force"
 
