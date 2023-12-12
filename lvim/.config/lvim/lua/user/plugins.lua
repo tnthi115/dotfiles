@@ -1121,7 +1121,8 @@ lvim.plugins = {
   {
     "git@gitlab.com:gitlab-org/editor-extensions/gitlab.vim.git",
     event = { "BufReadPre", "BufNewFile" }, -- Activate when a file is created/opened
-    ft = { "go", "javascript", "python", "ruby" }, -- Activate when a supported filetype is open
+    -- event = { "LspAttach" }, -- Doesn't work. Needs to be loaded earlier...
+    ft = { "go", "python" }, -- Activate when a supported filetype is open. For supported languages, see https://docs.gitlab.com/ee/user/project/repository/code_suggestions/index.html#supported-languages
     cond = function()
       -- Only activate is token is present in environment variable (remove to use interactive workflow)
       -- I have this shell env var set for gitlab.nvim already, so I can reuse the token here.
