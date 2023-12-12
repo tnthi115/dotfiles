@@ -266,3 +266,16 @@ lvim.builtin.which_key.mappings["u"] = {
   b = { "<cmd>lua toggle_bufferline()<CR>", "Toggle Bufferline" },
   -- t is toggle treesitter context
 }
+
+-- Function for live grep with file mask
+-- See :h Telescope.builtin.live_grep()
+function telescope_live_grep_with_glob_pattern()
+  vim.ui.input({ prompt = "Glob pattern: " }, function(input)
+    vim.cmd(string.format("Telescope live_grep glob_pattern=%s", input))
+  end)
+end
+
+lvim.builtin.which_key.mappings["sg"] = {
+  "<cmd>lua telescope_live_grep_with_glob_pattern()<CR>",
+  "Live grep with glob pattern",
+}
