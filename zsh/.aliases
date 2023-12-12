@@ -145,9 +145,9 @@ gc_login() {
 }
 
 az_login() {
-	az login
+	az login --tenant ves.f5.com
 	# az account set -s "VES DevTest Manual - Sponsored"
-	az acr login --tenant ves.f5.com --name volterra --subscription "VES DevTest Automated - Sponsored"
+	az acr login --name volterra --subscription "VES DevTest Automated - Sponsored"
 }
 
 # update Brewfile
