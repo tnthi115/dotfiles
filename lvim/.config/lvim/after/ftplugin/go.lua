@@ -221,3 +221,5 @@ local mappings = {
 }
 
 which_key.register(mappings, opts)
+
+-- vim.cmd [[setlocal shiftwidth=4 softtabstop=4 expandtab]]
