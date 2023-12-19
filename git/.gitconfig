@@ -32,7 +32,8 @@
 
 # Delta
 [core]
-	editor = lvim
+	; editor = lvim
+  editor = nvim
   pager = delta
 
 [interactive]
