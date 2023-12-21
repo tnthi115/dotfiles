@@ -23,16 +23,16 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # vim aliases
-alias v="lvim"
-alias vim="lvim"
+alias v="nvim"
+alias vim="nvim"
 # alias nvim="lvim"
 # alias oldnvim="\nvim"
 alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 alias vf="vim \$(fzf)"
-# alias lv="nvim -u ~/.config/lazyvim/init.lua"
 alias nv="\nvim"
 alias av="NVIM_APPNAME=astronvim nvim"
+alias lv="lvim"
 alias launchnvim="NVIM_APPNAME=launchnvim nvim"
 
 # neovim config switcher
@@ -51,6 +51,7 @@ vs() {
 # git aliases
 alias gs="git status"
 alias gl="git log"
+alias gb='git checkout $(git branch | fzf)' # TODO: deal with `*` on the current branch
 
 # application aliases
 # alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
