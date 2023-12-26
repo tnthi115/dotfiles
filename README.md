@@ -201,7 +201,7 @@ stow KeyBindings
 
 ## TODO
 
-- [X] add links
+- [x] add links
 - [ ] flesh out dependencies more
 - [ ] add brew packages file
-- [X] maybe organize directories into shared, macos, linux
+- [x] maybe organize directories into shared, macos, linux
