@@ -12,10 +12,10 @@ export PATH="$PATH:$CARGO_HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
 # Set editor.
-export EDITOR="lvim"
+export EDITOR="nvim"
 
 # Set manpager to be lvim.
-export MANPAGER="lvim +Man!"
+export MANPAGER="nvim +Man!"
 
 # Set pager to less.
 export PAGER="less"
@@ -41,7 +41,10 @@ if command -v go &>/dev/null; then
 fi
 
 # Add lvim mason to path
-export PATH="$PATH:$HOME/.local/share/lvim/mason/bin"
+# export PATH="$PATH:$HOME/.local/share/lvim/mason/bin"
+
+# Add nvim mason to path
+[[ -d $HOME/.local/share/nvim/mason/bin ]] && export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
 
 # Add openjdk@11 to path
 # export PATH="$PATH:/opt/homebrew/opt/openjdk@11/bin"
@@ -64,7 +67,7 @@ fi
 # fi
 
 # Doom emacs
-[[ -d $HOME/.emacs.d ]] && export PATH="$PATH:$HOME/.emacs.d/bin/"
+# [[ -d $HOME/.emacs.d ]] && export PATH="$PATH:$HOME/.emacs.d/bin/"
 
 # gitlab.nvim api token
 export GITLAB_TOKEN="glpat-gDTD_WiBEiLwXSYyVsxm"
