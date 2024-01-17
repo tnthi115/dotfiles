@@ -135,36 +135,9 @@ matrix_all_certs() {
 
 alias mac="matrix_all_certs"
 
-# import matrix certs to Keychain Access
-import_matrix_certs() {
-	envs_list=("demo1" "crt" "staging" "prod")
-	for env in "${envs_list[@]}"; do
-		# import usercerts.p12 on the command line, avoiding password dialogue box
-		p12_path="$HOME/.ves-internal/$env/usercerts.p12"
-		if [ -f "$p12_path" ]; then
-			printf "Importing %s to Keychain Access:\n" "$p12_path"
-			import_cmd="sudo security import $p12_path -P 'volterra'"
-			echo "$import_cmd"
-			eval "$import_cmd"
-		else
-			echo "Did you run matrix_all_certs() or matrix get-user-cert -e $env"
-		fi
-	done
-}
-
-alias imc="import_matrix_certs"
-
-gc_login() {
-	export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-	kubectl config use-context gke_devtest-293809_us-east4_gc01-int-ves-io
-	kubectl cluster-info 2>/dev/null || (gcloud auth login --project=devtest-293809 && gcloud container clusters get-credentials gc01-int-ves-io --region us-east4)
-}
-
-az_login() {
-	az login --tenant ves.f5.com
-	# az account set -s "VES DevTest Manual - Sponsored"
-	az acr login --name volterra --subscription "VES DevTest Automated - Sponsored"
-}
+if [ -f ~/.work-aliases ]; then
+	source ~/.work-aliases
+fi
 
 # update Brewfile
 alias brewup="brew bundle dump --file=~/dotfiles/Brewfile --force"
