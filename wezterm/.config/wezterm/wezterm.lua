@@ -147,10 +147,12 @@ config.color_schemes = {
 	-- },
 }
 
+-- The default fallback includes Nerd Font Symbols font, so we don't need to
+-- use Symbols Nerd Font or a patched font anymore.
+-- https://wezfurlong.org/wezterm/config/fonts.html
 config.font = wezterm.font_with_fallback({
-	"CaskaydiaCove Nerd Font",
-	"Hack Nerd Font",
-	"Symbols Nerd Font",
+	"CaskaydiaCove Nerd Font", -- the patched font has larger icons which I prefer
+	"Cascadia Code",
 })
 config.font_size = 13.0
 
