@@ -34,6 +34,7 @@ alias nv="\nvim"
 alias av="NVIM_APPNAME=astronvim nvim"
 alias lv="lvim"
 alias launchnvim="NVIM_APPNAME=launchnvim nvim"
+alias sv="sudo -e"
 
 # neovim config switcher
 vs() {
