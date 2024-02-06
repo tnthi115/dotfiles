@@ -11,7 +11,7 @@ customCommands:
     loadingText: "Opening commitizen commit tool"
     subprocess: true
   - key: "m"
-    command: "glab mr create --fill --fill-commit-body --draft --assignee t.thi --remove-source-branch --squash-before-merge --web"
+    command: "glab mr create --assignee t.thi --draft --fill --fill-commit-body --remove-source-branch --squash-before-merge --web"
     description: "Create gitlab MR with glab cli."
     context: "localBranches"
     loadingText: "Creating MR"
