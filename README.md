@@ -205,3 +205,4 @@ stow KeyBindings
 - [ ] flesh out dependencies more
 - [ ] add brew packages file
 - [x] maybe organize directories into shared, macos, linux
+- [ ] add section on `yazi` and other tools I haven't added
