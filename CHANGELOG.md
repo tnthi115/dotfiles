@@ -2,6 +2,73 @@
 
 ### Feat
 
+- **yazi**: add yazi.toml
+- **aliases**: add sv alias for sudo -e to us my nvim config with sudo
+- **wezterm**: update fonts after update
+- **golangci-lint**: add golden config
+- **exports**: update gitlab token env to hide token from repo
+- **exports**: change editor and manpager to nvim; add nvim mason to path instead of lvim mason
+- **yabai**: ignore Docker Desktop
+- **tmux**: add tmux integration for navigator.nvim plugin
+- add image.nvim to LazyVim config and integrate with tmux
+- **aliases**: update vim/nvim aliases and add gb alias to fzf pick git branch
+- **jetbrains**: add .ideavimrc after experimenting with goland
+- **aliases**: add vs function to switch between neovim configs
+- **lvim**: add local indent setting for go files (commented)
+- **gitconfig**: change git editor from lvim to nvim
+- **nvim**: add lazyvim config as submodule
+- **lvim**: add function and keybind for running telescope live_grep with glob patterns
+- **lvim**: add gitlab.vim ai code suggestions plugin
+- **brewfile**: install goland
+- **aliases**: add az_login function
+- add gitlab integration to lvim and lazygit
+- **lvim**: add mdformat markdown formatter
+- **brew**: add Brewfile and alias for brew bundle dump
+- **aliases**: add importing matrix certs into Keychain Access on cmdline
+- **lvim**: update ogpt.nvim models too mistral:7b-instruct to conform to f5 ai approvals
+- **yabai**: add sia to list of unmanaged apps
+- **helix**: disable golint in golangci-lint
+- **lvim**: update gopls hints and disable golint in golanci-lint
+- **doomemacs**: fix font weight and title bar, add some package config
+- **lvim**: disable f, F, t, T, ; and , motions for flash.nvim
+- **doomemacs**: minor changes nothing works yet
+- **lvim**: format all lazy.nvim keys to one line each; add flash.nvim
+- **lvim**: remove C-s keybind to save
+- **lvim**: remove java lang support and c-a keybind to stop cmp
+- **doomemacs**: add WIP doom emacs config
+- **helix**: add WIP helix config
+- **lvim**: update ogpt.nvim plugin config after new changes
+- **lvim**: change BufferKill keybind to <leader>bk from <leader>bc
+- **exports**: remove ogpt.nvim env vars
+- **aliases**: add re alias to source exports
+- **zsh**: move exports to .exports file
+- **lvim**: remove conceallevel=1
+- **aliases**: add helpful echo messages in matrix_all_certs and add mac alias
+- **lvim**: add gen.nvim and ogpt.nvim (+ trouble.nvim and nui.nvim)
+- **aliases**: add function for logging into google cloud for volterra (f5xc)
+- **zsh**: add OPENAI_API_HOST and _KEY env vars for nvim ogpt plugin
+- **tmux**: change prefix to ctrl + space from ctrl + e
+- **lvim**: enable golint, revive, ifshort, and maybe other linters for golangci-lint
+- **skhd**: change Google Chrome to Firefox
+- **aliases**: add matrix_all_certs() shell function
+- **lvim**: add "gopkg.volterra.us" as a company prefix for goimports-revisor
+- **raycast**: add script to launch firefox in hardened profile and bind it to cmd + P
+- **raycast**: open firefox in private mode in "hardened" profile
+- **lvim**: setlocal conceallevel=2 for markdown files, add toggle conceallevel keybind for markdown
+- **lvim**: update list of golangci-lint linters, setup gopher dap
+- add toml lsp
+- install and configure helix (deez nuts)
+- unalias hx and uninstall miniconda
+- update firefox
+- **lvim**: add flags for goimports-reviser; auto install lsps; enable gofumpt, goimports, and varnamelen linters for golangci-lint
+- **tmux**: remove time in bottom right status
+- **gitconfig**: change global email to t.thi@f5.com for work and add ssh instead of https
+- **zsh**: add GOPATH and GOPRIVATE for volterra
+- **aliases**: add $HOME/f5-bin to PATH so that matrix cli can be in my path
+- **lvim**: use shfmt instead of beautysh, use 2 spaces instead of 4 for sh
+- **aliases**: change swenv to use a new find command that lists all directories that contain pyvenv.cfg in the current project and $HOME/venvs
+- **lvim**: add pylint for python linting and add pyupgrade to ruff linters; add pyproject.toml
+- **macos**: comment out keybinds and remove simlink to DefaultKeyBinding.dict
 - **lvim**: change todo-comment highlighting to highlight only bg
 - **tmux**: add keybind to swap tmux session with popup window
 - **lvim**: add inlay hints settings to gopls in preparation for neovim inlay hints in 0.10
@@ -57,6 +124,10 @@
 
 ### Fix
 
+- **aliases**: remove work aliases
+- **aliases**: az_login function
+- **lvim**: automatic_servers_installation setting in lvim
+- **tmux**: status bar transparency
 - **lvim**: remove deprecated linters in golanci-lint
 - **tmux**: transparency of status bar
 - **lvim**: move golangci-lint-ls and gopls setup back to lsp/languages/go.lua for now so it starts up correctly
@@ -76,6 +147,10 @@
 
 ### Refactor
 
+- **lazygit**: change order of flags in glab mr create custom command
+- **lvim**: remove javascript and ruby as ft for gitlab.vim plugin lazy config
+- **aliases**: remove nvim alias to lvim
+- **aliases**: move importing of matrix certs out of matrix_all_certs() function and into its own function import_matrix_certs()
 - **lvim**: clean up cpp language configuration, but not using cpp
 - **aliases**: improve swenv() function to use an array of paths and check for fd
 - **lvim**: change neogen generate() keybind to nn from ng
