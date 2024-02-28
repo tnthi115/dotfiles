@@ -145,6 +145,8 @@ fi
 # update Brewfile
 alias brewup="brew bundle dump --file=~/dotfiles/Brewfile --force"
 
+alias kubegc="kubectl --kubeconfig ~/.kube/config -n ves-system"
+
 # fzf colorscheme
 _gen_fzf_default_opts() {
 	# local base03="234"
