@@ -255,6 +255,12 @@ if command -v kubectl &> /dev/null; then source <(kubectl completion zsh); fi
 
 # glab - GitLab CLI tool {{{
 
-source <(glab completion -s  zsh)
+# source <(glab completion -s  zsh)
+
+# }}}
+
+# zoxide {{{
+
+eval "$(zoxide init zsh)"
 
 # }}}
