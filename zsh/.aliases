@@ -53,6 +53,11 @@ vs() {
 alias gs="git status"
 alias gl="git log"
 alias gb='git checkout $(git branch | fzf)' # TODO: deal with `*` on the current branch
+alias ga="git add -A"
+alias gc="git commit"
+alias gP="git push"
+alias gPf="git push --force"
+alias gp="git pull"
 
 # application aliases
 # alias nfi="neofetch --wpm --backend kitty --source /media/sf_Downloads/wallpapers/gruvbox/new-project-5.png"
@@ -120,32 +125,12 @@ swenv() {
 	source "$venv/bin/activate"
 }
 
-# marix get-user-certs for all 4 envs
-matrix_all_certs() {
-	if command -v matrix &>/dev/null; then
-		envs_list=("demo1" "crt" "staging" "prod")
-		for env in "${envs_list[@]}"; do
-			# get user certs with matrix
-			printf "Getting certs for %s:\n" "$env"
-			matrix_cmd="matrix get-user-cert -e $env"
-			echo "$matrix_cmd"
-			eval "$matrix_cmd"
-		done
-	else
-		echo 'Did you add matrix to your $PATH?\nTry:\n\texport $PATH="$PATH:/path/to/matrix/installation/dir"'
-	fi
-}
-
-alias mac="matrix_all_certs"
-
 if [ -f ~/.work-aliases ]; then
 	source ~/.work-aliases
 fi
 
 # update Brewfile
 alias brewup="brew bundle dump --file=~/dotfiles/Brewfile --force"
-
-alias kubegc="kubectl --kubeconfig ~/.kube/config -n ves-system"
 
 # fzf colorscheme
 _gen_fzf_default_opts() {
