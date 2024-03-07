@@ -31,13 +31,26 @@ export TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S'
 if command -v go &>/dev/null; then
 	# export PATH="$PATH:/usr/local/go/bin"
 
-	# Add go path to path
-	# export GOPATH="/usr/lib/go"
-	# export GOPATH="$HOME/go"
-	# export GOPATH="$HOME/.local/lib/go"
-	export PATH="$PATH:$(go env GOPATH)/bin"
-	export GOPATH="$(go env GOPATH)"
 	export GOPRIVATE=gopkg.volterra.us
+
+	if command -v goenv &>/dev/null; then
+		# Golang version management using goenv
+		# https://github.com/go-nv/goenv/blob/master/ENVIRONMENT_VARIABLES.md
+		export GOENV_GOMOD_VERSION_ENABLE=1
+
+		export GOENV_ROOT="$HOME/.goenv"
+		export PATH="$GOENV_ROOT/bin:$PATH"
+		eval "$(goenv init -)"
+		export PATH="$GOROOT/bin:$PATH"
+		export PATH="$PATH:$GOPATH/bin"
+	else
+		# Add go path to path
+		# export GOPATH="/usr/lib/go"
+		# export GOPATH="$HOME/go"
+		# export GOPATH="$HOME/.local/lib/go"
+		export PATH="$PATH:$(go env GOPATH)/bin"
+		export GOPATH="$(go env GOPATH)"
+	fi
 fi
 
 # Add lvim mason to path
@@ -71,3 +84,6 @@ fi
 
 # gitlab.nvim api token
 source "$HOME/.gitlab-token"
+
+# stellar
+source "$HOME/.stellar-gitlab-token"

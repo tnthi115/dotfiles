@@ -99,6 +99,7 @@ symbol = " "
 
 [golang]
 symbol = " "
+format = 'via [$symbol($version )($mod_version )]($style)'
 
 [guix_shell]
 symbol = " "
