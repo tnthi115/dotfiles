@@ -154,7 +154,7 @@ config.font = wezterm.font_with_fallback({
 	"CaskaydiaCove Nerd Font", -- the patched font has larger icons which I prefer
 	"Cascadia Code",
 })
-config.font_size = 13.0
+config.font_size = 13.3
 
 -- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
