@@ -261,6 +261,6 @@ if command -v kubectl &> /dev/null; then source <(kubectl completion zsh); fi
 
 # zoxide {{{
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
 # }}}
