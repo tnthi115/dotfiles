@@ -1,3 +1,12 @@
+#
+
+# See full config options:
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+
+gui:
+  enlargedSideViewLocation: top
+  nerdFontsVersion: "3"
+  showFileIcons: true
 git:
   paging:
     colorArg: always
