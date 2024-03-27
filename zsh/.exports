@@ -2,6 +2,9 @@
 
 # export XDG_CONFIG_HOME="$HOME/.config"
 
+# Add dotfiles scripts to path
+[[ -d $HOME/dotfiles/bin/ ]] && export PATH="$PATH:$HOME/dotfiles/bin/"
+
 # Change cargo home directory
 export CARGO_HOME="$CARGO_PATH"
 
