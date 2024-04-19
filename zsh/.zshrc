@@ -10,8 +10,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# setopt histignorealldups sharehistory
-setopt histignorealldups
+setopt histignorealldups sharehistory
+# setopt histignorealldups
 
 # Keep 1000 lines of history within the shell and save it to ~/.cache/zsh/history
 HISTSIZE=10000
