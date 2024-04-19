@@ -11,18 +11,23 @@ These are my personal configuration files.
 
 ## Installation
 
-Make sure to install the [dependencies](#dependencies) listed below. You can
-find a WIP package list in
-[`pkglist.txt`](https://github.com/tnthi115/dotfiles/blob/master/pkglist.txt).
+> **Warning**: I am not responsible for any changes to your system. Make sure
+> you understand what you are doing before installing any dependencies and
+> using my dotfiles.
+
+Make sure to install the [dependencies](#dependencies) listed below.
 
 ```sh
-# On Arch
+# On Arch (pkglist.txt is a WIP and not complete)
 sudo pacman -S --needed - < pkglist.txt
+
+# On MacOS
+brew bundle --file=~/dotfiles/Brewfile
 ```
 
-**Warning**: The package names may vary or some may not exist depending on your
-package manager. If so, just look up how to install the packages on your
-system.
+> **Warning**: The package names may vary or some may not exist depending on your
+> package manager. If so, just look up how to install the packages on your
+> system.
 
 You will need [Git](https://git-scm.com/) and [GNU
 Stow](https://www.gnu.org/software/stow/) to clone and symlink the dotfiles.
@@ -45,8 +50,8 @@ Clone into your `$HOME` or `~` directory:
 git clone https://github.com/tnthi115/dotfiles.git
 ```
 
-**Important:** Remove or backup your old config files before running `stow`.
-For example:
+> **Important:** Remove or backup your old config files before running `stow`.
+> For example:
 
 ```sh
 mv ~/.zshrc ~/.zshrc.bak
@@ -63,11 +68,11 @@ stow */ # Everything (the '/' grabs all directories and ignores files (e.g. READ
 stow zsh # Just my zsh config
 ```
 
-**Note:** `stow` doesn't assume `$HOME` (`~`) as the target directory, and instead
-defaults to the parent of the current directory, which is why the above
-commands work properly. If for some reason you want to clone to another
-directory rather than your home directory (e.g. ~/repos/, ~/Git/, etc.), you
-should run `stow` with the `--target` flag to specify your home directory:
+> **Note:** `stow` doesn't assume `$HOME` (`~`) as the target directory, and instead
+> defaults to the parent of the current directory, which is why the above
+> commands work properly. If for some reason you want to clone to another
+> directory rather than your home directory (e.g. ~/repos/, ~/Git/, etc.), you
+> should run `stow` with the `--target` flag to specify your home directory:
 
 ```sh
 stow --target=${HOME} zsh
@@ -99,7 +104,9 @@ you want to use the same collections I've created.
 
 #### Neovim
 
-I use [Lunarvim](https://www.lunarvim.org/) as a base config for [neovim](https://neovim.io/).
+I used to use [Lunarvim](https://www.lunarvim.org/) as a base config for
+[neovim](https://neovim.io/). Now I prefer
+[LazyVim](https://github.com/tnthi115/lazyvim).
 
 #### Tmux
 
@@ -149,6 +156,7 @@ and [Brave](https://brave.com/) are okay alternatives.
 
 - [Tokyo Night by Milav](https://addons.mozilla.org/en-US/firefox/addon/tokyo-night-milav/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 - [Gruvbox Material Dark by akay](https://addons.mozilla.org/en-US/firefox/addon/gruvbox-material-dark/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+- simple tab groups
 - ublock origin in medium mode
 - vimium
 - firefox multi-account containers
@@ -186,7 +194,7 @@ MacOS, with very similar architecture to
 
 #### Keybindings
 
-TODO
+> **Note**: I don't use this anymore.
 
 - [Change MacOS
   Keybindings](https://blog.victormendonca.com/2020/04/27/how-to-change-macos-key-bindings/)
@@ -203,6 +211,6 @@ stow KeyBindings
 
 - [x] add links
 - [ ] flesh out dependencies more
-- [ ] add brew packages file
+- [x] add brew packages file
 - [x] maybe organize directories into shared, macos, linux
 - [ ] add section on `yazi` and other tools I haven't added
