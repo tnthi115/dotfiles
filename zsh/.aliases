@@ -29,7 +29,11 @@ alias vim="nvim"
 # alias oldnvim="\nvim"
 alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
-alias vf="vim \$(fzf)"
+if command -v bat &>/dev/null; then
+	alias vf="vim \$(fzf --preview='bat --style=numbers --color=always --line-range :500 {}')"
+else
+	alias vf="vim \$(fzf --preview='cat {}')"
+fi
 alias nv="\nvim"
 alias av="NVIM_APPNAME=astronvim nvim"
 alias lv="lvim"
