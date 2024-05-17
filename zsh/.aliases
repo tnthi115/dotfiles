@@ -30,6 +30,7 @@ alias vim="nvim"
 alias oldvim="\vim"
 alias vimf="vim \$(fzf)"
 if command -v bat &>/dev/null; then
+	alias cat="bat"
 	alias vf="vim \$(fzf --preview='bat --style=numbers --color=always --line-range :500 {}')"
 else
 	alias vf="vim \$(fzf --preview='cat {}')"
