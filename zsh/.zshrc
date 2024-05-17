@@ -10,7 +10,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-setopt histignorealldups sharehistory
+setopt histignorealldups sharehistory appendhistory hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_ignore_dups hist_find_no_dups
 # setopt histignorealldups
 
 # Keep 1000 lines of history within the shell and save it to ~/.cache/zsh/history
@@ -109,6 +109,13 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # }}}
 
 # Builtin Completion {{{
+
+# zsh-completions plugin
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  # autoload -Uz compinit
+  # compinit
+fi
 
 # Use modern completion system
 autoload -Uz compinit
