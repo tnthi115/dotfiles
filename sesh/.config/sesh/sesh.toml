@@ -1,5 +1,5 @@
 [default_session]
-startup_command = "nvim ."
+startup_command = "ll"
 
 [[session]]
 name = "Downloads 📥"
