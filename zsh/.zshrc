@@ -44,7 +44,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     COPY_CMD="pbcopy"
 
     # Autoremove after every brew uninstall command.
-    export HOMEBREW_AUTOREMOVE=1
+    # export HOMEBREW_AUTOREMOVE=1
 
     # Homebrew zsh completion: https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
     if type brew &>/dev/null
