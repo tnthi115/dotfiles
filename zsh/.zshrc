@@ -268,6 +268,9 @@ if command -v kubectl &> /dev/null; then source <(kubectl completion zsh); fi
 
 # zoxide {{{
 
+# Make cd act like pushd and push the current dir onto the stack.
+setopt AUTO_PUSHD
+
 eval "$(zoxide init --cmd cd zsh)"
 
 # }}}
