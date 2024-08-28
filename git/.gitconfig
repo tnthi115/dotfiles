@@ -31,10 +31,17 @@
 	defaultBranch = main
 
 # Delta
+# see config from https://www.reddit.com/r/neovim/comments/18yi3u5/comment/kggcgsv/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 [core]
 	; editor = lvim
   editor = nvim
   pager = delta
+
+[pager]
+  blame = delta
+  diff = delta
+  reflog = delta
+  show = delta
 
 [interactive]
   diffFilter = delta --color-only --features=interactive
@@ -61,6 +68,7 @@
   conflictstyle = diff3
 
 [diff]
+  submodule = log
   colorMoved = default
 
 [url "git@gitlab.com:"]
