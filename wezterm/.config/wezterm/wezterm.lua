@@ -151,10 +151,19 @@ config.color_schemes = {
 -- use Symbols Nerd Font or a patched font anymore.
 -- https://wezfurlong.org/wezterm/config/fonts.html
 config.font = wezterm.font_with_fallback({
+	-- "Hack Nerd Font",
+	-- "FiraCode Nerd Font",
+	"JetBrainsMono Nerd Font",
+	-- "Monaspace Argon",
+	-- "Monaspace Krypton",
+	-- "Monaspace Neon",
+	-- "Monaspace Radon",
+	-- "Monaspace Xenon",
 	"CaskaydiaCove Nerd Font", -- the patched font has larger icons which I prefer
 	"Cascadia Code",
 })
 config.font_size = 13.2
+config.line_height = 1.1
 
 -- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
