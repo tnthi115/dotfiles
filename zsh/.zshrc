@@ -106,6 +106,8 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # source /usr/share/doc/fzf/examples/completion.zsh
 [ -f ~/.fzf-key-bindings.zsh ] && source $HOME/.fzf-key-bindings.zsh
 
+source <(fzf --zsh)
+
 # }}}
 
 # Builtin Completion {{{

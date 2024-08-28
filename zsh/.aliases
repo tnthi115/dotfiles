@@ -108,7 +108,7 @@ alias ts="tmux switch-client -t \$(tmux ls | fzf | awk '{print \$1}')"
 # alias ts="tmux switch-client -t \$(tmux ls | fzf | awk_first)"
 # ts() { tmux switch-client -t "$(tmux ls | fzf | awk '{print $1}')"; }
 
-alias f="yazi"
+alias y="yazi"
 
 # switch python virtual environments
 swenv() {
