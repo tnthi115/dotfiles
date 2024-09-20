@@ -130,8 +130,8 @@ swenv() {
 	source "$venv/bin/activate"
 }
 
-if [ -f ~/.work-aliases ]; then
-	source ~/.work-aliases
+if [ -f ~/f5-dotfiles/.work-aliases ]; then
+	source ~/f5-dotfiles/.work-aliases
 fi
 
 # update Brewfile

@@ -3,7 +3,8 @@
 # export XDG_CONFIG_HOME="$HOME/.config"
 
 # Add dotfiles scripts to path
-[[ -d $HOME/dotfiles/bin/ ]] && export PATH="$PATH:$HOME/dotfiles/bin/"
+# [[ -d $HOME/dotfiles/bin/ ]] && export PATH="$PATH:$HOME/dotfiles/bin/"
+export PATH="$PATH:$HOME/dotfiles/bin/"
 
 # Change cargo home directory
 export CARGO_HOME="$CARGO_PATH"
@@ -60,19 +61,21 @@ fi
 # export PATH="$PATH:$HOME/.local/share/lvim/mason/bin"
 
 # Add nvim mason to path
-[[ -d $HOME/.local/share/nvim/mason/bin ]] && export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
+# [[ -d $HOME/.local/share/nvim/mason/bin ]] && export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
+export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
 
 # Add openjdk@11 to path
 # export PATH="$PATH:/opt/homebrew/opt/openjdk@11/bin"
 
 # SDKMAN
-if command -v brew &>/dev/null && command -v sdk &>/dev/null; then
-	export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-	[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-fi
+# if command -v brew &>/dev/null && command -v sdk &>/dev/null; then
+# 	export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+# 	[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+# fi
 
 # Add f5-bin to path
-[[ -d $HOME/f5-bin ]] && export PATH="$PATH:$HOME/f5-bin"
+# [[ -d $HOME/f5-bin ]] && export PATH="$PATH:$HOME/f5-bin"
+export PATH="$PATH:$HOME/f5-bin"
 
 # Set for ollama ogpt.nvim plugin
 # if command -v ollama &>/dev/null && [[ -d /Users/t.thi/.local/share/lunarvim/site/pack/lazy/opt/ogpt.nvim ]] \
@@ -90,3 +93,6 @@ source "$HOME/.gitlab-token"
 
 # stellar
 source "$HOME/.stellar-gitlab-token"
+
+# bat
+export BAT_THEME=tokyonight_night
