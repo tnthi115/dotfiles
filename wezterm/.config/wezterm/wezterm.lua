@@ -151,6 +151,7 @@ config.color_schemes = {
 -- use Symbols Nerd Font or a patched font anymore.
 -- https://wezfurlong.org/wezterm/config/fonts.html
 config.font = wezterm.font_with_fallback({
+	-- "Monocraft Nerd Font",
 	-- "Hack Nerd Font",
 	-- "FiraCode Nerd Font",
 	"JetBrainsMono Nerd Font",
