@@ -69,6 +69,10 @@ function vi-yank-xclip {
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
+if [ -f ~/work-dotfiles/.work-zshrc ]; then
+	source ~/work-dotfiles/.work-zshrc
+fi
+
 # Exports {{{
 
 if [ -f ~/.exports ]; then

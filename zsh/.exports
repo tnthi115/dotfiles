@@ -35,8 +35,6 @@ export TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S'
 if command -v go &>/dev/null; then
 	# export PATH="$PATH:/usr/local/go/bin"
 
-	export GOPRIVATE=gopkg.volterra.us
-
 	if command -v goenv &>/dev/null; then
 		# Golang version management using goenv
 		# https://github.com/go-nv/goenv/blob/master/ENVIRONMENT_VARIABLES.md
@@ -73,10 +71,6 @@ export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
 # 	[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 # fi
 
-# Add f5-bin to path
-# [[ -d $HOME/f5-bin ]] && export PATH="$PATH:$HOME/f5-bin"
-export PATH="$PATH:$HOME/f5-bin"
-
 # Set for ollama ogpt.nvim plugin
 # if command -v ollama &>/dev/null && [[ -d /Users/t.thi/.local/share/lunarvim/site/pack/lazy/opt/ogpt.nvim ]] \
 # 	; then
@@ -90,9 +84,6 @@ export PATH="$PATH:$HOME/f5-bin"
 
 # gitlab.nvim api token
 source "$HOME/.gitlab-token"
-
-# stellar
-source "$HOME/.stellar-gitlab-token"
 
 # bat
 export BAT_THEME=tokyonight_night

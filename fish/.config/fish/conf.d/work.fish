@@ -1,3 +1,3 @@
-if test -e ~/f5-dotfiles/work.fish
-    source ~/f5-dotfiles/work.fish
+if test -e ~/work-dotfiles/fish/functions/work.fish
+    source ~/work-dotfiles/fish/functions/work.fish
 end

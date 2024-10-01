@@ -130,10 +130,6 @@ swenv() {
 	source "$venv/bin/activate"
 }
 
-if [ -f ~/f5-dotfiles/.work-aliases ]; then
-	source ~/f5-dotfiles/.work-aliases
-fi
-
 # update Brewfile
 alias brewup="brew bundle dump --file=~/dotfiles/Brewfile --force"
 
