@@ -40,7 +40,7 @@ abbr -a -- sv 'sudo -e'
 # git
 abbr -a -- gs 'git status'
 abbr -a -- gl 'git log'
-abbr -a -- gb 'git checkout $(git branch | fzf)'
+abbr -a -- gb 'git checkout (git branch | fzf | sed "s/^\\* //; s/ //g")'
 abbr -a -- ga 'git add -A'
 abbr -a -- gc 'git commit'
 abbr -a -- gP 'git push'

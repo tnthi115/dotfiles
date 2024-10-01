@@ -26,8 +26,7 @@ switch (uname -s)
     case Darwin
         # set -gx BROWSER open
         set -gx COPY_CMD pbcopy
-        # TODO: move this
-        set -gx CARGO_PATH $HOME/.cargo
+        eval "$(/opt/homebrew/bin/brew shellenv)"
 end
 
 # Set vars for dotfiles and special dirs.
@@ -40,3 +39,24 @@ set -q MANPATH; or set -gx MANPATH ''
 
 # Set initial working directory.
 set -g IWD $PWD
+
+set -gx CARGO_PATH $HOME/.cargo
+set -gx CARGO_HOME $CARGO_PATH
+
+# Set PATH
+fish_add_path --append $HOME/.local/bin
+fish_add_path --append $HOME/dotfiles/bin/
+fish_add_path --append $CARGO_HOME/bin
+
+# Add nvim mason to path
+if test -d $HOME/.local/share/nvim/mason/bin
+    fish_add_path --append $HOME/.local/share/nvim/mason/bin
+end
+
+# gitlab.nvim api token
+source $HOME/.gitlab-token
+
+# bat
+set -gx BAT_THEME tokyonight_night
+
+source $HOME/work-dotfiles/fish/conf.d/work-env.fish

@@ -2,6 +2,7 @@
 # fzf
 #
 
+type -q fzf || return 1
 fzf --fish | source
 
 # Use fd instead of fzf
@@ -43,3 +44,29 @@ set -gx FZF_ALT_C_COMMAND 'fd --type=d --hidden --strip-cwd-prefix --exclude .gi
 #             echo "if [ -d {} ]; then lsd --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi" | fzf
 #     end
 # end
+
+set -l base03 "#002b36"
+set -l base02 "#292e42"
+set -l base01 "#1a1b26"
+set -l base00 "#16161e"
+set -l base0 "#839496"
+set -l base1 "#93a1a1"
+set -l base2 "#c0caf5"
+set -l base3 "#a9b1d6"
+set -l yellow "#e0af68"
+set -l orange "#ff9e64"
+set -l red "#f7768e"
+set -l magenta "#bb9af7"
+set -l violet "#bb9af7"
+set -l blue "#7aa2f7"
+set -l cyan "#7dcfff"
+set -l cyan1 "#27a1b9"
+set -l green "#9ece6a"
+
+# Comment and uncomment below for the light theme.
+
+# Tokyonight Night color scheme for fzf
+set -gx FZF_DEFAULT_OPTS "
+    --color fg:-1,bg:-1,hl:$cyan1,fg+:$base2,bg+:$base02,hl+:$cyan1
+    --color info:$green,prompt:$blue,pointer:$red,marker:$blue,spinner:$cyan1
+    "
