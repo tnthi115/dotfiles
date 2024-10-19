@@ -24,7 +24,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -235,3 +235,39 @@ backspace = ['close-all-windows-but-current', 'mode main']
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
 run = 'layout floating'
+
+# force to workspace 1
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.electron.sia'
+run = 'move-node-to-workspace 1'
+
+# force to workspace 2
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace 2'
+
+# force to workspace 3
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+run = 'move-node-to-workspace 3'
+
+# force to workspace 4
+[[on-window-detected]]
+if.app-id = 'org.mozilla.com.zen.browser'
+run = 'move-node-to-workspace 4'
