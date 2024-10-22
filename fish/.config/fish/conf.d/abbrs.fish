@@ -72,7 +72,7 @@ abbr -a -- gwhoami 'echo "user.name:" (git config user.name) && echo "user.email
 # cli
 abbr -a -- lg lazygit
 abbr -a -- ld lazydocker
-abbr -a -- kc kubectl
+abbr -a -- k kubectl
 abbr -a -- y yazi
 
 # brew
