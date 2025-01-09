@@ -1,3 +1,5 @@
+set -gx goenv_warning false
+
 if type -q go
     if type -q goenv
         # Helper variable for calling source_goenv
@@ -8,7 +10,16 @@ if type -q go
         set -gx GOENV_GOMOD_VERSION_ENABLE 1
 
         if test -e go.mod -o -e go.sum -o (count *.go) -gt 0
-            source_goenv
+            if test "$goenv_warning" = true
+                set -f go_version (go version | awk '{print $3}' | sed 's/go//; s/\(\.[0-9]*\)\.[0-9]*$/\1/')
+                set -f goenv_local (goenv local | sed 's/\(\.[0-9]*\)\.[0-9]*$/\1/')
+                if test $go_version != $goenv_local
+                    set -l error_message "mismatching go versions:\n\t$go_version != $goenv_local\n\nrun `source_goenv` to update"
+                    echo -e $error_message
+                end
+            else
+                source_goenv
+            end
 
             # set -gx GOENV_ROOT "$HOME/.goenv"
             # fish_add_path --prepend --path "$GOENV_ROOT/bin"
