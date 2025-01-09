@@ -25,8 +25,10 @@ customCommands:
     context: "localBranches"
     loadingText: "Creating MR"
     prompts:
-    - type: "confirm"
-      title: "Create MR"
-      body: "Are you sure you want to create the MR?"
+      - type: "confirm"
+        title: "Create MR"
+        body: "Are you sure you want to create the MR?"
     # showOutput: true
     subprocess: true
+os:
+  openLink: open "$(echo "{{link}}" | sed 's/%2F/\//g')"
