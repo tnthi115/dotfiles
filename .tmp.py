@@ -77,6 +77,12 @@ def main() -> None:
         print(f"{player2} was closer to the random number {game.random_number}")
     # gitlab code suggestions
 
+    # written by supermaven
+    # if both players guessed the same number, it's a tie
+    if player1.guess == player2.guess:
+        print("It's a tie!")
+    # written by supermaven
+
     # ask if they want to play again
     play_again = input("Do you want to play again? (y/n): ")
     if play_again == "y":
