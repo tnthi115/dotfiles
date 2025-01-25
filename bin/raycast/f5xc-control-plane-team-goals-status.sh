@@ -15,7 +15,7 @@
 # @raycast.authorURL https://github.com/tnthi115
 
 # Define the list of names
-names=("@AKHILESH SENAPATI" "@Amruta Kulkarni" "@Anu Pant" "@Anvesh CHINTAKUNTA" "@Bolun Zhao" "@Dan Hauer" "@Graham Mainwaring" "@Harsh KUMAR" "@Jalaj SHARMA" "@KHULAN BAASAN " "@Kyle Dennison" "@Matt Sawyer" "@Nitish B" "@Shaun Adams")
+names=("@Amruta Kulkarni" "@Anu Pant" "@Anvesh CHINTAKUNTA" "@Bolun Zhao" "@Dan Hauer" "@Graham Mainwaring" "@Harsh KUMAR" "@Jalaj SHARMA" "@KHULAN BAASAN " "@Kyle Dennison" "@Matt Sawyer" "@Nitish B" "@Shaun Adams")
 
 # Check if the script was run with arguments
 if [ $# -eq 0 ]; then
