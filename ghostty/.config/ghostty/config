@@ -22,7 +22,7 @@ confirm-close-surface = false
 macos-option-as-alt = true
 auto-update = check
 
-# keybinds
+# Keybinds
 keybind = ctrl+shift+,=reload_config
 keybind = performable:super+c=copy_to_clipboard
 keybind = performable:ctrl+c=copy_to_clipboard
