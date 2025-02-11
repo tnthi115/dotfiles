@@ -135,6 +135,12 @@ written in Rust (btw) that also supports ligatures and is configured in Lua
 Kitty because the newest versions of Kitty are giving me issues with fonts
 rendering in all bold for whatever reason.
 
+#### Ghostty
+
+[Ghostty](https://ghostty.org/), written by Mitchell Hashimoto, is the new kid
+on the block. You can read about the features
+[here](https://ghostty.org/docs/features).
+
 #### Zsh
 
 I like to use [zsh](https://wiki.archlinux.org/title/zsh) over
