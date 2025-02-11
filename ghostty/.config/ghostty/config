@@ -20,9 +20,7 @@ auto-update = check
 
 # keybinds
 keybind = ctrl+shift+,=reload_config
-keybind = super+c=unbind
-keybind = super+v=unbind
 keybind = performable:super+c=copy_to_clipboard
+keybind = performable:ctrl+c=copy_to_clipboard
 keybind = performable:super+v=paste_from_clipboard
-keybind = super+c=ignore
-keybind = super+v=ignore
+keybind = performable:ctrl+v=paste_from_clipboard
