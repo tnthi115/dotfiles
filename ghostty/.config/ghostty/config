@@ -1,23 +1,25 @@
 #vim: ft=config
-theme = tokyonight
 
+# Theme
+theme = tokyonight
+background-opacity = .925
+background-blur = true
+window-decoration = auto
+macos-titlebar-style = hidden
+window-padding-x = 1,0
+
+# Font
 font-family = JetBrains Mono
 font-size = 13.2
 adjust-cell-height = 10%
 
+# Cursor
 cursor-style = block
 shell-integration-features = no-cursor
 
-background-opacity = .925
-background-blur = true
-
-window-decoration = auto
-macos-titlebar-style = hidden
-
+# General
 confirm-close-surface = false
-
 macos-option-as-alt = true
-
 auto-update = check
 
 # keybinds
