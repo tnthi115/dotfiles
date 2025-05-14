@@ -2,7 +2,7 @@
 # VERSION: 3.0
 SETUVAR --export TOKYONIGHT:storm
 SETUVAR --export __fish_cache_dir:\x1d
-SETUVAR __fish_initialized:3400
+SETUVAR __fish_initialized:3800
 SETUVAR --export __fish_plugins_dir:/Users/t\x2ethi/\x2econfig/fish/plugins
 SETUVAR _fisher_evanlucas_2F_fish_2D_kubectl_2D_completions_files:\x7e/\x2econfig/fish/\x2efisher/completions/kubectl\x2efish
 SETUVAR _fisher_jorgebucaran_2F_autopair_2E_fish_files:\x7e/\x2econfig/fish/\x2efisher/functions/_autopair_backspace\x2efish\x1e\x7e/\x2econfig/fish/\x2efisher/functions/_autopair_insert_left\x2efish\x1e\x7e/\x2econfig/fish/\x2efisher/functions/_autopair_insert_right\x2efish\x1e\x7e/\x2econfig/fish/\x2efisher/functions/_autopair_insert_same\x2efish\x1e\x7e/\x2econfig/fish/\x2efisher/functions/_autopair_tab\x2efish\x1e\x7e/\x2econfig/fish/\x2efisher/conf\x2ed/autopair\x2efish

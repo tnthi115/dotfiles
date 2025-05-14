@@ -56,6 +56,8 @@ end
 # gitlab.nvim api token
 source $HOME/.gitlab-token
 
+source $HOME/.github-token
+
 # bat
 set -gx BAT_THEME tokyonight_night
 
