@@ -25,6 +25,6 @@ auto-update = check
 # Keybinds
 keybind = ctrl+shift+,=reload_config
 keybind = performable:super+c=copy_to_clipboard
-keybind = performable:ctrl+c=copy_to_clipboard
+# keybind = performable:ctrl+c=copy_to_clipboard
 keybind = performable:super+v=paste_from_clipboard
-keybind = performable:ctrl+v=paste_from_clipboard
+# keybind = performable:ctrl+v=paste_from_clipboard
