@@ -12,6 +12,8 @@ git:
     colorArg: always
     # useConfig: true
     pager: delta --dark --paging=never
+  commit:
+    autoWrapCommitMessage: false
 customCommands:
   - key: "Z"
     command: "git cz c"
