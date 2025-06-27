@@ -15,7 +15,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 # alias l='ls -CF'
 alias l='ls -F'
-alias tree='lsd --tree'
+alias tree='lsd --tree --all'
 
 # add color to grep
 alias grep='grep --color=auto'
