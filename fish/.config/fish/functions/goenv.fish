@@ -8,8 +8,6 @@ function source_goenv --description "source (goenv init -|psub)"
     set -gx PATH $PATH $GOPATH/bin
 end
 
-abbr -a sg source_goenv
-
 function is_subdir
     for dir in $argv[2]
         if string match -r $dir $argv[1]
