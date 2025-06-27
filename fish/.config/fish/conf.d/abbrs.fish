@@ -83,5 +83,13 @@ abbr -a -- mv 'mv -i'
 abbr -a -- cp 'cp -i'
 abbr -a -- mkdir 'mkdir -p'
 
+# brew
+abbr -a -- bup 'brew update && brew upgrade && brew cleanup'
+abbr -a -- bo 'brew outdated'
+abbr -a -- bi 'brew install'
+abbr -a -- bU 'brew uninstall'
+abbr -a -- bu 'brew upgrade'
+abbr -a -- bs 'brew search'
+
 # no need to run over-and-over
 set -g MY_ABBRS_INITIALIZED true

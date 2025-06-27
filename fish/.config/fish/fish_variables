@@ -38,4 +38,4 @@ SETUVAR fish_pager_color_description:565f89
 SETUVAR fish_pager_color_prefix:7dcfff
 SETUVAR fish_pager_color_progress:565f89
 SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d364a82
-SETUVAR fish_user_paths:/Users/t\x2ethi/\x2egoenv/versions/1\x2e21\x2e10/bin\x1e/bin\x1e/Users/t\x2ethi/\x2elocal/bin\x1e/Users/t\x2ethi/dotfiles/bin\x1e/Users/t\x2ethi/\x2ecargo/bin\x1e/Users/t\x2ethi/\x2elocal/share/nvim/mason/bin\x1e/Users/t\x2ethi/f5\x2dbin\x1e/Users/t\x2ethi/go/bin
+SETUVAR fish_user_paths:/Users/t\x2ethi/\x2egoenv/versions/1\x2e21\x2e10/bin\x1e/bin\x1e/Users/t\x2ethi/\x2elocal/bin\x1e/Users/t\x2ethi/dotfiles/bin\x1e/Users/t\x2ethi/\x2ecargo/bin\x1e/Users/t\x2ethi/\x2elocal/share/nvim/mason/bin\x1e/Users/t\x2ethi/f5\x2dbin\x1e/Users/t\x2ethi/go/bin\x1e/Users/t\x2ethi/\x2econfig/emacs/bin
