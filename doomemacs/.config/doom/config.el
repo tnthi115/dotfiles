@@ -43,9 +43,9 @@
 (setq org-directory "~/Documents/org/")
 
 ;; FONTS
-(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13 :weight 'regular)
-      doom-big-font (font-spec :family "CaskaydiaCove Nerd Font" :size 20))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 13.2 :weight 'light)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 13.2 :weight 'regular)
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
@@ -56,7 +56,7 @@
 ;; (only when window is focused)
 ;; (set-frame-parameter nil 'alpha-background 69')
 ;; (add-to-list 'default-frame-alist '(alpha-background . 69))
-(doom/set-frame-opacity 69)
+;; (doom/set-frame-opacity 69)
 
 ;; NO WINDOW TITLE
 (add-to-list 'default-frame-alist '(undecorated-round . t))
@@ -72,10 +72,10 @@
  '(markdown-header-face-6 ((t (:inherit markdown-header-face :height 1.2)))))
 
 ;; SHELLS
-(setq shell-file-name "/bin/zsh"
+(setq shell-file-name "/opt/homebrew/bin/fish"
       vterm-max-scrollback 5000)
-(map! :leader
-      :desc "Vterm popup toggle" "t t" #'+vterm/toggle)
+;; (map! :leader
+;;       :desc "Vterm popup toggle" "t t" #'+vterm/toggle)
 
 ;; SETTINGS
 (setq confirm-kill-emacs nil)
@@ -96,6 +96,13 @@
 ;;   (kbd "H") #'+tabs:previous-or-goto)
 (map! :leader
       :desc "Toggle treemacs" "e" #'treemacs)
+;; (map! :leader
+;;       :desc "Toggle neotree" "e" #'neotree)
+(map! :desc "Toggle vterm popup" :n "C-/" #'+vterm/toggle)
+(map! "C-h" #'evil-window-left)
+(map! "C-j" #'evil-window-down)
+(map! "C-k" #'evil-window-up)
+(map! "C-l" #'evil-window-right)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -129,15 +136,15 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; (after! flycheck-inline
+;; (after! flycheck-inlinje
 ;;   (with-eval-after-load 'flycheck
 ;;     (add-hook 'flycheck-mode-hook #'global-flycheck-inline-mode)))
 ;; (with-eval-after-load 'flycheck
 ;;   (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 ;; (with-eval-after-load 'flycheck
 ;;   (add-hook 'flycheck-mode-hook #'global-flycheck-inline-mode))
-(after! flycheck
-  (add-hook 'flycheck-mode-hook #'global-flycheck-inline-mode))
+;; (after! flycheck
+;;   (add-hook 'flycheck-mode-hook #'global-flycheck-inline-mode))
 
 ;; (after! git-gutter
 ;;   (global-git-gutter-mode))
@@ -153,6 +160,9 @@
 ;;                           (lsp))))  ; or lsp-deferred
 
 ;; (lsp-headerline-breadcrumb-mode)
+
+(after! which-key
+  (setq which-key-idle-delay 0.01))
 
 ;; centaur tabs
 

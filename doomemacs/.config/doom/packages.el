@@ -3,7 +3,6 @@
 
 ;; To install a package with Doom you must declare them here and run 'doom sync'
 ;; on the command line, then restart Emacs for the changes to take effect -- or
-;; use 'M-x doom/reload'.
 
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
@@ -49,5 +48,27 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! flycheck-inline
-  :recipe (:host github :repo "flycheck/flycheck-inline"))
+;; (package! flycheck-inline
+;;   :recipe (:host github :repo "flycheck/flycheck-inline"))
+
+;; Fix this issue https://github.com/doomemacs/doomemacs/issues/8421
+(package! ghub
+  :pin "12d1472579075135327278b843e23f055f659b3c")
+
+(package! glab)
+(package! gtea)
+(package! gogs)
+(package! buck)
+
+;; (straight-use-package
+;;  '(perltidy
+;;    :type git
+;;    :host github
+;;    :repo "rawleyfowler/tokyo-theme.el"
+;;    :branch "main"))
+
+;; (package! tokyo-theme
+;;   :recipe (:type git
+;;            :host github
+;;            :repo "rawleyfowler/tokyo-theme.el"
+;;            :branch "main"))
