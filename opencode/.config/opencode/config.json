@@ -34,7 +34,10 @@
     "f5gpt": {
       "npm": "@ai-sdk/openai-compatible",
       "options": {
-        "baseURL": "https://f5ai.pd.f5net.com/api"
+        "baseURL": "https://f5ai.pd.f5net.com/api/",
+        "headers": {
+          "Authorization": "Bearer ${OPENAI_API_KEY}"
+        }
       },
       "models": {
         "openai/gpt-4o": {
