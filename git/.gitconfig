@@ -51,6 +51,7 @@
   light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
   features = decorations
   true-color = always
+  syntax-theme = Kanagawa
 
 [delta "interactive"]
   keep-plus-minus-markers = true

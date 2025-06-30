@@ -59,6 +59,7 @@ source $HOME/.gitlab-token
 source $HOME/.github-token
 
 # bat
-set -gx BAT_THEME tokyonight_night
+# set -gx BAT_THEME tokyonight_night
+set -e BAT_THEME
 
 source $HOME/work-dotfiles/fish/conf.d/work-env.fish

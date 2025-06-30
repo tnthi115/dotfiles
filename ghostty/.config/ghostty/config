@@ -1,8 +1,10 @@
 #vim: ft=config
 
 # Theme
-theme = tokyonight
+# theme = tokyonight
+theme = kanagawa-wave
 # background-opacity = .925
+background-opacity = .94
 background-blur = true
 window-decoration = auto
 macos-titlebar-style = hidden
