@@ -1,10 +1,13 @@
 function __get_changed_files__ --argument-names base_path
-    if not git -C $base_path rev-parse --is-inside-work-tree >/dev/null 2>&1
+    set -l git_root
+    set -l git_status
+
+    if git -C $base_path rev-parse --is-inside-work-tree >/dev/null 2>&1
+        set git_root (git -C $base_path rev-parse --show-toplevel)
+        set git_status (git -C $git_root status --porcelain)
+    else
         return 1
     end
-
-    set -l git_root (git -C $base_path rev-parse --show-toplevel)
-    set -l git_status (git -C $git_root status --porcelain)
     set -l changed_files
 
     for line in (string split '\n' $git_status)
@@ -40,41 +43,28 @@ function __source_dotfiles__ --argument-names base_path
         set -l changed_files (__get_changed_files__ $base_path)
         set -l in_git_repo $status
 
-        set -l function_dir $base_path/.config/fish/functions
-        if test -d $function_dir
-            echo (set_color yellow)"  > Sourcing functions..."(set_color normal)
-            set -l function_files (find $function_dir -name "*.fish")
-            for file in $function_files
-                if __file_is_changed__ $file $changed_files $in_git_repo
-                    echo "    > "(basename $file)
-                    if source $file
-                        echo "      "(set_color green)"✓ Sourced "(basename $file)(set_color normal)
+        function __source_files__ --argument-names dir_path changed_files in_git_repo
+            if test -d $dir_path
+                echo (set_color yellow)"  > Sourcing files from "(basename $dir_path)(set_color normal)
+                set -l files (ls $dir_path/*.fish)
+                for file in $files
+                    set -l file_name (basename $file)
+                    if __file_is_changed__ $file $changed_files $in_git_repo
+                        echo "    > "$file_name
+                        if source $file
+                            echo "      "(set_color green)"✓ Sourced "$file_name(set_color normal)
+                        else
+                            echo "      "(set_color red --bold)"Error sourcing "$file_name(set_color normal)
+                        end
                     else
-                        echo (set_color red --bold)"      Error sourcing "(basename $file)(set_color normal)
+                        echo "    ~ "$file_name" (unchanged, skipping)"
                     end
-                else
-                    echo "    - "(basename $file)" (unchanged, skipping)"
                 end
             end
         end
 
-        set -l config_dir $base_path/.config/fish/conf.d
-        if test -d $config_dir
-            echo (set_color yellow)"  > Sourcing configurations..."(set_color normal)
-            set -l config_files (find $config_dir -name "*.fish")
-            for file in $config_files
-                if __file_is_changed__ $file $changed_files $in_git_repo
-                    echo "    > "(basename $file)
-                    if source $file
-                        echo "      "(set_color green)"✓ Sourced "(basename $file)(set_color normal)
-                    else
-                        echo (set_color red --bold)"      Error sourcing "(basename $file)(set_color normal)
-                    end
-                else
-                    echo "    - "(basename $file)" (unchanged, skipping)"
-                end
-            end
-        end
+        __source_files__ $base_path/.config/fish/functions $changed_files $in_git_repo
+        __source_files__ $base_path/.config/fish/conf.d $changed_files $in_git_repo
     end
 end
 
