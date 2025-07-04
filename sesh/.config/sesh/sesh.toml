@@ -1,5 +1,5 @@
 [default_session]
-startup_command = "ll"
+startup_command = "ls -ah"
 
 [[session]]
 name = "Downloads 📥"
