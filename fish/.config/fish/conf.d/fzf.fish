@@ -64,7 +64,7 @@ set -gx FZF_ALT_C_COMMAND 'fd --type=d --hidden --strip-cwd-prefix --exclude .gi
 # set -l cyan1 "#27a1b9"
 # set -l green "#9ece6a"
 
-# --> Kanagawa color scheme for fzf
+# --> Kanagawa-wave color scheme for fzf
 # set -l base03 "#1F1F28"
 set -l base02 "#2A2A37"
 # set -l base01 "#181820"
@@ -84,7 +84,25 @@ set -l cyan "#6a9589"
 set -l cyan1 "#6a9589"
 set -l green "#76946a"
 
-# Comment and uncomment below for the light theme.
+# --> Kanagawa-dragon color scheme for fzf
+# # set -l base03 "#1F1F28"
+# set -l base02 "#2A2A37"
+# # set -l base01 "#181820"
+# # set -l base00 "#16161D"
+# # set -l base0 "#839496"
+# # # set -l base1 "#93a1a1"
+# # set -l base2 "#dcd7ba"
+# set -l base2 "#c5c9c5"
+# # set -l base3 "#a9b1d6"
+# set -l yellow "#c4b28a"
+# set -l orange "#b6927b"
+# set -l red "#c4746e"
+# set -l magenta "#a292a3"
+# # set -l violet "#bb9af7"
+# set -l blue "#8ba4b0"
+# set -l cyan "#8ea4a2"
+# set -l cyan1 "#68ad99"
+# set -l green "#8a9a7b"
 
 set -gx FZF_DEFAULT_OPTS "
     --color fg:-1,bg:-1,hl:$cyan1,fg+:$base2,bg+:$base02,hl+:$cyan1

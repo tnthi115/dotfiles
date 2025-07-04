@@ -1,0 +1,247 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "sumiInk0": "#16161D",
+    "sumiInk1": "#181820",
+    "sumiInk2": "#1a1a22",
+    "sumiInk3": "#1F1F28",
+    "sumiInk4": "#2A2A37",
+    "sumiInk5": "#363646",
+    "sumiInk6": "#54546D",
+    "waveBlue1": "#223249",
+    "waveBlue2": "#2D4F67",
+    "winterGreen": "#2B3328",
+    "winterYellow": "#49443C",
+    "winterRed": "#43242B",
+    "winterBlue": "#252535",
+    "autumnGreen": "#76946A",
+    "autumnRed": "#C34043",
+    "autumnYellow": "#DCA561",
+    "samuraiRed": "#E82424",
+    "roninYellow": "#FF9E3B",
+    "waveAqua1": "#6A9589",
+    "dragonBlue": "#658594",
+    "oldWhite": "#e8e4d8",
+    "fujiWhite": "#e8e4d8",
+    "fujiGray": "#727169",
+    "oniViolet": "#957FB8",
+    "oniViolet2": "#b8b4d0",
+    "crystalBlue": "#7E9CD8",
+    "springViolet1": "#938AA9",
+    "springViolet2": "#9CABCA",
+    "springBlue": "#7FB4CA",
+    "lightBlue": "#A3D4D5",
+    "waveAqua2": "#7AA89F",
+    "springGreen": "#98BB6C",
+    "boatYellow1": "#938056",
+    "boatYellow2": "#C0A36E",
+    "carpYellow": "#E6C384",
+    "sakuraPink": "#D27E99",
+    "waveRed": "#E46876",
+    "peachRed": "#FF5D62",
+    "surimiOrange": "#FFA066",
+    "katanaGray": "#717C7C"
+  },
+  "theme": {
+    "primary": {
+      "dark": "crystalBlue",
+      "light": "crystalBlue"
+    },
+    "secondary": {
+      "dark": "springViolet1",
+      "light": "springViolet1"
+    },
+    "accent": {
+      "dark": "waveAqua1",
+      "light": "waveAqua1"
+    },
+    "error": {
+      "dark": "samuraiRed",
+      "light": "samuraiRed"
+    },
+    "warning": {
+      "dark": "roninYellow",
+      "light": "roninYellow"
+    },
+    "success": {
+      "dark": "autumnGreen",
+      "light": "autumnGreen"
+    },
+    "info": {
+      "dark": "dragonBlue",
+      "light": "dragonBlue"
+    },
+    "text": {
+      "dark": "fujiWhite",
+      "light": "sumiInk1"
+    },
+    "textMuted": {
+      "dark": "oldWhite",
+      "light": "sumiInk4"
+    },
+    "background": {
+      "dark": "none",
+      "light": "none"
+    },
+    "backgroundPanel": {
+      "dark": "sumiInk0",
+      "light": "fujiWhite"
+    },
+    "backgroundElement": {
+      "dark": "sumiInk1",
+      "light": "oldWhite"
+    },
+    "border": {
+      "dark": "sumiInk4",
+      "light": "fujiGray"
+    },
+    "borderActive": {
+      "dark": "sumiInk5",
+      "light": "sumiInk6"
+    },
+    "borderSubtle": {
+      "dark": "sumiInk4",
+      "light": "fujiGray"
+    },
+    "diffAdded": {
+      "dark": "autumnGreen",
+      "light": "autumnGreen"
+    },
+    "diffRemoved": {
+      "dark": "autumnRed",
+      "light": "autumnRed"
+    },
+    "diffContext": {
+      "dark": "sumiInk4",
+      "light": "sumiInk4"
+    },
+    "diffHunkHeader": {
+      "dark": "sumiInk4",
+      "light": "sumiInk4"
+    },
+    "diffHighlightAdded": {
+      "dark": "autumnGreen",
+      "light": "autumnGreen"
+    },
+    "diffHighlightRemoved": {
+      "dark": "autumnRed",
+      "light": "autumnRed"
+    },
+    "diffAddedBg": {
+      "dark": "winterGreen",
+      "light": "winterGreen"
+    },
+    "diffRemovedBg": {
+      "dark": "winterRed",
+      "light": "winterRed"
+    },
+    "diffContextBg": {
+      "dark": "winterBlue",
+      "light": "winterBlue"
+    },
+    "diffLineNumber": {
+      "dark": "sumiInk4",
+      "light": "sumiInk4"
+    },
+    "diffAddedLineNumberBg": {
+      "dark": "winterGreen",
+      "light": "winterGreen"
+    },
+    "diffRemovedLineNumberBg": {
+      "dark": "winterRed",
+      "light": "winterRed"
+    },
+    "markdownText": {
+      "dark": "fujiWhite",
+      "light": "sumiInk1"
+    },
+    "markdownHeading": {
+      "dark": "crystalBlue",
+      "light": "crystalBlue"
+    },
+    "markdownLink": {
+      "dark": "springViolet1",
+      "light": "springViolet1"
+    },
+    "markdownLinkText": {
+      "dark": "waveAqua1",
+      "light": "waveAqua1"
+    },
+    "markdownCode": {
+      "dark": "springGreen",
+      "light": "springGreen"
+    },
+    "markdownBlockQuote": {
+      "dark": "sumiInk4",
+      "light": "fujiGray"
+    },
+    "markdownEmph": {
+      "dark": "roninYellow",
+      "light": "roninYellow"
+    },
+    "markdownStrong": {
+      "dark": "autumnYellow",
+      "light": "autumnYellow"
+    },
+    "markdownHorizontalRule": {
+      "dark": "sumiInk4",
+      "light": "fujiGray"
+    },
+    "markdownListItem": {
+      "dark": "crystalBlue",
+      "light": "crystalBlue"
+    },
+    "markdownListEnumeration": {
+      "dark": "waveAqua1",
+      "light": "waveAqua1"
+    },
+    "markdownImage": {
+      "dark": "springViolet1",
+      "light": "springViolet1"
+    },
+    "markdownImageText": {
+      "dark": "waveAqua1",
+      "light": "waveAqua1"
+    },
+    "markdownCodeBlock": {
+      "dark": "fujiWhite",
+      "light": "sumiInk1"
+    },
+    "syntaxComment": {
+      "dark": "fujiGray",
+      "light": "fujiGray"
+    },
+    "syntaxKeyword": {
+      "dark": "oniViolet",
+      "light": "oniViolet"
+    },
+    "syntaxFunction": {
+      "dark": "crystalBlue",
+      "light": "crystalBlue"
+    },
+    "syntaxVariable": {
+      "dark": "waveAqua1",
+      "light": "waveAqua1"
+    },
+    "syntaxString": {
+      "dark": "springGreen",
+      "light": "springGreen"
+    },
+    "syntaxNumber": {
+      "dark": "sakuraPink",
+      "light": "sakuraPink"
+    },
+    "syntaxType": {
+      "dark": "waveAqua2",
+      "light": "waveAqua2"
+    },
+    "syntaxOperator": {
+      "dark": "boatYellow2",
+      "light": "boatYellow2"
+    },
+    "syntaxPunctuation": {
+      "dark": "springViolet2",
+      "light": "springViolet2"
+    }
+  }
+}

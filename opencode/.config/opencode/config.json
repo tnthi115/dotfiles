@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "tokyonight",
+  "theme": "tymon-kanagawa",
   "keybinds": {
     "leader": "ctrl+x",
     "help": "<leader>h",
