@@ -21,15 +21,15 @@ customCommands:
     context: "files"
     loadingText: "Opening commitizen commit tool"
     output: terminal
-  - key: "m"
-    command: "glab mr create --assignee t.thi --draft --fill --fill-commit-body --remove-source-branch --squash-before-merge --web"
-    description: "Create gitlab MR with glab cli."
-    context: "localBranches"
-    loadingText: "Creating MR"
-    prompts:
-      - type: "confirm"
-        title: "Create MR"
-        body: "Are you sure you want to create the MR?"
-    output: terminal
+  # - key: "m"
+  #   command: "glab mr create --assignee t.thi --draft --fill --fill-commit-body --remove-source-branch --squash-before-merge --web"
+  #   description: "Create gitlab MR with glab cli."
+  #   context: "localBranches"
+  #   loadingText: "Creating MR"
+  #   prompts:
+  #     - type: "confirm"
+  #       title: "Create MR"
+  #       body: "Are you sure you want to create the MR?"
+  #   output: terminal
 os:
   openLink: open "$(echo "{{link}}" | sed 's/%2F/\//g')"
