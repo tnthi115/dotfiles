@@ -49,7 +49,25 @@
   "mcp": {
     "git": {
       "type": "local",
-      "command": ["uvx", "mcp-server-git", "--repository", "${PWD}"]
+      "command": "uvx",
+      "args": ["mcp-server-git", "--repository", "${PWD}"]
+    },
+    "gitlab": {
+      "type": "local",
+      "command": "uvx",
+      "args": ["mcp-server-gitlab"],
+      "env": {
+        "GITLAB_API_URL": "https://gitlab.com/api/v4/",
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_TOKEN}"
+      }
+    },
+    "context7": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": {
+        "DEFAULT_MINIMUM_TOKENS": "5000"
+      }
     }
   }
 }
