@@ -1,0 +1,47 @@
+{
+  "mcpServers": {
+    "context7": {
+      "args": ["-y", "@upstash/context7-mcp"],
+      "command": "npx",
+      "env": {
+        "DEFAULT_MINIMUM_TOKENS": "5000"
+      }
+    },
+    "filesystem": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "~/go/src/gopkg.volterra.us/"
+      ],
+      "command": "npx"
+    },
+    "git": {
+      "args": ["mcp-server-git", "--repository", "${PWD}"],
+      "command": "uvx",
+      "disabled": false
+    },
+    "gitlab": {
+      "args": ["mcp-server-gitlab"],
+      "command": "uvx",
+      "disabled": false,
+      "env": {
+        "GITLAB_API_URL": "https://gitlab.com/api/v4/",
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_TOKEN}"
+      }
+    },
+    "sequentialthinking": {
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "command": "npx",
+      "disabled": false
+    }
+  },
+  "nativeMCPServers": {
+    "mcphub": {
+      "disabled": false
+    },
+    "neovim": {
+      "autoApprove": [],
+      "disabled": false
+    }
+  }
+}

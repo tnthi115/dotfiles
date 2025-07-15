@@ -45,5 +45,11 @@
         }
       }
     }
+  },
+  "mcp": {
+    "git": {
+      "type": "local",
+      "command": ["uvx", "mcp-server-git", "--repository", "${PWD}"]
+    }
   }
 }
