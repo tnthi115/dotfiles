@@ -1,13 +1,5 @@
 # Personal OpenCode Agent Configuration
 
-## Always Ask For Confirmation
-
-When modifying code:
-
-1. First show the proposed changes
-2. Ask for explicit confirmation before executing any code changes
-3. Only proceed with file modifications after receiving clear approval
-
 ## Code Style Preferences
 
 - Use consistent spacing (2 spaces for indentation)
