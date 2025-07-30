@@ -7,7 +7,7 @@
       "options": {
         "baseURL": "https://f5ai.pd.f5net.com/api/",
         "headers": {
-          "Authorization": "Bearer ${OPENAI_API_KEY}"
+          "Authorization": "Bearer {env:OPENAI_API_KEY}"
         }
       },
       "models": {
@@ -36,6 +36,14 @@
       "environment": {
         "DEFAULT_MINIMUM_TOKENS": "5000"
       }
+    }
+  },
+  "mode": {
+    "plan": {
+      "model": "github-copilot/claude-3.7-sonnet-thought"
+    },
+    "build": {
+      "model": "github-copilot/gpt-4.1"
     }
   }
 }

@@ -8,13 +8,6 @@ When modifying code:
 2. Ask for explicit confirmation before executing any code changes
 3. Only proceed with file modifications after receiving clear approval
 
-## Confirmation and Safety
-
-- Always show proposed changes before modifying any files
-- Ask for explicit confirmation before executing code changes
-- Only proceed after receiving clear approval
-- When making multiple related changes, group them together and ask for a single confirmation
-
 ## Code Style Preferences
 
 - Use consistent spacing (2 spaces for indentation)
@@ -22,6 +15,9 @@ When modifying code:
 - Keep functions focused and small when possible
 - Add descriptive variable names
 - Maintain proper error handling
+- **Do not leave trailing or leading whitespace in generated files or code, especially markdown.**
+- Ensure all generated markdown follows [GitHub's style guide](https://docs.github.com/en/get-started/writing-on-github)
+- Ensure no syntax errors are present in generated code; if possible, check LSP and linter diagnostics, and run formatters if available for the given language. Reference your neovim config at ~/.config/nvim and /Users/t.thi/.local/share/nvim/mason/bin for available binaries before the rest of your $PATH.
 
 ## Workflow Preferences
 
