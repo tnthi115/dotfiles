@@ -21,6 +21,15 @@ customCommands:
     context: "files"
     loadingText: "Opening commitizen commit tool"
     output: terminal
+  - key: "O"
+    context: "files"
+    command: 'opencode run --mode build --model github-copilot/gpt-4.1 "Analyze the current staged changes in this repository and generate a commit message in the Conventional Commits format. If ~/.config/opencode/AGENTS.md exists, follow all code style, workflow, and security guidelines in that file. If not, and if there is an AGENTS.md in the project (such as .config/opencode/AGENTS.md or ./AGENTS.md), use those guidelines instead. Use a clear, descriptive subject line and, if appropriate, include a body with further details. Then, use this message to make the commit for the staged changes. Output only the commit message and the commit result with clear and clean formatting."'
+    description: "Generate and make Conventional Commit with opencode (prefers global AGENTS.md, then project)"
+    output: terminal
+    prompts:
+      - type: "confirm"
+        title: "Generate and commit with opencode"
+        body: "Generate a Conventional Commit message for the current staged changes and make the commit using opencode?"
   # - key: "m"
   #   command: "glab mr create --assignee t.thi --draft --fill --fill-commit-body --remove-source-branch --squash-before-merge --web"
   #   description: "Create gitlab MR with glab cli."
