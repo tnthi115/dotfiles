@@ -54,6 +54,7 @@ if test -d $HOME/.local/share/nvim/mason/bin
 end
 
 # gitlab.nvim api token
+set -gx GITLAB_API_URL "https://gitlab.com/api/v4"
 source $HOME/.gitlab-token
 
 source $HOME/.github-token
