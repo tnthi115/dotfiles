@@ -1,7 +1,10 @@
 {
   "mcpServers": {
     "context7": {
-      "args": ["-y", "@upstash/context7-mcp"],
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
       "command": "npx",
       "env": {
         "DEFAULT_MINIMUM_TOKENS": "5000"
@@ -16,21 +19,31 @@
       "command": "npx"
     },
     "git": {
-      "args": ["mcp-server-git", "--repository", "${PWD}"],
+      "args": [
+        "mcp-server-git",
+        "--repository",
+        "${PWD}"
+      ],
       "command": "uvx",
       "disabled": false
     },
     "gitlab": {
-      "args": ["mcp-server-gitlab"],
-      "command": "uvx",
+      "args": [
+        "-m",
+        "mcp_server_gitlab"
+      ],
+      "command": "python",
       "disabled": false,
       "env": {
-        "GITLAB_API_URL": "https://gitlab.com/api/v4/",
+        "GITLAB_API_URL": "https://gitlab.com/api/v4",
         "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_TOKEN}"
       }
     },
     "sequentialthinking": {
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
       "command": "npx",
       "disabled": false
     }
