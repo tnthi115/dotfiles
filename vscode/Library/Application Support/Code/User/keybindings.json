@@ -1,0 +1,84 @@
+[
+  // which-key extension
+  // {
+  //     "key": "space",
+  //     "command": "whichkey.show",
+  //     "when": "editorTextFocus",
+  // },
+  // {
+  //     "key": "g",
+  //     "command": "whichkey.show",
+  //     "when": "editorTextFocus"
+  // },
+  // which-key extension
+  // leader key extension
+  // {
+  //     "key": "ctrl+space",
+  //     "command": "leaderkey.render",
+  //     "args": "SPC",
+  // },
+  // leader key extension
+  {
+    "key": "cmd+o",
+    "command": "projectManager.listProjects"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.files.action.focusFilesExplorer",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  // Gitlab
+  {
+    "key": "ctrl+cmd+c",
+    "command": "gl.openQuickChatWithShortcut",
+    "when": "config.gitlab.duoChat.enabled && gitlab:chatAvailable && gitlab:chatAvailableForProject"
+  },
+  {
+    "key": "alt+c",
+    "command": "-gl.openQuickChatWithShortcut",
+    "when": "config.gitlab.duoChat.enabled && gitlab:chatAvailable && gitlab:chatAvailableForProject"
+  },
+  {
+    "key": "ctrl+cmd+b",
+    "command": "gitlens.toggleFileBlame",
+    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && resource in 'gitlens:tabs:blameable'"
+  },
+  {
+    "key": "alt+b",
+    "command": "-gitlens.toggleFileBlame",
+    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && resource in 'gitlens:tabs:blameable'"
+  },
+  {
+    "key": "ctrl+e o",
+    "command": "opencode.openTerminal"
+  },
+  {
+    "key": "cmd+escape",
+    "command": "-opencode.openTerminal"
+  },
+  {
+    "key": "ctrl+e shift+o",
+    "command": "opencode.openNewTerminal"
+  },
+  {
+    "key": "shift+cmd+escape",
+    "command": "-opencode.openNewTerminal"
+  },
+  {
+    "key": "ctrl+e f",
+    "command": "opencode.addFilepathToTerminal"
+  },
+  {
+    "key": "alt+cmd+k",
+    "command": "-opencode.addFilepathToTerminal"
+  }
+]

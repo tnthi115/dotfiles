@@ -1,0 +1,52 @@
+{
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "editor.fontFamily": "JetbrainsMono Nerd Font, CaskaydiaCove Nerd Font, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 13,
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true,
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": true,
+  "editor.linkedEditing": true,
+  "editor.suggest.insertMode": "replace",
+  "zenMode.hideLineNumbers": true,
+  "go.lintTool": "golangci-lint",
+  "go.inferGopath": true,
+  "go.inlayHints.assignVariableTypes": true,
+  "go.inlayHints.compositeLiteralFields": true,
+  "go.inlayHints.compositeLiteralTypes": true,
+  "go.inlayHints.parameterNames": true,
+  "go.inlayHints.rangeVariableTypes": true,
+  "go.formatTool": "gofumpt",
+  "go.alternateTools": {
+    "customFormatter": "goimports-reviser"
+  },
+  "go.lintFlags": [
+    "--enable--all",
+    "--disable=deadcode,depguard,exhaustivestruct,gci,gofmt,golint,interfacer,lll,maligned,misspell,nlreturn,nonamedreturns,nosnakecase,scopelint,structcheck,tagalign,tagliatelle,varcheck,whitespace,wsl",
+    "--out-format",
+    "json",
+    "--issues-exit-code=1"
+  ],
+  "gitlab.duoCodeSuggestions.preferredAccount": "t.thi",
+  "projectManager.git.baseFolders": [
+    "$home/code",
+    "$home/go/src",
+    "$home/.config"
+  ],
+  "projectManager.sortList": "Recent",
+  "gitlab.keybindingHints.enabled": true,
+  "gitlab.showPipelineUpdateNotifications": true,
+  "workbench.colorTheme": "Kanagawa Black",
+  "git.openRepositoryInParentFolders": "always",
+  "animations.Install-Method": "Apc Customize UI++",
+  "window.titleBarStyle": "native",
+  "window.nativeTabs": true
+  // "workbench.colorCustomizations": {
+  //     "[Kanagawa Black]": {
+  //         "editor.background": "#181616",
+  //     }
+  // }
+}
