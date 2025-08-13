@@ -40,7 +40,7 @@
   },
   "mode": {
     "plan": {
-      "model": "github-copilot/claude-3.7-sonnet-thought"
+      "model": "github-copilot/claude-sonnet-4"
     },
     "build": {
       "model": "github-copilot/gpt-4.1"
