@@ -23,7 +23,7 @@ customCommands:
     output: terminal
   - key: "O"
     context: "files"
-    command: 'opencode run --mode build --model github-copilot/gpt-4.1 "Analyze the current staged changes in this repository and generate a commit message in the Conventional Commits format. If there is an AGENTS.md in the project (such as .config/opencode/AGENTS.md or ./AGENTS.md), follow all code style, workflow, and security guidelines in that file. If not, and if ~/.config/opencode/AGENTS.md exists, use those guidelines instead. Use a clear, descriptive subject line and, if appropriate, include a body with further details. Then, use this message to make the commit for the staged changes. Output only the commit message and the commit result with clear and clean formatting."'
+    command: 'opencode run --model github-copilot/gpt-4.1 "Analyze the current staged changes in this repository and generate a commit message in the Conventional Commits format. If there is an AGENTS.md in the project (such as .config/opencode/AGENTS.md or ./AGENTS.md), follow all code style, workflow, and security guidelines in that file. If not, and if ~/.config/opencode/AGENTS.md exists, use those guidelines instead. Use a clear, descriptive subject line and, if appropriate, include a body with further details. Then, use this message to make the commit for the staged changes. Output only the commit message and the commit result with clear and clean formatting."'
     description: "Generate and make Conventional Commit with opencode (prefers global AGENTS.md, then project)"
     output: terminal
     prompts:
