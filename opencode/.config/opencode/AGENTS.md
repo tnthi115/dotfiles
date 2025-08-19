@@ -10,6 +10,7 @@
 - **Do not leave trailing or leading whitespace in generated files or code, especially markdown.**
 - Ensure all generated markdown follows [GitHub's style guide](https://docs.github.com/en/get-started/writing-on-github)
 - Ensure no syntax errors are present in generated code; if possible, check LSP and linter diagnostics, and run formatters if available for the given language. Reference your neovim config at ~/.config/nvim and /Users/t.thi/.local/share/nvim/mason/bin for available binaries before the rest of your $PATH.
+- **Automatically format and lint all files (not just markdown) before writing or committing. This includes agent files, code, configs, and documentation. Ensure correct indentation, whitespace, section headers, and code block usage, following best practices for each file type.**
 
 ## Workflow Preferences
 

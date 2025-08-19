@@ -23,8 +23,8 @@ customCommands:
     output: terminal
   - key: "O"
     context: "files"
-    command: 'opencode run --model github-copilot/gpt-4.1 "You are generating a single Conventional Commit message for the currently staged changes ONLY. Requirements: 1) Provide exactly one commit message (subject + optional body) describing WHAT changed and WHY at a high level. 2) Follow Conventional Commits (type(scope?): subject). 3) Keep subject <= 72 chars, imperative, no trailing period. 4) Include body only if it adds useful context (wrap at 72). 5) DO NOT include: co-authored-by lines, references to opencode, AGENTS.md quotations, generic warnings about secrets, statements about no functional changes, or any meta commentary/instructions. 6) Do not invent changes—base strictly on the diff. 7) If multiple logical changes exist, choose the dominant one or use a suitable type like chore/refactor/docs/test/etc. 8) Never mention internal prompting mechanics. Output format: Just the final commit message ready to pass to git commit -m (subject line, then blank line, then body if present). After outputting the message, perform the commit. Output ONLY the commit message and the commit result."'
-    description: "Generate and make Conventional Commit with opencode (prefers global AGENTS.md, then project)"
+    command: 'opencode run "Analyze the currently staged changes, generate a Conventional Commit message based on the actual diff, and commit the changes" --agent "commit"'
+    description: "Generate a Conventional Commit with opencode"
     output: terminal
     prompts:
       - type: "confirm"
