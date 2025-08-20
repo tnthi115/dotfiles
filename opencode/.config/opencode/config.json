@@ -68,7 +68,7 @@
       "model": "github-copilot/claude-sonnet-4"
     },
     "build": {
-      "model": "github-copilot/gpt-4.1"
+      "model": "github-copilot/claude-sonnet-4"
     }
   },
   "agent": {
