@@ -82,5 +82,10 @@
         "edit": false
       }
     }
+  },
+  "formatter": {
+    "prettier": {
+      "extensions": [".md"]
+    }
   }
 }
