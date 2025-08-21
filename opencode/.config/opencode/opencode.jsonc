@@ -1,15 +1,15 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "share": "disabled",
+  "share": "manual",
   "autoupdate": true,
   "theme": "tymon-kanagawa",
   "instructions": [
-    "ai/docs/*.md",
-    "ai/rules/*.md",
-    "ai/tests/*.md",
-    "pkg/*/AGENTS.md",
+    "*/AGENTS.md",
     "AGENTS.md",
-    "README.md"
+    "README.md",
+    "docs/**/*.md",
+    "docs/**/*.puml",
+    "pbdoc/docs.md",
   ],
   "provider": {
     "f5": {
@@ -17,31 +17,59 @@
       "name": "f5",
       "options": {
         "baseURL": "https://f5ai.pd.f5net.com/openai/",
-        "apiKey": "{env:OPENAI_API_KEY}"
+        // Set your OPENAI_API_KEY environment variable, or read it from a file
+        // "apiKey": "file:~/.openai_api_key",
+        "apiKey": "{env:OPENAI_API_KEY}",
       },
       "models": {
+        "gpt-5": {
+          "name": "gpt-5",
+        },
+        "gpt-5-mini": {
+          "name": "gpt-5-mini",
+        },
+        "gpt-5-nano": {
+          "name": "gpt-5-nano",
+        },
         "gpt-4.1": {
-          "name": "gpt-4.1"
+          "name": "gpt-4.1",
         },
         "gpt-4.1-mini": {
-          "name": "gpt-4.1-mini"
+          "name": "gpt-4.1-mini",
         },
         "gpt-4o": {
-          "name": "gpt-4o"
+          "name": "gpt-4o",
+        },
+        "gpt-4o-mini": {
+          "name": "gpt-4o-mini",
+        },
+        "o4-mini": {
+          "name": "o4-mini",
         },
         "o3": {
-          "name": "o3"
+          "name": "o3",
         },
-        "dall-e": {
-          "name": "dall-e-3-image-gen"
-        }
-      }
-    }
+        "o3-mini": {
+          "name": "o3-mini",
+        },
+        "o1": {
+          "name": "o1",
+        },
+      },
+    },
+  },
+  "mode": {
+    "plan": {
+      "model": "github-copilot/claude-sonnet-4",
+    },
+    "build": {
+      "model": "github-copilot/claude-sonnet-4",
+    },
   },
   "mcp": {
     "git": {
       "type": "local",
-      "command": ["uvx", "mcp-server-git", "--repository", "${PWD}"]
+      "command": ["uvx", "mcp-server-git", "--repository", "${PWD}"],
     },
     "gitlab": {
       "type": "local",
@@ -52,24 +80,16 @@
         "GITLAB_READ_ONLY_MODE": "false",
         "USE_GITLAB_WIKI": "false",
         "USE_MILESTONE": "false",
-        "USE_PIPELINE": "false"
-      }
+        "USE_PIPELINE": "false",
+      },
     },
     "context7": {
       "type": "local",
       "command": ["npx", "-y", "@upstash/context7-mcp"],
       "environment": {
-        "DEFAULT_MINIMUM_TOKENS": "5000"
-      }
-    }
-  },
-  "mode": {
-    "plan": {
-      "model": "github-copilot/claude-sonnet-4"
+        "DEFAULT_MINIMUM_TOKENS": "5000",
+      },
     },
-    "build": {
-      "model": "github-copilot/claude-sonnet-4"
-    }
   },
   "agent": {
     "code-reviewer": {
@@ -79,13 +99,13 @@
       "prompt": "You are a code reviewer. Focus on security, performance, and maintainability.",
       "tools": {
         "write": false,
-        "edit": false
-      }
-    }
+        "edit": false,
+      },
+    },
   },
   "formatter": {
     "prettier": {
-      "extensions": [".md"]
-    }
-  }
+      "extensions": [".md"],
+    },
+  },
 }
