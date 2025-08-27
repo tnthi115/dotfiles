@@ -73,15 +73,13 @@ add_abbr_if_not_exists ld lazydocker
 add_abbr_if_not_exists k kubectl
 add_abbr_if_not_exists y yazi
 
-# brew
-add_abbr_if_not_exists brewup 'brew bundle dump --file=~/dotfiles/Brewfile --force'
-
 # unix
 add_abbr_if_not_exists mv 'mv -i'
 add_abbr_if_not_exists cp 'cp -i'
 add_abbr_if_not_exists mkdir 'mkdir -p'
 
 # brew
+add_abbr_if_not_exists bdump 'brew bundle dump --file=~/dotfiles/Brewfile --force'
 add_abbr_if_not_exists bup 'brew update && brew upgrade && brew cleanup'
 add_abbr_if_not_exists bo 'brew outdated'
 add_abbr_if_not_exists bi 'brew install'
