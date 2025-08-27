@@ -91,4 +91,5 @@ add_abbr_if_not_exists oc opencode
 
 # function abbreviations
 add_abbr_if_not_exists sg source_goenv
-add_abbr_if_not_exists rf reload_fish
+# add_abbr_if_not_exists rf reload_fish  # commented out - use exec fish instead
+add_abbr_if_not_exists rf 'exec fish'
