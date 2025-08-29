@@ -1,7 +1,9 @@
 # Initialize zoxide for fast jumping with 'z'.
 
 type -q zoxide || return 1
-zoxide init --cmd cd fish | source
+# zoxide init --cmd cd fish | source
+# use the default z and zi commands
+zoxide init fish | source
 
 # Like setopt AUTO_PUSHD in zsh
 # function myfunc --on-variable PWD
