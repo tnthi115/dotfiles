@@ -86,6 +86,8 @@ add_abbr_if_not_exists bi 'brew install'
 add_abbr_if_not_exists bU 'brew uninstall'
 add_abbr_if_not_exists bu 'brew upgrade'
 add_abbr_if_not_exists bs 'brew search'
+add_abbr_if_not_exists bl 'brew deps --formula --for-each $(brew leaves) | sed "s/^.*:/$(tput setaf 4)&$(tput sgr0)/"'
+add_abbr_if_not_exists bd 'brew deps --include-build --tree $(brew leaves)'
 
 add_abbr_if_not_exists oc opencode
 
