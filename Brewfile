@@ -89,7 +89,6 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 brew "carvel-dev/carvel/vendir"
-brew "d12frosted/emacs-plus/emacs-plus@30", args: ["with-modern-doom3-icon"]
 brew "jesseduffield/lazydocker/lazydocker"
 brew "joshmedeski/sesh/sesh"
 brew "kluctl/tap/kluctl"
