@@ -1,97 +1,107 @@
 #
 # abbrs - like aliases
 #
+# NOTE: Refactored from add_abbr_if_not_exists to plain abbr -a for performance.
+# Since I use 'exec fish' or start new shells (not re-sourcing config files),
+# plain abbr -a is sufficient. Each shell starts with a clean abbreviation state.
+#
+# Trade-off: ~60-120ms faster shell startup, but will show "already exists" errors
+# if this file is manually sourced multiple times in the same session.
+#
+# Use add_abbr_if_not_exists (available in functions/) only when re-sourcing
+# abbreviation files within the same shell session.
+#
 
-add_abbr_if_not_exists - 'cd -'
-add_abbr_if_not_exists tarls 'tar -tvf'
-add_abbr_if_not_exists untar 'tar -xv'
-add_abbr_if_not_exists zz exit
+abbr -a -- - 'cd -'
+abbr -a -- tarls 'tar -tvf'
+abbr -a -- untar 'tar -xv'
+abbr -a -- zz exit
 
 # single key
-add_abbr_if_not_exists c clear
-add_abbr_if_not_exists h history
-add_abbr_if_not_exists l 'ls -UF'
+abbr -a -- c clear
+abbr -a -- h history
+abbr -a -- l 'ls -UF'
 
 # better ls
-add_abbr_if_not_exists la 'ls -lah'
-add_abbr_if_not_exists ldot 'ls -ld .*'
-add_abbr_if_not_exists ll 'ls -lGFh'
-add_abbr_if_not_exists lsa 'ls -aGF'
-add_abbr_if_not_exists tree 'lsd --tree --all --ignore-glob "\.git"'
+abbr -a -- la 'ls -lah'
+abbr -a -- ldot 'ls -ld .*'
+abbr -a -- ll 'ls -lGFh'
+abbr -a -- lsa 'ls -aGF'
+abbr -a -- tree 'lsd --tree --all --ignore-glob "\.git"'
 
 # quick nav
-add_abbr_if_not_exists fconf 'cd $__fish_config_dir'
-add_abbr_if_not_exists fishconf 'cd $__fish_config_dir'
-add_abbr_if_not_exists fdot 'cd $__fish_config_dir'
-add_abbr_if_not_exists zdot 'cd $ZDOTDIR'
+abbr -a -- fconf 'cd $__fish_config_dir'
+abbr -a -- fishconf 'cd $__fish_config_dir'
+abbr -a -- fdot 'cd $__fish_config_dir'
+abbr -a -- zdot 'cd $ZDOTDIR'
 
 # date/time
-add_abbr_if_not_exists ds 'date +%Y-%m-%d'
-add_abbr_if_not_exists ts 'date +%Y-%m-%dT%H:%M:%SZ'
-add_abbr_if_not_exists yyyymmdd 'date +%Y%m%d'
+abbr -a -- ds 'date +%Y-%m-%d'
+abbr -a -- ts 'date +%Y-%m-%dT%H:%M:%SZ'
+abbr -a -- yyyymmdd 'date +%Y%m%d'
 
 # nvim
-add_abbr_if_not_exists v nvim
-add_abbr_if_not_exists nv nvim
-add_abbr_if_not_exists sv 'sudo -e'
+abbr -a -- v nvim
+abbr -a -- nv nvim
+abbr -a -- sv 'sudo -e'
 
 # git
-add_abbr_if_not_exists gs 'git status'
-add_abbr_if_not_exists gl 'git log'
-add_abbr_if_not_exists gb 'git checkout (git branch | fzf | sed "s/^\\* //; s/ //g")'
-add_abbr_if_not_exists ga 'git add -A'
-add_abbr_if_not_exists gc 'git commit'
-add_abbr_if_not_exists gP 'git push'
-add_abbr_if_not_exists gPf 'git push --force'
-add_abbr_if_not_exists gp 'git pull'
+abbr -a -- gs 'git status'
+abbr -a -- gl 'git log'
+abbr -a -- gb 'git checkout (git branch | fzf | sed "s/^\\* //; s/ //g")'
+abbr -a -- ga 'git add -A'
+abbr -a -- gc 'git commit'
+abbr -a -- gP 'git push'
+abbr -a -- gPf 'git push --force'
+abbr -a -- gp 'git pull'
 
-add_abbr_if_not_exists gad 'git add'
-add_abbr_if_not_exists gbn 'git rev-parse --abbrev-ref HEAD'
-add_abbr_if_not_exists gcl 'git clean'
-add_abbr_if_not_exists gcmt 'git commit -am '
-add_abbr_if_not_exists gco 'git checkout'
-add_abbr_if_not_exists gcob 'git checkout -b '
-add_abbr_if_not_exists gcod 'git checkout develop'
-add_abbr_if_not_exists gcom 'git checkout master'
-add_abbr_if_not_exists get git
-add_abbr_if_not_exists glg 'git log'
-add_abbr_if_not_exists glog git\ log\ --Uraph\ --pretty=\'\%Cred\%h\%Creset\ -\%C\(auto\)\%d\%Creset\ \%s\ \%Cgreen\(\%ad\)\ \%C\(bold\ blue\)\<\%an\>\%Creset\'\ --date=short
-add_abbr_if_not_exists gpll 'git pull'
-add_abbr_if_not_exists gpristine 'git reset --hard && git clean -fdx'
-add_abbr_if_not_exists gpsh 'git push'
-add_abbr_if_not_exists gpsuo 'git push --set-Upstream origin (git rev-parse --abbrev-ref HEAD)'
-add_abbr_if_not_exists grm 'git rm'
-add_abbr_if_not_exists grv 'git remote -v'
-add_abbr_if_not_exists gsh 'git stash'
-add_abbr_if_not_exists gst 'git status -sb'
-# add_abbr_if_not_exists gclone 'git clone git@github.com:mattmc3/'
-add_abbr_if_not_exists gwhoami 'echo "user.name:" (git config user.name) && echo "user.email:" (git config user.email)'
+abbr -a -- gad 'git add'
+abbr -a -- gbn 'git rev-parse --abbrev-ref HEAD'
+abbr -a -- gcl 'git clean'
+abbr -a -- gcmt 'git commit -am '
+abbr -a -- gco 'git checkout'
+abbr -a -- gcob 'git checkout -b '
+abbr -a -- gcod 'git checkout develop'
+abbr -a -- gcom 'git checkout master'
+abbr -a -- get git
+abbr -a -- glg 'git log'
+abbr -a -- glog git\ log\ --Uraph\ --pretty=\'\%Cred\%h\%Creset\ -\%C\(auto\)\%d\%Creset\ \%s\ \%Cgreen\(\%ad\)\ \%C\(bold\ blue\)\<\%an\>\%Creset\'\ --date=short
+abbr -a -- gpll 'git pull'
+abbr -a -- gpristine 'git reset --hard && git clean -fdx'
+abbr -a -- gpsh 'git push'
+abbr -a -- gpsuo 'git push --set-Upstream origin (git rev-parse --abbrev-ref HEAD)'
+abbr -a -- grm 'git rm'
+abbr -a -- grv 'git remote -v'
+abbr -a -- gsh 'git stash'
+abbr -a -- gst 'git status -sb'
+# abbr -a -- gclone 'git clone git@github.com:mattmc3/'
+abbr -a -- gwhoami 'echo "user.name:" (git config user.name) && echo "user.email:" (git config user.email)'
 
 # cli
-add_abbr_if_not_exists lg lazygit
-add_abbr_if_not_exists ld lazydocker
-add_abbr_if_not_exists k kubectl
-add_abbr_if_not_exists y yazi
+abbr -a -- lg lazygit
+abbr -a -- ld lazydocker
+abbr -a -- k kubectl
+abbr -a -- y yazi
 
 # unix
-add_abbr_if_not_exists mv 'mv -i'
-add_abbr_if_not_exists cp 'cp -i'
-add_abbr_if_not_exists mkdir 'mkdir -p'
+abbr -a -- mv 'mv -i'
+abbr -a -- cp 'cp -i'
+abbr -a -- mkdir 'mkdir -p'
 
 # brew
-add_abbr_if_not_exists bdump 'brew bundle dump --file=~/dotfiles/Brewfile --force'
-add_abbr_if_not_exists bup 'brew update && brew upgrade && brew cleanup'
-add_abbr_if_not_exists bo 'brew outdated'
-add_abbr_if_not_exists bi 'brew install'
-add_abbr_if_not_exists bU 'brew uninstall'
-add_abbr_if_not_exists bu 'brew upgrade'
-add_abbr_if_not_exists bs 'brew search'
-add_abbr_if_not_exists bl 'brew deps --formula --for-each $(brew leaves) | sed "s/^.*:/$(tput setaf 4)&$(tput sgr0)/"'
-add_abbr_if_not_exists bd 'brew deps --include-build --tree $(brew leaves)'
+abbr -a -- bdump 'brew bundle dump --file=~/dotfiles/Brewfile --force'
+abbr -a -- bup 'brew update && brew upgrade && brew cleanup'
+abbr -a -- bo 'brew outdated'
+abbr -a -- bi 'brew install'
+abbr -a -- bU 'brew uninstall'
+abbr -a -- bu 'brew upgrade'
+abbr -a -- bs 'brew search'
+abbr -a -- bl 'brew deps --formula --for-each $(brew leaves) | sed "s/^.*:/$(tput setaf 4)&$(tput sgr0)/"'
+abbr -a -- bd 'brew deps --include-build --tree $(brew leaves)'
 
-add_abbr_if_not_exists oc opencode
+abbr -a -- oc opencode
 
 # function abbreviations
-add_abbr_if_not_exists sg source_goenv
-# add_abbr_if_not_exists rf reload_fish  # commented out - use exec fish instead
-add_abbr_if_not_exists rf 'exec fish'
+abbr -a -- sg source_goenv
+# abbr -a -- rf reload_fish
+abbr -a -- rf 'exec fish'
