@@ -27,6 +27,8 @@
 
   statdiff = diff --stat
 
+  bdiff = log --oneline --no-merges --cherry-pick --left-right
+
 [init]
 	defaultBranch = main
 

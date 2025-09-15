@@ -76,6 +76,7 @@ abbr -a -- gsh 'git stash'
 abbr -a -- gst 'git status -sb'
 # abbr -a -- gclone 'git clone git@github.com:mattmc3/'
 abbr -a -- gwhoami 'echo "user.name:" (git config user.name) && echo "user.email:" (git config user.email)'
+abbr -a -- gbdiff 'git log --oneline --no-merges --cherry-pick --left-right'
 
 # cli
 abbr -a -- lg lazygit
