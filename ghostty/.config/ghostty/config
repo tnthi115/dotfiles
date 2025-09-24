@@ -12,7 +12,7 @@ window-padding-x = 1,0
 
 # Font
 font-family = JetBrains Mono
-font-size = 13.2
+font-size = 13
 adjust-cell-height = 10%
 
 # Cursor
@@ -22,7 +22,7 @@ shell-integration-features = no-cursor
 # General
 confirm-close-surface = false
 macos-option-as-alt = true
-auto-update = check
+# auto-update = check
 
 # Keybinds
 keybind = ctrl+shift+,=reload_config
