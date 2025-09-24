@@ -19,6 +19,18 @@
 - For complex tasks, outline your approach first
 - Show alternatives for non-trivial decisions
 
+## Planning and Documentation Requirements
+
+- **When explicitly asked for a plan, always create a markdown document containing the detailed plan**
+- Plan documents should be saved as `plan.md` or `[task-name]-plan.md` in the current working directory
+- Plans should include:
+  - Clear objectives and scope
+  - Step-by-step breakdown of tasks
+  - Dependencies and prerequisites
+  - Timeline estimates where applicable
+  - Success criteria
+- **When using planning agents or tools, default behavior should be to create a plan document**
+
 ## Security Practices
 
 - Never commit sensitive data or credentials
