@@ -1,3 +1,3 @@
 [submodule "nvim/.config/nvim"]
 	path = nvim/.config/nvim
-	url = git@github.com:tnthi115/lazyvim.git
+	url = git@github.com:tnthi115/tvim.git
