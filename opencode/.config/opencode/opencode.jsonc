@@ -119,11 +119,7 @@
   },
   "formatter": {
     "prettier": {
-      "command": [
-        "/Users/t.thi/.local/share/nvim/mason/bin/prettier",
-        "--write",
-        "$FILE",
-      ],
+      "command": ["prettier", "--write", "$FILE"],
       "extensions": [
         ".js",
         ".jsx",
@@ -140,73 +136,61 @@
       ],
     },
     "black": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/black", "$FILE"],
+      "command": ["black", "$FILE"],
       "extensions": [".py", ".pyi"],
     },
     "ruff": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/ruff", "format", "$FILE"],
+      "command": ["ruff", "format", "$FILE"],
       "extensions": [".py", ".pyi"],
     },
     "stylua": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/stylua", "$FILE"],
+      "command": ["stylua", "$FILE"],
       "extensions": [".lua"],
     },
     "shfmt": {
-      "command": [
-        "/Users/t.thi/.local/share/nvim/mason/bin/shfmt",
-        "-i",
-        "2",
-        "-ci",
-        "$FILE",
-      ],
+      "command": ["shfmt", "-i", "2", "-ci", "$FILE"],
       "extensions": [".sh", ".bash", ".zsh"],
     },
     "gofumpt": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/gofumpt", "-w", "$FILE"],
+      "command": ["gofumpt", "-w", "$FILE"],
       "extensions": [".go"],
     },
     "taplo": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/taplo", "format", "$FILE"],
+      "command": ["taplo", "format", "$FILE"],
       "extensions": [".toml"],
     },
     "yamlfix": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/yamlfix", "$FILE"],
+      "command": ["yamlfix", "$FILE"],
       "extensions": [".yaml", ".yml"],
     },
     "usort": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/usort", "format", "$FILE"],
+      "command": ["usort", "format", "$FILE"],
       "extensions": [".py", ".pyi"],
     },
   },
   "lsp": {
     "bash-language-server": {
-      "command": [
-        "/Users/t.thi/.local/share/nvim/mason/bin/bash-language-server",
-        "start",
-      ],
+      "command": ["bash-language-server", "start"],
       "extensions": [".sh", ".bash", ".zsh"],
     },
     "lua-language-server": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/lua-language-server"],
+      "command": ["lua-language-server"],
       "extensions": [".lua"],
     },
     "gopls": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/gopls"],
+      "command": ["gopls"],
       "extensions": [".go", ".mod", ".sum"],
     },
     "rust-analyzer": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/rust-analyzer"],
+      "command": ["rust-analyzer"],
       "extensions": [".rs"],
     },
     "basedpyright": {
-      "command": [
-        "/Users/t.thi/.local/share/nvim/mason/bin/basedpyright-langserver",
-        "--stdio",
-      ],
+      "command": ["basedpyright-langserver", "--stdio"],
       "extensions": [".py", ".pyi"],
     },
     "vtsls": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/vtsls", "--stdio"],
+      "command": ["vtsls", "--stdio"],
       "extensions": [
         ".js",
         ".jsx",
@@ -219,35 +203,23 @@
       ],
     },
     "yaml-language-server": {
-      "command": [
-        "/Users/t.thi/.local/share/nvim/mason/bin/yaml-language-server",
-        "--stdio",
-      ],
+      "command": ["yaml-language-server", "--stdio"],
       "extensions": [".yaml", ".yml"],
     },
     "vscode-json-language-server": {
-      "command": [
-        "/Users/t.thi/.local/share/nvim/mason/bin/vscode-json-language-server",
-        "--stdio",
-      ],
+      "command": ["vscode-json-language-server", "--stdio"],
       "extensions": [".json", ".jsonc"],
     },
     "marksman": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/marksman", "server"],
+      "command": ["marksman", "server"],
       "extensions": [".md", ".markdown"],
     },
     "docker-langserver": {
-      "command": [
-        "/Users/t.thi/.local/share/nvim/mason/bin/docker-langserver",
-        "--stdio",
-      ],
+      "command": ["docker-langserver", "--stdio"],
       "extensions": [".dockerfile", "Dockerfile*"],
     },
     "docker-compose-langserver": {
-      "command": [
-        "/Users/t.thi/.local/share/nvim/mason/bin/docker-compose-langserver",
-        "--stdio",
-      ],
+      "command": ["docker-compose-langserver", "--stdio"],
       "extensions": [
         "docker-compose.yml",
         "docker-compose.yaml",
@@ -256,23 +228,23 @@
       ],
     },
     "jsonnet-language-server": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/jsonnet-language-server"],
+      "command": ["jsonnet-language-server"],
       "extensions": [".jsonnet", ".libsonnet"],
     },
     "gitlab-ci-ls": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/gitlab-ci-ls"],
+      "command": ["gitlab-ci-ls"],
       "extensions": [".gitlab-ci.yml", ".gitlab-ci.yaml"],
     },
     "fish-lsp": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/fish-lsp", "start"],
+      "command": ["fish-lsp", "start"],
       "extensions": [".fish"],
     },
     "golangci-lint-langserver": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/golangci-lint-langserver"],
+      "command": ["golangci-lint-langserver"],
       "extensions": [".go"],
     },
     "taplo": {
-      "command": ["/Users/t.thi/.local/share/nvim/mason/bin/taplo", "lsp", "stdio"],
+      "command": ["taplo", "lsp", "stdio"],
       "extensions": [".toml"],
     },
   },
