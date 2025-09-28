@@ -107,6 +107,7 @@
     "plan": {
       "template": "Create a comprehensive implementation plan for: $ARGUMENTS\n\nAnalyze the current project structure and requirements:\n!`find . -type f -name \"*.md\" -o -name \"*.json\" -o -name \"*.js\" -o -name \"*.ts\" -o -name \"*.py\" -o -name \"*.go\" | head -20`\n\nCurrent git status:\n!`git status --porcelain`\n\nRecent commits for context:\n!`git log --oneline -5`\n\nBased on this analysis, create a detailed plan that includes:\n\n1. **Objective & Scope**\n   - Clear problem statement\n   - Success criteria\n   - Scope boundaries\n\n2. **Technical Analysis**\n   - Current state assessment\n   - Dependencies and constraints\n   - Technology stack considerations\n\n3. **Implementation Strategy**\n   - Step-by-step breakdown\n   - Timeline estimates\n   - Risk assessment\n\n4. **Validation Plan**\n   - Testing approach\n   - Quality gates\n   - Rollback strategy\n\nSave the plan as a markdown document with a descriptive filename based on the requested feature or task.",
       "description": "Create a detailed implementation plan",
+      "agent": "build",
       "model": "github-copilot/claude-sonnet-4",
     },
     "analyze-codebase": {
