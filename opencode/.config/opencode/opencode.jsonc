@@ -160,10 +160,6 @@
       "command": ["taplo", "format", "$FILE"],
       "extensions": [".toml"],
     },
-    "yamlfix": {
-      "command": ["yamlfix", "$FILE"],
-      "extensions": [".yaml", ".yml"],
-    },
     "usort": {
       "command": ["usort", "format", "$FILE"],
       "extensions": [".py", ".pyi"],
@@ -207,10 +203,6 @@
       "command": ["yaml-language-server", "--stdio"],
       "extensions": [".yaml", ".yml"],
     },
-    "vscode-json-language-server": {
-      "command": ["vscode-json-language-server", "--stdio"],
-      "extensions": [".json", ".jsonc"],
-    },
     "marksman": {
       "command": ["marksman", "server"],
       "extensions": [".md", ".markdown"],
@@ -231,10 +223,6 @@
     "jsonnet-language-server": {
       "command": ["jsonnet-language-server"],
       "extensions": [".jsonnet", ".libsonnet"],
-    },
-    "gitlab-ci-ls": {
-      "command": ["gitlab-ci-ls"],
-      "extensions": [".gitlab-ci.yml", ".gitlab-ci.yaml"],
     },
     "fish-lsp": {
       "command": ["fish-lsp", "start"],
