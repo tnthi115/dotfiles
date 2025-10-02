@@ -43,7 +43,21 @@
   "git.openRepositoryInParentFolders": "always",
   "animations.Install-Method": "Apc Customize UI++",
   "window.titleBarStyle": "native",
-  "window.nativeTabs": true
+  "window.nativeTabs": true,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  }
   // "workbench.colorCustomizations": {
   //     "[Kanagawa Black]": {
   //         "editor.background": "#181616",
