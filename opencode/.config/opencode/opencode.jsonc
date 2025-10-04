@@ -65,8 +65,8 @@
       // "model": "github-copilot/o3-mini",
     },
     "build": {
-      // "model": "github-copilot/claude-sonnet-4",
-      "model": "github-copilot/gpt-4.1",
+      "model": "github-copilot/claude-sonnet-4",
+      // "model": "github-copilot/gpt-4.1",
     },
     // "cheap-build": {
     //   "model": "github-copilot/gpt-4.1",
