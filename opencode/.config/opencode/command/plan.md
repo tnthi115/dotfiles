@@ -1,40 +1,63 @@
 ---
 description: Create a detailed implementation plan
-agent: plan
+agent: general
 model: github-copilot/claude-sonnet-4
+subtask: true
 ---
 
 Create a comprehensive implementation plan for: $ARGUMENTS
 
-Analyze the current project structure and requirements:
-!`find . -type f -name "*.md" -o -name "*.json" -o -name "*.js" -o -name "*.ts" -o -name "*.py" -o -name "*.go" | head -20`
+**Step 1: Task Classification & Targeted Discovery**
 
-Current git status:
-!`git status --porcelain`
+Analyze the request and determine what context is actually needed:
 
-Recent commits for context:
-!`git log --oneline -5`
+- Is this a new feature, bug fix, refactor, or enhancement?
+- What technologies/languages are involved?
+- What files/components will likely be affected?
 
-Based on this analysis, create a detailed plan that includes:
+**Step 2: Intelligent Context Discovery**
 
-1. **Objective & Scope**
-   - Clear problem statement
-   - Success criteria
-   - Scope boundaries
+Analyze the task request to determine relevant context:
 
-2. **Technical Analysis**
-   - Current state assessment
-   - Dependencies and constraints
-   - Technology stack considerations
+- Extract key terms from the task description
+- Identify likely technology stack from request
+- Use targeted agent calls for specific discovery needs
 
-3. **Implementation Strategy**
-   - Step-by-step breakdown
-   - Timeline estimates
-   - Risk assessment
+**Step 3: Agent-Driven Analysis**
 
-4. **Validation Plan**
-   - Testing approach
-   - Quality gates
-   - Rollback strategy
+Based on task analysis, use appropriate agents:
 
-Save the plan as a markdown document with a descriptive filename based on the requested feature or task.
+- `project-discovery`: Understand codebase structure
+- `technology-stack-analyzer`: Identify dependencies
+- `pattern-recognition`: Find existing code patterns
+- `security-auditor`: For security-related tasks
+
+**Step 4: Create Implementation-Ready Plan**
+
+1. **Objective & Success Criteria**
+   - Specific, measurable outcomes
+   - Definition of done
+   - Acceptance criteria
+
+2. **Technical Foundation**
+   - Existing code patterns to follow
+   - Dependencies and imports needed
+   - Configuration requirements
+
+3. **Detailed Implementation Steps**
+   - File-by-file changes with specific locations
+   - Code snippets/templates where helpful
+   - Import statements and dependencies
+   - Configuration updates needed
+
+4. **Quality Assurance**
+   - Test files to create/modify
+   - Linting/formatting commands to run
+   - Integration points to verify
+
+5. **Risk Mitigation**
+   - Potential breaking changes
+   - Rollback procedures
+   - Dependencies that might conflict
+
+Save as `[task-name]-implementation-plan.md` with agent-executable details. Do not make any code changes.

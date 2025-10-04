@@ -28,7 +28,7 @@ customCommands:
     output: terminal
   - key: "O"
     context: "files"
-    command: 'opencode run "Analyze the currently staged changes, generate a Conventional Commit message based on the actual diff, and commit the changes" --agent "commit"'
+    command: 'opencode run --command "commit"'
     description: "Generate a Conventional Commit with opencode"
     output: terminal
     prompts:
