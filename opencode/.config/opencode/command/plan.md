@@ -1,63 +1,115 @@
 ---
-description: Create a detailed implementation plan
-agent: general
+description: Create an OpenCode Build Agent optimized implementation plan
+agent: codebase-analyzer
 model: github-copilot/claude-sonnet-4
 subtask: true
 ---
 
-Create a comprehensive implementation plan for: $ARGUMENTS
+Create a comprehensive, agent-executable implementation plan for: $ARGUMENTS
 
-**Step 1: Task Classification & Targeted Discovery**
+This plan will be executed by OpenCode's build agent in one pass. Focus on clarity, completeness, and actionable steps.
 
-Analyze the request and determine what context is actually needed:
+## Phase 1: Context Discovery
 
-- Is this a new feature, bug fix, refactor, or enhancement?
-- What technologies/languages are involved?
-- What files/components will likely be affected?
+**Analyze the codebase and requirements:**
 
-**Step 2: Intelligent Context Discovery**
+1. **Technology Detection**
+   - Scan project files to identify the tech stack
+   - Check package.json, requirements.txt, Cargo.toml, go.mod, etc.
+   - Note existing patterns, conventions, and project structure
 
-Analyze the task request to determine relevant context:
+2. **File System Mapping**
+   - List all files that need modification (exact paths)
+   - Identify new files to create (exact paths)
+   - Note any config files that need updates
 
-- Extract key terms from the task description
-- Identify likely technology stack from request
-- Use targeted agent calls for specific discovery needs
+3. **Dependencies & Environment**
+   - Check existing dependencies and versions
+   - Identify new dependencies needed
+   - Note any environment variables or config changes
 
-**Step 3: Agent-Driven Analysis**
+## Phase 2: Implementation Design
 
-Based on task analysis, use appropriate agents:
+**Create the technical approach:**
 
-- `project-discovery`: Understand codebase structure
-- `technology-stack-analyzer`: Identify dependencies
-- `pattern-recognition`: Find existing code patterns
-- `security-auditor`: For security-related tasks
+1. **Code Structure**
+   - Follow existing code patterns and conventions
+   - Use the same import styles, error handling, and naming
+   - Match existing test patterns and frameworks
 
-**Step 4: Create Implementation-Ready Plan**
+2. **Change Breakdown**
+   - Break changes into logical, independent steps
+   - Each step should be testable on its own
+   - Provide exact code for each file change
 
-1. **Objective & Success Criteria**
-   - Specific, measurable outcomes
-   - Definition of done
-   - Acceptance criteria
+3. **Quality Standards**
+   - Use OpenCode's LSP integration for real-time validation
+   - Apply configured formatters automatically (no manual commands)
+   - Use configured linters for code quality checks
+   - Note test commands: `npm test`, `pytest`, `go test ./...`, etc.
 
-2. **Technical Foundation**
-   - Existing code patterns to follow
-   - Dependencies and imports needed
-   - Configuration requirements
+## Phase 3: Implementation Steps
 
-3. **Detailed Implementation Steps**
-   - File-by-file changes with specific locations
-   - Code snippets/templates where helpful
-   - Import statements and dependencies
-   - Configuration updates needed
+**For each change, provide:**
 
-4. **Quality Assurance**
-   - Test files to create/modify
-   - Linting/formatting commands to run
-   - Integration points to verify
+1. **File Operations**
+   - **Create new files**: Full file path + complete content
+   - **Modify existing files**: Exact changes with context
+   - **Update configs**: Specific changes to package.json, requirements.txt, etc.
 
-5. **Risk Mitigation**
-   - Potential breaking changes
-   - Rollback procedures
-   - Dependencies that might conflict
+2. **Code Content**
+   - Include complete, working code for each file
+   - Ensure all imports are correct and available
+   - Follow existing code style and patterns exactly
 
-Save as `[task-name]-implementation-plan.md` with agent-executable details. Do not make any code changes.
+3. **Validation Steps**
+   - After each major change, run relevant tests
+   - Check linting and formatting
+   - Verify the change works as expected
+
+## Phase 4: Testing & Quality
+
+**Ensure everything works:**
+
+1. **Test Implementation**
+   - Create/update unit tests for new functionality
+   - Include integration tests if needed
+   - Provide complete test code, not just descriptions
+
+2. **Quality Checks**
+   - Use OpenCode's LSP for real-time error detection
+   - Apply all configured formatters automatically
+   - Run configured linters for code quality validation
+   - Execute full test suite
+
+3. **Manual Verification**
+   - List specific things to check manually
+   - Provide example API calls, UI interactions, etc.
+   - Note any edge cases to test
+
+## Phase 5: Completion Criteria
+
+**Define success:**
+
+1. **Functional Requirements**
+   - List specific behaviors that must work
+   - Include example inputs/outputs
+   - Note any performance requirements
+
+2. **Technical Requirements**
+   - All tests pass
+   - No linting errors
+   - Project builds successfully
+   - No breaking changes (unless intended)
+
+## Agent Execution Notes
+
+**Save as `[task-name]-plan.md` and ensure:**
+
+- Every file change includes the complete file path
+- All code snippets are complete and runnable
+- All commands are exact and ready to execute
+- Dependencies are specified with versions when critical
+- The plan can be executed top-to-bottom without additional context
+
+The goal is a plan so clear and complete that any build agent can execute it successfully without human intervention.
