@@ -68,9 +68,15 @@
       "model": "github-copilot/claude-sonnet-4",
       // "model": "github-copilot/gpt-4.1",
     },
-    // "cheap-build": {
-    //   "model": "github-copilot/gpt-4.1",
-    // },
+    "cheap-build": {
+      "mode": "primary",
+      "model": "github-copilot/gpt-4.1",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true,
+      },
+    },
   },
   "mcp": {
     "git": {
