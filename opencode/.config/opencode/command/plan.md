@@ -195,3 +195,5 @@ For each issue identified in Phase 0, provide:
 - Each implementation step clearly states which Phase 0 issues it addresses
 
 The goal is a plan so clear and complete that any build agent can execute it successfully while understanding both the problems being solved and the rationale behind each solution.
+
+**CRITICAL: After saving the plan file, STOP. Do not proceed with implementation. Your task is complete once the plan is written.**
