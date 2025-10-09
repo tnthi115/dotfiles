@@ -57,6 +57,8 @@ end
 set -gx GITLAB_API_URL "https://gitlab.com/api/v4"
 source $HOME/.gitlab-token
 
+source $HOME/.github-token
+
 # bat
 # set -gx BAT_THEME tokyonight_night
 set -e BAT_THEME
