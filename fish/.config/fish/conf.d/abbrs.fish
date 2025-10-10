@@ -106,3 +106,6 @@ abbr -a -- oc opencode
 abbr -a -- sg source_goenv
 # abbr -a -- rf reload_fish
 abbr -a -- rf 'exec fish'
+
+# Serena web dashboard
+abbr -a -- serenaweb 'open http://localhost:24282/dashboard/'

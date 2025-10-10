@@ -10,3 +10,6 @@
 # if status is-interactive
 #     # Commands to run in interactive sessions can go here
 # end
+
+# Abbreviation to open Serena web dashboard
+abbr -a serenaweb 'open http://localhost:24282/dashboard/'
