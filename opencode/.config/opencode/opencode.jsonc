@@ -102,6 +102,16 @@
         "DEFAULT_MINIMUM_TOKENS": "5000",
       },
     },
+    "serena": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+      ],
+    },
   },
   "formatter": {
     "prettier": {

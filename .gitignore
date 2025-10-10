@@ -1,1 +1,6 @@
 *sketchybar*
+
+# Ignore Serena agent memory files
+.serena/memories/
+# Ignore Serena agent cache files
+.serena/cache/
