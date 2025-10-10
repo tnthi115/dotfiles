@@ -69,8 +69,9 @@ outer.right = 12
 # 6 = ['secondary', 'dell']        # You can specify multiple patterns. The first matching pattern will be used
 1 = 'main'
 2 = ['^DELL.*\(1\)$', 'M27Q', 'secondary']
-3 = '^built-in retina display$'
-4 = ['M27Q', '^built-in retina display$']
+3 = ['^DELL P2425DE$', '^built-in retina display$']
+4 = ['^DELL P2425DE$', 'secondary']
+5 = ['^built-in retina display$', '^DELL P2425DE$']
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -252,7 +253,7 @@ run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace 4'
 
 # force to workspace 3
 [[on-window-detected]]
@@ -271,14 +272,14 @@ run = 'move-node-to-workspace 3'
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
 if.during-aerospace-startup = false
-run = 'move-node-to-workspace 2'
-
-# force to workspace 4
-[[on-window-detected]]
-if.app-id = 'app.zen-browser.zen'
 run = 'move-node-to-workspace 4'
 
-# force to workspace 4
+# force to workspace 5
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run = 'move-node-to-workspace 5'
+
+# force to workspace 5
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = 'move-node-to-workspace 5'
