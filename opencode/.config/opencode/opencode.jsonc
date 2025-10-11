@@ -95,6 +95,7 @@
         "USE_PIPELINE": "false",
       },
     },
+    // prompt: use context7
     "context7": {
       "type": "local",
       "command": ["npx", "-y", "@upstash/context7-mcp"],
@@ -102,6 +103,7 @@
         "DEFAULT_MINIMUM_TOKENS": "5000",
       },
     },
+    // prompt: /serena custom command or "activate serena project"
     "serena": {
       "type": "local",
       "command": [
@@ -110,6 +112,15 @@
         "git+https://github.com/oraios/serena",
         "serena",
         "start-mcp-server",
+      ],
+    },
+    // prompt: use sequential-thinking, chain-of-thought reasoning, break this down step by step
+    "sequential-thinking": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking",
       ],
     },
   },
