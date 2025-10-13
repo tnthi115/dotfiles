@@ -81,4 +81,6 @@ token_count_estimator: TIKTOKEN_GPT4O
 # instruct Serena to activate the project by its path for first-time activation.
 # NOTE: Make sure there are no name collisions in the names of registered projects.
 projects:
-  - /Users/t.thi/dotfiles
+- /Users/t.thi/dotfiles
+- /Users/t.thi/go/src/gopkg.volterra.us/opera
+- /Users/t.thi/go/src/gopkg.volterra.us/schema
