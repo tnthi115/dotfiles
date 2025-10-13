@@ -2,64 +2,28 @@
 
 ## Core Engineering Principles
 
-### Code Quality Foundation
+**Code Quality & Security**:
+- Defensive programming: validate inputs, handle edge cases, fail fast
+- Single responsibility functions (<20 lines), DRY principle, SOLID patterns
+- Security-first: sanitize inputs, no hardcoded secrets, OWASP compliance
 
-- **Defensive Programming**: Validate inputs, handle edge cases, fail fast
-- **Single Responsibility**: Functions/classes with one clear purpose (typically <20 lines)
-- **DRY Principle**: Extract common functionality, avoid code duplication
-- **SOLID Principles**: Follow industry-standard OOP design patterns
-- **Avoid Deep Nesting**: Use early returns, guard clauses, extraction methods
-- **Security First**: Sanitize inputs, use minimal privileges, no hardcoded secrets, OWASP compliance
+**Error Handling & Performance**:
+- Comprehensive validation with graceful error handling and structured logging
+- Algorithmic efficiency (Big O), appropriate data structures, smart caching
+- Circuit breaker patterns for external calls, exponential backoff retry logic
 
-### Error Handling & Resilience
+**Testing & Architecture**:
+- Test pyramid (more unit than integration than E2E), AAA pattern, test isolation
+- Dependency injection, interface segregation, event-driven loose coupling
+- No trailing/leading whitespace, syntax validation, linting before completion
 
-- **Comprehensive Validation**: Check all parameters, file paths, user inputs
-- **Graceful Error Handling**: Use appropriate exception patterns for each language
-- **Circuit Breaker Pattern**: Implement for external service calls
-- **Retry Logic**: Use exponential backoff with jitter for transient failures
-- **Structured Logging**: Include context (request IDs, user IDs, operation details)
-- **Timeout Handling**: Set timeouts for all I/O operations
+**Anti-Patterns to Avoid**:
+- God objects, magic numbers/strings, copy-paste programming, tight coupling
+- Over-engineering (YAGNI), global state, ignoring error conditions
 
-### Performance & Efficiency
+**Technology Selection**: Prefer established solutions, minimal dependencies, lock files
 
-- **Algorithmic Efficiency**: Consider time/space complexity (Big O)
-- **Appropriate Data Structures**: Use efficient collections for use case
-- **Lazy Evaluation**: Load/compute only when needed
-- **Memory Management**: Be mindful of allocation and cleanup
-- **Caching Strategies**: Implement appropriate caching with proper invalidation
-
-## Architecture & Design Patterns
-
-- **Dependency Injection**: Prefer constructor injection for testability
-- **Interface Segregation**: Design small, focused interfaces
-- **Event-Driven Architecture**: Use events for loose coupling
-- **Repository Pattern**: Abstract data access behind interfaces
-- **API Design**: RESTful principles, proper versioning, consistent error responses
-- **Database**: Transactions for consistency, connection pooling, schema migrations
-- **Data Validation**: Validate at multiple layers (client, API, database)
-
-## Testing & Quality Assurance
-
-- **Test Pyramid**: More unit tests than integration, more integration than E2E
-- **AAA Pattern**: Arrange-Act-Assert structure for tests
-- **Test Isolation**: Independent tests that don't rely on other tests' state
-- **Mock External Dependencies**: Use mocks/stubs for databases, APIs, services
-- **Edge Case Coverage**: Test boundary conditions, null/empty inputs, error scenarios
-- **No trailing/leading whitespace** in generated files, especially markdown
-- **Syntax Validation**: Ensure no syntax errors in generated code
-- **Linting & Formatting**: Run language-specific linters/formatters before completion
-- **Type Safety**: Use static typing and type hints where available
-- **Self-Documenting Code**: Write code that explains intent through naming
-
-## Anti-Patterns to Avoid
-
-- **God Objects**: Avoid classes/modules that do too many things
-- **Magic Numbers/Strings**: Use named constants instead of hard-coded values
-- **Copy-Paste Programming**: Extract common functionality instead
-- **Over-Engineering**: Don't add complexity for theoretical future needs (YAGNI)
-- **Global State**: Minimize global variables and shared mutable state
-- **Tight Coupling**: Prefer loose coupling via interfaces
-- **Ignoring Errors**: Always handle or explicitly acknowledge error conditions
+**Priority Matrix**: 🔴 CRITICAL: Security/validation/formatting 🟡 PRODUCTION: Testing/docs 🟢 SCALING: Performance 🔵 FUTURE: Experimental
 
 ## Scale-Appropriate Engineering
 
@@ -111,3 +75,57 @@
 - Include: objectives, step-by-step breakdown, dependencies, success criteria
 - Plans should be optimized for coding agent implementation
 - **Default behavior for planning agents: create plan document**
+
+## Context Preservation & Memory Management
+
+**Problem**: During long planning or multi-step agent sessions, OpenCode’s compaction cycles can degrade context through repeated summarization, leading to loss of critical details and requirements.
+
+**Solution**: Proactively use Serena’s memory system to preserve planning context and prevent information loss:
+
+### Pre-Planning Memory Setup
+
+When starting complex tasks, immediately create persistent memories:
+
+```bash
+serena_write_memory "task_[timestamp]_plan" "[complete original plan]"
+serena_write_memory "task_[timestamp]_context" "[requirements and constraints]"
+serena_write_memory "task_[timestamp]_progress" "Task initiated - no progress yet"
+serena_write_memory "task_[timestamp]_decisions" "Initial decision log"
+```
+
+### During Execution Memory Updates
+
+Before potential compaction points, update progress and decisions:
+
+```bash
+serena_write_memory "task_[timestamp]_progress" "[current status and next steps]"
+serena_write_memory "task_[timestamp]_decisions" "[new decisions and rationale]"
+```
+
+### Post-Compaction Context Recovery
+
+After compaction, restore full context by reading all relevant memories:
+
+```bash
+serena_read_memory "task_[timestamp]_plan"
+serena_read_memory "task_[timestamp]_context"
+serena_read_memory "task_[timestamp]_progress"
+serena_read_memory "task_[timestamp]_decisions"
+```
+
+### Memory Naming Convention
+
+- `task_YYYYMMDD_HHMM_plan` – Original complete plan
+- `task_YYYYMMDD_HHMM_context` – Requirements, constraints, background
+- `task_YYYYMMDD_HHMM_progress` – Current status, completed/remaining steps
+- `task_YYYYMMDD_HHMM_decisions` – Key decisions and rationale
+
+### When to Use the Memory System
+
+- **Always**: For multi-step tasks expected to trigger compaction
+- **Planning Phase**: Save complete plan before execution begins
+- **Decision Points**: Record significant architectural or approach decisions
+- **Progress Checkpoints**: Update status before long-running operations
+- **Error Recovery**: Save state before attempting risky operations
+
+This prevents context degradation and ensures plan fidelity throughout execution.
