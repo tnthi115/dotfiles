@@ -1,6 +1,13 @@
 set -gx goenv_warning false
 
 if type -q go
+    # Add go path to path
+    # set -gx GOPATH "/usr/lib/go"
+    # set -gx GOPATH "$HOME/go"
+    # set -gx GOPATH "$HOME/.local/lib/go"
+    fish_add_path --append "$(go env GOPATH)/bin"
+    set -gx GOPATH "$(go env GOPATH)"
+
     if type -q goenv
         # Helper variable for calling source_goenv
         # set -gx GO_DIRS_PROCESSED
@@ -28,12 +35,5 @@ if type -q go
             # fish_add_path --append --path "$GOPATH/bin"
         end
 
-    else
-        # Add go path to path
-        # set -gx GOPATH "/usr/lib/go"
-        # set -gx GOPATH "$HOME/go"
-        # set -gx GOPATH "$HOME/.local/lib/go"
-        fish_add_path --append "$(go env GOPATH)/bin"
-        set -gx GOPATH "$(go env GOPATH)"
     end
 end
