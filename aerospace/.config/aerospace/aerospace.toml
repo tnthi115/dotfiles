@@ -68,9 +68,9 @@ outer.right = 12
 # 5 = '^built-in retina display$'  # Case insensitive regex match
 # 6 = ['secondary', 'dell']        # You can specify multiple patterns. The first matching pattern will be used
 1 = 'main'
-2 = ['^DELL.*\(1\)$', 'M27Q', 'secondary']
+2 = ['^DELL P2418D \(1\)$', 'M27Q', 'secondary']
 3 = ['^DELL P2425DE$', '^built-in retina display$']
-4 = ['^DELL P2425DE$', 'secondary']
+4 = ['^DELL P2418D \(1\)$', '^DELL P2425DE$', 'secondary']
 5 = ['^built-in retina display$', '^DELL P2425DE$']
 
 # 'main' binding mode declaration
@@ -249,6 +249,10 @@ run = ['layout floating', 'move-node-to-workspace 1']
 # force to workspace 2
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
