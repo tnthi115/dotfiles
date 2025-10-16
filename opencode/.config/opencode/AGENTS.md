@@ -78,54 +78,20 @@
 
 ## Context Preservation & Memory Management
 
-**Problem**: During long planning or multi-step agent sessions, OpenCode’s compaction cycles can degrade context through repeated summarization, leading to loss of critical details and requirements.
+**Compaction is unavoidable in long/complex sessions.**
 
-**Solution**: Proactively use Serena’s memory system to preserve planning context and prevent information loss:
+**Best Practice:** Use Serena memory for all multi-step or long-running tasks:
 
-### Pre-Planning Memory Setup
+- **Start:** Write plan, context, progress, and decisions to memory at task start.
+- **During:** After every major step or decision, and before/after risky or long operations, update progress and decisions in memory.
+- **After Compaction/Resume:** Immediately re-read all relevant memory files to restore context.
 
-When starting complex tasks, immediately create persistent memories:
+**Memory names:**
+- `task_[timestamp]_plan` (plan)
+- `task_[timestamp]_context` (requirements)
+- `task_[timestamp]_progress` (status)
+- `task_[timestamp]_decisions` (decisions)
 
-```bash
-serena_write_memory "task_[timestamp]_plan" "[complete original plan]"
-serena_write_memory "task_[timestamp]_context" "[requirements and constraints]"
-serena_write_memory "task_[timestamp]_progress" "Task initiated - no progress yet"
-serena_write_memory "task_[timestamp]_decisions" "Initial decision log"
-```
-
-### During Execution Memory Updates
-
-Before potential compaction points, update progress and decisions:
-
-```bash
-serena_write_memory "task_[timestamp]_progress" "[current status and next steps]"
-serena_write_memory "task_[timestamp]_decisions" "[new decisions and rationale]"
-```
-
-### Post-Compaction Context Recovery
-
-After compaction, restore full context by reading all relevant memories:
-
-```bash
-serena_read_memory "task_[timestamp]_plan"
-serena_read_memory "task_[timestamp]_context"
-serena_read_memory "task_[timestamp]_progress"
-serena_read_memory "task_[timestamp]_decisions"
-```
-
-### Memory Naming Convention
-
-- `task_YYYYMMDD_HHMM_plan` – Original complete plan
-- `task_YYYYMMDD_HHMM_context` – Requirements, constraints, background
-- `task_YYYYMMDD_HHMM_progress` – Current status, completed/remaining steps
-- `task_YYYYMMDD_HHMM_decisions` – Key decisions and rationale
-
-### When to Use the Memory System
-
-- **Always**: For multi-step tasks expected to trigger compaction
-- **Planning Phase**: Save complete plan before execution begins
-- **Decision Points**: Record significant architectural or approach decisions
-- **Progress Checkpoints**: Update status before long-running operations
-- **Error Recovery**: Save state before attempting risky operations
-
-This prevents context degradation and ensures plan fidelity throughout execution.
+**Summary:**
+- Always update and read memory at key points to prevent context loss.
+- This ensures robust, lossless progress even with frequent compaction.
