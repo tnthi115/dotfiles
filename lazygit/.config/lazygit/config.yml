@@ -13,6 +13,7 @@ git:
     - master
     - hotfix-20241112
     - release-2025-7-0
+    - release-2025-10-0
   paging:
     colorArg: always
     # useConfig: true
