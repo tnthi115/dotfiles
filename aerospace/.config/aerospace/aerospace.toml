@@ -271,7 +271,7 @@ run = 'move-node-to-workspace 3'
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
 if.during-aerospace-startup = true
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
