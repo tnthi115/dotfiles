@@ -1,8 +1,5 @@
 ---
 description: Execute an implementation plan with build agent. Use `/do` for session plan or `/do @plan-file.md` for specific plan file.
-agent: build
-model: github-copilot/gpt-4.1
-subtask: false
 ---
 
 **Step 0: Preflight**

@@ -1,7 +1,6 @@
 ---
 description: Analyze codebase and generate comprehensive AGENTS.md file
 agent: codebase-analyzer
-model: github-copilot/claude-sonnet-4
 subtask: true
 ---
 
@@ -56,6 +55,7 @@ Perform comprehensive analysis to generate an accurate AGENTS.md file that inclu
 ## Output Requirements
 
 Generate a complete, accurate AGENTS.md file that:
+
 - Enables any AI agent to work effectively in this codebase immediately
 - Contains only verified, working commands extracted from the project
 - Provides specific, actionable guidance based on actual project structure and patterns

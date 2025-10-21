@@ -1,7 +1,6 @@
 ---
 description: Create an OpenCode Build Agent optimized implementation plan with comprehensive issue analysis
 agent: codebase-analyzer
-model: github-copilot/claude-sonnet-4
 subtask: true
 ---
 

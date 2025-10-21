@@ -17,9 +17,9 @@
       "name": "f5",
       "options": {
         "baseURL": "https://f5ai.pd.f5net.com/openai/",
-        // Set your OPENAI_API_KEY environment variable, or read it from a file
-        // "apiKey": "file:~/.openai_api_key",
-        "apiKey": "{env:OPENAI_API_KEY}",
+        // Set your F5GPT_OPENAI_API_KEY environment variable, or read it from a file
+        // "apiKey": "file:~/.f5gpt-openai-api-token"
+        "apiKey": "{env:F5GPT_OPENAI_API_KEY}",
       },
       "models": {
         "gpt-5": {
@@ -27,6 +27,9 @@
         },
         "gpt-5-mini": {
           "name": "gpt-5-mini",
+        },
+        "gpt-5-codex": {
+          "name": "gpt-5-codex",
         },
         "gpt-5-nano": {
           "name": "gpt-5-nano",
@@ -58,19 +61,44 @@
       },
     },
   },
+  // List of github copilot models available:
+  // claude-3.5-sonnet
+  // claude-3.7-sonnet
+  // claude-sonnet-4
+  // o3-mini
+  // o4-mini
+  // gpt-5
+  // gpt-5-mini
   "agent": {
     "plan": {
-      "model": "github-copilot/claude-sonnet-4",
+      // "model": "github-copilot/claude-sonnet-4",
       // Use this when premium tokens are exhausted
-      // "model": "github-copilot/o3-mini",
+      // "model": "github-copilot/o4-mini",
+      "model": "f5/o3",
+      // "model": "github-copilot/gpt-5-mini",
     },
+    // Use this when premium tokens are exhausted
+    // "cheap-plan": {
+    //   "mode": "primary",
+    //   // "model": "github-copilot/o4-mini",
+    //   "model": "f5/o3",
+    //   "tools": {
+    //     "write": false,
+    //     "edit": false,
+    //     "bash": false,
+    //   },
+    // },
     "build": {
-      "model": "github-copilot/claude-sonnet-4",
+      // "model": "github-copilot/claude-sonnet-4",
       // "model": "github-copilot/gpt-4.1",
+      // Use this when premium tokens are exhausted
+      "model": "github-copilot/gpt-5-mini",
     },
+    // Use this when premium tokens are exhausted
     "cheap-build": {
       "mode": "primary",
-      "model": "github-copilot/gpt-4.1",
+      // "model": "github-copilot/gpt-4.1",
+      "model": "github-copilot/gpt-5-mini",
       "tools": {
         "write": true,
         "edit": true,
