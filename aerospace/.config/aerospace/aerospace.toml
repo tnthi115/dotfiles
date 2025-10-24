@@ -240,7 +240,7 @@ backspace = ['close-all-windows-but-current', 'mode main']
 # Callbacks
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
-run = 'layout floating'
+run = 'move-node-to-workspace 5'
 
 # force to workspace 1
 [[on-window-detected]]
