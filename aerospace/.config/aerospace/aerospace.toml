@@ -70,7 +70,12 @@ outer.right = 12
 1 = 'main'
 2 = ['^DELL P2418D \(1\)$', 'M27Q', 'secondary']
 3 = ['^DELL P2425DE$', '^built-in retina display$']
-4 = ['^DELL P2418D \(1\)$', '^DELL P2425DE$', 'secondary']
+4 = [
+  '^DELL P2418D \(1\)$',
+  '^built-in retina display$',
+  '^DELL P2425DE$',
+  'secondary',
+]
 5 = ['^built-in retina display$', '^DELL P2425DE$']
 
 # 'main' binding mode declaration
