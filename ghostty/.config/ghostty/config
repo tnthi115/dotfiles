@@ -22,7 +22,7 @@ shell-integration-features = no-cursor
 # General
 confirm-close-surface = false
 macos-option-as-alt = true
-# auto-update = check
+auto-update = off
 
 # Keybinds
 keybind = ctrl+shift+,=reload_config
