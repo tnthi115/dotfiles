@@ -14,10 +14,10 @@ git:
     - hotfix-20241112
     - release-2025-7-0
     - release-2025-10-0
-  paging:
-    colorArg: always
-    # useConfig: true
-    pager: delta --dark --paging=never
+  pagers:
+    - colorArg: always
+      # useConfig: true
+      pager: delta --dark --paging=never
   commit:
     autoWrapCommitMessage: false
 customCommands:
