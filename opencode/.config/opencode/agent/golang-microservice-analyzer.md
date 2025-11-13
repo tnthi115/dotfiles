@@ -1,7 +1,7 @@
 ---
 description: Performs deep analysis of Golang microservice codebases to generate comprehensive AGENTS.md files
 mode: subagent
-model: github-copilot/claude-sonnet-4
+model: github-copilot/claude-sonnet-4.5
 tools:
   bash: true
   read: true
@@ -298,6 +298,7 @@ go tool pprof http://localhost:[port]/debug/pprof/heap
 ````
 
 ### 4. Architecture-Specific Guidelines
+
 ```markdown
 ## Development Guidelines
 
@@ -337,7 +338,7 @@ go tool pprof http://localhost:[port]/debug/pprof/heap
 - **Tracing**: [Distributed tracing with span attributes, trace propagation across services]
 - **Health Checks**: [Liveness and readiness probes, dependency health monitoring]
 - **Performance Monitoring**: [Request latency, throughput, error rates, resource usage]
-````
+```
 
 ### 5. OpenCode Agent Optimizations
 

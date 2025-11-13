@@ -1,7 +1,7 @@
 ---
 description: This subagent should only be called manually by the user.
 mode: subagent
-model: github-copilot/claude-sonnet-4
+model: github-copilot/claude-sonnet-4.5
 tools:
   bash: true
   read: true
@@ -51,6 +51,7 @@ This template provides a foundation for analyzing Python Machine Learning projec
 ## Project Detection Criteria
 
 A project is classified as Python ML if it has:
+
 - Python files with ML/AI library imports
 - Typical ML project structure (`models/`, `data/`, `notebooks/`)
 - Common ML dependencies (scikit-learn, pandas, numpy, tensorflow, pytorch)
@@ -63,6 +64,7 @@ test -f pyproject.toml -o -f requirements.txt -o -f environment.yml && (rg -q "p
 ## Technology Stack Analysis
 
 ### Core ML Libraries
+
 - **Data Processing**: `pandas`, `numpy`, `polars`, `dask`
 - **Machine Learning**: `scikit-learn`, `xgboost`, `lightgbm`, `catboost`
 - **Deep Learning**: `tensorflow`, `pytorch`, `keras`, `jax`, `flax`
@@ -70,18 +72,21 @@ test -f pyproject.toml -o -f requirements.txt -o -f environment.yml && (rg -q "p
 - **NLP**: `transformers`, `spacy`, `nltk`, `gensim`, `sentence-transformers`
 
 ### Experiment Tracking & MLOps
+
 - **Tracking**: `mlflow`, `wandb`, `neptune`, `comet-ml`, `tensorboard`
 - **Orchestration**: `airflow`, `prefect`, `kubeflow`, `metaflow`
 - **Model Serving**: `fastapi`, `flask`, `streamlit`, `gradio`, `bentoml`
 - **Deployment**: `docker`, `kubernetes`, `aws-sagemaker`, `gcp-vertex-ai`
 
 ### Data & Infrastructure
+
 - **Databases**: `sqlalchemy`, `pymongo`, `psycopg2`, `mysql-connector`
 - **Cloud Storage**: `boto3` (AWS), `google-cloud-storage`, `azure-storage`
 - **Feature Stores**: `feast`, `tecton`, `hopsworks`
 - **Data Validation**: `great-expectations`, `deepdiff`, `pandera`
 
 ### Development Tools
+
 - **Notebooks**: `jupyter`, `jupyterlab`, `papermill`, `nbconvert`
 - **Testing**: `pytest`, `pytest-cov`, `hypothesis`, `unittest`
 - **Code Quality**: `black`, `flake8`, `mypy`, `isort`, `pre-commit`
@@ -90,6 +95,7 @@ test -f pyproject.toml -o -f requirements.txt -o -f environment.yml && (rg -q "p
 ## Common Project Structures
 
 ### Research/Experimentation Structure
+
 ```
 project/
 ├── data/
@@ -111,6 +117,7 @@ project/
 ```
 
 ### Production ML Structure
+
 ```
 ml-service/
 ├── src/
@@ -128,6 +135,7 @@ ml-service/
 ```
 
 ### MLOps Pipeline Structure
+
 ```
 ml-platform/
 ├── pipelines/
@@ -148,6 +156,7 @@ ml-platform/
 ### Environment Management
 
 #### Conda Projects
+
 ```bash
 # Create environment
 conda env create -f environment.yml
@@ -161,6 +170,7 @@ conda env export > environment.yml
 ```
 
 #### Poetry Projects
+
 ```bash
 # Install dependencies
 poetry install
@@ -179,6 +189,7 @@ poetry run python train.py
 ```
 
 #### pip/venv Projects
+
 ```bash
 # Create virtual environment
 python -m venv venv
@@ -196,6 +207,7 @@ pip install -r requirements-dev.txt
 ### Training & Experimentation
 
 #### Model Training
+
 ```bash
 # Training pipeline
 python -m src.train --config configs/train_config.yaml
@@ -211,6 +223,7 @@ mlflow run . -P alpha=0.1 -P l1_ratio=0.1
 ```
 
 #### Jupyter Notebooks
+
 ```bash
 # Start Jupyter Lab
 jupyter lab --ip=0.0.0.0 --port=8888
@@ -228,6 +241,7 @@ jupyter nbconvert --to html notebook.ipynb
 ## Testing Commands
 
 ### ML-Specific Testing
+
 ```bash
 # Unit tests
 pytest tests/
@@ -249,6 +263,7 @@ pytest tests/test_properties.py --hypothesis-show-statistics
 ```
 
 ### Data Quality Tests
+
 ```bash
 # Great Expectations validation
 great_expectations checkpoint run data_quality
@@ -263,6 +278,7 @@ python -m src.monitoring.drift_detection --reference data/reference/
 ## Code Quality Tools
 
 ### Formatting & Linting
+
 ```bash
 # Black formatting
 black src/ tests/
@@ -281,6 +297,7 @@ pre-commit run --all-files
 ```
 
 ### Documentation
+
 ```bash
 # Sphinx documentation
 sphinx-build -b html docs/ docs/_build/
@@ -295,24 +312,28 @@ jupyter-book build docs/
 ## Development Patterns to Look For
 
 ### Data Pipeline Patterns
+
 - ETL/ELT data processing pipelines
 - Feature engineering and selection
 - Data validation and quality checks
 - Data versioning and lineage tracking
 
 ### Model Development Patterns
+
 - Model training and validation pipelines
 - Hyperparameter optimization
 - Cross-validation strategies
 - Model evaluation and comparison
 
 ### MLOps Patterns
+
 - Continuous integration/deployment for ML
 - Model versioning and registry
 - A/B testing for model deployment
 - Monitoring and alerting for model drift
 
 ### Experiment Management
+
 - Experiment tracking and logging
 - Reproducible research practices
 - Parameter and configuration management
@@ -321,6 +342,7 @@ jupyter-book build docs/
 ## Environment Configuration
 
 ### ML-Specific Environment Variables
+
 ```bash
 # Model serving
 MODEL_PATH=/models/production/
@@ -344,6 +366,7 @@ OMP_NUM_THREADS=8
 ```
 
 ### Configuration Files to Check
+
 - Environment files (`.env`, `environment.yml`, `requirements.txt`)
 - ML configurations (`config.yaml`, `hparams.yaml`, `mlflow.yaml`)
 - Docker configurations (`Dockerfile`, `docker-compose.yml`)
@@ -353,6 +376,7 @@ OMP_NUM_THREADS=8
 ## Performance Optimization Guidelines
 
 ### Compute Optimization
+
 ```bash
 # GPU utilization monitoring
 nvidia-smi
@@ -368,12 +392,14 @@ python -m torch.distributed.launch --nproc_per_node=2 train.py
 ```
 
 ### Data Processing Optimization
+
 - Use vectorized operations (NumPy, Pandas)
 - Leverage parallel processing (multiprocessing, joblib)
 - Implement batch processing for large datasets
 - Use efficient data formats (Parquet, HDF5, Arrow)
 
 ### Model Optimization
+
 - Model quantization and pruning
 - ONNX runtime optimization
 - TensorRT acceleration (NVIDIA GPUs)
@@ -382,6 +408,7 @@ python -m torch.distributed.launch --nproc_per_node=2 train.py
 ## Deployment Patterns
 
 ### Model Serving API
+
 ```bash
 # FastAPI serving
 uvicorn src.api.main:app --host 0.0.0.0 --port 8000
@@ -397,6 +424,7 @@ python src/interface/gradio_app.py
 ```
 
 ### Container Deployment
+
 ```dockerfile
 # Multi-stage ML Dockerfile
 FROM python:3.9-slim as base
@@ -421,6 +449,7 @@ CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
 ### Batch Inference
+
 ```bash
 # Batch prediction
 python -m src.inference.batch_predict --input data/batch/ --output results/
@@ -435,6 +464,7 @@ airflow dags trigger ml_batch_inference
 ## Monitoring & Observability
 
 ### Model Performance Monitoring
+
 ```bash
 # Model drift detection
 python -m src.monitoring.drift_detector --model-name production_model
@@ -447,6 +477,7 @@ python -m src.monitoring.alerts --threshold 0.8
 ```
 
 ### Experiment Tracking
+
 ```python
 # MLflow tracking example
 import mlflow
@@ -461,6 +492,7 @@ with mlflow.start_run():
 ## Agent-Specific Optimizations
 
 ### Code Generation Preferences
+
 - Follow PEP 8 and use type hints consistently
 - Use dataclasses or Pydantic models for configuration
 - Implement proper error handling with custom exceptions
@@ -468,12 +500,14 @@ with mlflow.start_run():
 - Follow scikit-learn API conventions when applicable
 
 ### File Organization
+
 - Separate data processing, modeling, and serving code
 - Use configuration files for hyperparameters
 - Organize experiments by date or version
 - Keep notebooks clean and well-documented
 
 ### Common Pitfalls to Avoid
+
 - Not setting random seeds for reproducibility
 - Loading entire datasets into memory without chunking
 - Not validating input data shapes and types
@@ -482,6 +516,7 @@ with mlflow.start_run():
 - Missing model versioning and experiment tracking
 
 ### Quality Gates
+
 ```bash
 # Pre-commit checks for ML projects
 black --check src/ tests/
@@ -498,6 +533,7 @@ python -m src.models.validate --model-path models/latest/
 ```
 
 ### Research Best Practices
+
 - Document experimental hypotheses and results
 - Version control both code and data
 - Use reproducible research practices
@@ -508,18 +544,21 @@ python -m src.models.validate --model-path models/latest/
 ## Specific ML Domain Patterns
 
 ### Computer Vision Projects
+
 - Data augmentation pipelines
 - Transfer learning patterns
 - Model architecture definitions
 - Image preprocessing utilities
 
 ### NLP Projects
+
 - Text preprocessing and tokenization
 - Model fine-tuning scripts
 - Evaluation metrics implementation
 - Custom dataset loaders
 
 ### Time Series Projects
+
 - Feature engineering for temporal data
 - Cross-validation for time series
 - Forecasting model implementations

@@ -1,7 +1,7 @@
 ---
 description: This subagent should only be called manually by the user.
 mode: subagent
-model: github-copilot/claude-sonnet-4
+model: github-copilot/claude-sonnet-4.5
 tools:
   task: true
   bash: true
@@ -19,18 +19,21 @@ This comprehensive test suite validates the entire codebase analyzer system incl
 ## Test Structure
 
 ### Unit Tests
+
 - **Template Detection**: Verify project type detection logic
 - **Command Extraction**: Test real command extraction from project files
 - **Pattern Recognition**: Validate code pattern identification
 - **Content Generation**: Test AGENTS.md content generation
 
 ### Integration Tests
+
 - **End-to-End Analysis**: Full analysis pipeline from detection to validation
 - **Template Application**: Verify correct template usage for each project type
 - **Cross-Agent Communication**: Test interaction between subagents
 - **Performance Validation**: Ensure analysis completes within time limits
 
 ### Regression Tests
+
 - **Known Project Types**: Test against verified working projects
 - **Edge Cases**: Handle unusual or hybrid project configurations
 - **Error Handling**: Graceful failure for malformed projects
@@ -41,6 +44,7 @@ This comprehensive test suite validates the entire codebase analyzer system incl
 ### Test Data Sets
 
 #### Sample Projects
+
 ```bash
 # Create test project directories
 mkdir -p test-projects/{react-spa,nodejs-api,go-microservice,python-ml,static-site}
@@ -154,6 +158,7 @@ EOF
 ### Test Cases
 
 #### 1. Project Detection Tests
+
 ```bash
 #!/bin/bash
 # test_project_detection.sh
@@ -187,6 +192,7 @@ RESULT=$(bash -c 'test -f config.toml && echo "static-site"')
 ```
 
 #### 2. Command Extraction Tests
+
 ```bash
 #!/bin/bash
 # test_command_extraction.sh
@@ -214,6 +220,7 @@ PYTHON_DEPS=$(grep -A 10 "dependencies" pyproject.toml | grep -c "^[a-zA-Z]")
 ```
 
 #### 3. Template Application Tests
+
 ```bash
 #!/bin/bash
 # test_template_application.sh
@@ -224,9 +231,9 @@ echo "Testing template-specific analysis..."
 test_template_patterns() {
   local project_type=$1
   local expected_patterns=("${@:2}")
-  
+
   cd "test-projects/$project_type"
-  
+
   # Simulate template application (would normally call the codebase analyzer)
   case $project_type in
     "react-spa")
@@ -255,19 +262,20 @@ test_template_patterns() {
       test -f config.toml -o -f _config.yml && echo "✓ Site config found" || echo "✗ Site config missing"
       ;;
   esac
-  
+
   cd - > /dev/null
 }
 
 # Test all project types
 test_template_patterns "react-spa"
-test_template_patterns "nodejs-api"  
+test_template_patterns "nodejs-api"
 test_template_patterns "go-microservice"
 test_template_patterns "python-ml"
 test_template_patterns "static-site"
 ```
 
 #### 4. End-to-End Integration Tests
+
 ```bash
 #!/bin/bash
 # test_end_to_end.sh
@@ -278,26 +286,26 @@ echo "Running end-to-end integration tests..."
 test_complete_analysis() {
   local project_type=$1
   local project_dir="test-projects/$project_type"
-  
+
   echo "Testing complete analysis for $project_type..."
-  
+
   cd "$project_dir"
-  
+
   # Simulate running the codebase analyzer
   # (In practice, this would call the actual codebase-analyzer.md agent)
-  
+
   # Check if AGENTS.md would be generated with correct sections
   expected_sections=("Repository Purpose" "Technology Stack" "Build, Test & Quality Commands" "Agent Optimization Guidelines")
-  
+
   for section in "${expected_sections[@]}"; do
     echo "  ✓ Would include section: $section"
   done
-  
+
   # Simulate validation
   echo "  ✓ Commands would be validated"
   echo "  ✓ Paths would be verified"
   echo "  ✓ Template compliance would be checked"
-  
+
   cd - > /dev/null
 }
 
@@ -308,6 +316,7 @@ done
 ```
 
 #### 5. Performance Tests
+
 ```bash
 #!/bin/bash
 # test_performance.sh
@@ -318,30 +327,30 @@ echo "Running performance tests..."
 test_analysis_performance() {
   local project_type=$1
   local max_time=$2  # Maximum time in seconds
-  
+
   echo "Testing analysis performance for $project_type (max ${max_time}s)..."
-  
+
   start_time=$(date +%s)
-  
+
   # Simulate analysis (in practice, would call actual analyzer)
   cd "test-projects/$project_type"
-  
+
   # Simulate the main analysis steps
   sleep 0.1  # Simulate project detection
-  sleep 0.2  # Simulate dependency analysis  
+  sleep 0.2  # Simulate dependency analysis
   sleep 0.3  # Simulate pattern recognition
   sleep 0.4  # Simulate AGENTS.md generation
   sleep 0.2  # Simulate validation
-  
+
   end_time=$(date +%s)
   duration=$((end_time - start_time))
-  
+
   if [ $duration -le $max_time ]; then
     echo "  ✓ Analysis completed in ${duration}s (under ${max_time}s limit)"
   else
     echo "  ✗ Analysis took ${duration}s (over ${max_time}s limit)"
   fi
-  
+
   cd - > /dev/null
 }
 
@@ -354,6 +363,7 @@ test_analysis_performance "static-site" 5
 ```
 
 #### 6. Error Handling Tests
+
 ```bash
 #!/bin/bash
 # test_error_handling.sh
@@ -396,7 +406,7 @@ cd test-projects/malformed
 echo "  ✓ Malformed JSON handled gracefully"
 
 echo "Testing missing dependencies..."
-cd ../missing-deps  
+cd ../missing-deps
 # Should detect missing dependencies referenced in scripts
 echo "  ✓ Missing dependencies detected"
 
@@ -411,6 +421,7 @@ cd - > /dev/null
 ### Test Execution
 
 #### Master Test Runner
+
 ```bash
 #!/bin/bash
 # run_all_tests.sh
@@ -452,6 +463,7 @@ echo "==============================================="
 ```
 
 #### Continuous Integration
+
 ```yaml
 # .github/workflows/test-codebase-analyzer.yml
 name: Test Codebase Analyzer System
@@ -459,38 +471,38 @@ name: Test Codebase Analyzer System
 on:
   push:
     paths:
-      - 'opencode/.config/opencode/agent/**'
+      - "opencode/.config/opencode/agent/**"
   pull_request:
     paths:
-      - 'opencode/.config/opencode/agent/**'
+      - "opencode/.config/opencode/agent/**"
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          
+          node-version: "18"
+
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.21'
-          
+          go-version: "1.21"
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
-          
+          python-version: "3.9"
+
       - name: Install Hugo
         run: |
           wget https://github.com/gohugoio/hugo/releases/download/v0.120.0/hugo_extended_0.120.0_linux-amd64.deb
           sudo dpkg -i hugo_extended_0.120.0_linux-amd64.deb
-          
+
       - name: Run Codebase Analyzer Tests
         run: |
           cd tests/codebase-analyzer/
@@ -501,6 +513,7 @@ jobs:
 ## Test Metrics & Reporting
 
 ### Success Criteria
+
 - **Project Detection**: 100% accuracy for all supported project types
 - **Command Extraction**: >95% of real commands successfully identified
 - **Template Application**: All templates correctly applied based on project type
@@ -509,6 +522,7 @@ jobs:
 - **Error Handling**: Graceful failure for malformed or incomplete projects
 
 ### Reporting
+
 - Automated test results in CI/CD
 - Performance benchmarks tracked over time
 - Template effectiveness metrics

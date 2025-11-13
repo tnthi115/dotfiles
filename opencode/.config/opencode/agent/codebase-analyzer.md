@@ -1,7 +1,7 @@
 ---
 description: Performs comprehensive codebase analysis and generates optimized AGENTS.md files using specialized subagents
 mode: subagent
-model: github-copilot/claude-sonnet-4
+model: github-copilot/claude-sonnet-4.5
 tools:
   task: true
   write: true

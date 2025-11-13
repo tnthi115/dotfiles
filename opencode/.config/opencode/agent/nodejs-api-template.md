@@ -1,7 +1,7 @@
 ---
 description: This subagent should only be called manually by the user.
 mode: subagent
-model: github-copilot/claude-sonnet-4
+model: github-copilot/claude-sonnet-4.5
 tools:
   bash: true
   read: true
@@ -42,6 +42,7 @@ This template provides a foundation for analyzing Node.js API projects and gener
 ## Project Detection Criteria
 
 A project is classified as Node.js API if it has:
+
 - `package.json` with Node.js backend dependencies
 - Typical API project structure (`src/`, `routes/`, `controllers/`)
 - Common web frameworks (Express, Fastify, Koa, NestJS)
@@ -54,6 +55,7 @@ test -f package.json && (grep -q '"express"' package.json || grep -q '"fastify"'
 ## Technology Stack Analysis
 
 ### Web Frameworks
+
 - **Express.js**: `express`, `@types/express`
 - **Fastify**: `fastify`, `@fastify/cors`
 - **NestJS**: `@nestjs/core`, `@nestjs/common`
@@ -61,6 +63,7 @@ test -f package.json && (grep -q '"express"' package.json || grep -q '"fastify"'
 - **Hapi**: `@hapi/hapi`
 
 ### Database & ORM Libraries
+
 - **Prisma**: `prisma`, `@prisma/client`
 - **TypeORM**: `typeorm`, `reflect-metadata`
 - **Sequelize**: `sequelize`, database drivers
@@ -68,6 +71,7 @@ test -f package.json && (grep -q '"express"' package.json || grep -q '"fastify"'
 - **Drizzle**: `drizzle-orm`, `drizzle-kit`
 
 ### Authentication & Security
+
 - **JWT**: `jsonwebtoken`, `@types/jsonwebtoken`
 - **Passport**: `passport`, strategy packages
 - **bcrypt**: `bcrypt`, `@types/bcrypt`
@@ -75,12 +79,14 @@ test -f package.json && (grep -q '"express"' package.json || grep -q '"fastify"'
 - **CORS**: `cors`, `@types/cors`
 
 ### Validation & Documentation
+
 - **Joi**: `joi`, `@types/joi`
 - **Zod**: `zod`
 - **class-validator**: `class-validator` (NestJS)
 - **Swagger**: `swagger-ui-express`, `@nestjs/swagger`
 
 ### Testing Frameworks
+
 - **Jest**: `jest`, `@types/jest`, `supertest`
 - **Mocha**: `mocha`, `chai`, `sinon`
 - **Vitest**: `vitest` (modern alternative)
@@ -88,6 +94,7 @@ test -f package.json && (grep -q '"express"' package.json || grep -q '"fastify"'
 ## Common Project Structures
 
 ### Express.js Structure
+
 ```
 src/
 ├── controllers/
@@ -102,6 +109,7 @@ src/
 ```
 
 ### NestJS Structure
+
 ```
 src/
 ├── modules/
@@ -118,6 +126,7 @@ src/
 ```
 
 ### Clean Architecture Structure
+
 ```
 src/
 ├── domain/
@@ -137,6 +146,7 @@ src/
 ## Build Commands Template
 
 ### Standard Node.js Projects
+
 ```bash
 # Development
 npm run dev
@@ -157,6 +167,7 @@ npm run dev
 ```
 
 ### NestJS Projects
+
 ```bash
 # Development
 npm run start:dev
@@ -179,6 +190,7 @@ npm run test:cov
 ## Database Commands
 
 ### Prisma
+
 ```bash
 # Generate client
 npx prisma generate
@@ -198,6 +210,7 @@ npx prisma db push
 ```
 
 ### TypeORM
+
 ```bash
 # Run migrations
 npm run typeorm migration:run
@@ -213,6 +226,7 @@ npm run typeorm migration:create -n MigrationName
 ```
 
 ### Drizzle
+
 ```bash
 # Generate migrations
 npx drizzle-kit generate
@@ -230,6 +244,7 @@ npx drizzle-kit studio
 ## Testing Commands
 
 ### Jest
+
 ```bash
 # Run all tests
 npm test
@@ -250,6 +265,7 @@ npm run test:e2e
 ```
 
 ### Mocha
+
 ```bash
 # Run tests
 npm test
@@ -265,6 +281,7 @@ npx nyc mocha
 ## Code Quality Tools
 
 ### ESLint
+
 ```bash
 # Run linter
 npm run lint
@@ -276,6 +293,7 @@ npx eslint src/ --fix
 ```
 
 ### Prettier
+
 ```bash
 # Format code
 npm run format
@@ -286,6 +304,7 @@ npx prettier --check src/
 ```
 
 ### TypeScript
+
 ```bash
 # Type checking
 npx tsc --noEmit
@@ -300,30 +319,35 @@ npx tsc --watch
 ## Development Patterns to Look For
 
 ### API Patterns
+
 - RESTful resource routing
 - GraphQL schema definitions
 - OpenAPI/Swagger documentation
 - API versioning strategies
 
 ### Authentication Patterns
+
 - JWT token authentication
 - Session-based authentication
 - OAuth integration
 - Role-based access control (RBAC)
 
 ### Error Handling Patterns
+
 - Global error middleware
 - Custom error classes
 - Structured error responses
 - Error logging and monitoring
 
 ### Database Patterns
+
 - Repository pattern
 - Active Record pattern
 - Data Transfer Objects (DTOs)
 - Database connection pooling
 
 ### Validation Patterns
+
 - Request validation middleware
 - Schema validation (Joi, Zod)
 - Input sanitization
@@ -332,6 +356,7 @@ npx tsc --watch
 ## Environment Configuration
 
 ### Environment Variables
+
 ```bash
 # Database
 DATABASE_URL=postgresql://user:password@localhost:5432/dbname
@@ -351,6 +376,7 @@ SMTP_HOST=smtp.gmail.com
 ```
 
 ### Configuration Files to Check
+
 - `.env` files (`.env.local`, `.env.development`, `.env.production`)
 - `nodemon.json` (development configuration)
 - `tsconfig.json` (TypeScript configuration)
@@ -360,18 +386,21 @@ SMTP_HOST=smtp.gmail.com
 ## Performance Optimization Guidelines
 
 ### Caching Strategies
+
 - Redis for session storage
 - In-memory caching for frequent queries
 - HTTP response caching
 - Database query optimization
 
 ### Database Optimization
+
 - Index optimization
 - Query performance analysis
 - Connection pooling configuration
 - Read replicas for scaling
 
 ### Monitoring and Logging
+
 - Winston or Pino for logging
 - Health check endpoints
 - Metrics collection (Prometheus)
@@ -380,6 +409,7 @@ SMTP_HOST=smtp.gmail.com
 ## Security Best Practices
 
 ### Common Security Measures
+
 - Input validation and sanitization
 - SQL injection prevention
 - XSS protection headers
@@ -387,6 +417,7 @@ SMTP_HOST=smtp.gmail.com
 - HTTPS enforcement
 
 ### Authentication Security
+
 - Password hashing (bcrypt)
 - JWT token security
 - Session management
@@ -395,6 +426,7 @@ SMTP_HOST=smtp.gmail.com
 ## Deployment Patterns
 
 ### Container Deployment
+
 ```dockerfile
 # Multi-stage Dockerfile
 FROM node:18-alpine as builder
@@ -411,6 +443,7 @@ CMD ["npm", "start"]
 ```
 
 ### Process Management
+
 - PM2 for production
 - Docker containers
 - Kubernetes deployments
@@ -419,12 +452,14 @@ CMD ["npm", "start"]
 ## API Documentation
 
 ### OpenAPI/Swagger
+
 - Automatic API documentation
 - Interactive API explorer
 - Client SDK generation
 - API testing interface
 
 ### GraphQL
+
 - GraphQL Playground/Apollo Studio
 - Schema introspection
 - Query optimization
@@ -433,18 +468,21 @@ CMD ["npm", "start"]
 ## Agent-Specific Optimizations
 
 ### Code Generation Preferences
+
 - Use TypeScript for type safety
 - Follow REST API conventions
 - Implement proper error handling
 - Use dependency injection (NestJS)
 
 ### File Organization
+
 - Separate concerns (controllers, services, models)
 - Use modular architecture
 - Follow framework conventions
 - Group related functionality
 
 ### Common Pitfalls to Avoid
+
 - Missing error handling middleware
 - Unvalidated user input
 - Missing authentication checks
@@ -452,6 +490,7 @@ CMD ["npm", "start"]
 - Inadequate logging
 
 ### Quality Gates
+
 ```bash
 # Pre-commit checks
 npm run lint
@@ -465,6 +504,7 @@ npm run migration:check
 ```
 
 ### Testing Strategies
+
 - Unit tests for business logic
 - Integration tests for API endpoints
 - End-to-end tests for user flows

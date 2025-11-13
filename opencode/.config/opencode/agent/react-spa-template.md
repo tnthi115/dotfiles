@@ -1,7 +1,7 @@
 ---
 description: This subagent should only be called manually by the user.
 mode: subagent
-model: github-copilot/claude-sonnet-4
+model: github-copilot/claude-sonnet-4.5
 tools:
   bash: true
   read: true
@@ -43,6 +43,7 @@ This template provides a foundation for analyzing React Single Page Applications
 ## Project Detection Criteria
 
 A project is classified as React SPA if it has:
+
 - `package.json` with `react` dependency
 - Typical React project structure (`src/`, `public/`)
 - Common React build tools (Vite, Create React App, or custom Webpack)
@@ -55,6 +56,7 @@ test -f package.json && grep -q '"react"' package.json
 ## Technology Stack Analysis
 
 ### Core Dependencies to Check
+
 ```json
 {
   "react": "^18.0.0",
@@ -65,23 +67,27 @@ test -f package.json && grep -q '"react"' package.json
 ```
 
 ### Build Tools to Identify
+
 - **Vite**: `vite.config.js`, `vite.config.ts`
 - **Create React App**: `react-scripts` in dependencies
 - **Custom Webpack**: `webpack.config.js`
 - **Next.js**: `next.config.js` (hybrid SPA/SSR)
 
 ### State Management Libraries
+
 - Redux: `@reduxjs/toolkit`, `redux`
 - Zustand: `zustand`
 - React Query: `@tanstack/react-query`
 - Context API: Built-in React
 
 ### Routing
+
 - React Router: `react-router-dom`
 - Next.js Router: Built-in with Next.js
 - Reach Router: Legacy, check for migration needs
 
 ### Styling Solutions
+
 - Tailwind CSS: `tailwindcss`, `tailwind.config.js`
 - Styled Components: `styled-components`
 - Emotion: `@emotion/react`
@@ -91,6 +97,7 @@ test -f package.json && grep -q '"react"' package.json
 ## Common Project Structures
 
 ### Standard React Structure
+
 ```
 src/
 ├── components/
@@ -106,6 +113,7 @@ src/
 ```
 
 ### Feature-Based Structure
+
 ```
 src/
 ├── features/
@@ -122,6 +130,7 @@ src/
 ## Build Commands Template
 
 ### Vite Projects
+
 ```bash
 # Development
 npm run dev
@@ -141,6 +150,7 @@ npx tsc --noEmit
 ```
 
 ### Create React App Projects
+
 ```bash
 # Development
 npm start
@@ -159,6 +169,7 @@ npm run eject
 ```
 
 ### Custom Webpack Projects
+
 ```bash
 # Development
 npm run start
@@ -174,6 +185,7 @@ npm run test
 ## Testing Frameworks
 
 ### Jest + React Testing Library (Most Common)
+
 ```bash
 # Run tests
 npm test
@@ -188,6 +200,7 @@ npm test -- --ci --coverage --passWithNoTests
 ```
 
 ### Vitest (Modern Alternative)
+
 ```bash
 # Run tests
 npm run test
@@ -203,6 +216,7 @@ vitest --coverage
 ## Code Quality Tools
 
 ### ESLint
+
 ```bash
 # Run linter
 npm run lint
@@ -214,6 +228,7 @@ npx eslint src/ --fix
 ```
 
 ### Prettier
+
 ```bash
 # Format code
 npm run format
@@ -224,6 +239,7 @@ npx prettier --check src/
 ```
 
 ### TypeScript
+
 ```bash
 # Type checking
 npx tsc --noEmit
@@ -238,24 +254,28 @@ npx tsc --watch
 ## Development Patterns to Look For
 
 ### Component Patterns
+
 - Functional components with hooks
 - Custom hooks for logic reuse
 - Component composition over inheritance
 - Props interface definitions (TypeScript)
 
 ### State Management Patterns
+
 - useState for local state
 - useReducer for complex state
 - Context for global state
 - External libraries (Redux, Zustand)
 
 ### Performance Patterns
+
 - React.memo for component memoization
 - useMemo for expensive calculations
 - useCallback for function memoization
 - Code splitting with React.lazy
 
 ### Error Handling Patterns
+
 - Error boundaries for component errors
 - Try-catch in async operations
 - Error state in components
@@ -264,6 +284,7 @@ npx tsc --watch
 ## Environment Configuration
 
 ### Environment Variables
+
 ```bash
 # Development
 REACT_APP_API_URL=http://localhost:3000
@@ -275,6 +296,7 @@ REACT_APP_ENV=production
 ```
 
 ### Configuration Files to Check
+
 - `.env` files (`.env.local`, `.env.development`, `.env.production`)
 - `public/manifest.json` (PWA configuration)
 - `tsconfig.json` (TypeScript configuration)
@@ -283,6 +305,7 @@ REACT_APP_ENV=production
 ## Performance Optimization Guidelines
 
 ### Bundle Analysis
+
 ```bash
 # Analyze bundle size (CRA)
 npm run build
@@ -294,11 +317,13 @@ npm run build -- --analyze
 ```
 
 ### Code Splitting Recommendations
+
 - Route-based splitting with React Router
 - Component-based splitting for large components
 - Library splitting for vendor code
 
 ### Performance Monitoring
+
 - React DevTools Profiler
 - Web Vitals measurement
 - Lighthouse audits
@@ -306,16 +331,19 @@ npm run build -- --analyze
 ## Deployment Patterns
 
 ### Static Hosting (Common)
+
 - Netlify, Vercel, GitHub Pages
 - Build artifacts in `build/` or `dist/`
 - SPA routing configuration needed
 
 ### CDN Distribution
+
 - AWS CloudFront
 - Cloudflare
 - Azure CDN
 
 ### Container Deployment
+
 ```dockerfile
 # Common Dockerfile pattern
 FROM node:18-alpine as build
@@ -334,18 +362,21 @@ CMD ["nginx", "-g", "daemon off;"]
 ## Agent-Specific Optimizations
 
 ### Code Generation Preferences
+
 - Use TypeScript interfaces over types when possible
 - Prefer functional components over class components
 - Use custom hooks for reusable logic
 - Follow React naming conventions (PascalCase for components)
 
 ### File Organization
+
 - Group related files in feature directories
 - Separate concerns (components, hooks, utils, types)
 - Use index files for clean imports
 - Co-locate tests with components
 
 ### Common Pitfalls to Avoid
+
 - Missing key props in lists
 - Not cleaning up useEffect subscriptions
 - Mutating state directly
@@ -353,6 +384,7 @@ CMD ["nginx", "-g", "daemon off;"]
 - Not handling loading/error states
 
 ### Quality Gates
+
 ```bash
 # Pre-commit checks
 npm run lint

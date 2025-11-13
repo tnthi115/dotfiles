@@ -24,6 +24,9 @@
       "models": {
         "gpt-5": {
           "name": "gpt-5",
+          "options": {
+            "textVerbosity": null,
+          },
         },
         "gpt-5-mini": {
           "name": "gpt-5-mini",
@@ -64,17 +67,18 @@
   // List of github copilot models available:
   // claude-3.5-sonnet
   // claude-3.7-sonnet
-  // claude-sonnet-4
+  // claude-sonnet-4.5
   // o3-mini
   // o4-mini
   // gpt-5
   // gpt-5-mini
   "agent": {
     "plan": {
-      // "model": "github-copilot/claude-sonnet-4",
+      // "model": "github-copilot/claude-sonnet-4.5",
       // Use this when premium tokens are exhausted
       // "model": "github-copilot/o4-mini",
-      "model": "f5/o3",
+      // "model": "f5/o3",
+      "model": "f5/gpt-5",
       // "model": "github-copilot/gpt-5-mini",
     },
     // Use this when premium tokens are exhausted
@@ -89,10 +93,11 @@
     //   },
     // },
     "build": {
-      // "model": "github-copilot/claude-sonnet-4",
+      // "model": "github-copilot/claude-sonnet-4.5",
       // "model": "github-copilot/gpt-4.1",
       // Use this when premium tokens are exhausted
-      "model": "github-copilot/gpt-5-mini",
+      // "model": "github-copilot/gpt-5-mini",
+      "model": "f5/gpt-5",
     },
     // Use this when premium tokens are exhausted
     "cheap-build": {
