@@ -4,13 +4,17 @@ mode: subagent
 model: github-copilot/gpt-5-mini
 tools:
   git_*: true
-  bash: true
   read: true
+  bash: false
   write: false
-permission:
-  bash:
-    "git *": "allow"
-    "*": "ask"
+  context7_*: false
+  sequential_thinking_*: false
+  serena_*: false
+  gitlab_*: false
+# permission:
+#   bash:
+#     "git *": "allow"
+#     "*": "ask"
 ---
 
 You are generating a single Conventional Commit message for the currently staged changes and performing the commit.
