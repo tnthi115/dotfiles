@@ -49,19 +49,25 @@ This repository features comprehensive OpenCode integration for AI-assisted deve
 - **Model**: GitHub Copilot GPT-4.1 with specialized commit message formatting
 - **Features**: Preserves commit footers, handles stashing, supports both amend and rebase workflows
 
-**Specialized Agent Templates:**
+**Serena MCP Server (Primary Code Intelligence):**
+
+- **Location**: `~/dotfiles/serena/.serena/serena_config.yml`
+- **Purpose**: Advanced code analysis and manipulation via Model Context Protocol
+- **Key Capabilities**:
+  - Symbol-level code understanding (`serena_find_symbol`, `serena_find_referencing_symbols`)
+  - Intelligent code editing (`serena_replace_symbol_body`, `serena_insert_after_symbol`)
+  - Pattern-based search (`serena_search_for_pattern`)
+  - File operations with context (`serena_read_file`, `serena_create_text_file`)
+  - Memory management for complex tasks (`serena_write_memory`, `serena_read_memory`)
+  - Shell command execution (`serena_execute_shell_command`)
+
+**Active OpenCode Agent Templates:**
 
 - **Location**: `~/.config/opencode/agent/`
 - **Templates Available**:
-  - `codebase-analyzer.md` - Comprehensive codebase analysis
-  - `golang-microservice-analyzer.md` - Go microservice specific patterns
-  - `nodejs-api-template.md` - Node.js API development workflows
-  - `python-ml-template.md` - Python ML/AI development patterns
-  - `react-spa-template.md` - React SPA development workflows
-  - `static-site-template.md` - Static site generator workflows
-  - `security-auditor.md` - Security analysis and vulnerability detection
   - `commit.md` - Conventional commit message generation
   - `docs-writer.md` - Documentation generation and maintenance
+  - `review.md` - Code review assistance
 
 **AI Workflow Commands:**
 
@@ -72,12 +78,10 @@ lazygit  # Use 'c' to commit, then 'r' to reword with OpenCode
 # Direct OpenCode usage for commit messages
 opencode run --mode build --model github-copilot/gpt-4.1 "Rewrite this commit message: [message]"
 
-# Agent-assisted codebase analysis
-opencode agent codebase-analyzer "Analyze this repository structure"
-
-# Project-specific development assistance
-opencode agent nodejs-api-template "Help setup Express.js project"
-opencode agent python-ml-template "Setup ML development environment"
+# Agent-assisted tasks
+opencode agent commit "Generate conventional commit message"
+opencode agent docs-writer "Update project documentation"
+opencode agent review "Review this code for quality"
 ```
 
 ### Raycast System Automation
@@ -567,7 +571,30 @@ refactor/improve-theme-system
 
 ### AI-Enhanced Development Workflows
 
-**OpenCode Integration Patterns:**
+**Serena MCP Integration Patterns:**
+
+```bash
+# Code analysis and symbol navigation
+serena_find_symbol "function_name"  # Find symbol definitions
+serena_find_referencing_symbols "ClassName" "file.py"  # Find all references
+serena_get_symbols_overview "src/main.py"  # Get file structure overview
+
+# Intelligent code editing
+serena_replace_symbol_body "function_name" "file.py" "new_implementation"
+serena_insert_after_symbol "ClassName" "file.py" "new_method"
+serena_rename_symbol "old_name" "file.py" "new_name"
+
+# Pattern-based search and file operations
+serena_search_for_pattern "regex_pattern"  # Search codebase
+serena_read_file "path/to/file"  # Read with context
+serena_replace_content "file.py" "old_pattern" "new_content" "regex"
+
+# Memory management for complex tasks
+serena_write_memory "task_name" "progress and context"
+serena_read_memory "task_name"  # Restore context after compaction
+```
+
+**OpenCode Agent Workflow Integration:**
 
 ```bash
 # AI-assisted commit message generation (integrated with Lazygit)
@@ -576,31 +603,10 @@ refactor/improve-theme-system
 # 3. AI analyzes diff and generates conventional commit message
 # Result: Contextual, properly formatted commit messages
 
-# Direct AI code analysis and documentation
-opencode agent codebase-analyzer "Analyze this codebase structure and patterns"
-opencode agent docs-writer "Generate documentation for this module"
-opencode agent security-auditor "Review this code for security vulnerabilities"
-
-# Project-specific AI assistance
-opencode agent golang-microservice-analyzer "Review this Go service architecture"
-opencode agent python-ml-template "Help optimize this ML pipeline"
-opencode agent react-spa-template "Review React component patterns"
-```
-
-**Agent Workflow Integration:**
-
-```bash
-# Pre-development AI analysis
-opencode agent project-discovery "Analyze project type and setup requirements"
-opencode agent technology-stack-analyzer "Review dependencies and tools"
-
 # Development phase assistance
-opencode agent pattern-recognition "Identify code patterns and conventions"
 opencode agent commit "Generate conventional commit message for staged changes"
-
-# Quality assurance and documentation
-opencode agent agents-md-validator "Validate this AGENTS.md for completeness"
 opencode agent docs-writer "Update documentation based on code changes"
+opencode agent review "Review this code for quality and best practices"
 ```
 
 ### Pre-Commit Quality Gates (Run Automatically)
@@ -690,18 +696,12 @@ yazi --select-path ~/.config  # Start with specific directory selected
 **AI-Enhanced Configuration File Analysis:**
 
 ```bash
-# Leverage OpenCode agents for configuration analysis
-opencode agent codebase-analyzer "Review configuration consistency across tools"
-opencode agent security-auditor "Audit configuration files for security issues"
-
 # When analyzing configuration files, check these locations first:
 ~/.config/tool-name/           # XDG-compliant configuration
 ~/.tool-name                   # Traditional home directory configs
 ~/dotfiles/tool-name/          # This repository's version
 
-# AI-assisted validation patterns:
-opencode agent pattern-recognition "Analyze this config for best practices"
-# Then validate syntax:
+# Validate syntax:
 tool-name --config-test ~/.config/tool-name/config
 tool-name --validate-config ~/.config/tool-name/config
 ```
@@ -709,18 +709,9 @@ tool-name --validate-config ~/.config/tool-name/config
 **AI-Powered Development Environment Setup:**
 
 ```bash
-# Use AI agents to analyze and recommend setup improvements
-opencode agent technology-stack-analyzer "Review development environment completeness"
-opencode agent project-discovery "Identify missing tools or configurations"
-
-# AI-assisted dependency management:
-opencode agent nodejs-api-template "Recommend Node.js dependencies for this project"
-opencode agent python-ml-template "Suggest Python ML environment improvements"
-
-# Check dependencies with AI context:
+# Check dependencies:
 brew list | grep tool-name              # Check if already installed (macOS)
 pacman -Qi tool-name                    # Check package info (Arch Linux)
-opencode agent codebase-analyzer "Review dependency health and updates"
 ```
 
 **AI-Driven Git Workflow & Commit Enhancement:**
@@ -736,56 +727,30 @@ opencode agent codebase-analyzer "Review dependency health and updates"
 opencode agent commit "Generate conventional commit for current staged changes"
 opencode run --mode build --model github-copilot/gpt-4.1 \
   "Rewrite this commit message following conventional commits: [message]"
-
-# AI-assisted Git history analysis:
-git log --oneline | head -20 | opencode agent pattern-recognition \
-  "Analyze these commit patterns and suggest improvements"
 ```
 
 **AI-Enhanced Troubleshooting & Diagnostics:**
 
 ```bash
-# AI-guided diagnostics:
-opencode agent security-auditor "Analyze system for potential issues"
-opencode agent codebase-analyzer "Diagnose development environment problems"
-
-# Standard diagnostic commands enhanced with AI analysis:
+# Standard diagnostic commands:
 stow --restow tool-name                 # Fix symlink issues
 tmux source-file ~/.tmux.conf           # Reload tmux after changes
 source ~/.zshrc                         # Reload shell configuration
 nvim +checkhealth +qall                # Check Neovim plugin health
 
-# AI context for log analysis:
-opencode agent pattern-recognition "Analyze these error logs for patterns"
-# Then check standard log locations:
+# Check standard log locations:
 ~/.local/share/nvim/                    # Neovim logs and data
 ~/.cache/                               # Application cache directories
 /usr/local/var/log/                     # System logs (macOS)
 ```
 
-**AI Agent Template Selection Guide:**
+**Available OpenCode Agents:**
 
 ```bash
-# Use appropriate specialized agent for task type:
-
-# For new project analysis:
-opencode agent project-discovery "Analyze this codebase type and structure"
-
-# For specific technology stacks:
-opencode agent golang-microservice-analyzer  # Go services
-opencode agent nodejs-api-template          # Node.js APIs
-opencode agent react-spa-template           # React applications
-opencode agent python-ml-template           # Python ML projects
-opencode agent static-site-template         # Static sites
-
-# For quality and security:
-opencode agent security-auditor            # Security analysis
-opencode agent pattern-recognition         # Code pattern analysis
-opencode agent agents-md-validator         # AGENTS.md validation
-
-# For documentation and maintenance:
-opencode agent docs-writer                 # Documentation generation
-opencode agent commit                      # Commit message generation
+# Active agents for common tasks:
+opencode agent commit                  # Commit message generation
+opencode agent docs-writer             # Documentation generation
+opencode agent review                  # Code review assistance
 ```
 
 ### Security & Privacy Considerations

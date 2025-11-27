@@ -1,6 +1,6 @@
 ---
 description: Create an OpenCode Build Agent optimized implementation plan with comprehensive issue analysis
-agent: codebase-analyzer
+agent: general
 subtask: true
 ---
 
