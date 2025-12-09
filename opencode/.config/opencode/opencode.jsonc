@@ -99,8 +99,8 @@
       "mode": "primary",
       // "model": "github-copilot/gpt-4.1",
       // "model": "github-copilot/gpt-5-mini",
-      // "model": "f5/gpt-5",
-      "model": "f5/gpt-5-codex",
+      "model": "f5/gpt-5",
+      // "model": "f5/gpt-5-codex",
       "tools": {
         // // Keep essential coding tools enabled
         // "write": true,
