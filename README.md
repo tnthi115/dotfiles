@@ -202,8 +202,7 @@ MacOS, with very similar architecture to
 
 > **Note**: I don't use this anymore.
 
-- [Change MacOS
-  Keybindings](https://blog.victormendonca.com/2020/04/27/how-to-change-macos-key-bindings/)
+- [Change MacOS Keybindings](https://blog.victormendonca.com/2020/04/27/how-to-change-macos-key-bindings/)
   to bind ctrl + left and ctrl + right to move one word at a time:
 
 ```sh

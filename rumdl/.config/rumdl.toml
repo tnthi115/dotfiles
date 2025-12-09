@@ -1,0 +1,286 @@
+# rumdl configuration - GitHub/GitLab Markdown Best Practices
+# See: https://github.com/rvben/rumdl
+# Rules documentation: https://github.com/rvben/rumdl/blob/main/docs/RULES.md
+
+[global]
+enable = [] # Empty = all rules enabled (62 rules total - recommended)
+disable = [
+] # Add rule IDs here to disable specific rules (e.g., ["MD013", "MD033"])
+exclude = [
+  "node_modules",
+  "build",
+  "dist",
+  ".git",
+  "vendor",
+  "target",
+  ".cache",
+  "*.min.md",
+]
+include = [] # Empty = include all markdown files (*.md, *.markdown)
+respect-gitignore = true # Automatically exclude gitignored files
+line-length = 100 # Industry standard (Google uses 100, GitHub commonly 100-120)
+fixable = [] # Empty = all fixable rules can auto-fix with --fix or fmt command
+unfixable = [
+] # Add rule IDs to prevent auto-fixing (e.g., ["MD013"] to only warn)
+flavor = "standard" # Markdown flavor: standard (CommonMark), github, gitlab
+force-exclude = false # Set to true to enforce excludes even for explicitly specified files
+
+# MD003: Heading style
+[MD003]
+style = "atx" # Use # style headings (GitHub/GitLab standard)
+
+# MD004: List marker style
+[MD004]
+style = "consistent" # Enforce consistency within document
+
+# MD007: List indentation
+[MD007]
+indent = 2             # 2 spaces is GitHub/GitLab standard
+start-indent = 2
+start-indented = false
+style = "text-aligned"
+
+# MD009: Trailing spaces
+[MD009]
+br-spaces = 2                 # Allow 2 spaces for line breaks in Markdown
+list-item-empty-lines = false
+strict = false
+
+# MD010: Hard tabs
+[MD010]
+spaces-per-tab = 4 # Convert tabs to 4 spaces
+
+# MD012: Multiple consecutive blank lines
+[MD012]
+maximum = 1 # Single blank line is sufficient
+
+# MD013: Line length rule
+[MD013]
+code-blocks = false     # Don't reflow code blocks (preserve formatting)
+headings = true         # Apply line length to headings
+length-mode = "visual"
+line-length = 100       # Industry standard (Google uses 100, GitHub commonly 100-120)
+paragraphs = true
+reflow = true           # Enable automatic line wrapping for --fix
+reflow-mode = "default"
+strict = false
+tables = false          # Don't reflow tables (preserve structure)
+
+# MD014: Dollar signs in shell commands
+[MD014]
+show-output = true # Show shell command output in code blocks
+
+# MD022: Headings should be surrounded by blank lines
+[MD022]
+allowed-at-start = true # Allow heading at start of file
+lines-above = 1
+lines-below = 1
+
+# MD024: Multiple headings with the same content
+[MD024]
+allow-different-nesting = true # Allow duplicate headings at different nesting levels
+siblings-only = true           # Only check siblings (default, more lenient)
+
+# MD025: Multiple top-level headings
+[MD025]
+allow-document-sections = false
+allow-with-separators = false
+front-matter-title = "title"    # Use YAML front matter title as H1
+level = 1                       # Only one H1 per document
+
+# MD026: Trailing punctuation in headings
+[MD026]
+punctuation = ".,;:!" # Remove trailing punctuation from headings
+
+# MD029: Ordered list item prefix
+[MD029]
+style = "one-or-ordered" # Allow "1." for all items or proper ordering
+
+# MD030: Spaces after list markers
+[MD030]
+ol-multi = 1  # 1 space after ordered list marker (multi-line)
+ol-single = 1 # 1 space after ordered list marker (single-line)
+ul-multi = 1  # 1 space after unordered list marker (multi-line)
+ul-single = 1 # 1 space after unordered list marker (single-line)
+
+# MD031: Fenced code blocks should be surrounded by blank lines
+[MD031]
+list-items = true # Require blank lines around code blocks in lists
+
+# MD032: Lists should be surrounded by blank lines
+[MD032]
+# No additional configuration - ensures proper spacing around lists
+
+# MD033: Inline HTML
+[MD033]
+allowed-elements = [
+] # No HTML allowed by default (override in per-file-ignores)
+
+# MD035: Horizontal rule style
+[MD035]
+style = "---" # Use three dashes for horizontal rules (GitHub standard)
+
+# MD036: Emphasis used instead of a heading
+[MD036]
+punctuation = ".,;:!?" # Punctuation that indicates emphasis, not heading
+
+# MD040: Fenced code blocks should have a language specified
+[MD040]
+# Enabled by default - all code blocks should specify language for syntax highlighting
+
+# MD041: First line in file should be a top-level heading
+[MD041]
+front-matter-title = "title"    # YAML front matter title counts as H1
+front-matter-title-pattern = ""
+level = 1
+
+# MD043: Required heading structure
+[MD043]
+headings = []      # No required structure by default
+match-case = false
+
+# MD044: Proper names should have the correct capitalization
+[MD044]
+code-blocks = false # Don't check capitalization in code blocks
+html-comments = false
+html-elements = true
+names = [
+  "API",
+  "Bash",
+  "CI/CD",
+  "CSS",
+  "Docker",
+  "Git",
+  "GitHub",
+  "GitLab",
+  "HTML",
+  "JavaScript",
+  "JSON",
+  "Kubernetes",
+  "Markdown",
+  "Node.js",
+  "PostgreSQL",
+  "Python",
+  "React",
+  "REST",
+  "Ruby",
+  "SQL",
+  "TypeScript",
+  "YAML",
+  "rumdl",
+]
+
+# MD045: Images should have alternate text (alt text)
+[MD045]
+placeholder-text = "TODO: Add image description" # Accessibility requirement
+
+# MD046: Code block style
+[MD046]
+style = "fenced" # Use fenced code blocks (```) - GitHub/GitLab standard
+
+# MD048: Code fence style
+[MD048]
+style = "backtick" # Use backticks (```) not tildes (~~~)
+
+# MD049: Emphasis style
+[MD049]
+style = "asterisk" # Use *emphasis* (GitHub/GitLab convention)
+
+# MD050: Strong style
+[MD050]
+style = "asterisk" # Use **strong** (GitHub/GitLab convention)
+
+# MD051: Link fragments should be valid
+[MD051]
+anchor-style = "github" # Use GitHub-style anchor links
+
+# MD053: Link and image reference definitions should be needed
+[MD053]
+ignored-definitions = [] # Check all link/image references
+
+# MD054: Link and image style
+[MD054]
+autolink = true   # Allow <https://example.com>
+collapsed = true  # Allow [link][]
+full = true       # Allow [link][ref]
+inline = true     # Allow [link](url)
+shortcut = true   # Allow [link]
+url-inline = true # Allow inline URLs
+
+# MD055: Table pipe style
+[MD055]
+style = "consistent" # Enforce consistent table pipe style
+
+# MD058: Table formatting
+[MD058]
+minimum-after = 1  # At least 1 space after pipe
+minimum-before = 1 # At least 1 space before pipe
+
+# MD059: Link text should not contain specific phrases
+[MD059]
+prohibited-texts = [
+  "click here",
+  "here",
+  "link",
+  "more",
+] # Avoid non-descriptive link text (accessibility)
+
+# MD060: Table layout
+[MD060]
+enabled = false # Disabled by default
+max-width = 0
+style = "any"
+
+# MD061: Prohibited terms
+[MD061]
+case-sensitive = true
+terms = []            # Add any terms you want to prohibit (e.g., internal codenames)
+
+# ============================================================================
+# RULES WITHOUT CONFIGURATION (Enabled by default, no options available)
+# ============================================================================
+# These rules are always active and cannot be configured, only disabled globally:
+#
+# MD001 - Heading levels should only increment by one level at a time
+# MD005 - List indentation should be consistent
+# MD011 - Reversed link syntax
+# MD018 - No space after hash in heading
+# MD019 - Multiple spaces after hash in heading
+# MD020 - No space inside hashes on closed heading
+# MD021 - Multiple spaces inside hashes on closed heading
+# MD023 - Headings must start at the beginning of the line
+# MD027 - Multiple spaces after quote marker (>)
+# MD028 - Blank line inside blockquote
+# MD034 - No bare URLs - wrap URLs in angle brackets
+# MD037 - Spaces inside emphasis markers
+# MD038 - Spaces inside code span elements
+# MD039 - Spaces inside link text
+# MD042 - No empty links
+# MD047 - Files should end with a single newline character
+# MD052 - Reference links and images should use a reference that exists
+# MD056 - Table column count should be consistent
+# MD057 - Relative links should point to existing files
+# MD062 - Link destination should not have leading or trailing whitespace
+#
+# To disable any of these, add them to the global `disable` array above.
+# Example: disable = ["MD001", "MD034"]
+# ============================================================================
+
+# Per-file ignores for special cases
+[per-file-ignores]
+"README.md" = [
+  "MD033",
+  "MD013",
+] # Allow HTML for badges/shields, longer lines for links
+"CHANGELOG.md" = [
+  "MD024",
+  "MD013",
+] # Allow duplicate headings (versions), longer lines
+"CONTRIBUTING.md" = ["MD033"] # Allow HTML for special formatting
+"CODE_OF_CONDUCT.md" = ["MD013"] # Allow longer lines for policies
+"LICENSE.md" = ["MD013", "MD041"] # Allow longer lines, no heading requirement
+"docs/api/**/*.md" = ["MD013", "MD041"] # Relax rules for generated API docs
+".github/**/*.md" = [
+  "MD013",
+  "MD033",
+] # GitHub templates may need HTML and long lines
