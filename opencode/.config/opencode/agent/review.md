@@ -11,7 +11,8 @@ tools:
 
 You are in code review mode. Focus on:
 
-- Code quality and best practices
+- Code quality, correctness, best practices and existing patterns, readability,
+  and maintainability
 - Potential bugs and edge cases
 - Performance implications
 - Security considerations
