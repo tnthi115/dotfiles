@@ -98,28 +98,9 @@
     "cheap-build": {
       "mode": "primary",
       // "model": "github-copilot/gpt-4.1",
-      // "model": "github-copilot/gpt-5-mini",
-      "model": "f5/gpt-5",
+      "model": "github-copilot/gpt-5-mini",
+      // "model": "f5/gpt-5",
       // "model": "f5/gpt-5-codex",
-      "tools": {
-        // // Keep essential coding tools enabled
-        // "write": true,
-        // "edit": true,
-        // "bash": true,
-        // "read": true,
-        // "grep": true,
-        // "glob": true,
-        // "list": true,
-        // Disable Git MCP tools to stay under 128 limit
-        "git_*": false,
-        // "context7_*": false,
-        // "webfetch": false,
-        // "websearch": false,
-        // "codesearch": false,
-        // "patch": false,
-        // "todoread": false,
-        // "todowrite": false
-      },
     },
   },
   "mcp": {
@@ -127,26 +108,26 @@
       "type": "local",
       "command": ["uvx", "mcp-server-git", "--repository", "${PWD}"],
     },
-    "gitlab": {
-      "type": "local",
-      "command": ["npx", "-y", "@zereight/mcp-gitlab"],
-      "environment": {
-        "GITLAB_PERSONAL_ACCESS_TOKEN": "{env:GITLAB_TOKEN}",
-        "GITLAB_API_URL": "https://gitlab.com/api/v4/",
-        "GITLAB_READ_ONLY_MODE": "false",
-        "USE_GITLAB_WIKI": "false",
-        "USE_MILESTONE": "false",
-        "USE_PIPELINE": "false",
-      },
-    },
+    //"gitlab": {
+    //  "type": "local",
+    //  "command": ["npx", "-y", "@zereight/mcp-gitlab"],
+    //  "environment": {
+    //    "GITLAB_PERSONAL_ACCESS_TOKEN": "{env:GITLAB_TOKEN}",
+    //    "GITLAB_API_URL": "https://gitlab.com/api/v4/",
+    //    "GITLAB_READ_ONLY_MODE": "false",
+    //    "USE_GITLAB_WIKI": "false",
+    //    "USE_MILESTONE": "false",
+    //    "USE_PIPELINE": "true",
+    //  },
+    //},
     // prompt: use context7
-    "context7": {
-      "type": "local",
-      "command": ["npx", "-y", "@upstash/context7-mcp"],
-      "environment": {
-        "DEFAULT_MINIMUM_TOKENS": "5000",
-      },
-    },
+    // "context7": {
+    //   "type": "local",
+    //   "command": ["npx", "-y", "@upstash/context7-mcp"],
+    //   "environment": {
+    //     "DEFAULT_MINIMUM_TOKENS": "5000",
+    //   },
+    // },
     // prompt: /serena custom command or "activate serena project"
     "serena": {
       "type": "local",
@@ -183,25 +164,16 @@
     // },
   },
   "formatter": {
-    "prettier": {
-      "command": ["prettier", "--write", "$FILE"],
-      "extensions": [
-        ".js",
-        ".jsx",
-        ".ts",
-        ".tsx",
-        ".json",
-        ".html",
-        ".css",
-        ".scss",
-        ".less",
-        ".md",
-        ".yaml",
-        ".yml",
-      ],
+    "rumdl": {
+      "command": ["rumdl", "fmt", "--fix", "$FILE"],
+      "extensions": [".md", ".markdown"],
     },
     "black": {
       "command": ["black", "$FILE"],
+      "extensions": [".py", ".pyi"],
+    },
+    "usort": {
+      "command": ["usort", "format", "$FILE"],
       "extensions": [".py", ".pyi"],
     },
     "ruff": {
@@ -216,31 +188,15 @@
       "command": ["shfmt", "-i", "2", "-ci", "$FILE"],
       "extensions": [".sh", ".bash", ".zsh"],
     },
-    "gofumpt": {
-      "command": ["gofumpt", "-w", "$FILE"],
-      "extensions": [".go"],
-    },
     "taplo": {
       "command": ["taplo", "format", "$FILE"],
       "extensions": [".toml"],
     },
-    "usort": {
-      "command": ["usort", "format", "$FILE"],
-      "extensions": [".py", ".pyi"],
-    },
   },
   "lsp": {
-    "bash-language-server": {
-      "command": ["bash-language-server", "start"],
-      "extensions": [".sh", ".bash", ".zsh"],
-    },
-    "lua-language-server": {
-      "command": ["lua-language-server"],
-      "extensions": [".lua"],
-    },
-    "gopls": {
-      "command": ["gopls"],
-      "extensions": [".go", ".mod", ".sum"],
+    "rumdl": {
+      "command": ["rumdl", "server", "--stdio"],
+      "extensions": [".md", ".markdown"],
     },
     "rust-analyzer": {
       "command": ["rust-analyzer"],
@@ -250,26 +206,9 @@
       "command": ["basedpyright-langserver", "--stdio"],
       "extensions": [".py", ".pyi"],
     },
-    "vtsls": {
-      "command": ["vtsls", "--stdio"],
-      "extensions": [
-        ".js",
-        ".jsx",
-        ".ts",
-        ".tsx",
-        ".mjs",
-        ".cjs",
-        ".mts",
-        ".cts",
-      ],
-    },
     "yaml-language-server": {
       "command": ["yaml-language-server", "--stdio"],
       "extensions": [".yaml", ".yml"],
-    },
-    "marksman": {
-      "command": ["marksman", "server"],
-      "extensions": [".md", ".markdown"],
     },
     "docker-langserver": {
       "command": ["docker-langserver", "--stdio"],
