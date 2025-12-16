@@ -15,6 +15,7 @@ if type -q go
         # Golang version management using goenv
         # https://github.com/go-nv/goenv/blob/master/ENVIRONMENT_VARIABLES.md
         set -gx GOENV_GOMOD_VERSION_ENABLE 1
+        set -gx GOENV_PATH_ORDER front
 
         if test -e go.mod -o -e go.sum -o (count *.go) -gt 0
             if test "$goenv_warning" = true
