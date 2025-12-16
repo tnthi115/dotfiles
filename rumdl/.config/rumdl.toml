@@ -44,7 +44,7 @@ style = "text-aligned"
 [MD009]
 br-spaces = 2                 # Allow 2 spaces for line breaks in Markdown
 list-item-empty-lines = false
-strict = false
+strict = true
 
 # MD010: Hard tabs
 [MD010]
