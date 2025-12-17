@@ -21,6 +21,19 @@
 - Dependency injection, interface segregation, event-driven loose coupling
 - No trailing/leading whitespace, syntax validation, linting before completion
 
+**Documentation Standards**:
+
+- **ALWAYS add docstrings to all functions, classes, and modules**
+- Docstrings should describe purpose, parameters, return values, and exceptions
+- Use language-appropriate docstring formats (JSDoc, Python docstrings, etc.)
+- **Add inline comments ONLY when necessary**:
+  - Complex algorithms or non-obvious logic that cannot be simplified
+  - Business logic requiring additional context
+  - Workarounds for bugs or edge cases
+  - Performance optimizations that sacrifice readability
+- **Prefer self-documenting code**: descriptive names > comments
+- Avoid redundant comments that restate what code already clearly expresses
+
 **LSP & Formatting Integration**:
 
 - **ALWAYS use configured LSP and formatter for the current file type**
