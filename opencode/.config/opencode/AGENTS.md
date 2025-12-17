@@ -3,56 +3,95 @@
 ## Core Engineering Principles
 
 **Code Quality & Security**:
+
 - Defensive programming: validate inputs, handle edge cases, fail fast
 - Single responsibility functions (<20 lines), DRY principle, SOLID patterns
 - Security-first: sanitize inputs, no hardcoded secrets, OWASP compliance
 
 **Error Handling & Performance**:
+
 - Comprehensive validation with graceful error handling and structured logging
 - Algorithmic efficiency (Big O), appropriate data structures, smart caching
 - Circuit breaker patterns for external calls, exponential backoff retry logic
 
 **Testing & Architecture**:
-- Test pyramid (more unit than integration than E2E), AAA pattern, test isolation
+
+- Test pyramid (more unit than integration than E2E), AAA pattern, test
+  isolation
 - Dependency injection, interface segregation, event-driven loose coupling
 - No trailing/leading whitespace, syntax validation, linting before completion
 
+**LSP & Formatting Integration**:
+
+- **ALWAYS use configured LSP and formatter for the current file type**
+- Check `opencode.jsonc` for language-specific LSP servers and formatters
+- Before writing/editing files, ensure proper LSP diagnostics are checked
+- After editing, ALWAYS run the configured formatter for that file extension
+- Run formatters before completing any file edit or write operation
+- Validate syntax using LSP before finalizing code changes
+
+**MCP Tool Integration**:
+
+- **ALWAYS use Serena MCP for code intelligence and manipulation**
+  - Use `serena_find_symbol`, `serena_find_referencing_symbols` for navigation
+  - Use `serena_replace_symbol_body`, `serena_insert_after_symbol` for edits
+  - Use `serena_search_for_pattern` for codebase searches
+  - Use Serena memory tools for complex multi-step tasks
+- **ALWAYS use Sequential Thinking MCP for complex problem-solving**
+  - Break down complex tasks step-by-step with chain-of-thought reasoning
+  - Use for planning, design, debugging, and multi-step implementations
+  - Especially critical for tasks requiring careful analysis or multiple phases
+
 **Anti-Patterns to Avoid**:
+
 - God objects, magic numbers/strings, copy-paste programming, tight coupling
 - Over-engineering (YAGNI), global state, ignoring error conditions
 
-**Technology Selection**: Prefer established solutions, minimal dependencies, lock files
+**Technology Selection**: Prefer established solutions, minimal dependencies,
+lock files
 
-**Priority Matrix**: 🔴 CRITICAL: Security/validation/formatting 🟡 PRODUCTION: Testing/docs 🟢 SCALING: Performance 🔵 FUTURE: Experimental
+**Priority Matrix**: 🔴 CRITICAL: Security/validation/formatting 🟡 PRODUCTION:
+Testing/docs 🟢 SCALING: Performance 🔵 FUTURE: Experimental
 
 ## Scale-Appropriate Engineering
 
-- **🚀 SIMPLE/MVP**: Speed > Architecture. Basic validation, clear code, avoid over-engineering
-- **📈 PRODUCTION**: Maintainability > Performance. Comprehensive testing, security, monitoring, docs
-- **🏢 ENTERPRISE**: Reliability > Velocity. Full compliance, observability, scalable patterns
+- **🚀 SIMPLE/MVP**: Speed > Architecture. Basic validation, clear code, avoid
+  over-engineering
+- **📈 PRODUCTION**: Maintainability > Performance. Comprehensive testing,
+  security, monitoring, docs
+- **🏢 ENTERPRISE**: Reliability > Velocity. Full compliance, observability,
+  scalable patterns
 
 ### Trade-Off Decision Framework
 
-- **Performance vs Maintainability**: Accept complexity only for critical path optimizations
+- **Performance vs Maintainability**: Accept complexity only for critical path
+  optimizations
 - **Security vs Usability**: High-security domains justify user friction
-- **Scalability vs Simplicity**: Start simple with clear scaling path unless scale is known
-- **Domain-Specific Requirements**: Consider compliance, privacy, availability, resource constraints
+- **Scalability vs Simplicity**: Start simple with clear scaling path unless
+  scale is known
+- **Domain-Specific Requirements**: Consider compliance, privacy, availability,
+  resource constraints
 
 ## Technology Selection Guidelines
 
-- **Performance Requirements**: Choose based on latency, throughput, resource constraints
-- **Development Velocity**: Balance rapid development with long-term maintainability
+- **Performance Requirements**: Choose based on latency, throughput, resource
+  constraints
+- **Development Velocity**: Balance rapid development with long-term
+  maintainability
 - **Team Expertise**: Consider familiarity and learning curve
 - **Ecosystem Maturity**: Evaluate community support, documentation, stability
-- **Prefer Established Solutions**: Use standard libraries, well-established FOSS first
-- **Minimal Dependencies**: Add dependencies judiciously, use lock files, security scanning
+- **Prefer Established Solutions**: Use standard libraries, well-established
+  FOSS first
+- **Minimal Dependencies**: Add dependencies judiciously, use lock files,
+  security scanning
 
 ## Implementation Priority Matrix
 
-🔴 **CRITICAL**: Input validation, error handling, security basics, formatting, core testing
-🟡 **PRODUCTION**: Comprehensive tests, security auditing, monitoring, documentation
-🟢 **SCALING**: Advanced caching, microservices patterns, performance optimization
-🔵 **FUTURE**: Advanced optimization, experimental tech, complex patterns (as needed)
+🔴 **CRITICAL**: Input validation, error handling, security basics, formatting,
+core testing 🟡 **PRODUCTION**: Comprehensive tests, security auditing,
+monitoring, documentation 🟢 **SCALING**: Advanced caching, microservices
+patterns, performance optimization 🔵 **FUTURE**: Advanced optimization,
+experimental tech, complex patterns (as needed)
 
 ## Workflow Preferences
 
@@ -82,16 +121,21 @@
 
 **Best Practice:** Use Serena memory for all multi-step or long-running tasks:
 
-- **Start:** Write plan, context, progress, and decisions to memory at task start.
-- **During:** After every major step or decision, and before/after risky or long operations, update progress and decisions in memory.
-- **After Compaction/Resume:** Immediately re-read all relevant memory files to restore context.
+- **Start:** Write plan, context, progress, and decisions to memory at task
+  start.
+- **During:** After every major step or decision, and before/after risky or long
+  operations, update progress and decisions in memory.
+- **After Compaction/Resume:** Immediately re-read all relevant memory files to
+  restore context.
 
 **Memory names:**
+
 - `task_[timestamp]_plan` (plan)
 - `task_[timestamp]_context` (requirements)
 - `task_[timestamp]_progress` (status)
 - `task_[timestamp]_decisions` (decisions)
 
 **Summary:**
+
 - Always update and read memory at key points to prevent context loss.
 - This ensures robust, lossless progress even with frequent compaction.
