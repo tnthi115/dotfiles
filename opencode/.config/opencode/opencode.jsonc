@@ -16,7 +16,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "F5 GPT",
       "options": {
-        "baseURL": "https://f5ai.pd.f5net.com/openai/",
+        "baseURL": "{env:F5GPT_OPENAI_API_URL}",
         "apiKey": "{env:F5GPT_OPENAI_API_KEY}",
       },
       "models": {

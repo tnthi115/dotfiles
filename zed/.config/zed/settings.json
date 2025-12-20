@@ -35,7 +35,7 @@
   "language_models": {
     "openai": {
       "version": "1",
-      "api_url": "https://f5ai.pd.f5net.com/api/chat/completions"
+      "api_url": "${F5GPT_OPENAI_API_URL}"
     },
     "copilot_chat": {
       "api_url": "https://api.githubcopilot.com/chat/completions",
