@@ -5,16 +5,11 @@ model: github-copilot/gpt-5-mini
 tools:
   git_*: true
   read: true
-  bash: false
   write: false
-  context7_*: false
-  sequential_thinking_*: false
-  serena_*: false
-  gitlab_*: false
-# permission:
-#   bash:
-#     "git *": "allow"
-#     "*": "ask"
+permission:
+  bash:
+    "git *": "allow"
+    "*": "ask"
 ---
 
 You are generating a single Conventional Commit message for the currently staged
