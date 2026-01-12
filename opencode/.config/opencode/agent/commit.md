@@ -8,8 +8,7 @@ tools:
   write: false
 permission:
   bash:
-    "git *": "allow"
-    "*": "ask"
+    "git*": "allow"
 ---
 
 You are generating a single Conventional Commit message for the currently staged
