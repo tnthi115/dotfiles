@@ -20,6 +20,24 @@
         "apiKey": "{env:F5GPT_OPENAI_API_KEY}",
       },
       "models": {
+        "claude-haiku-4-5": {
+          "name": "Claude Haiku 4.5",
+        },
+        "claude-opus-4-5": {
+          "name": "Claude Opus 4.5",
+        },
+        "claude-sonnet-4-5": {
+          "name": "Claude Sonnet 4.5",
+        },
+        "gpt-5.2-codex-max": {
+          "name": "GPT-5.2-Codex-Max",
+        },
+        "gpt-5.2-codex": {
+          "name": "GPT-5.2-Codex",
+        },
+        "gpt-5.2": {
+          "name": "GPT-5.2",
+        },
         "gpt-5": {
           "name": "GPT-5",
         },
@@ -69,11 +87,12 @@
   // gpt-5-mini
   "agent": {
     "plan": {
-      "model": "github-copilot/claude-sonnet-4.5",
+      // "model": "github-copilot/claude-sonnet-4.5",
       // Use this when premium tokens are exhausted
       // "model": "github-copilot/o4-mini",
       // "model": "f5/o3",
-      // "model": "f5/gpt-5",
+      // "model": "f5/gpt-5.2",
+      "model": "f5/claude-sonnet-4-5",
       // "model": "github-copilot/gpt-5-mini",
     },
     // Use this when premium tokens are exhausted
@@ -88,20 +107,21 @@
     //   },
     // },
     "build": {
-      "model": "github-copilot/claude-sonnet-4.5",
+      // "model": "github-copilot/claude-sonnet-4.5",
       // "model": "github-copilot/gpt-4.1",
       // Use this when premium tokens are exhausted
       // "model": "github-copilot/gpt-5-mini",
-      // "model": "f5/gpt-5",
+      // "model": "f5/gpt-5.2",
+      "model": "f5/claude-sonnet-4-5",
     },
     // Use this when premium tokens are exhausted
-    "cheap-build": {
-      "mode": "primary",
-      // "model": "github-copilot/gpt-4.1",
-      "model": "github-copilot/gpt-5-mini",
-      // "model": "f5/gpt-5",
-      // "model": "f5/gpt-5-codex",
-    },
+    // "cheap-build": {
+    //   "mode": "primary",
+    //   // "model": "github-copilot/gpt-4.1",
+    //   "model": "github-copilot/gpt-5-mini",
+    //   // "model": "f5/gpt-5",
+    //   // "model": "f5/gpt-5-codex",
+    // },
   },
   "mcp": {
     "git": {
