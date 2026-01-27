@@ -123,10 +123,14 @@ experimental tech, complex patterns (as needed)
 ## Planning Requirements
 
 - **When asked for plan, create markdown document with detailed plan**
-- Save as `plan.md` or `[task-name]-plan.md` in current directory
+- Save as `.opencode/plans/plan.md` or `.opencode/plans/[task-name]-plan.md` in
+  current project repository
+- **ALWAYS save plan files to `.opencode/plans/` directory** (git-ignored,
+  created automatically if needed)
 - Include: objectives, step-by-step breakdown, dependencies, success criteria
 - Plans should be optimized for coding agent implementation
-- **Default behavior for planning agents: create plan document**
+- **Default behavior for planning agents: create plan document in `.opencode/plans/`**
+- Plan files are temporary working documents and excluded from version control
 
 ## Context Preservation & Memory Management
 
