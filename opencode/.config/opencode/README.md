@@ -422,8 +422,64 @@ This creates symlinks from `~/.config/opencode/` to this directory.
 4. **Customize Commands**: Edit command files in `command/` directory to fit
    your workflow
 
+## Superpowers Integration
+
+This configuration integrates with [superpowers](https://github.com/obra/superpowers),
+a skills framework that enforces workflow discipline (TDD, systematic debugging,
+planning) complementing oh-my-opencode's agent orchestration.
+
+### How They Work Together
+
+| Layer | Tool | Purpose |
+|-------|------|---------|
+| **Agent Infrastructure** | oh-my-opencode | Multi-agent orchestration (Sisyphus, Oracle, Prometheus) |
+| **Workflow Discipline** | superpowers | Mandatory processes (TDD, systematic debugging, planning) |
+
+### Available Superpowers Skills
+
+- `superpowers/test-driven-development` - Strict RED-GREEN-REFACTOR enforcement
+- `superpowers/systematic-debugging` - 4-phase root cause analysis
+- `superpowers/brainstorming` - Socratic design refinement
+- `superpowers/writing-plans` - Detailed task breakdown (2-5 min granularity)
+- `superpowers/executing-plans` - Batch execution with checkpoints
+- `superpowers/subagent-driven-development` - Two-stage review gates
+- `superpowers/requesting-code-review` - Pre-review checklist
+- `superpowers/receiving-code-review` - Feedback workflow
+- `superpowers/using-git-worktrees` - Isolated development branches
+- `superpowers/finishing-a-development-branch` - Branch completion workflow
+
+### Installation
+
+Run the bootstrap script:
+
+```bash
+~/dotfiles/bin/install-superpowers.sh
+```
+
+Or manually:
+
+```bash
+git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers
+mkdir -p ~/.config/opencode/plugins ~/.config/opencode/skills
+ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js ~/.config/opencode/plugins/superpowers.js
+ln -s ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpowers
+```
+
+Restart OpenCode after installation.
+
+### Updating Superpowers
+
+```bash
+cd ~/.config/opencode/superpowers && git pull
+```
+
+### Verification
+
+Ask OpenCode: "do you have superpowers?"
+
 ## See Also
 
 - [OpenCode Commands Documentation](https://opencode.ai/docs/commands)
 - [OpenCode Agents Documentation](https://opencode.ai/docs/agents)
+- [Superpowers Repository](https://github.com/obra/superpowers)
 - [Dotfiles AGENTS.md](../../../AGENTS.md) for overall project context

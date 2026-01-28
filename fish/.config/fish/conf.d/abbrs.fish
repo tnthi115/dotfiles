@@ -91,7 +91,7 @@ abbr -a -- mkdir 'mkdir -p'
 
 # brew
 abbr -a -- bdump 'brew bundle dump --file=~/dotfiles/Brewfile --force'
-abbr -a -- bup 'brew update && brew upgrade && brew cleanup'
+abbr -a -- bup 'brew update && brew upgrade && brew cleanup && echo "Updating superpowers..." && git -C ~/.config/opencode/superpowers pull --quiet 2>/dev/null || true'
 abbr -a -- bo 'brew outdated'
 abbr -a -- bi 'brew install'
 abbr -a -- bU 'brew uninstall'

@@ -54,7 +54,7 @@
   "disabled_mcps": ["websearch"],
 
   "tmux": {
-    "enabled": true,
+    "enabled": false,
     "layout": "main-vertical"
   },
 

@@ -121,6 +121,23 @@ be launched within neovim, but learn how to use `git` on the command line
 first! `Lazygit` should be used a time saving tool, not a crutch.
 [Delta](https://github.com/dandavison/delta) makes diffs prettier.
 
+#### OpenCode
+
+[OpenCode](https://opencode.ai/) is an AI coding assistant with multi-agent
+orchestration. My configuration uses:
+
+- **[oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode)**: Plugin
+  providing specialized agents (Sisyphus, Oracle, Prometheus), parallel
+  execution, and ultrawork mode
+- **[superpowers](https://github.com/obra/superpowers)**: Skills framework
+  enforcing TDD, systematic debugging, and planning discipline
+
+Install superpowers after stowing opencode config:
+
+```sh
+~/dotfiles/bin/install-superpowers.sh
+```
+
 #### Kitty
 
 [Kitty](https://sw.kovidgoyal.net/kitty/) supports ligatures, so I like it over
