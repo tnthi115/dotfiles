@@ -2,52 +2,76 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
 
   "agents": {
+    "build": {
+      "model": "f5/claude-sonnet-4-5"
+    },
+    "plan": {
+      "model": "f5/claude-sonnet-4-5"
+    },
     "sisyphus": {
       "model": "f5/claude-opus-4-5",
       "prompt_append": "Always use Serena MCP for code analysis and symbol manipulation. Use Sequential Thinking MCP for complex reasoning tasks."
     },
-    "oracle": {
-      "model": "f5/gpt-5.2"
-    },
-    "librarian": {
-      "model": "f5/claude-sonnet-4-5"
-    },
-    "explore": {
-      "model": "f5/gpt-5-nano"
-    },
-    "multimodal-looker": {
+    "sisyphus-junior": {
       "model": "f5/claude-sonnet-4-5"
     },
     "prometheus": {
       "model": "f5/claude-opus-4-5"
     },
     "metis": {
+      "model": "f5/claude-opus-4-5"
+    },
+    "momus": {
+      "model": "f5/gpt-5.2",
+      "reasoningEffort": "medium"
+    },
+    "oracle": {
+      "model": "f5/gpt-5.2",
+      "reasoningEffort": "high"
+    },
+    "librarian": {
+      "model": "f5/claude-sonnet-4-5"
+    },
+    "explore": {
+      "model": "f5/claude-haiku-4-5"
+    },
+    "multimodal-looker": {
+      "model": "f5/gpt-5.2"
+    },
+    "atlas": {
       "model": "f5/claude-sonnet-4-5"
     }
   },
 
   "categories": {
-    "ultrabrain": {
-      "model": "f5/gpt-5.2"
+    "visual-engineering": {
+      "model": "f5/claude-sonnet-4-5"
     },
-    "writing": {
+    "ultrabrain": {
+      "model": "f5/gpt-5.2-codex",
+      "reasoningEffort": "xhigh"
+    },
+    "artistry": {
       "model": "f5/claude-sonnet-4-5"
     },
     "quick": {
-      "model": "f5/gpt-5-mini"
+      "model": "f5/claude-haiku-4-5"
     },
     "unspecified-low": {
       "model": "f5/claude-sonnet-4-5"
     },
     "unspecified-high": {
       "model": "f5/claude-opus-4-5"
+    },
+    "writing": {
+      "model": "f5/claude-sonnet-4-5"
     }
   },
 
   "background_task": {
     "defaultConcurrency": 3,
     "providerConcurrency": {
-      "f5": 2
+      "f5": 3
     }
   },
 
@@ -63,5 +87,35 @@
     "include_co_authored_by": false
   },
 
-  "disabled_hooks": []
+  "ralph_loop": {
+    "enabled": true,
+    "default_max_iterations": 100
+  },
+
+  "experimental": {
+    "aggressive_truncation": true,
+    "dynamic_context_pruning": {
+      "enabled": true,
+      "notification": "minimal",
+      "turn_protection": {
+        "enabled": true,
+        "turns": 3
+      },
+      "strategies": {
+        "deduplication": {
+          "enabled": true
+        },
+        "supersede_writes": {
+          "enabled": true,
+          "aggressive": false
+        },
+        "purge_errors": {
+          "enabled": true,
+          "turns": 5
+        }
+      }
+    }
+  },
+
+  "disabled_hooks": ["agent-usage-reminder"]
 }
