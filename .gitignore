@@ -2,3 +2,6 @@
 
 # Ignore Serena agent memory files
 .serena/memories/
+
+# Ignore Opencode plan files
+.opencode/plans/

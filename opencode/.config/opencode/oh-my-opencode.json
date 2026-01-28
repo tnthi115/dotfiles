@@ -1,0 +1,67 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+
+  "agents": {
+    "sisyphus": {
+      "model": "f5/claude-opus-4-5",
+      "prompt_append": "Always use Serena MCP for code analysis and symbol manipulation. Use Sequential Thinking MCP for complex reasoning tasks."
+    },
+    "oracle": {
+      "model": "f5/gpt-5.2"
+    },
+    "librarian": {
+      "model": "f5/claude-sonnet-4-5"
+    },
+    "explore": {
+      "model": "f5/gpt-5-nano"
+    },
+    "multimodal-looker": {
+      "model": "f5/claude-sonnet-4-5"
+    },
+    "prometheus": {
+      "model": "f5/claude-opus-4-5"
+    },
+    "metis": {
+      "model": "f5/claude-sonnet-4-5"
+    }
+  },
+
+  "categories": {
+    "ultrabrain": {
+      "model": "f5/gpt-5.2"
+    },
+    "writing": {
+      "model": "f5/claude-sonnet-4-5"
+    },
+    "quick": {
+      "model": "f5/gpt-5-mini"
+    },
+    "unspecified-low": {
+      "model": "f5/claude-sonnet-4-5"
+    },
+    "unspecified-high": {
+      "model": "f5/claude-opus-4-5"
+    }
+  },
+
+  "background_task": {
+    "defaultConcurrency": 3,
+    "providerConcurrency": {
+      "f5": 2
+    }
+  },
+
+  "disabled_mcps": ["websearch"],
+
+  "tmux": {
+    "enabled": true,
+    "layout": "main-vertical"
+  },
+
+  "git_master": {
+    "commit_footer": true,
+    "include_co_authored_by": false
+  },
+
+  "disabled_hooks": []
+}
