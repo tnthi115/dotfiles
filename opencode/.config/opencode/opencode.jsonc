@@ -114,13 +114,13 @@
     //  },
     //},
     // prompt: use context7
-    // "context7": {
-    //   "type": "local",
-    //   "command": ["npx", "-y", "@upstash/context7-mcp"],
-    //   "environment": {
-    //     "DEFAULT_MINIMUM_TOKENS": "5000",
-    //   },
-    // },
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "environment": {
+        "DEFAULT_MINIMUM_TOKENS": "5000",
+      },
+    },
     // prompt: /serena custom command or "activate serena project"
     "serena": {
       "type": "local",
@@ -161,14 +161,6 @@
       "command": ["rumdl", "fmt", "--fix", "$FILE"],
       "extensions": [".md", ".markdown"],
     },
-    "black": {
-      "command": ["black", "$FILE"],
-      "extensions": [".py", ".pyi"],
-    },
-    "usort": {
-      "command": ["usort", "format", "$FILE"],
-      "extensions": [".py", ".pyi"],
-    },
     "ruff": {
       "command": ["ruff", "format", "$FILE"],
       "extensions": [".py", ".pyi"],
@@ -184,6 +176,10 @@
     "taplo": {
       "command": ["taplo", "format", "$FILE"],
       "extensions": [".toml"],
+    },
+    "goimports": {
+      "command": ["goimports", "-w", "$FILE"],
+      "extensions": [".go"],
     },
   },
   "lsp": {
@@ -231,6 +227,10 @@
     "taplo": {
       "command": ["taplo", "lsp", "stdio"],
       "extensions": [".toml"],
+    },
+    "typescript-language-server": {
+      "command": ["typescript-language-server", "--stdio"],
+      "extensions": [".ts", ".tsx", ".js", ".jsx"],
     },
   },
 }
