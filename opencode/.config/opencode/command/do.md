@@ -2,6 +2,22 @@
 description: Execute an implementation plan with build agent. Use `/do` for session plan or `/do @plan-file.md` for specific plan file.
 ---
 
+## Required Skills
+
+**REQUIRED:** Use `superpowers:executing-plans` skill for disciplined plan
+execution.
+
+The skill provides:
+
+- Batch execution with checkpoints (default: 3 tasks per batch)
+- Review gates between batches
+- TodoWrite integration for progress tracking
+- Clear stopping conditions when blocked
+
+This command provides the framework; the skill provides the discipline.
+
+---
+
 **Step 0: Preflight**
 
 - Check for required dependencies, config files, and environment variables.
@@ -35,7 +51,10 @@ description: Execute an implementation plan with build agent. Use `/do` for sess
 
 **Guidelines:**
 
-- Use Serena tools for implementation and memory (write concise progress after each step).
+- Follow AGENTS.md tool selection guide: use native LSP/AST tools by default,
+  Serena for symbol editing and memory.
+- Use Serena memory (write concise progress after each step) for multi-step
+  tasks spanning compaction.
 - Use Context7 for documentation and code reference.
 - Use Sequential Thinking for complex or multi-step tasks.
 - Keep logs and memory concise to optimize context usage.

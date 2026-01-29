@@ -10,7 +10,8 @@
     },
     "sisyphus": {
       "model": "f5/claude-opus-4-5",
-      "prompt_append": "Always use Serena MCP for code analysis and symbol manipulation. Use Sequential Thinking MCP for complex reasoning tasks."
+      // Tool selection: native LSP first → escalate to Serena for symbol editing → fallback on failures
+      "prompt_append": "Use native LSP tools (lsp_goto_definition, lsp_find_references, lsp_rename) and AST-grep for most code navigation and pattern matching. Escalate to Serena MCP for: (1) symbol-addressable editing (serena_replace_symbol_body, serena_insert_after_symbol), (2) guided refactoring pipelines, (3) repos with weak LSP support. If Serena fails or times out, fall back to native Read/Grep/Edit tools. Use Serena memory (serena_write_memory/read_memory) only for multi-step tasks spanning compaction. Use Sequential Thinking MCP for complex reasoning tasks."
     },
     "sisyphus-junior": {
       "model": "f5/claude-sonnet-4-5"
@@ -93,6 +94,7 @@
   },
 
   "experimental": {
+    "auto_resume": true,
     "aggressive_truncation": true,
     "dynamic_context_pruning": {
       "enabled": true,

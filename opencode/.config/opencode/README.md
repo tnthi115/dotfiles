@@ -383,7 +383,7 @@ Advanced code intelligence using Serena Model Context Protocol.
 Generates conventional commit messages following project standards.
 
 **Mode**: Subagent
-**Usage**: `@commit` or via `/commit` command
+**Usage**: `@commit` (agent, not a slash command)
 
 ### docs-writer
 
@@ -399,29 +399,6 @@ Performs code review for quality and best practices.
 **Mode**: Subagent
 **Usage**: `@review`
 
-## Installation
-
-These configurations are automatically symlinked when you stow the opencode
-directory:
-
-```bash
-cd ~/dotfiles
-stow opencode
-```
-
-This creates symlinks from `~/.config/opencode/` to this directory.
-
-## Usage Tips
-
-1. **Start with `/init`**: Run `/init` in any project to create comprehensive
-   AGENTS.md documentation
-2. **Use Plan Mode**: Switch to plan agent (Tab key) before making significant
-   changes
-3. **Leverage Subagents**: Use `@commit`, `@docs-writer`, `@review` for
-   specialized tasks
-4. **Customize Commands**: Edit command files in `command/` directory to fit
-   your workflow
-
 ## Superpowers Integration
 
 This configuration integrates with [superpowers](https://github.com/obra/superpowers),
@@ -432,8 +409,53 @@ planning) complementing oh-my-opencode's agent orchestration.
 
 | Layer | Tool | Purpose |
 |-------|------|---------|
-| **Agent Infrastructure** | oh-my-opencode | Multi-agent orchestration (Sisyphus, Oracle, Prometheus) |
+| **Agent Orchestration** | oh-my-opencode | Multi-agent system (Sisyphus, Oracle, Prometheus, etc.) |
 | **Workflow Discipline** | superpowers | Mandatory processes (TDD, systematic debugging, planning) |
+| **Custom Commands** | /plan, /do, /deep-init | Project-specific workflows with skill integration |
+| **Custom Agents** | @commit, @review, @docs-writer | Specialized tasks with skill references |
+
+### Integrated Workflow Examples
+
+**Planning a Feature:**
+
+```bash
+# Option 1: Quick technical plan (clear requirements)
+/plan "Add user authentication"
+# Uses superpowers:writing-plans for bite-sized tasks
+
+# Option 2: Consultative planning (unclear requirements)
+# Invoke Prometheus agent for interview-driven design
+# Uses Metis for gap analysis, optionally Momus for review
+```
+
+**Executing a Plan:**
+
+```bash
+# Execute with discipline
+/do @.sisyphus/plans/auth-plan.md
+# Uses superpowers:executing-plans for batch execution with checkpoints
+```
+
+**Making a Commit:**
+
+```bash
+# Stage changes, then use the @commit agent (not a /commit command):
+@commit
+# Uses superpowers:verification-before-completion for evidence-based success claims
+```
+
+> **Note:** `@commit` is an agent, not a command. Use it by typing `@commit` in the
+> chat, not as a slash command.
+
+### Command vs Skill Relationship
+
+| Command/Agent | Integrates With | Provides |
+|---------------|-----------------|----------|
+| `/plan` | `writing-plans` skill | Quick technical planning |
+| `/do` | `executing-plans` skill | Disciplined execution |
+| `@commit` | `verification-before-completion` skill | Evidence-based commits |
+| `@review` | `requesting-code-review` skill | Structured feedback |
+| `@docs-writer` | `writing-skills` skill | Quality documentation |
 
 ### Available Superpowers Skills
 
@@ -448,7 +470,7 @@ planning) complementing oh-my-opencode's agent orchestration.
 - `superpowers/using-git-worktrees` - Isolated development branches
 - `superpowers/finishing-a-development-branch` - Branch completion workflow
 
-### Installation
+### Superpowers Installation
 
 Run the bootstrap script:
 
@@ -473,9 +495,43 @@ Restart OpenCode after installation.
 cd ~/.config/opencode/superpowers && git pull
 ```
 
-### Verification
+### Verifying Superpowers
 
-Ask OpenCode: "do you have superpowers?"
+Verify superpowers is installed correctly:
+
+```bash
+# Check skill files exist
+ls ~/.config/opencode/skills/superpowers/
+
+# Check plugin is linked
+ls -la ~/.config/opencode/plugins/superpowers.js
+
+# Or ask OpenCode directly
+opencode  # Then ask: "do you have superpowers?"
+```
+
+## Installation
+
+These configurations are automatically symlinked when you stow the opencode
+directory:
+
+```bash
+cd ~/dotfiles
+stow opencode
+```
+
+This creates symlinks from `~/.config/opencode/` to this directory.
+
+## Usage Tips
+
+1. **Start with `/init`**: Run `/init` in any project to create comprehensive
+   AGENTS.md documentation
+2. **Use Plan Mode**: Switch to plan agent (Tab key) before making significant
+   changes
+3. **Leverage Subagents**: Use `@commit`, `@docs-writer`, `@review` for
+   specialized tasks
+4. **Customize Commands**: Edit command files in `command/` directory to fit
+   your workflow
 
 ## See Also
 

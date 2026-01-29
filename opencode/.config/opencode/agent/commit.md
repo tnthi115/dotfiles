@@ -11,6 +11,17 @@ permission:
     "git*": "allow"
 ---
 
+## Required Skills
+
+**REQUIRED:** Before claiming commit success, use
+`superpowers:verification-before-completion` skill.
+
+- Run `git status` to verify commit was created
+- Show actual commit hash and message
+- Never claim "committed successfully" without evidence
+
+---
+
 You are generating a single Conventional Commit message for the currently staged
 changes and performing the commit.
 

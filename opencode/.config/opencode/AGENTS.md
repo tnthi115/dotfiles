@@ -45,15 +45,93 @@
 
 **MCP Tool Integration**:
 
-- **ALWAYS use Serena MCP for code intelligence and manipulation**
-  - Use `serena_find_symbol`, `serena_find_referencing_symbols` for navigation
-  - Use `serena_replace_symbol_body`, `serena_insert_after_symbol` for edits
-  - Use `serena_search_for_pattern` for codebase searches
-  - Use Serena memory tools for complex multi-step tasks
-- **ALWAYS use Sequential Thinking MCP for complex problem-solving**
-  - Break down complex tasks step-by-step with chain-of-thought reasoning
-  - Use for planning, design, debugging, and multi-step implementations
-  - Especially critical for tasks requiring careful analysis or multiple phases
+### Tool Selection: Native vs Serena
+
+**Default to native OpenCode tools** for most operations:
+
+| Operation | Native Tool | Serena Equivalent | Use Native When |
+|-----------|-------------|-------------------|-----------------|
+| Go to definition | `lsp_goto_definition` | `serena_find_symbol` | LSP available for language |
+| Find references | `lsp_find_references` | `serena_find_referencing_symbols` | LSP available |
+| Rename symbol | `lsp_rename` | `serena_rename_symbol` | LSP available |
+| Search patterns | `Grep`, `ast_grep_search` | `serena_search_for_pattern` | Text/AST search sufficient |
+| Read files | `Read` | `serena_read_file` | Always prefer native |
+| Run commands | `Bash` | `serena_execute_shell_command` | Always prefer native |
+
+**Escalate to Serena MCP** for these unique capabilities:
+
+| Serena Tool | Unique Value | When to Use |
+|-------------|--------------|-------------|
+| `serena_replace_symbol_body` | Intent-level symbol editing | Replacing function/class bodies |
+| `serena_insert_after_symbol` | Symbol-relative insertion | Adding methods to classes |
+| `serena_insert_before_symbol` | Symbol-relative insertion | Adding imports before first symbol |
+| `serena_write_memory` / `serena_read_memory` | Persistent task context | Multi-step tasks spanning compaction |
+| `serena_get_symbols_overview` | File structure overview | Understanding unfamiliar files |
+
+**When to use Serena for navigation/search**:
+
+- Repos with weak/missing LSP support (dotfiles with mixed formats)
+- Need symbol-level precision that LSP doesn't provide
+- Complex refactoring requiring find→replace→insert pipeline
+
+**Sequential Thinking MCP**: Use for complex reasoning, chain-of-thought,
+multi-step analysis.
+
+## Superpowers Skill Integration
+
+**CRITICAL:** Superpowers skills provide workflow discipline. They are NOT
+optional.
+
+### Skill Invocation Protocol
+
+1. **Before ANY task**: Check if a skill applies (even 1% chance → invoke it)
+2. **Announce usage**: "I'm using [skill] to [purpose]"
+3. **Follow exactly**: Rigid skills (TDD, debugging) must be followed precisely
+4. **Don't rationalize**: "Too simple" or "I know this" are red flags
+
+### Key Skills for This Configuration
+
+| Task Type | Required Skill | Purpose |
+|-----------|---------------|---------|
+| Feature/bugfix | `superpowers:test-driven-development` | RED-GREEN-REFACTOR |
+| Debugging | `superpowers:systematic-debugging` | 4-phase root cause analysis |
+| Planning | `superpowers:writing-plans` | Bite-sized task breakdown |
+| Execution | `superpowers:executing-plans` | Batch execution with checkpoints |
+| Completion | `superpowers:verification-before-completion` | Evidence before claims |
+| Code review | `superpowers:requesting-code-review` | Structured feedback |
+
+### Oh-My-OpenCode Agent Delegation
+
+Use `delegate_task()` for specialized agents:
+
+| Agent | Purpose | When to Use |
+|-------|---------|-------------|
+| `explore` | Codebase investigation | Finding patterns, understanding structure |
+| `librarian` | External documentation | Looking up APIs, best practices |
+| `oracle` | Architecture consultation | Major design decisions |
+| `prometheus` | Strategic planning | Complex projects needing interview |
+| `sisyphus` | Task execution | Implementing plans from Prometheus |
+
+### Workflow Decision Guide
+
+```text
+Need to plan something?
+├── Clear requirements? → /plan (quick technical plan)
+└── Unclear requirements? → Prometheus (consultative interview)
+
+Need to execute a plan?
+├── Simple plan? → /do with executing-plans skill
+└── Complex multi-session? → /start-work (Sisyphus orchestration)
+
+Need to commit?
+├── Use @commit agent
+└── ALWAYS use verification-before-completion skill
+
+Need code intelligence?
+├── LSP works? → Use native lsp_* tools
+├── Symbol editing? → Use Serena serena_replace_symbol_body etc.
+└── Long task? → Use Serena memory for context preservation
+```
 
 **Anti-Patterns to Avoid**:
 
@@ -123,20 +201,33 @@ experimental tech, complex patterns (as needed)
 ## Planning Requirements
 
 - **When asked for plan, create markdown document with detailed plan**
-- Save as `.opencode/plans/plan.md` or `.opencode/plans/[task-name]-plan.md` in
-  current project repository
-- **ALWAYS save plan files to `.opencode/plans/` directory** (git-ignored,
+- Save as `.sisyphus/plans/[task-name]-plan.md` in current project repository
+- **ALWAYS save plan files to `.sisyphus/plans/` directory** (git-ignored,
   created automatically if needed)
 - Include: objectives, step-by-step breakdown, dependencies, success criteria
 - Plans should be optimized for coding agent implementation
-- **Default behavior for planning agents: create plan document in `.opencode/plans/`**
+- **Default behavior for planning agents: create plan document in `.sisyphus/plans/`**
 - Plan files are temporary working documents and excluded from version control
 
 ## Context Preservation & Memory Management
 
 **Compaction is unavoidable in long/complex sessions.**
 
-**Best Practice:** Use Serena memory for all multi-step or long-running tasks:
+### Compaction Configuration
+
+Two compaction systems work together:
+
+| System | Config Location | Purpose |
+|--------|-----------------|---------|
+| **OpenCode Native** | `opencode.jsonc` → `compaction` | Core auto-compaction when context fills |
+| **oh-my-opencode** | `oh-my-opencode.json` → `experimental` | Aggressive truncation and context pruning strategies |
+
+These are complementary: OpenCode's `compaction.auto` triggers compaction, while
+oh-my-opencode's `dynamic_context_pruning` optimizes what gets pruned.
+
+### Best Practice: Use Serena Memory
+
+Use Serena memory for all multi-step or long-running tasks:
 
 - **Start:** Write plan, context, progress, and decisions to memory at task
   start.

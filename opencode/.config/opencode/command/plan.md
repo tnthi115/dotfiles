@@ -4,9 +4,40 @@ agent: general
 subtask: true
 ---
 
+## When to Use This Command
+
+**Use `/plan` when:**
+
+- You have clear requirements and want a quick technical plan
+- You need detailed issue analysis (Phase 0) before implementation
+- You want a structured implementation plan without interview flow
+
+**Use Prometheus agent instead when:**
+
+- Requirements are unclear and need consultative refinement
+- Complex projects requiring brainstorming and design exploration
+- You want Metis gap analysis and optional Momus review
+
+## Required Skills
+
+**RECOMMENDED:** Reference `superpowers:writing-plans` for bite-sized task
+structure.
+
+**NOTE:** This repo overrides the `writing-plans` skill's default path.
+Use `.sisyphus/plans/` instead of `docs/plans/YYYY-MM-DD-<feature>.md`.
+
+## Plan Output Location
+
+Save plans to: `.sisyphus/plans/[task-name]-plan.md`
+
+Plans are ephemeral working documents (git-ignored) for agent execution.
+
+---
+
 Create a comprehensive, agent-executable implementation plan for: $ARGUMENTS
 
-This plan will be executed by OpenCode's build agent in one pass. Focus on clarity, completeness, and actionable steps.
+This plan will be executed by OpenCode's build agent in one pass. Focus on
+clarity, completeness, and actionable steps.
 
 ## Phase 0: Current State Analysis & Issues Identified
 
@@ -15,7 +46,8 @@ This plan will be executed by OpenCode's build agent in one pass. Focus on clari
 ### Performance Issues
 
 - **Identify Bottlenecks**: Specific performance problems with line references
-- **Resource Usage**: Memory leaks, inefficient algorithms, database query issues
+- **Resource Usage**: Memory leaks, inefficient algorithms, database query
+  issues
 - **Scalability Concerns**: Code that won't scale with increased load
 - **Quantify Impact**: Expected % improvements with rationale
 
@@ -113,8 +145,10 @@ For each issue identified in Phase 0, provide:
 1. **File Operations**
    - **Create new files**: Full file path + complete content
    - **Modify existing files**: Exact changes with context
-   - **Update configs**: Specific changes to package.json, requirements.txt, etc.
-   - **Reference Phase 0 Issues**: Note which specific issues each change addresses
+   - **Update configs**: Specific changes to package.json, requirements.txt,
+     etc.
+   - **Reference Phase 0 Issues**: Note which specific issues each change
+     addresses
 
 2. **Code Content**
    - Include complete, working code for each file
@@ -185,7 +219,8 @@ For each issue identified in Phase 0, provide:
 **Save as `[task-name]-plan.md` and ensure:**
 
 - Phase 0 analysis is completed before any implementation begins
-- Every file change includes the complete file path and references specific issues being fixed
+- Every file change includes the complete file path and references specific
+  issues being fixed
 - All code snippets are complete and runnable
 - All commands are exact and ready to execute
 - Dependencies are specified with versions when critical
@@ -193,6 +228,8 @@ For each issue identified in Phase 0, provide:
 - The plan can be executed top-to-bottom without additional context
 - Each implementation step clearly states which Phase 0 issues it addresses
 
-The goal is a plan so clear and complete that any build agent can execute it successfully while understanding both the problems being solved and the rationale behind each solution.
+The goal is a plan so clear and complete that any build agent can execute it
+successfully while understanding both the problems being solved and the
+rationale behind each solution.
 
 **CRITICAL: After saving the plan file, STOP. Do not proceed with implementation. Your task is complete once the plan is written.**

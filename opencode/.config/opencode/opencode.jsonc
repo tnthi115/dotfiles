@@ -10,8 +10,12 @@
     "README.md",
     "docs/**/*.md",
     "docs/**/*.puml",
-    "pbdoc/docs.md",
+    "pbdoc/docs.md"
   ],
+  "compaction": {
+    "auto": true,
+    "prune": true
+  },
   "provider": {
     "f5": {
       "npm": "@ai-sdk/openai-compatible",
@@ -86,44 +90,7 @@
   // o4-mini
   // gpt-5
   // gpt-5-mini
-  "agent": {
-    "plan": {
-      // "model": "github-copilot/claude-sonnet-4.5",
-      // Use this when premium tokens are exhausted
-      // "model": "github-copilot/o4-mini",
-      // "model": "f5/o3",
-      // "model": "f5/gpt-5.2",
-      "model": "f5/claude-sonnet-4-5",
-      // "model": "github-copilot/gpt-5-mini",
-    },
-    // Use this when premium tokens are exhausted
-    // "cheap-plan": {
-    //   "mode": "primary",
-    //   // "model": "github-copilot/o4-mini",
-    //   "model": "f5/o3",
-    //   "tools": {
-    //     "write": false,
-    //     "edit": false,
-    //     "bash": false,
-    //   },
-    // },
-    "build": {
-      // "model": "github-copilot/claude-sonnet-4.5",
-      // "model": "github-copilot/gpt-4.1",
-      // Use this when premium tokens are exhausted
-      // "model": "github-copilot/gpt-5-mini",
-      // "model": "f5/gpt-5.2",
-      "model": "f5/claude-sonnet-4-5",
-    },
-    // Use this when premium tokens are exhausted
-    // "cheap-build": {
-    //   "mode": "primary",
-    //   // "model": "github-copilot/gpt-4.1",
-    //   "model": "github-copilot/gpt-5-mini",
-    //   // "model": "f5/gpt-5",
-    //   // "model": "f5/gpt-5-codex",
-    // },
-  },
+  // NOTE: Agent model configs now managed by oh-my-opencode.json
   "mcp": {
     "git": {
       "type": "local",
