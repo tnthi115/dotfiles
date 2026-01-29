@@ -10,16 +10,21 @@
     "README.md",
     "docs/**/*.md",
     "docs/**/*.puml",
-    "pbdoc/docs.md"
+    "pbdoc/docs.md",
   ],
   "compaction": {
     "auto": true,
-    "prune": true
+    "prune": true,
+  },
+  "agent": {
+    "compaction": {
+      "model": "f5/gpt-5.2",
+    },
   },
   "provider": {
     "f5": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "F5 GPT",
+      "name": "F5",
       "options": {
         "baseURL": "{env:F5GPT_OPENAI_API_URL}",
         "apiKey": "{env:F5GPT_OPENAI_API_KEY}",

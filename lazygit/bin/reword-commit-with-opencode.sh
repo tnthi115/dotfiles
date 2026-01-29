@@ -34,7 +34,7 @@ if ! git diff --quiet || ! git diff --cached --quiet; then
   STASHED=1
 fi
 
-NEW_MSG="$(opencode run --mode build --model github-copilot/gpt-4.1 "$PROMPT" 2>/tmp/opencode.err)"
+NEW_MSG="$(opencode run --mode build --model f5/gpt-4.1 "$PROMPT" 2>/tmp/opencode.err)"
 OPENCODE_EXIT=$?
 if [ $OPENCODE_EXIT -ne 0 ] || [ -z "$NEW_MSG" ] || grep -q "Usage:" /tmp/opencode.err; then
   echo "Error: opencode failed. See error below:"
@@ -93,7 +93,7 @@ PROMPT="$GUIDELINES_PROMPT
 $COMMIT_INFO
 "
 
-NEW_MSG="$(opencode run --mode build --model github-copilot/gpt-4.1 "$PROMPT" 2>/tmp/opencode.err)"
+NEW_MSG="$(opencode run --mode build --model f5/gpt-4.1 "$PROMPT" 2>/tmp/opencode.err)"
 OPENCODE_EXIT=$?
 if [ $OPENCODE_EXIT -ne 0 ] || [ -z "$NEW_MSG" ] || grep -q "Usage:" /tmp/opencode.err; then
   echo "Error: opencode failed. See error below:"

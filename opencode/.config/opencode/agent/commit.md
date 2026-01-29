@@ -1,7 +1,7 @@
 ---
 description: Create a single Conventional Commit message for the currently staged changes
 mode: subagent
-model: github-copilot/gpt-5-mini
+model: f5/gpt-5-mini
 tools:
   git_*: true
   read: true

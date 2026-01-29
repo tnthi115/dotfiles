@@ -1,27 +1,35 @@
 ---
 description: Activate Serena MCP server and project for manual context optimization
 agent: general
-model: github-copilot/gpt-5-mini
+model: f5/gpt-5-mini
 subtask: true
 ---
 
 # Serena MCP Activation Command
 
-Activates the Serena MCP server and project in the current directory for development work. Serena provides manual tools for context optimization, memory management, and session continuity in OpenCode workflows.
+Activates the Serena MCP server and project in the current directory for
+development work. Serena provides manual tools for context optimization, memory
+management, and session continuity in OpenCode workflows.
 
 ## Activation Sequence
 
-1. **Activate Project**: `activate_project "."` — Initialize Serena for the current directory
-2. **Check Onboarding**: `check_onboarding_performed` — Verify project setup status
-3. **Run Onboarding** (if needed): `onboarding` — Complete project onboarding if not done
-4. **Set Development Mode**: `switch_modes ["editing", "interactive"]` — Configure for active development
-5. **Verify Configuration**: `get_current_config` — Confirm Serena is properly activated
+1. **Activate Project**: `activate_project "."` — Initialize Serena for the
+   current directory
+2. **Check Onboarding**: `check_onboarding_performed` — Verify project setup
+   status
+3. **Run Onboarding** (if needed): `onboarding` — Complete project onboarding if
+   not done
+4. **Set Development Mode**: `switch_modes ["editing", "interactive"]` —
+   Configure for active development
+5. **Verify Configuration**: `get_current_config` — Confirm Serena is properly
+   activated
 
 ## Manual Context & Memory Management
 
 Use Serena's memory tools to:
 
-- Save important discoveries, architectural decisions, or next steps (`write_memory`)
+- Save important discoveries, architectural decisions, or next steps (
+  `write_memory`)
 - Retrieve previous context or notes (`list_memories`, `read_memory`)
 - Prepare for session handoff or context resets (`prepare_for_new_conversation`)
 
@@ -41,4 +49,5 @@ Use Serena's memory tools to:
 
 ## Usage
 
-Run this command at the start of any development session, or whenever you need to optimize context or save/retrieve important information with Serena.
+Run this command at the start of any development session, or whenever you need
+to optimize context or save/retrieve important information with Serena.

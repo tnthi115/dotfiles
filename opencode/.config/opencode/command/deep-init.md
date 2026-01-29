@@ -1,7 +1,7 @@
 ---
 description: AI-optimized project initialization with concrete code analysis
 agent: general
-model: github-copilot/claude-sonnet-4.5
+model: f5/claude-sonnet-4-5
 subtask: true
 ---
 
