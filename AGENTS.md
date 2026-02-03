@@ -2,9 +2,19 @@
 
 ## Repository Purpose
 
-This repository is a comprehensive personal dotfiles collection managing configurations for 40+ development tools across macOS and Linux environments. It provides a complete development ecosystem including multiple text editors (Neovim LazyVim, VS Code, Helix), terminal emulators (Kitty, WezTerm, Ghostty), shells (Zsh, Fish with Starship), window managers (Yabai, Aerospace, AwesomeWM), and development tooling. Configuration management uses GNU Stow for safe symlink deployment with XDG Base Directory compliance and consistent theming (TokyoNight/Gruvbox Material) across all tools.
+This repository is a comprehensive personal dotfiles collection managing
+configurations for 40+ development tools across macOS and Linux environments. It
+provides a complete development ecosystem including multiple text editors
+(Neovim LazyVim, VS Code, Helix), terminal emulators (Kitty, WezTerm, Ghostty),
+shells (Zsh, Fish with Starship), window managers (Yabai, Aerospace, AwesomeWM),
+and development tooling. Configuration management uses GNU Stow for safe symlink
+deployment with XDG Base Directory compliance and consistent theming
+(TokyoNight/Gruvbox Material) across all tools.
 
-**AI-First Development Environment:** This repository is optimized for AI agent collaboration with native OpenCode integration, specialized agent templates for different project types, and AI-assisted Git workflows through Lazygit OpenCode integration.
+**AI-First Development Environment:** This repository is optimized for AI agent
+collaboration with native OpenCode integration, specialized agent templates for
+different project types, and AI-assisted Git workflows through Lazygit OpenCode
+integration.
 
 ## Technology Stack
 
@@ -12,24 +22,31 @@ This repository is a comprehensive personal dotfiles collection managing configu
 
 - **Deployment**: GNU Stow for conflict-safe symlink management
 - **Organization**: Directory-per-tool with XDG Base Directory compliance
-- **Theme System**: Consistent TokyoNight and Gruvbox Material themes across all tools
+- **Theme System**: Consistent TokyoNight and Gruvbox Material themes across all
+  tools
 - **Version Control**: Git with conventional commits and Delta diff enhancement
-- **Package Management**: Homebrew (macOS) + Brewfile, pacman (Arch Linux) + pkglist
-- **AI Integration**: Native OpenCode agent templates and automated commit message generation
+- **Package Management**: Homebrew (macOS) + Brewfile, pacman (Arch Linux) +
+  pkglist
+- **AI Integration**: Native OpenCode agent templates and automated commit
+  message generation
 
 ### Development Environment
 
-- **Primary Editor**: Neovim with LazyVim configuration and comprehensive LSP setup
+- **Primary Editor**: Neovim with LazyVim configuration and comprehensive LSP
+  setup
 - **Terminal Multiplexer**: Tmux with custom status bar and session management
 - **Shell Environment**: Zsh with Oh My Zsh, Fish with modern alternatives
-- **Git Workflow**: Lazygit TUI with OpenCode integration, Delta diff viewer, conventional commit standards
+- **Git Workflow**: Lazygit TUI with OpenCode integration, Delta diff viewer,
+  conventional commit standards
 - **File Management**: Yazi file manager, FZF fuzzy finder, LSD enhanced listing
-- **AI Development**: OpenCode integration for commit message generation and agent-assisted workflows
+- **AI Development**: OpenCode integration for commit message generation and
+  agent-assisted workflows
 
 ### Python Development (Strict Quality Gates)
 
 - **Runtime**: Python 3.7+ compatibility with strict type checking
-- **Linting**: Ruff (60+ rule categories) + Pylint with custom strict configuration
+- **Linting**: Ruff (60+ rule categories) + Pylint with custom strict
+  configuration
 - **Type Checking**: MyPy in strict mode with comprehensive rules
 - **Testing**: Pytest with coverage reporting
 - **Formatting**: Ruff formatter (88 character line limit)
@@ -39,26 +56,34 @@ This repository is a comprehensive personal dotfiles collection managing configu
 
 ### OpenCode Integration (Native AI Development Environment)
 
-This repository features comprehensive OpenCode integration for AI-assisted development workflows:
+This repository features comprehensive OpenCode integration for AI-assisted
+development workflows:
 
 **Lazygit + OpenCode Commit Message Generation:**
 
 - **Location**: `~/dotfiles/lazygit/bin/reword-commit-with-opencode.sh`
-- **Function**: Automatically rewrites commit messages using OpenCode AI with context-aware prompts
+- **Function**: Automatically rewrites commit messages using OpenCode AI with
+  context-aware prompts
 - **Usage**: Integrated into Lazygit TUI for seamless commit message improvement
 - **Model**: GitHub Copilot GPT-4.1 with specialized commit message formatting
-- **Features**: Preserves commit footers, handles stashing, supports both amend and rebase workflows
+- **Features**: Preserves commit footers, handles stashing, supports both amend
+  and rebase workflows
 
 **Serena MCP Server (Primary Code Intelligence):**
 
-- **Location**: `~/dotfiles/serena/.serena/serena_config.yml`
-- **Purpose**: Advanced code analysis and manipulation via Model Context Protocol
+- **Location**: `~/dotfiles/serena/.serena/serena_config.yml` (stowable config)
+- **Cache Directory**: `~/.serena/` (working directory, gitignored)
+- **Purpose**: Advanced code analysis and manipulation via Model Context
+  Protocol
 - **Key Capabilities**:
-  - Symbol-level code understanding (`serena_find_symbol`, `serena_find_referencing_symbols`)
-  - Intelligent code editing (`serena_replace_symbol_body`, `serena_insert_after_symbol`)
+  - Symbol-level code understanding (`serena_find_symbol`,
+    `serena_find_referencing_symbols`)
+  - Intelligent code editing (`serena_replace_symbol_body`,
+    `serena_insert_after_symbol`)
   - Pattern-based search (`serena_search_for_pattern`)
   - File operations with context (`serena_read_file`, `serena_create_text_file`)
-  - Memory management for complex tasks (`serena_write_memory`, `serena_read_memory`)
+  - Memory management for complex tasks (`serena_write_memory`,
+    `serena_read_memory`)
   - Shell command execution (`serena_execute_shell_command`)
 
 **Active OpenCode Agent Templates:**
@@ -107,7 +132,8 @@ opencode agent review "Review this code for quality"
 
 - **Git** and **GNU Stow** (essential for deployment)
 - **Package Manager**: Homebrew (macOS) or pacman (Arch Linux)
-- **Nerd Font**: CaskaydiaCove, Hack, or JetBrains Mono recommended for icon support
+- **Nerd Font**: CaskaydiaCove, Hack, or JetBrains Mono recommended for icon
+  support
 - **Terminal**: Any modern terminal with true color support
 - **Platform**: macOS (primary) or Linux (tested on Arch)
 
@@ -291,7 +317,7 @@ curl -w "@curl-format.txt" -s -o /dev/null https://google.com  # Response timing
 
 ### Dotfiles Repository Organization
 
-```
+```text
 ~/dotfiles/
 ├── tool-name/                    # Each tool gets dedicated directory
 │   ├── .config/
@@ -309,10 +335,13 @@ curl -w "@curl-format.txt" -s -o /dev/null https://google.com  # Response timing
 
 ### GNU Stow Integration Patterns
 
-- **Symlink Strategy**: Stow creates symlinks from `~/dotfiles/tool-name/` to target locations
+- **Symlink Strategy**: Stow creates symlinks from `~/dotfiles/tool-name/` to
+  target locations
 - **Conflict Handling**: Always run `stow -n` (dry run) before deployment
-- **Ignore Patterns**: `.stow-local-ignore` excludes documentation, cache, and build artifacts
-- **Selective Deployment**: Deploy tools incrementally rather than all at once (`stow */`)
+- **Ignore Patterns**: `.stow-local-ignore` excludes documentation, cache, and
+  build artifacts
+- **Selective Deployment**: Deploy tools incrementally rather than all at once (
+  `stow */`)
 - **Backup Strategy**: Always backup existing configs before first deployment
 
 ### Configuration File Standards
@@ -673,7 +702,8 @@ yazi --select-path ~/.config  # Start with specific directory selected
 
 1. **Always Backup First**: `cp -r ~/.config ~/.config-backup-$(date +%Y%m%d)`
 2. **Test in Isolation**: `stow -n tool-name` before actual deployment
-3. **Deploy Incrementally**: Single tools rather than bulk deployment (`stow */`)
+3. **Deploy Incrementally**: Single tools rather than bulk deployment (
+   `stow */`)
 4. **Validate After Changes**: Source configs and test functionality
 5. **Version Control**: Commit and push changes before system-wide deployment
 
@@ -804,7 +834,8 @@ git gc --aggressive             # Git repository cleanup
 - Shell startup time: Profile `.zshrc` loading with `time zsh -i -c exit`
 - Editor performance: Monitor Neovim plugin loading times
 - Terminal rendering: Enable GPU acceleration where supported
-- File operations: Use fast tools like `fd`, `rg`, `bat` instead of traditional alternatives
+- File operations: Use fast tools like `fd`, `rg`, `bat` instead of traditional
+  alternatives
 
 ## Personal OpenCode Agent Configuration
 
@@ -817,7 +848,8 @@ git gc --aggressive             # Git repository cleanup
 - Maintain proper error handling
 - **Do not leave trailing or leading whitespace in generated files or code, especially markdown**
 - Ensure all generated markdown follows [GitHub's style guide](https://docs.github.com/en/get-started/writing-on-github)
-- Ensure no syntax errors are present in generated code; check LSP and linter diagnostics when available
+- Ensure no syntax errors are present in generated code; check LSP and linter
+  diagnostics when available
 - **Automatically format and lint all files before writing or committing**
 
 ### Workflow Preferences
@@ -830,8 +862,10 @@ git gc --aggressive             # Git repository cleanup
 ### Planning and Documentation Requirements
 
 - **When explicitly asked for a plan, always create a markdown document containing the detailed plan**
-- Plan documents should be saved as `plan.md` or `[task-name]-plan.md` in the current working directory
-- Plans should include clear objectives, step-by-step breakdown, dependencies, timeline estimates, and success criteria
+- Plan documents should be saved as `plan.md` or `[task-name]-plan.md` in the
+  current working directory
+- Plans should include clear objectives, step-by-step breakdown, dependencies,
+  timeline estimates, and success criteria
 - **Default behavior when using planning agents should be to create a plan document**
 
 ### Security Practices
@@ -845,6 +879,8 @@ git gc --aggressive             # Git repository cleanup
 
 - Leverage OpenCode agent templates for specialized tasks
 - Use Lazygit + OpenCode integration for commit message improvement
-- Apply project-specific agents (golang-microservice, nodejs-api, python-ml, react-spa) based on context
+- Apply project-specific agents (golang-microservice, nodejs-api, python-ml,
+  react-spa) based on context
 - Run quality gates before commits using available linters and formatters
-- Reference Neovim config at `~/.config/nvim` and Mason binaries at `~/.local/share/nvim/mason/bin` for tooling
+- Reference Neovim config at `~/.config/nvim` and Mason binaries at
+  `~/.local/share/nvim/mason/bin` for tooling

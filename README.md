@@ -170,6 +170,50 @@ I use [starship](https://starship.rs/) for my prompt. For some bling, I run
 [neofetch](https://github.com/dylanaraps/neofetch) and [DT's
 colorscripts](https://gitlab.com/dwt1/shell-color-scripts) in my `.zshrc`.
 
+#### Fish
+
+[Fish](https://fishshell.com/) is an alternative shell with smart autocompletion
+and syntax highlighting out of the box. My config includes custom functions,
+plugins, and theme integration with Starship.
+
+#### Modern CLI Tools
+
+These modern replacements for traditional Unix tools are configured in my shell:
+
+- **[bat](https://github.com/sharkdp/bat)**: A `cat` clone with syntax
+  highlighting and Git integration
+- **[lsd](https://github.com/lsd-rs/lsd)**: Modern `ls` replacement with icons
+  and colors
+- **[zoxide](https://github.com/ajeetdsouza/zoxide)**: Smarter `cd` command that
+  learns your habits
+- **[fd](https://github.com/sharkdp/fd)**: Fast and user-friendly `find`
+  alternative
+- **[ripgrep (rg)](https://github.com/BurntSushi/ripgrep)**: Blazingly fast
+  `grep` replacement
+- **[fzf](https://github.com/junegunn/fzf)**: Fuzzy finder for files, history,
+  and more
+
+#### Yazi
+
+[Yazi](https://github.com/sxyazi/yazi) is a blazing fast terminal file manager
+with image preview support, written in Rust.
+
+#### Helix
+
+[Helix](https://helix-editor.com/) is a post-modern modal text editor with
+built-in LSP support and multiple selections. It's like Neovim but with
+batteries included.
+
+#### Zed
+
+[Zed](https://zed.dev/) is a high-performance, multiplayer code editor from the
+creators of Atom and Tree-sitter. Good for collaborative editing.
+
+#### Sesh
+
+[Sesh](https://github.com/joshmedeski/sesh) is a smart tmux session manager that
+integrates with zoxide for quick project switching.
+
 #### Firefox
 
 Use the [Arkenfox user.js](https://github.com/arkenfox/user.js) to harden. [Librewolf](https://librewolf.net/)
@@ -215,6 +259,12 @@ MacOS, with very similar architecture to
 [komorebi](https://github.com/LGUG2Z/komorebi) +
 [whkd](https://github.com/LGUG2Z/whkd) on Windows.
 
+#### Aerospace
+
+[Aerospace](https://github.com/nikitabobko/AeroSpace) is an i3-like tiling
+window manager for macOS. Unlike Yabai, it does **not** require disabling System
+Integrity Protection (SIP), making it easier to set up and maintain.
+
 #### Keybindings
 
 > **Note**: I don't use this anymore.
@@ -232,7 +282,6 @@ stow KeyBindings
 ## TODO
 
 - [x] add links
-- [ ] flesh out dependencies more
 - [x] add brew packages file
 - [x] maybe organize directories into shared, macos, linux
-- [ ] add section on `yazi` and other tools I haven't added
+- [x] add section on `yazi` and other tools I haven't added
