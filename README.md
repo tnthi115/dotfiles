@@ -31,6 +31,8 @@ brew bundle --file=~/dotfiles/Brewfile
 
 You will need [Git](https://git-scm.com/) and [GNU
 Stow](https://www.gnu.org/software/stow/) to clone and symlink the dotfiles.
+For a detailed explanation of how stow works with dotfiles, see
+[this excellent gist](https://gist.github.com/andreibosco/cb8506780d0942a712fc).
 
 ```sh
 # On Arch
