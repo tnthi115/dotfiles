@@ -7,28 +7,40 @@ development workflows.
 
 This configuration extends OpenCode's built-in capabilities with custom
 commands, agents, and workflows optimized for comprehensive project analysis and
-AI collaboration.
+AI collaboration. It integrates with
+[oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode) for multi-agent
+orchestration and [superpowers](https://github.com/obra/superpowers) for
+workflow discipline.
 
 ### Key Features
 
-- **AI-Optimized `/deep-init` Command**: Deep project analysis with code pattern
+- **oh-my-opencode Integration**: Multi-agent orchestration with Sisyphus,
+  Oracle, Prometheus, and specialized agents
+- **superpowers Skills**: Workflow discipline through TDD, debugging, and
+  planning skills
+- **Custom `/analyze-project` Command**: Deep project analysis with code pattern
   extraction and actionable examples
 - **Custom Commands**: Specialized workflows for common development tasks
 - **Custom Agents**: Purpose-built AI agents for commit messages, documentation,
   and code review
 - **Theme Integration**: Custom OpenCode themes
 
-## `/deep-init` Command
+## `/analyze-project` Command
 
-The `/deep-init` command is a comprehensive project analysis tool optimized for
-AI coding agents. Unlike the built-in `/init` command which creates basic
-documentation, `/deep-init` performs deep architectural analysis, extracts
-actual code patterns, parses tool configurations, and generates a detailed
-`AGENTS.md` file with concrete examples that AI agents can immediately use.
+> **Note:** This is a custom command distinct from oh-my-opencode's built-in
+> `/init-deep`. Use `/init-deep` for oh-my-opencode's standard initialization,
+> or `/analyze-project` for this custom Serena-first analysis workflow.
+
+The `/analyze-project` command is a comprehensive project analysis tool
+optimized for AI coding agents. It performs deep architectural analysis,
+extracts actual code patterns, parses tool configurations, and generates a
+detailed `AGENTS.md` file with concrete examples that AI agents can immediately
+use.
 
 ### Hybrid Analysis Strategy
 
-`/deep-init` uses a **two-tier approach** for maximum accuracy and reliability:
+`/analyze-project` uses a **two-tier approach** for maximum accuracy and
+reliability:
 
 **1. Serena MCP (Preferred)** - Symbol-level semantic analysis when available:
 
@@ -53,7 +65,7 @@ MCP availability.
 
 ## What It Does
 
-The `/deep-init` command analyzes:
+The `/analyze-project` command analyzes:
 
 1. **Project Purpose & Domain** - What the project does and who uses it
 2. **Technology Stack** - Languages, frameworks, dependencies, build tools with
@@ -74,7 +86,7 @@ The `/deep-init` command analyzes:
    tests
 10. **Git Workflow** - Commit patterns and branching strategies from git history
 
-### Key Differences from Built-in `/init`
+### Key Differences from Built-in Commands
 
 **Built-in `/init`**:
 
@@ -82,7 +94,13 @@ The `/deep-init` command analyzes:
 - Provides descriptive documentation
 - Good starting point for human-readable docs
 
-**Custom `/deep-init`**:
+**oh-my-opencode `/init-deep`**:
+
+- Multi-agent deep analysis via oh-my-opencode
+- Uses oh-my-opencode's agent orchestration
+- Recommended for most use cases
+
+**Custom `/analyze-project`**:
 
 - **Semantic code analysis** via Serena MCP (with automatic fallback)
 - **Symbol-level pattern extraction** (classes, functions, types, references)
@@ -110,7 +128,13 @@ opencode
 Then in the OpenCode TUI, run:
 
 ```text
-/deep-init
+/analyze-project
+```
+
+Or use oh-my-opencode's built-in command:
+
+```text
+/init-deep
 ```
 
 ### What Happens
@@ -150,7 +174,7 @@ Then in the OpenCode TUI, run:
 
 ### Expected Output
 
-After running `/deep-init`, you'll have:
+After running `/analyze-project`, you'll have:
 
 - **AGENTS.md** in your project root with comprehensive AI-optimized
   documentation
@@ -181,20 +205,22 @@ After running `/deep-init`, you'll have:
 - **Standards**: Codifies conventions and best practices
 - **Reference**: Quick lookup for commands, patterns, and workflows
 
-## Comparison with Built-in `/init`
+## Comparison of Init Commands
 
-| Feature | Built-in `/init` | Enhanced `/init` |
-|---------|------------------|------------------|
-| Creates AGENTS.md | ✅ | ✅ |
-| Analyzes project structure | Basic | Deep analysis |
-| Identifies tech stack | ✅ | Detailed with versions |
-| Extracts architecture patterns | ❌ | ✅ |
-| Documents code conventions | ❌ | ✅ |
-| Analyzes build/test workflow | ❌ | ✅ |
-| Identifies design patterns | ❌ | ✅ |
-| Documents quality standards | ❌ | ✅ |
-| Includes AI agent guidelines | ❌ | ✅ |
-| Shows example commands | ❌ | ✅ |
+| Feature | `/init` | `/init-deep` (omo) | `/analyze-project` |
+|---------|---------|--------------------|--------------------|
+| Creates AGENTS.md | ✅ | ✅ | ✅ |
+| Analyzes project structure | Basic | Deep | Deep |
+| Identifies tech stack | ✅ | Detailed | Detailed with versions |
+| Extracts architecture patterns | ❌ | ✅ | ✅ |
+| Documents code conventions | ❌ | ✅ | ✅ |
+| Analyzes build/test workflow | ❌ | ✅ | ✅ |
+| Identifies design patterns | ❌ | ✅ | ✅ |
+| Documents quality standards | ❌ | ✅ | ✅ |
+| Includes AI agent guidelines | ❌ | ✅ | ✅ |
+| Shows example commands | ❌ | ✅ | ✅ |
+| Serena MCP (preferred) | ❌ | ❌ | ✅ |
+| Graceful fallback | N/A | N/A | ✅ |
 
 ## Example AGENTS.md Structure
 
@@ -241,22 +267,23 @@ After running `/deep-init`, you'll have:
 
 ## Tips
 
-1. **Run Early**: Execute `/init` when starting work on a new project
+1. **Run Early**: Execute `/init-deep` or `/analyze-project` when starting work
+   on a new project
 2. **Re-run After Changes**: If your project architecture changes significantly,
-   run `/init` again to update AGENTS.md
+   run the init command again to update AGENTS.md
 3. **Commit AGENTS.md**: Add it to version control so all developers and AI
    agents benefit
 4. **Review and Edit**: The AI does its best, but you can manually edit
    AGENTS.md to add project-specific context
-5. **Use with Planning**: Run `/init` first, then use the plan agent to
+5. **Use with Planning**: Run `/init-deep` first, then use the plan agent to
    understand the codebase before making changes
 
 ## Customization
 
-The command is located at:
+The `/analyze-project` command is located at:
 
 ```text
-~/dotfiles/opencode/.config/opencode/command/init.md
+~/dotfiles/opencode/.config/opencode/command/analyze-project.md
 ```
 
 You can customize:
@@ -286,8 +313,9 @@ You can customize:
 
 **Issue**: Want different model/agent
 
-- **Solution**: Edit `~/dotfiles/opencode/.config/opencode/command/init.md`
-  frontmatter to change `agent` or `model`
+- **Solution**: Edit
+  `~/dotfiles/opencode/.config/opencode/command/analyze-project.md` frontmatter
+  to change `agent` or `model`
 
 ## Advanced Usage
 
@@ -306,27 +334,31 @@ You can create specialized init commands for different project types:
 /init-monorepo
 ```
 
-Just copy `init.md` and customize the analysis sections for each type.
+Just copy `analyze-project.md` and customize the analysis sections for each
+type.
 
 ## Directory Structure
 
 ```text
 opencode/.config/opencode/
-├── agent/                      # Custom AI agents
-│   ├── commit.md              # Conventional commit message generation
-│   ├── docs-writer.md         # Documentation generation and maintenance
-│   └── review.md              # Code review assistance
-├── command/                    # Custom slash commands
-│   ├── commit.md              # Commit workflow command
-│   ├── do.md                  # Task execution command
-│   ├── init.md                # Enhanced project initialization
-│   ├── plan.md                # Planning and analysis command
-│   └── serena.md              # Serena MCP integration command
-├── themes/                     # Custom OpenCode themes
-│   └── tymon-kanagawa.json    # Kanagawa color scheme
-├── AGENTS.md                   # Agent behavior guidelines
-├── opencode.jsonc             # Main OpenCode configuration
-└── README.md                  # This file
+├── agent/                              # Custom AI agents
+│   ├── commit.md                       # Conventional commit message generation
+│   ├── docs-writer.md                  # Documentation generation and maintenance
+│   └── review.md                       # Code review assistance
+├── command/                            # Custom slash commands
+│   ├── analyze-project.md              # Custom project analysis (Serena-first)
+│   ├── commit.md                       # Commit workflow command (delegates to @commit)
+│   ├── do.md                           # Task execution command
+│   ├── plan.md                         # Planning and analysis command
+│   └── serena.md                       # Serena MCP integration command
+├── themes/                             # Custom OpenCode themes
+│   └── tymon-kanagawa.json             # Kanagawa color scheme
+├── AGENTS.md                           # Agent behavior guidelines
+├── analyze-codebase-command-guide.md   # /analyze-codebase documentation
+├── oh-my-opencode.jsonc                # oh-my-opencode plugin configuration
+├── opencode.jsonc                      # Main OpenCode configuration
+├── plan-command-usage-guide.md         # /plan command documentation
+└── README.md                           # This file
 ```
 
 ## Configuration Files
@@ -342,21 +374,63 @@ Main configuration file containing:
 - Formatter settings
 - MCP server integrations
 
+### oh-my-opencode.jsonc
+
+[oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode) plugin
+configuration containing:
+
+- **Agent configurations**: Model assignments for Sisyphus, Oracle, Prometheus,
+  etc.
+- **Category configurations**: Model assignments for task categories
+  (visual-engineering, ultrabrain, quick, etc.)
+- **Background task settings**: Concurrency limits for parallel agent execution
+- **Experimental features**: Context pruning and auto-resume settings
+
+#### Agent Model Assignments
+
+| Agent | Model | Purpose |
+|-------|-------|---------|
+| `sisyphus` | claude-opus-4-5 | Main orchestration agent |
+| `sisyphus-junior` | claude-sonnet-4-5 | Focused task executor |
+| `prometheus` | claude-opus-4-5 | Strategic planning |
+| `metis` | claude-opus-4-5 | Pre-planning analysis |
+| `momus` | gpt-5.2 | Plan review |
+| `oracle` | gpt-5.2 | Architecture consultation |
+| `librarian` | claude-sonnet-4-5 | Documentation lookup |
+| `explore` | claude-haiku-4-5 | Codebase investigation |
+
+#### Category Model Assignments
+
+| Category | Model | Purpose |
+|----------|-------|---------|
+| `visual-engineering` | claude-sonnet-4-5 | Frontend, UI/UX work |
+| `ultrabrain` | gpt-5.2-codex | Complex logic tasks |
+| `artistry` | claude-sonnet-4-5 | Creative problem-solving |
+| `quick` | claude-haiku-4-5 | Trivial tasks |
+| `writing` | claude-sonnet-4-5 | Documentation |
+
 ### AGENTS.md
 
 Guidelines for AI agent behavior and interaction patterns specific to this
-dotfiles repository.
+dotfiles repository, including:
+
+- Core engineering principles
+- Tool selection (native vs Serena)
+- Superpowers skill integration
+- Context preservation with Serena memory
 
 ## Custom Commands
 
-### `/init` - Enhanced Project Initialization
+### `/analyze-project` - Custom Project Analysis
 
-Deep project analysis that creates comprehensive AGENTS.md documentation.
+Deep project analysis with Serena MCP preference and graceful fallback.
 
-**Usage**: `/init` in any project directory
+**Usage**: `/analyze-project` in any project directory
 
 **Features**:
 
+- Serena MCP tools preferred for semantic analysis
+- Automatic fallback to Read/Grep/Glob if Serena unavailable
 - Analyzes architecture patterns (MVC, microservices, monolith, etc.)
 - Identifies tech stack with versions
 - Extracts code conventions and patterns
@@ -364,46 +438,107 @@ Deep project analysis that creates comprehensive AGENTS.md documentation.
 - Captures quality standards
 - Provides AI agent guidelines
 
+> **Note:** For most cases, use oh-my-opencode's built-in `/init-deep` instead.
+
 ### `/plan` - Planning and Analysis
 
 Creates detailed implementation plans without making code changes.
+
+**Usage**: `/plan [task description]`
+
+**Features**:
+
+- Phase 0 current state analysis
+- Issue identification (performance, correctness, security)
+- Structured task breakdown optimized for agent execution
+- Saves to `.sisyphus/plans/` directory
+
+### `/do` - Task Execution
+
+Executes an implementation plan with the build agent.
+
+**Usage**: `/do` or `/do @plan-file.md`
+
+**Features**:
+
+- Preflight dependency checking
+- Incremental validation after each change
+- Full quality gates at completion
+- Error handling with rollback suggestions
 
 ### `/commit` - Conventional Commit Generation
 
 Generates properly formatted conventional commit messages.
 
+**Usage**: `/commit`
+
+**Note**: This command delegates to the `@commit` agent.
+
 ### `/serena` - Serena MCP Integration
 
-Advanced code intelligence using Serena Model Context Protocol.
+Activates Serena MCP server for manual context optimization.
+
+**Usage**: `/serena`
+
+**Features**:
+
+- Project activation and onboarding
+- Development mode configuration
+- Memory management for session continuity
 
 ## Custom Agents
 
-### commit
+### @commit
 
 Generates conventional commit messages following project standards.
 
 **Mode**: Subagent
+**Model**: gpt-5-mini
 **Usage**: `@commit` (agent, not a slash command)
 
-### docs-writer
+**Features**:
+
+- Analyzes staged changes via MCP git tools
+- Detects and preserves GitLab/Jira reference footers from branch history
+- Follows Conventional Commits format (type(scope?): subject)
+- Requires verification before claiming success
+- Uses `superpowers:verification-before-completion` skill
+
+### @docs-writer
 
 Creates and maintains project documentation.
 
 **Mode**: Subagent
 **Usage**: `@docs-writer`
 
-### review
+**Features**:
+
+- Token-efficient, scannable documentation
+- Concrete code examples with syntax highlighting
+- Proper markdown structure with tables and headers
+- Uses `superpowers:writing-skills` skill
+
+### @review
 
 Performs code review for quality and best practices.
 
 **Mode**: Subagent
+**Model**: claude-sonnet-4-5
 **Usage**: `@review`
+
+**Features**:
+
+- Categorized feedback (Critical, Important, Minor, Strengths)
+- Specific file:line references for each issue
+- Read-only mode (cannot modify code)
+- Uses `superpowers:requesting-code-review` skill
 
 ## Superpowers Integration
 
-This configuration integrates with [superpowers](https://github.com/obra/superpowers),
-a skills framework that enforces workflow discipline (TDD, systematic debugging,
-planning) complementing oh-my-opencode's agent orchestration.
+This configuration integrates with
+[superpowers](https://github.com/obra/superpowers), a skills framework that
+enforces workflow discipline (TDD, systematic debugging, planning) complementing
+oh-my-opencode's agent orchestration.
 
 ### How They Work Together
 
@@ -411,7 +546,7 @@ planning) complementing oh-my-opencode's agent orchestration.
 |-------|------|---------|
 | **Agent Orchestration** | oh-my-opencode | Multi-agent system (Sisyphus, Oracle, Prometheus, etc.) |
 | **Workflow Discipline** | superpowers | Mandatory processes (TDD, systematic debugging, planning) |
-| **Custom Commands** | /plan, /do, /deep-init | Project-specific workflows with skill integration |
+| **Custom Commands** | /plan, /do, /analyze-project | Project-specific workflows with skill integration |
 | **Custom Agents** | @commit, @review, @docs-writer | Specialized tasks with skill references |
 
 ### Integrated Workflow Examples
@@ -459,14 +594,33 @@ planning) complementing oh-my-opencode's agent orchestration.
 
 ### Available Superpowers Skills
 
+**Core Skills:**
+
+- `superpowers/using-superpowers` - Skill invocation protocol (check before ANY
+  task)
+- `superpowers/verification-before-completion` - Evidence before claims
+
+**Development Skills:**
+
 - `superpowers/test-driven-development` - Strict RED-GREEN-REFACTOR enforcement
 - `superpowers/systematic-debugging` - 4-phase root cause analysis
 - `superpowers/brainstorming` - Socratic design refinement
+
+**Planning & Execution Skills:**
+
 - `superpowers/writing-plans` - Detailed task breakdown (2-5 min granularity)
 - `superpowers/executing-plans` - Batch execution with checkpoints
 - `superpowers/subagent-driven-development` - Two-stage review gates
+- `superpowers/dispatching-parallel-agents` - Parallel task execution
+
+**Review Skills:**
+
 - `superpowers/requesting-code-review` - Pre-review checklist
 - `superpowers/receiving-code-review` - Feedback workflow
+- `superpowers/writing-skills` - Documentation quality standards
+
+**Git Skills:**
+
 - `superpowers/using-git-worktrees` - Isolated development branches
 - `superpowers/finishing-a-development-branch` - Branch completion workflow
 
@@ -524,18 +678,20 @@ This creates symlinks from `~/.config/opencode/` to this directory.
 
 ## Usage Tips
 
-1. **Start with `/init`**: Run `/init` in any project to create comprehensive
-   AGENTS.md documentation
+1. **Start with `/init-deep`**: Run oh-my-opencode's `/init-deep` in any project
+   to create comprehensive AGENTS.md documentation
 2. **Use Plan Mode**: Switch to plan agent (Tab key) before making significant
    changes
 3. **Leverage Subagents**: Use `@commit`, `@docs-writer`, `@review` for
    specialized tasks
 4. **Customize Commands**: Edit command files in `command/` directory to fit
    your workflow
+5. **Check Skills First**: Always check if a superpowers skill applies before
+   starting any task
 
 ## See Also
 
-- [OpenCode Commands Documentation](https://opencode.ai/docs/commands)
-- [OpenCode Agents Documentation](https://opencode.ai/docs/agents)
+- [OpenCode Documentation](https://opencode.ai/docs)
+- [oh-my-opencode Repository](https://github.com/code-yeongyu/oh-my-opencode)
 - [Superpowers Repository](https://github.com/obra/superpowers)
 - [Dotfiles AGENTS.md](../../../AGENTS.md) for overall project context
