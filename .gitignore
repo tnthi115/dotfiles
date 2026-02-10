@@ -1,7 +1,8 @@
 *sketchybar*
 
-# Ignore Serena working directory
+# Ignore Serena working directories
 .serena/
+serena/
 
 # Ignore Opencode plan files
 .opencode/plans/
