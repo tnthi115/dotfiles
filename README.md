@@ -56,7 +56,7 @@ git clone https://github.com/tnthi115/dotfiles.git
 > For example:
 
 ```sh
-mv ~/.zshrc ~/.zshrc.bak
+mv ~/.config/fish/config.fish ~/.config/fish/config.fish.bak
 ```
 
 Within `~/dotfiles/`, run `stow` to symlink everything (not recommended) or
@@ -67,7 +67,7 @@ stow */ # Everything (the '/' grabs all directories and ignores files (e.g. READ
 ```
 
 ```sh
-stow zsh # Just my zsh config
+stow fish # Just my fish config
 ```
 
 > **Note:** `stow` doesn't assume `$HOME` (`~`) as the target directory, and instead
@@ -77,7 +77,7 @@ stow zsh # Just my zsh config
 > should run `stow` with the `--target` flag to specify your home directory:
 
 ```sh
-stow --target=${HOME} zsh
+stow --target=${HOME} fish
 ```
 
 ## Dependencies
@@ -107,8 +107,9 @@ you want to use the same collections I've created.
 #### Neovim
 
 I used to use [Lunarvim](https://www.lunarvim.org/) as a base config for
-[neovim](https://neovim.io/). Now I prefer
-[LazyVim](https://github.com/tnthi115/lazyvim).
+[neovim](https://neovim.io/). Now I use my own config,
+[tvim](https://github.com/tnthi115/tvim), based on
+[LazyVim](https://www.lazyvim.org/).
 
 #### Tmux
 
@@ -140,37 +141,12 @@ Install superpowers after stowing opencode config:
 ~/dotfiles/bin/install-superpowers.sh
 ```
 
-#### Kitty
-
-[Kitty](https://sw.kovidgoyal.net/kitty/) supports ligatures, so I like it over
-[alacritty](https://github.com/alacritty/alacritty) for now.
-[Fzf](https://github.com/junegunn/fzf) is a must have as well.
-
-#### Wezterm
-
-[Wezterm](https://github.com/wez/wezterm) is another GPU accelerated terminal
-written in Rust (btw) that also supports ligatures and is configured in Lua
-(like Neovim, which is fun). Currently, I'm actually liking this better than
-Kitty because the newest versions of Kitty are giving me issues with fonts
-rendering in all bold for whatever reason.
-
 #### Ghostty
 
-[Ghostty](https://ghostty.org/), written by Mitchell Hashimoto, is the new kid
-on the block. You can read about the features
-[here](https://ghostty.org/docs/features).
-
-#### Zsh
-
-I like to use [zsh](https://wiki.archlinux.org/title/zsh) over
-[bash](https://wiki.archlinux.org/title/bash) because of two plugins:
-
-- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
-- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-
-I use [starship](https://starship.rs/) for my prompt. For some bling, I run
-[neofetch](https://github.com/dylanaraps/neofetch) and [DT's
-colorscripts](https://gitlab.com/dwt1/shell-color-scripts) in my `.zshrc`.
+[Ghostty](https://ghostty.org/) is my terminal emulator of choice. It's a fast,
+native, GPU-accelerated terminal written by Mitchell Hashimoto (creator of
+Vagrant, Terraform, and co-founder of HashiCorp). It supports ligatures, has
+excellent font rendering, and is highly configurable.
 
 #### Fish
 
@@ -194,22 +170,6 @@ These modern replacements for traditional Unix tools are configured in my shell:
   `grep` replacement
 - **[fzf](https://github.com/junegunn/fzf)**: Fuzzy finder for files, history,
   and more
-
-#### Yazi
-
-[Yazi](https://github.com/sxyazi/yazi) is a blazing fast terminal file manager
-with image preview support, written in Rust.
-
-#### Helix
-
-[Helix](https://helix-editor.com/) is a post-modern modal text editor with
-built-in LSP support and multiple selections. It's like Neovim but with
-batteries included.
-
-#### Zed
-
-[Zed](https://zed.dev/) is a high-performance, multiplayer code editor from the
-creators of Atom and Tree-sitter. Good for collaborative editing.
 
 #### Sesh
 
@@ -280,10 +240,3 @@ stow KeyBindings
 
 - Remap mission control to alt + up in keyboard shortcut settings
   - Remap space swapping to alt + {1,2,3,4}
-
-## TODO
-
-- [x] add links
-- [x] add brew packages file
-- [x] maybe organize directories into shared, macos, linux
-- [x] add section on `yazi` and other tools I haven't added

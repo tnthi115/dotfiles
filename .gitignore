@@ -1,7 +1,7 @@
 *sketchybar*
 
-# Ignore Serena agent memory files
-.serena/memories/
+# Ignore Serena working directory
+.serena/
 
 # Ignore Opencode plan files
 .opencode/plans/
