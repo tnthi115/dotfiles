@@ -20,6 +20,9 @@
     "compaction": {
       "model": "f5/gpt-5.2",
     },
+    "xc-planner": {
+      "mode": "subagent",
+    },
   },
   "provider": {
     "f5": {

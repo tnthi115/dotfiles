@@ -11,13 +11,14 @@
     "sisyphus": {
       "model": "f5/claude-opus-4-5",
       // Tool selection: native LSP first → escalate to Serena for symbol editing → fallback on failures
-      "prompt_append": "Use native LSP tools (lsp_goto_definition, lsp_find_references, lsp_rename) and AST-grep for most code navigation and pattern matching. Escalate to Serena MCP for: (1) symbol-addressable editing (serena_replace_symbol_body, serena_insert_after_symbol), (2) guided refactoring pipelines, (3) repos with weak LSP support. If Serena fails or times out, fall back to native Read/Grep/Edit tools. Use Serena memory (serena_write_memory/read_memory) only for multi-step tasks spanning compaction. Use Sequential Thinking MCP for complex reasoning tasks."
+      "prompt_append": "Use native LSP tools (lsp_goto_definition, lsp_find_references, lsp_rename) and AST-grep for most code navigation and pattern matching. Escalate to Serena MCP for: (1) symbol-addressable editing (serena_replace_symbol_body, serena_insert_after_symbol), (2) guided refactoring pipelines, (3) repos with weak LSP support. If Serena fails or times out, fall back to native Read/Grep/Edit tools. Use Serena memory (serena_write_memory/read_memory) only for multi-step tasks spanning compaction. Use Sequential Thinking MCP for complex reasoning tasks. CRITICAL: For questions about what is deployed in production/staging/crt/dev environments, or any question mentioning 'in prod', 'in production', 'deployed image', 'sre-*-model', you MUST delegate to @xc-planner - do NOT answer from local repo context. Local CI configs show :latest tags, not actual deployed versions."
     },
     "sisyphus-junior": {
       "model": "f5/claude-sonnet-4-5"
     },
     "prometheus": {
-      "model": "f5/claude-opus-4-5"
+      "model": "f5/claude-opus-4-5",
+      "prompt_append": "Use Sequential Thinking MCP for complex planning and reasoning tasks. CRITICAL: For questions about what is deployed in production/staging/crt/dev environments, or any question mentioning 'in prod', 'in production', 'deployed image', 'sre-*-model', you MUST delegate to @xc-planner - do NOT answer from local repo context. Local CI configs show :latest tags, not actual deployed versions."
     },
     "metis": {
       "model": "f5/claude-opus-4-5"
