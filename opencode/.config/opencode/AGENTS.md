@@ -185,6 +185,27 @@ experimental tech, complex patterns (as needed)
 - Focus on implementation and testing, not committing
 - User controls when and how commits are made
 
+### Plan File Exclusions (NEVER Commit)
+
+**NEVER stage or commit files from these directories** — they are temporary
+working documents, not version-controlled:
+
+| Directory/Pattern | Purpose |
+|-------------------|---------|
+| `.sisyphus/` | Plans, notepads, drafts from oh-my-opencode |
+| `.opencode/plans/` | OpenCode plan files |
+| `*-plan.md`, `plan.md` | Any plan file pattern |
+
+If these files appear in staged changes, **unstage them immediately**:
+
+```bash
+git reset HEAD .sisyphus/ .opencode/plans/
+git reset HEAD "*-plan.md"
+```
+
+These paths are already in `.gitignore`, but agents must actively avoid
+staging them.
+
 ## Planning Requirements
 
 - **When asked for plan, create markdown document with detailed plan**
