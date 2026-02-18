@@ -85,4 +85,6 @@
     path = /Users/t.thi/work-dotfiles/git/.gitconfig-work
 [includeIf "gitdir:~/go/src/gopkg.volterra.us/"]
     path = /Users/t.thi/work-dotfiles/git/.gitconfig-work
+[includeIf "gitdir:~/.config/opencode/xc-agents/"]
+    path = /Users/t.thi/work-dotfiles/git/.gitconfig-work
 
