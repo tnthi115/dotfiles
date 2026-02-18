@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["oh-my-opencode"],
+  "plugin": ["oh-my-opencode", "opencode-notify", "opencode-agent-memory"],
   "share": "manual",
   "autoupdate": true,
   "theme": "tymon-kanagawa",
@@ -18,7 +18,7 @@
   },
   "agent": {
     "compaction": {
-      "model": "f5/gpt-5.2",
+      "model": "f5/claude-sonnet-4-5",
     },
     "xc-planner": {
       "mode": "subagent",
@@ -125,16 +125,19 @@
       },
     },
     // prompt: /serena custom command or "activate serena project"
-    "serena": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "--from",
-        "git+https://github.com/oraios/serena",
-        "serena",
-        "start-mcp-server",
-      ],
-    },
+    // NOTE: Commented out - agents don't use Serena automatically.
+    // Native LSP tools are better for most operations. Re-enable if needed
+    // for symbol-level editing (serena_replace_symbol_body, serena_insert_after_symbol).
+    // "serena": {
+    //   "type": "local",
+    //   "command": [
+    //     "uvx",
+    //     "--from",
+    //     "git+https://github.com/oraios/serena",
+    //     "serena",
+    //     "start-mcp-server",
+    //   ],
+    // },
     // prompt: use sequential-thinking, chain-of-thought reasoning, break this down step by step
     "sequential-thinking": {
       "type": "local",

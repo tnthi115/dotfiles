@@ -69,22 +69,19 @@ development workflows:
 - **Features**: Preserves commit footers, handles stashing, supports both amend
   and rebase workflows
 
-**Serena MCP Server (Primary Code Intelligence):**
+**Agent Memory Plugin (Persistent Memory):**
 
-- **Location**: `~/dotfiles/serena/.serena/serena_config.yml` (stowable config)
-- **Cache Directory**: `~/.serena/` (working directory, gitignored)
-- **Purpose**: Advanced code analysis and manipulation via Model Context
-  Protocol
+- **Purpose**: Letta-inspired persistent, self-editable memory blocks
 - **Key Capabilities**:
-  - Symbol-level code understanding (`serena_find_symbol`,
-    `serena_find_referencing_symbols`)
-  - Intelligent code editing (`serena_replace_symbol_body`,
-    `serena_insert_after_symbol`)
-  - Pattern-based search (`serena_search_for_pattern`)
-  - File operations with context (`serena_read_file`, `serena_create_text_file`)
-  - Memory management for complex tasks (`serena_write_memory`,
-    `serena_read_memory`)
-  - Shell command execution (`serena_execute_shell_command`)
+  - Memory blocks automatically injected into system prompt
+  - Agent can read and edit its own memory (`memory_list`, `memory_set`,
+    `memory_replace`)
+  - Survives sessions and compaction
+- **Memory Locations**:
+  - Global: `~/.config/opencode/memory/*.md`
+  - Project: `.opencode/memory/*.md` (auto-gitignored)
+- **Default Blocks**: `persona.md` (behavior), `human.md` (preferences),
+  `project.md` (codebase knowledge)
 
 **Active OpenCode Agent Templates:**
 
@@ -600,27 +597,21 @@ refactor/improve-theme-system
 
 ### AI-Enhanced Development Workflows
 
-**Serena MCP Integration Patterns:**
+**Native LSP and Code Intelligence:**
+
+Use native OpenCode tools for code navigation and editing:
 
 ```bash
-# Code analysis and symbol navigation
-serena_find_symbol "function_name"  # Find symbol definitions
-serena_find_referencing_symbols "ClassName" "file.py"  # Find all references
-serena_get_symbols_overview "src/main.py"  # Get file structure overview
+# Code navigation (use LSP tools)
+lsp_goto_definition      # Jump to symbol definition
+lsp_find_references      # Find all usages of a symbol
+lsp_rename               # Rename symbol across workspace
+lsp_symbols              # Get document/workspace symbols
 
-# Intelligent code editing
-serena_replace_symbol_body "function_name" "file.py" "new_implementation"
-serena_insert_after_symbol "ClassName" "file.py" "new_method"
-serena_rename_symbol "old_name" "file.py" "new_name"
-
-# Pattern-based search and file operations
-serena_search_for_pattern "regex_pattern"  # Search codebase
-serena_read_file "path/to/file"  # Read with context
-serena_replace_content "file.py" "old_pattern" "new_content" "regex"
-
-# Memory management for complex tasks
-serena_write_memory "task_name" "progress and context"
-serena_read_memory "task_name"  # Restore context after compaction
+# Pattern search (use Grep/AST tools)
+Grep                     # Search file contents with regex
+ast_grep_search          # AST-aware code pattern matching
+ast_grep_replace         # AST-aware code transformation
 ```
 
 **OpenCode Agent Workflow Integration:**

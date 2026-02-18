@@ -45,37 +45,25 @@
 
 **MCP Tool Integration**:
 
-### Tool Selection: Native vs Serena
+### Tool Selection: Use Native Tools
 
-**Default to native OpenCode tools** for most operations:
+**Always use native OpenCode tools**:
 
-| Operation | Native Tool | Serena Equivalent | Use Native When |
-|-----------|-------------|-------------------|-----------------|
-| Go to definition | `lsp_goto_definition` | `serena_find_symbol` | LSP available for language |
-| Find references | `lsp_find_references` | `serena_find_referencing_symbols` | LSP available |
-| Rename symbol | `lsp_rename` | `serena_rename_symbol` | LSP available |
-| Search patterns | `Grep`, `ast_grep_search` | `serena_search_for_pattern` | Text/AST search sufficient |
-| Read files | `Read` | `serena_read_file` | Always prefer native |
-| Run commands | `Bash` | `serena_execute_shell_command` | Always prefer native |
-
-**Escalate to Serena MCP** for these unique capabilities:
-
-| Serena Tool | Unique Value | When to Use |
-|-------------|--------------|-------------|
-| `serena_replace_symbol_body` | Intent-level symbol editing | Replacing function/class bodies |
-| `serena_insert_after_symbol` | Symbol-relative insertion | Adding methods to classes |
-| `serena_insert_before_symbol` | Symbol-relative insertion | Adding imports before first symbol |
-| `serena_write_memory` / `serena_read_memory` | Persistent task context | Multi-step tasks spanning compaction |
-| `serena_get_symbols_overview` | File structure overview | Understanding unfamiliar files |
-
-**When to use Serena for navigation/search**:
-
-- Repos with weak/missing LSP support (dotfiles with mixed formats)
-- Need symbol-level precision that LSP doesn't provide
-- Complex refactoring requiring find→replace→insert pipeline
+| Operation | Native Tool |
+|-----------|-------------|
+| Go to definition | `lsp_goto_definition` |
+| Find references | `lsp_find_references` |
+| Rename symbol | `lsp_rename` |
+| Search patterns | `Grep`, `ast_grep_search` |
+| Read files | `Read` |
+| Run commands | `Bash` |
 
 **Sequential Thinking MCP**: Use for complex reasoning, chain-of-thought,
 multi-step analysis.
+
+**Agent Memory Plugin**: Persistent memory blocks are automatically injected
+into the system prompt. Use `memory_list`, `memory_set`, `memory_replace` to
+manage memory. Memory survives across sessions and compaction.
 
 ## Superpowers Skill Integration
 
@@ -128,9 +116,8 @@ Need to commit?
 └── ALWAYS use verification-before-completion skill
 
 Need code intelligence?
-├── LSP works? → Use native lsp_* tools
-├── Symbol editing? → Use Serena serena_replace_symbol_body etc.
-└── Long task? → Use Serena memory for context preservation
+├── Use native lsp_* tools (lsp_goto_definition, lsp_find_references, lsp_rename)
+└── Use Grep, ast_grep_search for pattern matching
 ```
 
 **Anti-Patterns to Avoid**:
@@ -225,25 +212,28 @@ Two compaction systems work together:
 These are complementary: OpenCode's `compaction.auto` triggers compaction, while
 oh-my-opencode's `dynamic_context_pruning` optimizes what gets pruned.
 
-### Best Practice: Use Serena Memory
+### Agent Memory Plugin
 
-Use Serena memory for all multi-step or long-running tasks:
+The `opencode-agent-memory` plugin provides persistent, self-editable memory
+blocks that survive sessions and compaction. Memory is automatically injected
+into the system prompt.
 
-- **Start:** Write plan, context, progress, and decisions to memory at task
-  start.
-- **During:** After every major step or decision, and before/after risky or long
-  operations, update progress and decisions in memory.
-- **After Compaction/Resume:** Immediately re-read all relevant memory files to
-  restore context.
+**Default memory blocks:**
 
-**Memory names:**
+- `persona.md` — How the agent should behave (global)
+- `human.md` — Your preferences and constraints (global)
+- `project.md` — Codebase-specific knowledge (per-project)
 
-- `task_[timestamp]_plan` (plan)
-- `task_[timestamp]_context` (requirements)
-- `task_[timestamp]_progress` (status)
-- `task_[timestamp]_decisions` (decisions)
+**Memory tools:**
 
-**Summary:**
+- `memory_list` — List available memory blocks
+- `memory_set` — Create or update a memory block
+- `memory_replace` — Replace text within a memory block
 
-- Always update and read memory at key points to prevent context loss.
-- This ensures robust, lossless progress even with frequent compaction.
+**Memory locations:**
+
+- Global: `~/.config/opencode/memory/*.md`
+- Project: `.opencode/memory/*.md` (auto-gitignored)
+
+**Best practice:** Actively maintain memory blocks with important context,
+preferences, and learnings. The agent can read and edit its own memory.
