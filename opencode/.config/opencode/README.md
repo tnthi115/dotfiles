@@ -552,7 +552,7 @@ Creates and maintains project documentation.
 Performs code review for quality and best practices.
 
 **Mode**: Subagent
-**Model**: claude-sonnet-4-5
+**Model**: claude-opus-4-5
 **Usage**: `@review`
 
 **Features**:

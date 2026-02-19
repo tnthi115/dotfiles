@@ -1,5 +1,7 @@
 ---
 description: Two-pass structured review for plans or code. Usage: /review [@plan.md] [git-range]
+agent: review
+subtask: false
 ---
 
 # Review Command
