@@ -146,3 +146,90 @@ You are reviewing CODE CHANGES for correctness and completeness.
 Report findings using the standard output format.
 If no plan context: Note "Plan context not found - correctness review based on observable code behavior only"
 ```
+
+## Pass 2: Quality
+
+Invoke @review agent with pass-specific instructions.
+
+### Pass 2 Instructions for Plan Review
+
+Prompt the @review agent with:
+
+```
+You are reviewing a PLAN for quality and executability.
+
+**Plan Content:**
+[Insert plan content here]
+
+**Checklist - verify each item:**
+
+1. **Task Granularity**
+   - Tasks sized appropriately (2-5 minute steps)?
+   - No vague tasks ("implement feature")?
+
+2. **QA Scenarios**
+   - Each task has QA scenarios?
+   - Scenarios are concrete (specific selectors, data, assertions)?
+   - Both happy path and error scenarios?
+
+3. **Execution Order**
+   - Dependencies respected in ordering?
+   - Parallelizable tasks identified?
+
+4. **Risk Identification**
+   - Potential blockers called out?
+   - External dependencies noted?
+
+5. **Template Compliance**
+   - Follows standard plan structure?
+   - All required sections present?
+
+Report findings using the standard output format.
+```
+
+### Pass 2 Instructions for Code Review
+
+Prompt the @review agent with:
+
+```
+You are reviewing CODE CHANGES for quality.
+
+**Git Range:** <baseline>..HEAD
+**Changed Files:**
+[Insert git diff --stat]
+
+**Full Diff:**
+[Insert git diff output]
+
+**Linter Output:**
+[Insert linter output or "No issues found"]
+
+**Checklist - verify each item:**
+
+1. **Codebase Patterns**
+   - Follows existing conventions in this repo?
+   - Consistent with similar code nearby?
+
+2. **Language Best Practices**
+   - Idiomatic for the language?
+   - No anti-patterns?
+
+3. **Linting & Formatting**
+   - Linter output clean? (see above)
+   - Consistent formatting?
+
+4. **Security**
+   - Input validation present?
+   - No hardcoded secrets?
+   - No obvious vulnerabilities?
+
+5. **Performance**
+   - No obvious inefficiencies?
+   - Appropriate data structures?
+
+6. **Documentation**
+   - Functions have docstrings where needed?
+   - Complex logic explained?
+
+Report findings using the standard output format.
+```
