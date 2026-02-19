@@ -106,6 +106,30 @@ opencode agent docs-writer "Update project documentation"
 opencode agent review "Review this code for quality"
 ```
 
+### Post-Work Review Protocol
+
+When completing work via `/start-work`, `/do`, or any plan execution:
+
+1. **After all tasks complete, BEFORE `finishing-a-development-branch`:**
+   - Announce: "All tasks complete. Running code review before integration."
+   - Invoke `/review` (or `/review @plan-file.md` if plan context available)
+   - Present review findings to user
+
+2. **After review findings presented:**
+   - If critical/important issues found: Offer to fix directly or create plan
+   - If no blocking issues: Proceed to `finishing-a-development-branch`
+   - Always wait for user acknowledgment before integration options
+
+3. **Review invocation examples:**
+
+   ```bash
+   # After completing .sisyphus/plans/auth-feature.md
+   /review @.sisyphus/plans/auth-feature.md
+
+   # If plan context not readily available
+   /review
+   ```
+
 ### Raycast System Automation
 
 **Automation Scripts** (`~/dotfiles/bin/raycast/`):
