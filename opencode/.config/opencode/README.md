@@ -474,6 +474,35 @@ Generates properly formatted conventional commit messages.
 
 **Note**: This command delegates to the `@commit` agent.
 
+### `/review` - Structured Two-Pass Review
+
+Reviews plans or code changes with structured two-pass feedback.
+
+**Usage:**
+
+```bash
+# Plan Review (before execution)
+/review @.sisyphus/plans/feature.md
+
+# Code Review (after execution)
+/review                              # Changes since origin/main
+/review HEAD~5                       # Last 5 commits
+/review @.sisyphus/plans/feature.md HEAD~3  # With plan context
+```
+
+**Features:**
+
+- **Auto mode detection**: Plan file → plan review, git range → code review
+- **Two-pass structure**:
+  - Pass 1: Correctness & Completeness (requirements, scope, edge cases)
+  - Pass 2: Quality (patterns, best practices, linting)
+- **Best-effort plan context**: Finds plan in `.sisyphus/plans/` if not
+  specified
+- **Runs actual linters**: Executes configured linters, includes output in
+  review
+- **Unified report**: Combined findings with severity summary and
+  recommendations
+
 ### `/serena` - Serena MCP Integration
 
 Activates Serena MCP server for manual context optimization.
