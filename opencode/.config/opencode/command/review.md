@@ -233,3 +233,54 @@ You are reviewing CODE CHANGES for quality.
 
 Report findings using the standard output format.
 ```
+
+## Output Format
+
+After both passes complete, present unified report:
+
+```markdown
+# Review: [Plan Name | Branch/Commit Range]
+
+**Mode**: Plan Review | Code Review
+**Target**: [plan file path | git range]
+**Files Changed**: N/A | N files (+X, -Y)
+**Plan Context**: [path] | Found in .sisyphus/plans/ | Not found
+
+---
+
+## Pass 1: [Completeness & Feasibility | Correctness & Completeness]
+
+[Insert Pass 1 findings]
+
+---
+
+## Pass 2: [Quality & Executability | Code Quality]
+
+[Insert Pass 2 findings]
+
+---
+
+## Summary
+
+| Severity | Pass 1 | Pass 2 | Total |
+|----------|--------|--------|-------|
+| Critical | N | N | N |
+| Important | N | N | N |
+| Minor | N | N | N |
+
+**Recommendation**:
+[Based on findings, one of:]
+- Fix N critical/important issues directly (if few/simple)
+- Create plan to address issues (if many/complex)
+- Ready for [execution | integration] (if no blocking issues)
+```
+
+## Post-Review Action
+
+Based on findings:
+
+1. **If few/simple issues**: Offer to fix them directly
+2. **If many/complex issues**: Offer to create or update plan to address them
+3. **If no blocking issues**: Indicate ready to proceed
+
+For code review specifically, if ready, guide to `finishing-a-development-branch` skill.
