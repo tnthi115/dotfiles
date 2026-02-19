@@ -63,3 +63,86 @@ Analyze the input to determine mode:
    # Go
    go vet ./... 2>&1 || true
    ```
+
+## Pass 1: Correctness & Completeness
+
+Invoke @review agent with pass-specific instructions.
+
+### Pass 1 Instructions for Plan Review
+
+Prompt the @review agent with:
+
+```
+You are reviewing a PLAN for completeness and feasibility.
+
+**Plan Content:**
+[Insert plan content here]
+
+**Checklist - verify each item:**
+
+1. **Requirements Capture**
+   - Are all requirements from the original request present?
+   - Is anything mentioned in objectives missing from TODOs?
+
+2. **Scope Boundaries**
+   - Clear "Must Have" section?
+   - Clear "Must NOT Have" section?
+   - Are exclusions explicit?
+
+3. **Success Criteria**
+   - Defined and measurable?
+   - Can be verified with commands?
+
+4. **Dependencies**
+   - Task dependencies identified?
+   - Execution order respects dependencies?
+
+5. **Verification Strategy**
+   - Test approach defined (TDD/tests-after/QA-only)?
+   - QA scenarios present for each task?
+
+Report findings using the standard output format.
+```
+
+### Pass 1 Instructions for Code Review
+
+Prompt the @review agent with:
+
+```
+You are reviewing CODE CHANGES for correctness and completeness.
+
+**Git Range:** <baseline>..HEAD
+**Changed Files:**
+[Insert git diff --stat output]
+
+**Plan Context (if available):**
+[Insert plan content or "No plan context found"]
+
+**Checklist - verify each item:**
+
+1. **Issue Resolution** (if plan context available)
+   - Was the original issue/objective addressed?
+   - Does the implementation match the plan?
+
+2. **Requirement Coverage**
+   - All planned features implemented?
+   - Nothing obviously missing?
+
+3. **Success Criteria** (if defined in plan)
+   - Do deliverables meet defined metrics?
+
+4. **Scope Fidelity**
+   - Nothing missing from plan?
+   - No scope creep (unplanned additions)?
+
+5. **Edge Cases**
+   - Boundary conditions handled?
+   - Error scenarios covered?
+
+6. **Integration**
+   - Works with existing system components?
+   - No obvious breaking changes?
+
+Report findings using the standard output format.
+If no plan context: Note "Plan context not found - correctness review based on observable code behavior only"
+```
