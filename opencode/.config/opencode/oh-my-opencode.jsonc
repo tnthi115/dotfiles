@@ -24,12 +24,10 @@
       "model": "f5/claude-opus-4-5"
     },
     "momus": {
-      "model": "f5/gpt-5.2",
-      "reasoningEffort": "medium"
+      "model": "f5/gpt-5.2"
     },
     "oracle": {
-      "model": "f5/gpt-5.2",
-      "reasoningEffort": "high"
+      "model": "f5/gpt-5.2"
     },
     "librarian": {
       "model": "f5/claude-sonnet-4-5"
