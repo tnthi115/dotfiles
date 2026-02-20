@@ -147,6 +147,21 @@
         "@modelcontextprotocol/server-sequential-thinking",
       ],
     },
+    // Atlassian (JIRA + Confluence) for F5 Data Center
+    // Requires: F5_JIRA_URL, F5_JIRA_PAT, F5_CONFLUENCE_URL, F5_CONFLUENCE_PAT env vars
+    // Docs: https://github.com/sooperset/mcp-atlassian
+    "atlassian": {
+      "type": "local",
+      "command": ["uvx", "mcp-atlassian"],
+      "environment": {
+        "JIRA_URL": "{env:F5_JIRA_URL}",
+        "JIRA_PERSONAL_TOKEN": "{env:F5_JIRA_PAT}",
+        "JIRA_SSL_VERIFY": "false",
+        "CONFLUENCE_URL": "{env:F5_CONFLUENCE_URL}",
+        "CONFLUENCE_PERSONAL_TOKEN": "{env:F5_CONFLUENCE_PAT}",
+        "CONFLUENCE_SSL_VERIFY": "false",
+      },
+    },
     // E2B: Secure code execution sandbox
     // "e2b": {
     //   "type": "local",
