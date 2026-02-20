@@ -48,8 +48,7 @@
       "model": "f5/claude-sonnet-4-5"
     },
     "ultrabrain": {
-      "model": "f5/gpt-5.2-codex",
-      "reasoningEffort": "xhigh"
+      "model": "f5/gpt-5.2-codex"
     },
     "artistry": {
       "model": "f5/claude-sonnet-4-5"
