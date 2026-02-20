@@ -24,10 +24,10 @@
       "model": "f5/claude-opus-4-5"
     },
     "momus": {
-      "model": "f5/gpt-5.2"
+      "model": "f5/claude-opus-4-5"
     },
     "oracle": {
-      "model": "f5/gpt-5.2"
+      "model": "f5/claude-opus-4-5"
     },
     "librarian": {
       "model": "f5/claude-sonnet-4-5"
