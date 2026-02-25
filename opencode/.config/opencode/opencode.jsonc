@@ -8,8 +8,8 @@
     "*/AGENTS.md",
     "AGENTS.md",
     "README.md",
-    "docs/**/*.md",
-    "docs/**/*.puml",
+    // NOTE: Removed docs/**/*.md - too risky globally (can overflow context)
+    // Add per-project in .opencode/opencode.jsonc if needed
     "pbdoc/docs.md",
   ],
   "compaction": {

@@ -390,21 +390,24 @@ configuration containing:
 
 | Agent | Model | Purpose |
 |-------|-------|---------|
-| `sisyphus` | claude-opus-4-5 | Main orchestration agent |
+| `sisyphus` | claude-opus-4-5 | Main orchestration agent (Claude-optimized) |
+| `hephaestus` | gpt-5.2-codex | Autonomous deep worker (GPT-optimized) |
 | `sisyphus-junior` | claude-sonnet-4-5 | Focused task executor |
 | `prometheus` | claude-opus-4-5 | Strategic planning |
 | `metis` | claude-opus-4-5 | Pre-planning analysis |
 | `momus` | gpt-5.2 | Plan review |
-| `oracle` | gpt-5.2 | Architecture consultation |
+| `oracle` | claude-opus-4-5 | Architecture consultation |
 | `librarian` | claude-sonnet-4-5 | Documentation lookup |
 | `explore` | claude-haiku-4-5 | Codebase investigation |
-
+| `multimodal-looker` | gpt-5.2 | Image/document analysis |
+| `atlas` | claude-haiku-4-5 | Session navigation |
 #### Category Model Assignments
 
 | Category | Model | Purpose |
 |----------|-------|---------|
 | `visual-engineering` | claude-sonnet-4-5 | Frontend, UI/UX work |
 | `ultrabrain` | gpt-5.2-codex | Complex logic tasks |
+| `deep` | gpt-5.2-codex | Goal-oriented autonomous problem-solving |
 | `artistry` | claude-sonnet-4-5 | Creative problem-solving |
 | `quick` | claude-haiku-4-5 | Trivial tasks |
 | `writing` | claude-sonnet-4-5 | Documentation |
