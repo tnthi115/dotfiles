@@ -23,18 +23,8 @@
         "type": "enabled",
         "budgetTokens": 8000
       },
-      // Tool selection and deployment query routing
-      "prompt_append": "Use native LSP tools (lsp_goto_definition, lsp_find_references, lsp_rename) and AST-grep for code navigation and pattern matching. Use Sequential Thinking MCP for complex reasoning tasks. CRITICAL: For questions about what is deployed in production/staging/crt/dev environments, or any question mentioning 'in prod', 'in production', 'deployed image', 'sre-*-model', you MUST delegate to @xc-planner - do NOT answer from local repo context. Local CI configs show :latest tags, not actual deployed versions."
-    },
-    "hephaestus": {
-      // Autonomous Deep Worker - GPT Codex optimized
-      // Goal-oriented execution, deep exploration before action, comprehensive context gathering
-      // Inspired by AmpCode's deep mode - autonomous problem-solving with thorough research
-      "model": "f5/gpt-5.2-codex",
-      "fallback_models": ["f5/gpt-5.2", "f5/claude-opus-4-5"],
-      "reasoningEffort": "high",
-      // Tool selection and deployment query routing
-      "prompt_append": "Use native LSP tools (lsp_goto_definition, lsp_find_references, lsp_rename) and AST-grep for code navigation and pattern matching. Use Sequential Thinking MCP for complex reasoning tasks. CRITICAL: For questions about what is deployed in production/staging/crt/dev environments, or any question mentioning 'in prod', 'in production', 'deployed image', 'sre-*-model', you MUST delegate to @xc-planner - do NOT answer from local repo context. Local CI configs show :latest tags, not actual deployed versions."
+      // Deployment query routing (xc-planner for prod/staging questions)
+      "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
     "sisyphus-junior": {
       "model": "f5/claude-sonnet-4-5",
@@ -48,8 +38,8 @@
         "type": "enabled",
         "budgetTokens": 10000
       },
-      // Deployment query routing
-      "prompt_append": "Use Sequential Thinking MCP for complex planning and reasoning tasks. CRITICAL: For questions about what is deployed in production/staging/crt/dev environments, or any question mentioning 'in prod', 'in production', 'deployed image', 'sre-*-model', you MUST delegate to @xc-planner - do NOT answer from local repo context. Local CI configs show :latest tags, not actual deployed versions."
+      // Deployment query routing (xc-planner for prod/staging questions)
+      "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
     "metis": {
       "model": "f5/claude-opus-4-5",
@@ -86,6 +76,16 @@
     "multimodal-looker": {
       "model": "f5/gpt-5.2",
       "fallback_models": ["f5/claude-sonnet-4-5"]
+    },
+    "hephaestus": {
+      // Autonomous Deep Worker - GPT Codex optimized
+      // Goal-oriented execution, deep exploration before action, comprehensive context gathering
+      // Inspired by AmpCode's deep mode - autonomous problem-solving with thorough research
+      "model": "f5/gpt-5.2-codex",
+      "fallback_models": ["f5/gpt-5.2", "f5/claude-opus-4-5"],
+      "reasoningEffort": "high",
+      // Deployment query routing (xc-planner for prod/staging questions)
+      "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
     "atlas": {
       // Session navigation is lightweight - downgraded from sonnet
