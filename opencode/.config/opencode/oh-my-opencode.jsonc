@@ -1,6 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
 
+  // oh-my-opencode configuration
+  // Model matching guide: https://github.com/code-yeongyu/oh-my-opencode/blob/dev/docs/guide/agent-model-matching.md
+  //
   // New features in oh-my-opencode 3.x
   "new_task_system_enabled": false,
   "model_fallback": true,
@@ -9,15 +12,15 @@
   "agents": {
     "build": {
       "model": "f5/claude-sonnet-4-5",
-      "fallback_models": ["f5/claude-haiku-4-5"]
+      "fallback_models": ["f5/claude-sonnet-4-5", "f5/claude-haiku-4-5"]
     },
     "plan": {
       "model": "f5/claude-sonnet-4-5",
-      "fallback_models": ["f5/claude-haiku-4-5"]
+      "fallback_models": ["f5/claude-sonnet-4-5", "f5/claude-haiku-4-5"]
     },
     "sisyphus": {
-      "model": "f5/claude-opus-4-5",
-      "fallback_models": ["f5/claude-sonnet-4-5", "f5/gpt-5.2"],
+      "model": "f5/claude-opus-4-6",
+      "fallback_models": ["f5/claude-opus-4-5", "f5/claude-sonnet-4-5"],
       // Extended thinking for complex orchestration
       "thinking": {
         "type": "enabled",
@@ -28,11 +31,11 @@
     },
     "sisyphus-junior": {
       "model": "f5/claude-sonnet-4-5",
-      "fallback_models": ["f5/claude-haiku-4-5"]
+      "fallback_models": ["f5/claude-sonnet-4-5", "f5/claude-haiku-4-5"]
     },
     "prometheus": {
-      "model": "f5/claude-opus-4-5",
-      "fallback_models": ["f5/claude-sonnet-4-5"],
+      "model": "f5/claude-opus-4-6",
+      "fallback_models": ["f5/claude-opus-4-5", "f5/gpt-5.2", "github-copilot/gemini-3-pro-preview", "f5/claude-sonnet-4-5"],
       // Extended thinking for thorough planning
       "thinking": {
         "type": "enabled",
@@ -42,8 +45,8 @@
       "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
     "metis": {
-      "model": "f5/claude-opus-4-5",
-      "fallback_models": ["f5/claude-sonnet-4-5"],
+      "model": "f5/claude-opus-4-6",
+      "fallback_models": ["f5/claude-opus-4-5", "f5/gpt-5.2", "github-copilot/gemini-3-pro-preview", "f5/claude-sonnet-4-5"],
       // Extended thinking for gap analysis
       "thinking": {
         "type": "enabled",
@@ -53,12 +56,12 @@
     "momus": {
       // Plan review benefits from GPT's critical analysis
       "model": "f5/gpt-5.2",
-      "fallback_models": ["f5/claude-opus-4-5"],
+      "fallback_models": ["f5/claude-opus-4-6", "github-copilot/gemini-3-pro-preview"],
       "reasoningEffort": "high"
     },
     "oracle": {
-      "model": "f5/claude-opus-4-5",
-      "fallback_models": ["f5/gpt-5.2", "f5/claude-sonnet-4-5"],
+      "model": "f5/gpt-5.2",
+      "fallback_models": ["f5/claude-opus-4-6", "github-copilot/gemini-3-pro-preview", "f5/claude-sonnet-4-5"],
       // Extended thinking for architecture decisions
       "thinking": {
         "type": "enabled",
@@ -66,69 +69,72 @@
       }
     },
     "librarian": {
-      "model": "f5/claude-sonnet-4-5",
-      "fallback_models": ["f5/claude-haiku-4-5"]
+      "model": "github-copilot/gemini-3-flash-preview",
+      "fallback_models": ["f5/claude-haiku-4-5", "f5/gpt-5-mini"]
     },
     "explore": {
       // Fast, cheap model for codebase grep - doesn't need heavy reasoning
-      "model": "f5/claude-haiku-4-5"
+      "model": "github-copilot/grok-code-fast-1",
+      "fallback_models": ["f5/claude-haiku-4-5", "f5/gpt-5-mini"]
     },
     "multimodal-looker": {
-      "model": "f5/gpt-5.2",
-      "fallback_models": ["f5/claude-sonnet-4-5"]
+      "model": "f5/gpt-5",
+      "fallback_models": ["f5/gpt-5-mini", "github-copilot/gemini-3-pro-preview", "f5/claude-sonnet-4-5"]
     },
     "hephaestus": {
       // Autonomous Deep Worker - GPT Codex optimized
       // Goal-oriented execution, deep exploration before action, comprehensive context gathering
       // Inspired by AmpCode's deep mode - autonomous problem-solving with thorough research
-      "model": "f5/gpt-5.2-codex",
-      "fallback_models": ["f5/gpt-5.2", "f5/claude-opus-4-5"],
+      "model": "f5/gpt-5.2-codex-max",
+      "fallback_models": ["f5/gpt-5.2-codex", "github-copilot/gpt-5.2-codex", "f5/gpt-5.2"],
       "reasoningEffort": "high",
       // Deployment query routing (xc-planner for prod/staging questions)
       "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
     "atlas": {
       // Session navigation is lightweight - downgraded from sonnet
-      "model": "f5/claude-haiku-4-5"
+      "model": "f5/claude-sonnet-4-5",
+      "fallback_models": ["f5/claude-haiku-4-5", "f5/gpt-5.2"]
     }
   },
 
   "categories": {
     "visual-engineering": {
-      "model": "f5/claude-sonnet-4-5",
-      "fallback_models": ["f5/claude-haiku-4-5"]
+      "model": "github-copilot/gemini-3-pro-preview",
+      "fallback_models": ["f5/claude-sonnet-4-5", "f5/claude-opus-4-6"]
     },
     "ultrabrain": {
-      "model": "f5/gpt-5.2-codex",
-      "fallback_models": ["f5/gpt-5.2", "f5/claude-opus-4-5"],
+      "model": "f5/gpt-5.2-codex-max",
+      "fallback_models": ["f5/gpt-5.2-codex", "github-copilot/gemini-3-pro-preview", "f5/claude-opus-4-6"],
       "reasoningEffort": "high"
     },
     "deep": {
       // Goal-oriented autonomous problem-solving
       // Thorough research before action, for hairy problems requiring deep understanding
-      "model": "f5/gpt-5.2-codex",
-      "fallback_models": ["f5/claude-opus-4-5"],
+      "model": "f5/gpt-5.2-codex-max",
+      "fallback_models": ["f5/gpt-5.2-codex", "f5/claude-opus-4-6"],
       "reasoningEffort": "high"
     },
     "artistry": {
-      "model": "f5/claude-sonnet-4-5",
-      "fallback_models": ["f5/claude-opus-4-5"]
+      "model": "github-copilot/gemini-3-pro-preview",
+      "fallback_models": ["f5/claude-opus-4-6", "f5/gpt-5.2"]
     },
     "quick": {
       // Fast, cheap for trivial tasks
-      "model": "f5/claude-haiku-4-5"
+      "model": "f5/claude-haiku-4-5",
+      "fallback_models": ["github-copilot/gemini-3-flash-preview", "f5/gpt-5-mini"]
     },
     "unspecified-low": {
       "model": "f5/claude-sonnet-4-5",
-      "fallback_models": ["f5/claude-haiku-4-5"]
+      "fallback_models": ["f5/claude-sonnet-4-5", "f5/claude-haiku-4-5"]
     },
     "unspecified-high": {
-      "model": "f5/claude-opus-4-5",
-      "fallback_models": ["f5/claude-sonnet-4-5"]
+      "model": "f5/claude-opus-4-6",
+      "fallback_models": ["f5/claude-opus-4-5", "f5/claude-sonnet-4-5"]
     },
     "writing": {
-      "model": "f5/claude-sonnet-4-5",
-      "fallback_models": ["f5/claude-haiku-4-5"]
+      "model": "github-copilot/gemini-3-flash-preview",
+      "fallback_models": ["f5/claude-sonnet-4-5", "f5/claude-haiku-4-5"]
     }
   },
 
@@ -136,7 +142,8 @@
     // Increased concurrency since no rate limit issues
     "defaultConcurrency": 5,
     "providerConcurrency": {
-      "f5": 5
+      "f5": 5,
+      "github-copilot": 2
       // Add other providers here when switching:
       // "anthropic": 5,
       // "openai": 5,

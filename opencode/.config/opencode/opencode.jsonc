@@ -10,19 +10,19 @@
     "README.md",
     // NOTE: Removed docs/**/*.md - too risky globally (can overflow context)
     // Add per-project in .opencode/opencode.jsonc if needed
-    "pbdoc/docs.md",
+    "pbdoc/docs.md"
   ],
   "compaction": {
     "auto": true,
-    "prune": true,
+    "prune": true
   },
   "agent": {
-    "compaction": {
-      "model": "f5/claude-sonnet-4-5",
-    },
+    // "compaction": {
+    //   "model": "f5/claude-sonnet-4-5",
+    // },
     "xc-planner": {
-      "mode": "subagent",
-    },
+      "mode": "subagent"
+    }
   },
   "provider": {
     "f5": {
@@ -30,65 +30,71 @@
       "name": "F5",
       "options": {
         "baseURL": "{env:F5GPT_OPENAI_API_URL}",
-        "apiKey": "{env:F5GPT_OPENAI_API_KEY}",
+        "apiKey": "{env:F5GPT_OPENAI_API_KEY}"
       },
       "models": {
         "claude-haiku-4-5": {
-          "name": "Claude Haiku 4.5",
+          "name": "Claude Haiku 4.5"
         },
         "claude-opus-4-5": {
-          "name": "Claude Opus 4.5",
+          "name": "Claude Opus 4.5"
         },
         "claude-sonnet-4-5": {
-          "name": "Claude Sonnet 4.5",
+          "name": "Claude Sonnet 4.5"
+        },
+        "claude-opus-4-6": {
+          "name": "Claude Opus 4.6"
+        },
+        "claude-sonnet-4-6": {
+          "name": "Claude Sonnet 4.6"
         },
         "gpt-5.2-codex-max": {
-          "name": "GPT-5.2-Codex-Max",
+          "name": "GPT-5.2-Codex-Max"
         },
         "gpt-5.2-codex": {
-          "name": "GPT-5.2-Codex",
+          "name": "GPT-5.2-Codex"
         },
         "gpt-5.2": {
-          "name": "GPT-5.2",
+          "name": "GPT-5.2"
         },
         "gpt-5": {
-          "name": "GPT-5",
+          "name": "GPT-5"
         },
         "gpt-5-mini": {
-          "name": "GPT-5-mini",
+          "name": "GPT-5-mini"
         },
         "gpt-5-codex": {
-          "name": "GPT-5-Codex",
+          "name": "GPT-5-Codex"
         },
         "gpt-5-nano": {
-          "name": "GPT-5-Nano",
+          "name": "GPT-5-Nano"
         },
         "gpt-4.1": {
-          "name": "GPT-4.1",
+          "name": "GPT-4.1"
         },
         "gpt-4.1-mini": {
-          "name": "GPT-4.1-mini",
+          "name": "GPT-4.1-mini"
         },
         "gpt-4o": {
-          "name": "GPT-4o",
+          "name": "GPT-4o"
         },
         "gpt-4o-mini": {
-          "name": "GPT-4o-mini",
+          "name": "GPT-4o-mini"
         },
         "o4-mini": {
-          "name": "o4-mini",
+          "name": "o4-mini"
         },
         "o3": {
-          "name": "o3",
+          "name": "o3"
         },
         "o3-mini": {
-          "name": "o3-mini",
+          "name": "o3-mini"
         },
         "o1": {
-          "name": "o1",
-        },
-      },
-    },
+          "name": "o1"
+        }
+      }
+    }
   },
   // List of github copilot models available:
   // claude-3.5-sonnet
@@ -102,7 +108,7 @@
   "mcp": {
     "git": {
       "type": "local",
-      "command": ["uvx", "mcp-server-git", "--repository", "${PWD}"],
+      "command": ["uvx", "mcp-server-git", "--repository", "${PWD}"]
     },
     //"gitlab": {
     //  "type": "local",
@@ -121,8 +127,8 @@
       "type": "local",
       "command": ["npx", "-y", "@upstash/context7-mcp"],
       "environment": {
-        "DEFAULT_MINIMUM_TOKENS": "5000",
-      },
+        "DEFAULT_MINIMUM_TOKENS": "5000"
+      }
     },
     // prompt: /serena custom command or "activate serena project"
     // NOTE: Commented out - agents don't use Serena automatically.
@@ -144,8 +150,8 @@
       "command": [
         "npx",
         "-y",
-        "@modelcontextprotocol/server-sequential-thinking",
-      ],
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
     },
     // Atlassian (JIRA + Confluence) for F5 Data Center
     // Requires: F5_JIRA_URL, F5_JIRA_PAT, F5_CONFLUENCE_URL, F5_CONFLUENCE_PAT env vars
@@ -159,9 +165,9 @@
         "JIRA_SSL_VERIFY": "false",
         "CONFLUENCE_URL": "{env:F5_CONFLUENCE_URL}",
         "CONFLUENCE_PERSONAL_TOKEN": "{env:F5_CONFLUENCE_PAT}",
-        "CONFLUENCE_SSL_VERIFY": "false",
-      },
-    },
+        "CONFLUENCE_SSL_VERIFY": "false"
+      }
+    }
     // E2B: Secure code execution sandbox
     // "e2b": {
     //   "type": "local",
@@ -180,49 +186,49 @@
   "formatter": {
     "rumdl": {
       "command": ["rumdl", "fmt", "--fix", "$FILE"],
-      "extensions": [".md", ".markdown"],
+      "extensions": [".md", ".markdown"]
     },
     "ruff": {
       "command": ["ruff", "format", "$FILE"],
-      "extensions": [".py", ".pyi"],
+      "extensions": [".py", ".pyi"]
     },
     "stylua": {
       "command": ["stylua", "$FILE"],
-      "extensions": [".lua"],
+      "extensions": [".lua"]
     },
     "shfmt": {
       "command": ["shfmt", "-i", "2", "-ci", "$FILE"],
-      "extensions": [".sh", ".bash", ".zsh"],
+      "extensions": [".sh", ".bash", ".zsh"]
     },
     "taplo": {
       "command": ["taplo", "format", "$FILE"],
-      "extensions": [".toml"],
+      "extensions": [".toml"]
     },
     "goimports": {
       "command": ["goimports", "-w", "$FILE"],
-      "extensions": [".go"],
-    },
+      "extensions": [".go"]
+    }
   },
   "lsp": {
     "rumdl": {
       "command": ["rumdl", "server", "--stdio"],
-      "extensions": [".md", ".markdown"],
+      "extensions": [".md", ".markdown"]
     },
     "rust-analyzer": {
       "command": ["rust-analyzer"],
-      "extensions": [".rs"],
+      "extensions": [".rs"]
     },
     "basedpyright": {
       "command": ["basedpyright-langserver", "--stdio"],
-      "extensions": [".py", ".pyi"],
+      "extensions": [".py", ".pyi"]
     },
     "yaml-language-server": {
       "command": ["yaml-language-server", "--stdio"],
-      "extensions": [".yaml", ".yml"],
+      "extensions": [".yaml", ".yml"]
     },
     "docker-langserver": {
       "command": ["docker-langserver", "--stdio"],
-      "extensions": [".dockerfile", "Dockerfile*"],
+      "extensions": [".dockerfile", "Dockerfile*"]
     },
     "docker-compose-langserver": {
       "command": ["docker-compose-langserver", "--stdio"],
@@ -230,28 +236,28 @@
         "docker-compose.yml",
         "docker-compose.yaml",
         "compose.yml",
-        "compose.yaml",
-      ],
+        "compose.yaml"
+      ]
     },
     "jsonnet-language-server": {
       "command": ["jsonnet-language-server"],
-      "extensions": [".jsonnet", ".libsonnet"],
+      "extensions": [".jsonnet", ".libsonnet"]
     },
     "fish-lsp": {
       "command": ["fish-lsp", "start"],
-      "extensions": [".fish"],
+      "extensions": [".fish"]
     },
     "golangci-lint-langserver": {
       "command": ["golangci-lint-langserver"],
-      "extensions": [".go"],
+      "extensions": [".go"]
     },
     "taplo": {
       "command": ["taplo", "lsp", "stdio"],
-      "extensions": [".toml"],
+      "extensions": [".toml"]
     },
     "typescript-language-server": {
       "command": ["typescript-language-server", "--stdio"],
-      "extensions": [".ts", ".tsx", ".js", ".jsx"],
-    },
-  },
+      "extensions": [".ts", ".tsx", ".js", ".jsx"]
+    }
+  }
 }

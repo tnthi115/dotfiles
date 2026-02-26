@@ -388,29 +388,34 @@ configuration containing:
 
 #### Agent Model Assignments
 
+Model assignments follow the [official agent-model-matching guide](https://github.com/code-yeongyu/oh-my-opencode/blob/dev/docs/guide/agent-model-matching.md).
+
 | Agent | Model | Purpose |
 |-------|-------|---------|
-| `sisyphus` | claude-opus-4-5 | Main orchestration agent (Claude-optimized) |
-| `hephaestus` | gpt-5.2-codex | Autonomous deep worker (GPT-optimized) |
+| `sisyphus` | claude-opus-4-6 | Main orchestrator (Claude-only, no GPT prompt) |
+| `prometheus` | claude-opus-4-6 | Strategic planner (dual-prompt, supports GPT fallback) |
+| `metis` | claude-opus-4-6 | Plan gap analyzer |
+| `oracle` | gpt-5.2 | Architecture consultation (GPT-native) |
+| `momus` | gpt-5.2 | Ruthless reviewer (GPT-native) |
+| `hephaestus` | gpt-5.2-codex-max | Autonomous deep worker (GPT Codex only) |
 | `sisyphus-junior` | claude-sonnet-4-5 | Focused task executor |
-| `prometheus` | claude-opus-4-5 | Strategic planning |
-| `metis` | claude-opus-4-5 | Pre-planning analysis |
-| `momus` | gpt-5.2 | Plan review |
-| `oracle` | claude-opus-4-5 | Architecture consultation |
-| `librarian` | claude-sonnet-4-5 | Documentation lookup |
-| `explore` | claude-haiku-4-5 | Codebase investigation |
-| `multimodal-looker` | gpt-5.2 | Image/document analysis |
-| `atlas` | claude-haiku-4-5 | Session navigation |
+| `librarian` | claude-haiku-4-5 | Lightweight doc search |
+| `explore` | grok-code-fast-1 | Blazing fast codebase grep |
+| `multimodal-looker` | gpt-5 | Image/document analysis |
+| `atlas` | claude-sonnet-4-5 | Todo orchestration |
+
 #### Category Model Assignments
 
 | Category | Model | Purpose |
 |----------|-------|---------|
-| `visual-engineering` | claude-sonnet-4-5 | Frontend, UI/UX work |
-| `ultrabrain` | gpt-5.2-codex | Complex logic tasks |
-| `deep` | gpt-5.2-codex | Goal-oriented autonomous problem-solving |
-| `artistry` | claude-sonnet-4-5 | Creative problem-solving |
-| `quick` | claude-haiku-4-5 | Trivial tasks |
-| `writing` | claude-sonnet-4-5 | Documentation |
+| `visual-engineering` | gemini-3-pro-preview | Frontend, UI/UX (Gemini excels at visual) |
+| `artistry` | gemini-3-pro-preview | Creative, novel approaches |
+| `ultrabrain` | gpt-5.2-codex-max | Maximum reasoning power |
+| `deep` | gpt-5.2-codex-max | Deep coding, complex logic |
+| `quick` | claude-haiku-4-5 | Fast trivial tasks |
+| `writing` | gemini-3-flash-preview | Text, docs, prose |
+| `unspecified-high` | claude-opus-4-6 | General complex work |
+| `unspecified-low` | claude-sonnet-4-5 | General standard work |
 
 ### AGENTS.md
 
