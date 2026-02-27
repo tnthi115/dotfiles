@@ -63,4 +63,7 @@ source $HOME/.github-token
 # set -gx BAT_THEME tokyonight_night
 set -e BAT_THEME
 
+# Disable OpenCode automatic LSP server downloads
+set -gx OPENCODE_DISABLE_LSP_DOWNLOAD true
+
 source $HOME/work-dotfiles/fish/conf.d/work-env.fish
