@@ -1,242 +1,356 @@
 # dotfiles
 
-These are my personal configuration files.
+This repository contains personal configuration files for a comprehensive
+development environment. It manages configurations for over 40 tools across
+macOS and Linux using GNU Stow for conflict-safe symlink deployment. The
+environment is optimized for AI-first development with deep OpenCode
+integration, specialized agent templates, and automated workflows.
 
-[Tokyonight](https://github.com/folke/tokyonight.nvim)
+## Screenshots
+
+### TokyoNight
+
 ![macos](scrots/macos.png)
 ![tokyonight](scrots/tokyonight.png)
 
-[Gruvbox Material](https://github.com/sainnhe/gruvbox-material)
+### Gruvbox Material
+
 ![gruvbox material](scrots/gruvbox-material.png)
+
+## Table of Contents
+
+- [Quick Start](#quick-start)
+- [What's Included](#whats-included)
+- [Installation](#installation)
+- [OpenCode Configuration](#opencode-configuration)
+- [Key Tools](#key-tools)
+- [Platform-Specific Tools](#platform-specific-tools)
+- [Themes](#themes)
+
+## Quick Start
+
+1. Clone the repository to your home directory.
+
+   ```sh
+   git clone https://github.com/tnthi115/dotfiles.git ~/dotfiles
+   ```
+
+2. Install system dependencies using Homebrew (macOS) or pacman (Linux).
+3. Backup any existing configuration files in your home directory.
+4. Navigate to the repository and use GNU Stow to deploy configurations.
+
+   ```sh
+   cd ~/dotfiles
+   stow nvim git tmux zsh
+   ```
+
+5. Install OpenCode Superpowers skills.
+
+   ```sh
+   ~/dotfiles/bin/install-superpowers.sh
+   ```
+
+## What's Included
+
+| Category | Package | Description |
+| :--- | :--- | :--- |
+| Editors and IDEs | nvim | Neovim with LazyVim and extensive LSP support |
+| Editors and IDEs | helix | Post-modern modal text editor |
+| Editors and IDEs | vim | Classic Vim configuration |
+| Editors and IDEs | vscode | Visual Studio Code settings and extensions |
+| Editors and IDEs | zed | Modern high-performance editor |
+| Editors and IDEs | jetbrains | JetBrains IDE configurations |
+| Editors and IDEs | lvim | LunarVim legacy configuration |
+| Terminal Emulators | ghostty | Fast GPU-accelerated terminal |
+| Terminal Emulators | kitty | Cross-platform GPU terminal |
+| Terminal Emulators | wezterm | Lua-configurable terminal multiplexer |
+| Terminal Emulators | alacritty | Simple high-performance terminal |
+| Shells | zsh | Zsh with Oh My Zsh and custom plugins |
+| Shells | fish | Fish shell with smart autocompletion |
+| Shells | bash | Standard Bash configuration |
+| Shells | starship | Cross-shell customizable prompt |
+| Terminal Multiplexer | tmux | Terminal multiplexer for session management |
+| Terminal Multiplexer | sesh | Smart tmux session manager |
+| Window Managers | yabai | macOS tiling window manager |
+| Window Managers | skhd | macOS simple hotkey daemon |
+| Window Managers | aerospace | i3-like window manager for macOS |
+| Window Managers | amethyst | Automatic tiling window manager for macOS |
+| Window Managers | awesome | Tiling window manager for Linux |
+| Window Managers | rofi | Application launcher and menu |
+| Window Managers | compton | X11 compositor for Linux |
+| Git and Version Control | git | Global git configuration and delta integration |
+| Git and Version Control | lazygit | Terminal UI for git |
+| Git and Version Control | commitlint | Conventional commit enforcement |
+| AI Development | opencode | OpenCode AI agent configuration |
+| AI Development | mcphub | MCP server hub configuration |
+| File Management | yazi | Terminal file manager with previews |
+| CLI Tools | bat | Enhanced cat with syntax highlighting |
+| CLI Tools | rumdl | Markdown linter and formatter |
+| CLI Tools | prettier | Opinionated code formatter |
+| CLI Tools | golangci-lint | Go linter runner |
+| CLI Tools | ssh | SSH client configuration |
+| Browser | firefox | Hardened Firefox with arkenfox user.js |
+| Browser | browser-extensions | List of essential browser extensions |
+| System | neofetch | System information display tool |
+| System | bin | Custom utility scripts |
+| System | KeyBindings | macOS system keybinding adjustments |
+| System | kindavim | Vim-like input for macOS |
+| System | via | Keyboard configuration for VIA-compatible boards |
+| System | docs | Local documentation and references |
 
 ## Installation
 
-> **Warning**: I am not responsible for any changes to your system. Make sure
-> you understand what you are doing before installing any dependencies and
-> using my dotfiles.
+### Prerequisites
 
-Make sure to install the [dependencies](#dependencies) listed below.
+You must have Git and GNU Stow installed on your system.
 
 ```sh
-# On Arch (pkglist.txt is a WIP and not complete)
-sudo pacman -S --needed - < pkglist.txt
+# macOS
+brew install git stow
 
-# On MacOS
-brew bundle --file=~/dotfiles/Brewfile
-```
-
-> **Warning**: The package names may vary or some may not exist depending on your
-> package manager. If so, just look up how to install the packages on your
-> system.
-
-You will need [Git](https://git-scm.com/) and [GNU
-Stow](https://www.gnu.org/software/stow/) to clone and symlink the dotfiles.
-For a detailed explanation of how stow works with dotfiles, see
-[this excellent gist](https://gist.github.com/andreibosco/cb8506780d0942a712fc).
-
-```sh
-# On Arch
+# Arch Linux
 sudo pacman -S git stow
 
-# On Ubuntu
-sudo apt update
-sudo apt-get install git stow
-
-# On MacOS/OS X
-brew install git stow
+# Ubuntu
+sudo apt update && sudo apt install git stow
 ```
 
-Clone into your `$HOME` or `~` directory:
+### Dependency Management
+
+Install platform-specific dependencies before stowing configurations.
 
 ```sh
-git clone https://github.com/tnthi115/dotfiles.git
+# macOS
+brew bundle --file=~/dotfiles/Brewfile
+
+# Arch Linux
+sudo pacman -S --needed - < pkglist.txt
 ```
 
-> **Important:** Remove or backup your old config files before running `stow`.
-> For example:
+### GNU Stow Deployment
+
+Stow creates symlinks from the tool directories in `~/dotfiles/` to the parent
+directory (usually `~/`).
 
 ```sh
-mv ~/.config/fish/config.fish ~/.config/fish/config.fish.bak
+# Deploy all configurations (not recommended for first run)
+stow */
+
+# Deploy specific tools
+stow git nvim tmux ghostty
 ```
 
-Within `~/dotfiles/`, run `stow` to symlink everything (not recommended) or
-just select what you want:
+Stow defaults to the parent directory of the repository. If the repository is
+cloned elsewhere (e.g., `~/repos/dotfiles`), use the target flag:
 
 ```sh
-stow */ # Everything (the '/' grabs all directories and ignores files (e.g. README.md))
+stow --target=${HOME} nvim
 ```
 
-```sh
-stow fish # Just my fish config
+> **Warning**: Back up existing configuration files before running stow to prevent data loss.
+
+## OpenCode Configuration
+
+The development environment features an AI-first architecture powered by
+OpenCode. This setup uses a three-layer approach: core orchestration,
+specialized agents, and a persistent memory plugin.
+
+### Directory Structure
+
+```text
+opencode/.config/opencode/
+├── agents/
+│   ├── commit.md
+│   ├── docs-writer.md
+│   └── review.md
+├── command/
+│   ├── analyze-project.md
+│   ├── commit.md
+│   ├── do.md
+│   ├── plan.md
+│   ├── review.md
+│   └── serena.md
+├── themes/
+│   └── tymon-kanagawa.json
+├── AGENTS.md
+├── oh-my-opencode.jsonc
+├── opencode.jsonc
+├── tui.jsonc
+└── README.md
 ```
 
-> **Note:** `stow` doesn't assume `$HOME` (`~`) as the target directory, and instead
-> defaults to the parent of the current directory, which is why the above
-> commands work properly. If for some reason you want to clone to another
-> directory rather than your home directory (e.g. ~/repos/, ~/Git/, etc.), you
-> should run `stow` with the `--target` flag to specify your home directory:
+### Plugins
 
-```sh
-stow --target=${HOME} fish
-```
+- **oh-my-opencode**: Orchestration framework for multi-agent workflows.
+- **opencode-notify**: System notifications for agent status and task
+  completion.
+- **opencode-agent-memory**: Persistent memory blocks for long-term project
+  context.
 
-## Dependencies
+### MCP Servers
 
-The following list is not comprehensive, but it includes what is important. It
-is broken down by OS:
+| Server | Purpose |
+| :--- | :--- |
+| git | Repository state analysis and operations |
+| context7 | External library documentation search |
+| sequential-thinking | Advanced reasoning and problem-solving |
+| atlassian | Jira and Confluence integration |
 
-- [Shared](#shared) (across all OSes)
-- [Linux](#linux)
-- [MacOS](#macos)
+### Custom Agents
 
-### Shared
+| Name | Purpose | Invocation |
+| :--- | :--- | :--- |
+| @commit | Analyzes staged changes for conventional commits | `opencode agent commit` |
+| @docs-writer | Generates and maintains project documentation | `opencode agent docs-writer` |
+| @review | Performs two-pass code review for quality and security | `opencode agent review` |
 
-#### Fonts
+### Custom Commands
 
-Install a [Nerd Font](https://www.nerdfonts.com/font-downloads). My current
-favorites are [CaskaydiaCove Nerd
-Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/CascadiaCode.zip)
-and [Hack Nerd
-Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/Hack.zip).
+- **/analyze-project**: Initial codebase analysis and indexing.
+- **/plan**: Technical implementation plan generation.
+- **/do**: Automated execution of a generated plan.
+- **/review**: Triggers a deep code review of changes.
+- **/commit**: Stages and commits changes with AI-generated messages.
+- **/serena**: Manual context optimization.
 
-#### Wallpapers
+### Workflow
 
-You can clone my wallpapers [repo](https://github.com/tnthi115/wallpapers) if
-you want to use the same collections I've created.
+The system supports two primary operational patterns:
 
-#### Neovim
+1. **Ultrawork Mode**: Use `ulw <task>` for direct, autonomous execution of a
+   specific task.
+2. **Planned Execution**: Use `@prometheus <task>` to trigger an
+   interview-driven planning phase, followed by `/start-work` for orchestrated
+   implementation.
 
-I used to use [Lunarvim](https://www.lunarvim.org/) as a base config for
-[neovim](https://neovim.io/). Now I use my own config,
-[tvim](https://github.com/tnthi115/tvim), based on
-[LazyVim](https://www.lazyvim.org/).
+Refer to the [orchestration guide](https://github.com/code-yeongyu/oh-my-opencode/blob/dev/docs/guide/orchestration.md#tldr---when-to-use-what) for detailed workflow selection.
 
-#### Tmux
+### Agent Model Assignments
 
-I use [tmux](https://github.com/tmux/tmux) for "sessionizing" different
-projects so that I can quickly context switch without overhead and easily pick
-up where I left off.
+| Agent | Model | Role |
+| :--- | :--- | :--- |
+| sisyphus | claude-opus-4-6 | Main orchestrator |
+| prometheus | claude-opus-4-6 | Strategic planner |
+| metis | claude-opus-4-6 | Plan gap analyzer |
+| oracle | gpt-5.2 | Architecture consultant |
+| momus | gpt-5.2 | Ruthless reviewer |
+| hephaestus | gpt-5.2-codex-max | Autonomous deep worker |
+| sisyphus-junior | claude-sonnet-4-5 | Focused task executor |
+| librarian | gemini-3-flash-preview | Lightweight doc search |
+| explore | grok-code-fast-1 | Fast codebase grep |
 
-#### Lazygit
+### Category Model Assignments
 
-[Lazygit](https://github.com/jesseduffield/lazygit) is super convenient and can
-be launched within neovim, but learn how to use `git` on the command line
-first! `Lazygit` should be used a time saving tool, not a crutch.
-[Delta](https://github.com/dandavison/delta) makes diffs prettier.
+| Category | Model | Purpose |
+| :--- | :--- | :--- |
+| visual-engineering | gemini-3-pro-preview | Frontend/UI development |
+| ultrabrain | gpt-5.2-codex-max | Maximum reasoning capability |
+| deep | gpt-5.2-codex-max | Complex problem-solving |
+| quick | claude-haiku-4-5 | Trivial or repetitive tasks |
+| writing | gemini-3-flash-preview | Documentation and prose |
 
-#### OpenCode
+### Superpowers Skills
 
-[OpenCode](https://opencode.ai/) is an AI coding assistant with multi-agent
-orchestration. My configuration uses:
+Superpowers is a skill framework that enforces engineering discipline through
+structured workflows.
 
-- **[oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode)**: Plugin
-  providing specialized agents (Sisyphus, Oracle, Prometheus), parallel
-  execution, and ultrawork mode
-- **[superpowers](https://github.com/obra/superpowers)**: Skills framework
-  enforcing TDD, systematic debugging, and planning discipline
-
-Install superpowers after stowing opencode config:
+**Installation**:
 
 ```sh
 ~/dotfiles/bin/install-superpowers.sh
 ```
 
-#### Ghostty
+**Key Skills**:
 
-[Ghostty](https://ghostty.org/) is my terminal emulator of choice. It's a fast,
-native, GPU-accelerated terminal written by Mitchell Hashimoto (creator of
-Vagrant, Terraform, and co-founder of HashiCorp). It supports ligatures, has
-excellent font rendering, and is highly configurable.
+- Test-Driven Development (TDD)
+- Systematic debugging
+- Writing and executing plans
+- Verification before completion
+- Brainstorming and code review
+- Git worktree management
+- Dispatching parallel agents
 
-#### Fish
+### Lazygit Integration
 
-[Fish](https://fishshell.com/) is an alternative shell with smart autocompletion
-and syntax highlighting out of the box. My config includes custom functions,
-plugins, and theme integration with Starship.
+The script `lazygit/bin/reword-commit-with-opencode.sh` is integrated into
+Lazygit to allow AI-powered rewriting of commit messages. It analyzes the git
+diff and generates a contextually accurate conventional commit message.
 
-#### Modern CLI Tools
+### LSP and Formatters
 
-These modern replacements for traditional Unix tools are configured in my shell:
+| Language/Format | LSP Server | Formatter |
+| :--- | :--- | :--- |
+| Markdown | rumdl | rumdl |
+| Python | basedpyright | ruff |
+| Lua | - | stylua |
+| Shell | fish-lsp | shfmt |
+| TOML | taplo | taplo |
+| Go | golangci-lint-langserver | goimports |
+| Rust | rust-analyzer | - |
+| YAML | yaml-language-server | - |
+| Docker | docker-langserver | - |
+| JSON/JSONC | - | - |
 
-- **[bat](https://github.com/sharkdp/bat)**: A `cat` clone with syntax
-  highlighting and Git integration
-- **[lsd](https://github.com/lsd-rs/lsd)**: Modern `ls` replacement with icons
-  and colors
-- **[zoxide](https://github.com/ajeetdsouza/zoxide)**: Smarter `cd` command that
-  learns your habits
-- **[fd](https://github.com/sharkdp/fd)**: Fast and user-friendly `find`
-  alternative
-- **[ripgrep (rg)](https://github.com/BurntSushi/ripgrep)**: Blazingly fast
-  `grep` replacement
-- **[fzf](https://github.com/junegunn/fzf)**: Fuzzy finder for files, history,
-  and more
+A more detailed guide is available at `opencode/.config/opencode/README.md`.
 
-#### Sesh
+## Key Tools
 
-[Sesh](https://github.com/joshmedeski/sesh) is a smart tmux session manager that
-integrates with zoxide for quick project switching.
+### Neovim (LazyVim)
 
-#### Firefox
+The primary text editor is Neovim, configured with LazyVim. It provides a robust
+IDE-like experience with pre-configured LSP, treesitter, and debugging support.
 
-Use the [Arkenfox user.js](https://github.com/arkenfox/user.js) to harden. [Librewolf](https://librewolf.net/)
-and [Brave](https://brave.com/) are okay alternatives.
+### Tmux
 
-#### Extensions
+Tmux is used for session management, allowing persistent development
+environments that survive terminal closures. It integrates with sesh for smart
+session switching.
 
-- [Tokyo Night by Milav](https://addons.mozilla.org/en-US/firefox/addon/tokyo-night-milav/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
-- [Gruvbox Material Dark by akay](https://addons.mozilla.org/en-US/firefox/addon/gruvbox-material-dark/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
-- simple tab groups
-- ublock origin in medium mode
-- vimium
-- firefox multi-account containers
-- dark reader
+### Ghostty
 
-### Linux
+Ghostty is a modern, GPU-accelerated terminal emulator written in Zig. It offers
+high performance, native features, and excellent font rendering.
 
-#### Awesomewm
+### Fish Shell
 
-I use [awesomewm](https://awesomewm.org/) for my tiling window manager. It has
-a built in application launcher, but you can use
-[rofi](https://github.com/davatorium/rofi) universally.
-[Compton](https://github.com/chjj/compton) is preinstalled on Ubuntu. Use
-[picom](https://github.com/yshui/picom) on Arch.
+Fish is the default interactive shell, providing web-based configuration,
+excellent autosuggestions, and clean syntax.
 
-I will probably switch to bspwm or qtile in the future.
+### Modern CLI Replacements
 
-### MacOS
+| Original | Replacement | Purpose |
+| :--- | :--- | :--- |
+| cat | bat | Syntax highlighting and git integration |
+| ls | lsd | Icons and color-coded output |
+| cd | zoxide | Frecency-based directory jumping |
+| find | fd | Faster and more intuitive searching |
+| grep | ripgrep (rg) | Blazingly fast content search |
+| - | fzf | General purpose fuzzy finder |
 
-#### Raycast
+## Platform-Specific Tools
 
-[Raycast](https://www.raycast.com/) is an blazingly fast, batteries-included
-run launcher for MacOS only (unfortunately). I really enjoy its extensibility
-and the workflow it allows me to have, especially combined with
-[Yabai](#yabai).
+<details>
+<summary>macOS</summary>
 
-#### Yabai
+- **Raycast**: A fast, extensible replacement for Spotlight.
+- **Yabai**: A tiling window manager that provides binary space partitioning.
+- **SKHD**: A simple hotkey daemon used to control Yabai.
+- **Aerospace**: An alternative i3-like tiling window manager that does not
+  require SIP modifications.
 
-[Yabai](https://github.com/koekeishiya/yabai) is a tiling window manager for
-MacOS, with very similar architecture to
-[bspwm](https://github.com/baskerville/bspwm) +
-[sxhkd](https://github.com/baskerville/sxhkd) on Linux and
-[komorebi](https://github.com/LGUG2Z/komorebi) +
-[whkd](https://github.com/LGUG2Z/whkd) on Windows.
+</details>
 
-#### Aerospace
+<details>
+<summary>Linux</summary>
 
-[Aerospace](https://github.com/nikitabobko/AeroSpace) is an i3-like tiling
-window manager for macOS. Unlike Yabai, it does **not** require disabling System
-Integrity Protection (SIP), making it easier to set up and maintain.
+- **AwesomeWM**: A highly customizable window manager configured with Lua.
+- **Rofi**: An application launcher and window switcher.
+- **Picom/Compton**: Compositors for transparency and window effects.
 
-#### Keybindings
+</details>
 
-> **Note**: I don't use this anymore.
+## Themes
 
-- [Change MacOS Keybindings](https://blog.victormendonca.com/2020/04/27/how-to-change-macos-key-bindings/)
-  to bind ctrl + left and ctrl + right to move one word at a time:
-
-```sh
-stow KeyBindings
-```
-
-- Remap mission control to alt + up in keyboard shortcut settings
-  - Remap space swapping to alt + {1,2,3,4}
+The repository maintains strict visual consistency using TokyoNight and Gruvbox
+Material themes. These themes are synchronized across all supported
+applications, including editors, terminals, shells, and browser interfaces.
