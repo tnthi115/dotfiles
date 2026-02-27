@@ -3,7 +3,6 @@
   "plugin": ["oh-my-opencode", "opencode-notify", "opencode-agent-memory"],
   "share": "manual",
   "autoupdate": true,
-  "theme": "tymon-kanagawa",
   "instructions": [
     "*/AGENTS.md",
     "AGENTS.md",
