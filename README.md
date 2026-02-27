@@ -232,9 +232,9 @@ Refer to the [orchestration guide](https://github.com/code-yeongyu/oh-my-opencod
 | sisyphus | claude-opus-4-6 | Main orchestrator |
 | prometheus | claude-opus-4-6 | Strategic planner |
 | metis | claude-opus-4-6 | Plan gap analyzer |
-| oracle | gpt-5.2 | Architecture consultant |
-| momus | gpt-5.2 | Ruthless reviewer |
-| hephaestus | gpt-5.2-codex-max | Autonomous deep worker |
+| oracle | gpt-5.2 (github-copilot) | Architecture consultant |
+| momus | gpt-5.2 (github-copilot) | Ruthless reviewer |
+| hephaestus | gpt-5.2-codex (github-copilot) | Autonomous deep worker |
 | sisyphus-junior | claude-sonnet-4-5 | Focused task executor |
 | librarian | gemini-3-flash-preview | Lightweight doc search |
 | explore | grok-code-fast-1 | Fast codebase grep |
@@ -244,8 +244,8 @@ Refer to the [orchestration guide](https://github.com/code-yeongyu/oh-my-opencod
 | Category | Model | Purpose |
 | :--- | :--- | :--- |
 | visual-engineering | gemini-3-pro-preview | Frontend/UI development |
-| ultrabrain | gpt-5.2-codex-max | Maximum reasoning capability |
-| deep | gpt-5.2-codex-max | Complex problem-solving |
+| ultrabrain | gpt-5.2-codex (github-copilot) | Maximum reasoning capability |
+| deep | gpt-5.2-codex (github-copilot) | Complex problem-solving |
 | quick | claude-haiku-4-5 | Trivial or repetitive tasks |
 | writing | gemini-3-flash-preview | Documentation and prose |
 
