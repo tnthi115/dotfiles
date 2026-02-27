@@ -55,16 +55,14 @@
     },
     "momus": {
       // Plan review benefits from GPT's critical analysis
-      "model": "f5/gpt-5.2",
+      // NOTE: f5/gpt-5.2 sends unsupported 'reasoningSummary' param via Azure — use github-copilot instead
+      "model": "github-copilot/gpt-5.2",
       "fallback_models": ["f5/claude-opus-4-6", "github-copilot/gemini-3-pro-preview"],
-      // Extended thinking for thorough plan review
-      "thinking": {
-        "type": "enabled",
-        "budgetTokens": 8000
-      }
+      "reasoningEffort": "high"
     },
     "oracle": {
-      "model": "f5/gpt-5.2",
+      // NOTE: f5/gpt-5.2 sends unsupported 'reasoningSummary' param via Azure — use github-copilot instead
+      "model": "github-copilot/gpt-5.2",
       "fallback_models": ["f5/claude-opus-4-6", "github-copilot/gemini-3-pro-preview", "f5/claude-sonnet-4-5"],
       // Extended thinking for architecture decisions
       "thinking": {
@@ -89,12 +87,10 @@
       // Autonomous Deep Worker - GPT Codex optimized
       // Goal-oriented execution, deep exploration before action, comprehensive context gathering
       // Inspired by AmpCode's deep mode - autonomous problem-solving with thorough research
-      "model": "f5/gpt-5.2-codex-max",
-      "fallback_models": ["f5/gpt-5.2-codex", "github-copilot/gpt-5.2-codex", "f5/gpt-5.2"],
-      "thinking": {
-        "type": "enabled",
-        "budgetTokens": 10000
-      },
+      // NOTE: f5/gpt-5.2-codex-max triggers opencode/gpt-5.3-codex remap error — use github-copilot
+      "model": "github-copilot/gpt-5.2-codex",
+      "fallback_models": ["f5/gpt-5.2-codex-max", "f5/gpt-5.2-codex", "f5/gpt-5.2"],
+      "reasoningEffort": "high",
       // Deployment query routing (xc-planner for prod/staging questions)
       "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
@@ -111,22 +107,18 @@
       "fallback_models": ["f5/claude-sonnet-4-5", "f5/claude-opus-4-6"]
     },
     "ultrabrain": {
-      "model": "f5/gpt-5.2-codex-max",
-      "fallback_models": ["f5/gpt-5.2-codex", "github-copilot/gemini-3-pro-preview", "f5/claude-opus-4-6"],
-      "thinking": {
-        "type": "enabled",
-        "budgetTokens": 10000
-      }
+      // NOTE: f5/gpt-5.2-codex-max triggers opencode/gpt-5.3-codex remap error — use github-copilot
+      "model": "github-copilot/gpt-5.2-codex",
+      "fallback_models": ["f5/gpt-5.2-codex-max", "f5/gpt-5.2-codex", "f5/claude-opus-4-6"],
+      "reasoningEffort": "high"
     },
     "deep": {
       // Goal-oriented autonomous problem-solving
       // Thorough research before action, for hairy problems requiring deep understanding
-      "model": "f5/gpt-5.2-codex-max",
-      "fallback_models": ["f5/gpt-5.2-codex", "f5/claude-opus-4-6"],
-      "thinking": {
-        "type": "enabled",
-        "budgetTokens": 10000
-      }
+      // NOTE: f5/gpt-5.2-codex-max triggers opencode/gpt-5.3-codex remap error — use github-copilot
+      "model": "github-copilot/gpt-5.2-codex",
+      "fallback_models": ["f5/gpt-5.2-codex-max", "f5/gpt-5.2-codex", "f5/claude-opus-4-6"],
+      "reasoningEffort": "high"
     },
     "artistry": {
       "model": "github-copilot/gemini-3-pro-preview",
