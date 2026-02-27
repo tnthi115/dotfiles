@@ -57,7 +57,11 @@
       // Plan review benefits from GPT's critical analysis
       "model": "f5/gpt-5.2",
       "fallback_models": ["f5/claude-opus-4-6", "github-copilot/gemini-3-pro-preview"],
-      "reasoningEffort": "high"
+      // Extended thinking for thorough plan review
+      "thinking": {
+        "type": "enabled",
+        "budgetTokens": 8000
+      }
     },
     "oracle": {
       "model": "f5/gpt-5.2",
@@ -87,7 +91,10 @@
       // Inspired by AmpCode's deep mode - autonomous problem-solving with thorough research
       "model": "f5/gpt-5.2-codex-max",
       "fallback_models": ["f5/gpt-5.2-codex", "github-copilot/gpt-5.2-codex", "f5/gpt-5.2"],
-      "reasoningEffort": "high",
+      "thinking": {
+        "type": "enabled",
+        "budgetTokens": 10000
+      },
       // Deployment query routing (xc-planner for prod/staging questions)
       "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
@@ -106,14 +113,20 @@
     "ultrabrain": {
       "model": "f5/gpt-5.2-codex-max",
       "fallback_models": ["f5/gpt-5.2-codex", "github-copilot/gemini-3-pro-preview", "f5/claude-opus-4-6"],
-      "reasoningEffort": "high"
+      "thinking": {
+        "type": "enabled",
+        "budgetTokens": 10000
+      }
     },
     "deep": {
       // Goal-oriented autonomous problem-solving
       // Thorough research before action, for hairy problems requiring deep understanding
       "model": "f5/gpt-5.2-codex-max",
       "fallback_models": ["f5/gpt-5.2-codex", "f5/claude-opus-4-6"],
-      "reasoningEffort": "high"
+      "thinking": {
+        "type": "enabled",
+        "budgetTokens": 10000
+      }
     },
     "artistry": {
       "model": "github-copilot/gemini-3-pro-preview",
