@@ -1,60 +1,71 @@
 ---
-description: Two-pass structured review for plans or code. Usage: /review [@plan.md] [git-range]
-agent: review
+description: Smart review with agent routing. Usage: /review [@plan.md] [git-range]
+agent: general
 subtask: true
 ---
 
 # Review Command
 
-You are orchestrating a structured two-pass review. Your job is to:
+You are orchestrating a smart review with agent routing. Your job is to:
 
-1. Detect review mode (plan vs code)
-2. Gather context
-3. Run Pass 1 with @review agent
-4. Run Pass 2 with @review agent
-5. Combine results into unified report
+1. Detect review mode and determine routing
+2. Run early exit checks
+3. Dispatch to the appropriate agent(s)
+4. Present unified output
 
 ## Mode Detection
 
-Analyze the input to determine mode:
+Analyze the input to determine mode and routing:
 
-| Input Pattern | Mode | Action |
-|---------------|------|--------|
-| `@path/to/file.md` only (contains `.sisyphus/plans/` OR has plan markers) | **Plan Review** | Review plan quality |
-| No args | **Code Review** | Review changes since origin/main |
-| Git range (HEAD~N, SHA..SHA) | **Code Review** | Review specified commits |
-| `@plan.md` + git range | **Code Review** | Review code with plan as Pass 1 context |
+| Input Pattern | Mode | Routing |
+|---------------|------|---------|
+| `@path/to/file.md` (in `.sisyphus/plans/` OR has plan markers) | **Plan Review** | Momus |
+| No args (≤5 changed files) | **Code Review (Fast)** | @review only |
+| No args (6+ files OR files>2 AND dirs>2) | **Code Review (Deep)** | explore + @review |
+| Git range (`HEAD~N`, `SHA..SHA`) | **Code Review** | Threshold-based (see below) |
+| `@plan.md` + git range | **Code Review + Plan Context** | Threshold-based (see below) |
 
-**Plan markers**: `## TODOs`, `## Work Objectives`, `## Success Criteria`, `## Must Have`
+**Plan markers**: `## TODOs`, `## Work Objectives`, `## Success Criteria`,
+`## Must Have`
 
-## Context Gathering
+**Threshold-based routing**: Count changed files and distinct directories from
+the diff. If ≤5 files → Fast. If 6+ files OR (files>2 AND dirs>2) → Deep.
 
-### For Plan Review Mode
+## Early Exit Checks
 
-1. Read the plan file
-2. Extract key sections: objectives, requirements, success criteria, TODOs
+Before dispatching, verify there is something to review:
 
-### For Code Review Mode
+**For Plan Review**:
+
+1. Read the file. If it cannot be read or is empty, report:
+   `"Error: Cannot read plan file: {path}"` and stop.
+
+**For Code Review**:
 
 1. Determine git baseline:
    - If range provided: use it
    - Else: `git merge-base HEAD origin/main` or `HEAD~1` as fallback
 
 2. Get changed files:
+
    ```bash
-   git diff --stat <baseline>..HEAD
-   git diff <baseline>..HEAD
+   git diff --name-only <baseline>..HEAD
    ```
 
-3. Find plan context (best effort, in order):
-   - Explicit `@plan.md` argument
-   - Recent files in `.sisyphus/plans/`
-   - Branch name hints (feature/AUTH-123)
-   - Commit message references
+3. If no changed files, report:
+   `"No changes found in range <baseline>..HEAD. Nothing to review."` and stop.
 
-4. Detect languages from changed files
+4. Count files and distinct directories:
 
-5. Run configured linters (capture output for Pass 2):
+   ```bash
+   FILE_COUNT=$(git diff --name-only <baseline>..HEAD | wc -l)
+   DIR_COUNT=$(git diff --name-only <baseline>..HEAD | xargs -I{} dirname {} | sort -u | wc -l)
+   ```
+
+5. Detect languages from changed file extensions.
+
+6. Run configured linters (capture output for review):
+
    ```bash
    # Python
    ruff check . 2>&1 || true
@@ -66,223 +77,257 @@ Analyze the input to determine mode:
    go vet ./... 2>&1 || true
    ```
 
-## Pass 1: Correctness & Completeness
+7. Find plan context (best effort, in order):
+   - Explicit `@plan.md` argument
+   - Recent files in `.sisyphus/plans/`
+   - Branch name hints (feature/AUTH-123)
+   - Commit message references
 
-Invoke @review agent with pass-specific instructions.
+## Plan Review Flow (Momus)
 
-### Pass 1 Instructions for Plan Review
+When mode is **Plan Review**, dispatch to Momus for ruthless plan critique.
 
-Prompt the @review agent with:
+### Steps
 
-```
-You are reviewing a PLAN for completeness and feasibility.
+1. Read the full plan file content.
 
-**Plan Content:**
-[Insert plan content here]
+2. Dispatch to Momus:
 
-**Checklist - verify each item:**
+   Dispatch pseudo-code (adapt to your agent system's actual API):
 
-1. **Requirements Capture**
-   - Are all requirements from the original request present?
-   - Is anything mentioned in objectives missing from TODOs?
+   ```
+   task(
+     subagent_type="momus",
+     load_skills=[],
+     description="Review plan: {plan-file-name}",
+     prompt="{full plan file content}",
+     run_in_background=false
+   )
+   ```
 
-2. **Scope Boundaries**
-   - Clear "Must Have" section?
-   - Clear "Must NOT Have" section?
-   - Are exclusions explicit?
+   Do NOT add custom review checklists to the Momus prompt. Momus has its own
+   built-in review protocol. Pass the plan content directly and let Momus
+   apply its own standards.
 
-3. **Success Criteria**
-   - Defined and measurable?
-   - Can be verified with commands?
+3. Interpret Momus verdict:
+   - **OKAY**: Plan passes. Present findings in unified output format with
+     recommendation "Ready for execution."
+   - **REJECT**: Plan fails. Present findings in unified output format with
+     the specific issues Momus identified. Recommendation: "Fix N issues
+     before execution."
 
-4. **Dependencies**
-   - Task dependencies identified?
-   - Execution order respects dependencies?
+### Fallback
 
-5. **Verification Strategy**
-   - Test approach defined (TDD/tests-after/QA-only)?
-   - QA scenarios present for each task?
+If Momus dispatch fails (timeout, error, unavailable), fall back to @review
+agent with the original two-pass approach:
 
-Report findings using the standard output format.
-```
+1. Invoke @review with Pass 1 (completeness and feasibility):
 
-### Pass 1 Instructions for Code Review
+   ```
+   You are reviewing a PLAN for completeness and feasibility.
 
-Prompt the @review agent with:
+   **Plan Content:**
+   {full plan content}
 
-```
-You are reviewing CODE CHANGES for correctness and completeness.
+   Evaluate: requirements capture, scope boundaries, success criteria,
+   dependencies, and verification strategy. Report findings.
+   ```
 
-**Git Range:** <baseline>..HEAD
-**Changed Files:**
-[Insert git diff --stat output]
+2. Invoke @review with Pass 2 (quality and executability):
 
-**Plan Context (if available):**
-[Insert plan content or "No plan context found"]
+   ```
+   You are reviewing a PLAN for quality and executability.
 
-**Checklist - verify each item:**
+   **Plan Content:**
+   {full plan content}
 
-1. **Issue Resolution** (if plan context available)
-   - Was the original issue/objective addressed?
-   - Does the implementation match the plan?
+   Evaluate: task granularity, QA scenarios, execution order, risk
+   identification, and template compliance. Report findings.
+   ```
 
-2. **Requirement Coverage**
-   - All planned features implemented?
-   - Nothing obviously missing?
+3. Combine results into unified output format.
 
-3. **Success Criteria** (if defined in plan)
-   - Do deliverables meet defined metrics?
+## Code Review Flow — Fast Path (≤5 files)
 
-4. **Scope Fidelity**
-   - Nothing missing from plan?
-   - No scope creep (unplanned additions)?
+When mode is **Code Review** and file count is ≤5, use @review directly.
 
-5. **Edge Cases**
-   - Boundary conditions handled?
-   - Error scenarios covered?
+### Steps
 
-6. **Integration**
-   - Works with existing system components?
-   - No obvious breaking changes?
+1. Gather context: diff stat, full diff, linter output, plan context.
 
-Report findings using the standard output format.
-If no plan context: Note "Plan context not found - correctness review based on observable code behavior only"
-```
+2. Invoke @review with Pass 1 (correctness and completeness):
 
-## Pass 2: Quality
+   ```
+   You are reviewing CODE CHANGES for correctness and completeness.
 
-Invoke @review agent with pass-specific instructions.
+   **Git Range:** <baseline>..HEAD
+   **Changed Files:**
+   {git diff --stat output}
 
-### Pass 2 Instructions for Plan Review
+   **Plan Context (if available):**
+   {plan content or "No plan context found"}
 
-Prompt the @review agent with:
+   Evaluate: issue resolution, requirement coverage, success criteria,
+   scope fidelity, edge cases, and integration. Report findings.
+   If no plan context: Note "Plan context not found - correctness review
+   based on observable code behavior only"
+   ```
 
-```
-You are reviewing a PLAN for quality and executability.
+3. Invoke @review with Pass 2 (quality):
 
-**Plan Content:**
-[Insert plan content here]
+   ```
+   You are reviewing CODE CHANGES for quality.
 
-**Checklist - verify each item:**
+   **Git Range:** <baseline>..HEAD
+   **Changed Files:**
+   {git diff --stat output}
 
-1. **Task Granularity**
-   - Tasks sized appropriately (2-5 minute steps)?
-   - No vague tasks ("implement feature")?
+   **Full Diff:**
+   {git diff output}
 
-2. **QA Scenarios**
-   - Each task has QA scenarios?
-   - Scenarios are concrete (specific selectors, data, assertions)?
-   - Both happy path and error scenarios?
+   **Linter Output:**
+   {linter output or "No issues found"}
 
-3. **Execution Order**
-   - Dependencies respected in ordering?
-   - Parallelizable tasks identified?
+   Evaluate: codebase patterns, language best practices, linting and
+   formatting, security, performance, and documentation. Report findings.
+   ```
 
-4. **Risk Identification**
-   - Potential blockers called out?
-   - External dependencies noted?
+4. Present unified output format.
 
-5. **Template Compliance**
-   - Follows standard plan structure?
-   - All required sections present?
+## Code Review Flow — Deep Path (6+ files)
 
-Report findings using the standard output format.
-```
+When mode is **Code Review** and file count is 6+ (or files>2 AND dirs>2),
+use explore for impact analysis before @review.
 
-### Pass 2 Instructions for Code Review
+### Steps
 
-Prompt the @review agent with:
+1. Dispatch explore for impact analysis:
 
-```
-You are reviewing CODE CHANGES for quality.
+   Dispatch pseudo-code (adapt to your agent system's actual API):
 
-**Git Range:** <baseline>..HEAD
-**Changed Files:**
-[Insert git diff --stat]
+   ```
+   task(
+     subagent_type="explore",
+     load_skills=[],
+     description="Impact analysis for code review",
+     prompt="Analyze these changed files for review context:
+       {list of changed files}
+       For each file, find:
+       - Direct importers/consumers (who calls this?)
+       - Test files that exercise this code
+       - Related files in same module
+       Return: impact map with file paths and risk assessment.",
+     run_in_background=true
+   )
+   ```
 
-**Full Diff:**
-[Insert git diff output]
+2. While explore runs, gather context: diff stat, full diff, linter output,
+   plan context.
 
-**Linter Output:**
-[Insert linter output or "No issues found"]
+3. Collect explore results (wait up to 60 seconds). If explore fails or
+   times out, proceed with @review passes without impact analysis context.
 
-**Checklist - verify each item:**
+4. Invoke @review with Pass 1, including impact analysis context:
 
-1. **Codebase Patterns**
-   - Follows existing conventions in this repo?
-   - Consistent with similar code nearby?
+   ```
+   You are reviewing CODE CHANGES for correctness and completeness.
 
-2. **Language Best Practices**
-   - Idiomatic for the language?
-   - No anti-patterns?
+   **Git Range:** <baseline>..HEAD
+   **Changed Files:**
+   {git diff --stat output}
 
-3. **Linting & Formatting**
-   - Linter output clean? (see above)
-   - Consistent formatting?
+   **Impact Analysis:**
+   {explore results — impact map and risk assessment}
 
-4. **Security**
-   - Input validation present?
-   - No hardcoded secrets?
-   - No obvious vulnerabilities?
+   **Plan Context (if available):**
+   {plan content or "No plan context found"}
 
-5. **Performance**
-   - No obvious inefficiencies?
-   - Appropriate data structures?
+   Evaluate: issue resolution, requirement coverage, success criteria,
+   scope fidelity, edge cases, and integration. Pay special attention to
+   high-risk areas identified in the impact analysis. Report findings.
+   ```
 
-6. **Documentation**
-   - Functions have docstrings where needed?
-   - Complex logic explained?
+5. Invoke @review with Pass 2 (quality), including impact analysis and
+   linter output.
 
-Report findings using the standard output format.
-```
+6. **Oracle trigger check** — invoke Oracle ONLY when ALL conditions are met:
+   - Changes touch **3+ distinct directories**
+   - `git diff <baseline>..HEAD` contains changes to interfaces, types, or
+     exports (detected mechanically):
 
-## Output Format
+     ```bash
+     git diff <baseline>..HEAD | grep -E '^\+.*(interface |type |export )' | head -5
+     ```
 
-After both passes complete, present unified report:
+   If both conditions are met, invoke Oracle:
+
+   Dispatch pseudo-code (adapt to your agent system's actual API):
+
+   ```
+   task(
+     subagent_type="oracle",
+     load_skills=[],
+     description="Architecture review for cross-cutting changes",
+     prompt="These changes touch {DIR_COUNT} directories and modify
+       interfaces/types/exports. Review for architectural concerns:
+       {git diff --stat output}
+       {matched interface/type/export lines}
+       Focus on: API contract stability, dependency direction, and
+       separation of concerns.",
+     run_in_background=false
+   )
+   ```
+
+   Append Oracle findings to the unified output as a separate section.
+
+7. Present unified output format.
+
+## Unified Output Format
+
+All routing paths MUST produce output in this format:
 
 ```markdown
-# Review: [Plan Name | Branch/Commit Range]
+# Review: {Plan Name | Branch/Commit Range}
 
-**Mode**: Plan Review | Code Review
-**Target**: [plan file path | git range]
+**Mode**: Plan Review | Code Review (Fast) | Code Review (Deep)
+**Routing**: Momus | @review | explore + @review [+ Oracle]
+**Target**: {plan file path | git range}
 **Files Changed**: N/A | N files (+X, -Y)
-**Plan Context**: [path] | Found in .sisyphus/plans/ | Not found
+**Plan Context**: {path} | Found in .sisyphus/plans/ | Not found
 
 ---
 
-## Pass 1: [Completeness & Feasibility | Correctness & Completeness]
+## Findings
 
-[Insert Pass 1 findings]
-
----
-
-## Pass 2: [Quality & Executability | Code Quality]
-
-[Insert Pass 2 findings]
+{For Plan Review: Momus verdict and findings}
+{For Code Review: Pass 1 and Pass 2 findings}
+{If Oracle was invoked: Architecture findings}
 
 ---
 
 ## Summary
 
-| Severity | Pass 1 | Pass 2 | Total |
-|----------|--------|--------|-------|
-| Critical | N | N | N |
-| Important | N | N | N |
-| Minor | N | N | N |
+| Severity | Count |
+|----------|-------|
+| Critical | N |
+| Important | N |
+| Minor | N |
 
 **Recommendation**:
-[Based on findings, one of:]
+{Based on findings, one of:}
 - Fix N critical/important issues directly (if few/simple)
 - Create plan to address issues (if many/complex)
-- Ready for [execution | integration] (if no blocking issues)
+- Ready for {execution | integration} (if no blocking issues)
 ```
 
 ## Post-Review Action
 
 Based on findings:
 
-1. **If few/simple issues**: Offer to fix them directly
-2. **If many/complex issues**: Offer to create or update plan to address them
-3. **If no blocking issues**: Indicate ready to proceed
+1. **If few/simple issues**: Offer to fix them directly.
+2. **If many/complex issues**: Offer to create or update a plan to address
+   them.
+3. **If no blocking issues**: Indicate ready to proceed.
 
-For code review specifically, if ready, guide to `finishing-a-development-branch` skill.
+For code review specifically, if ready, guide to
+`finishing-a-development-branch` skill.

@@ -89,7 +89,7 @@
       // Inspired by AmpCode's deep mode - autonomous problem-solving with thorough research
       // NOTE: f5/gpt-5.2-codex-max triggers opencode/gpt-5.3-codex remap error — use github-copilot
       "model": "github-copilot/gpt-5.2-codex",
-      "fallback_models": ["f5/gpt-5.2-codex-max", "f5/gpt-5.2-codex", "f5/gpt-5.2"],
+      "fallback_models": ["f5/gpt-5.2-codex", "f5/gpt-5.2", "f5/gpt-5.2-codex-max"],
       "reasoningEffort": "high",
       // Deployment query routing (xc-planner for prod/staging questions)
       "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
