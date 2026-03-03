@@ -58,6 +58,19 @@
 | Read files | `Read` |
 | Run commands | `Bash` |
 
+### Bash Tool Call Formatting (Azure Compatibility)
+
+When using the Bash tool, the `description` parameter MUST follow these rules
+to prevent JSON parsing failures in Azure proxy environments:
+
+- **Maximum 5 words** — e.g., `List files in directory`
+- **No trailing periods or punctuation**
+- **No newlines or special characters** in the value
+- **No quotes or escaped characters** within the description string
+
+Bad: `"Check if plans directory exists."` (too long, has period)
+Good: `"Check plans directory"`
+
 **Sequential Thinking MCP**: Use for complex reasoning, chain-of-thought,
 multi-step analysis.
 
