@@ -68,8 +68,8 @@ to prevent JSON parsing failures in Azure proxy environments:
 - **No newlines or special characters** in the value
 - **No quotes or escaped characters** within the description string
 
-Bad: `"Check if plans directory exists."` (too long, has period)
-Good: `"Check plans directory"`
+Bad: `"Check if the plans directory already exists."` (8 words, has period)
+Good: `"List files in config directory"` (5 words, at limit)
 
 **Sequential Thinking MCP**: Use for complex reasoning, chain-of-thought,
 multi-step analysis.

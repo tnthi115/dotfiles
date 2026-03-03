@@ -135,9 +135,9 @@ For detailed decision guidance, refer to the
 
 | Agent | Model | Purpose | Invocation |
 | :--- | :--- | :--- | :--- |
-| @commit | gpt-5-mini | Conventional commit generation from diffs. | `@commit` |
+| @commit | claude-haiku-4-5 | Conventional commit generation from diffs. | `@commit` |
 | @docs-writer | (default) | Automated documentation generation and maintenance. | `@docs-writer` |
-| @review | claude-opus-4-5 | Structured two-pass code review for quality. | `@review` |
+| @review | claude-opus-4-6 | Structured two-pass code review for quality. | `@review` |
 
 ## Custom Commands
 

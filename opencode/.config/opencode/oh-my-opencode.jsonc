@@ -11,12 +11,12 @@
 
   "agents": {
     "build": {
-      "model": "f5/claude-sonnet-4-5",
-      "fallback_models": ["f5/claude-sonnet-4-5", "f5/claude-haiku-4-5"]
+      "model": "f5/claude-opus-4-6",
+      "fallback_models": ["f5/claude-opus-4-5", "f5/claude-sonnet-4-5"]
     },
     "plan": {
-      "model": "f5/claude-sonnet-4-5",
-      "fallback_models": ["f5/claude-sonnet-4-5", "f5/claude-haiku-4-5"]
+      "model": "f5/claude-opus-4-6",
+      "fallback_models": ["f5/claude-opus-4-5", "f5/claude-sonnet-4-5"]
     },
     "sisyphus": {
       "model": "f5/claude-opus-4-6",
