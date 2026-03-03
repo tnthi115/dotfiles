@@ -31,6 +31,7 @@ You have limited bash access for VERIFICATION ONLY. Follow these rules strictly:
 **FORBIDDEN** (never run these):
 - File mutation: `rm`, `mv`, `cp`, `mkdir`, `touch`, `chmod`
 - Write operations: `>`, `>>`, `tee`, `sed -i`, `awk` with output redirect
+- Arbitrary execution: `eval`, `source`, `exec`, `xargs -I{} sh -c`
 - Network: `curl`, `wget`, `ssh`, `scp`
 - Process management: `kill`, `pkill`, `nohup`
 - Package management: `npm install`, `pip install`, `brew install`

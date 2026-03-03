@@ -93,6 +93,8 @@ When mode is **Plan Review**, dispatch to Momus for ruthless plan critique.
 
 2. Dispatch to Momus:
 
+   Dispatch pseudo-code (adapt to your agent system's actual API):
+
    ```
    task(
      subagent_type="momus",
@@ -201,6 +203,8 @@ use explore for impact analysis before @review.
 
 1. Dispatch explore for impact analysis:
 
+   Dispatch pseudo-code (adapt to your agent system's actual API):
+
    ```
    task(
      subagent_type="explore",
@@ -220,7 +224,8 @@ use explore for impact analysis before @review.
 2. While explore runs, gather context: diff stat, full diff, linter output,
    plan context.
 
-3. Collect explore results (wait for background task to complete).
+3. Collect explore results (wait up to 60 seconds). If explore fails or
+   times out, proceed with @review passes without impact analysis context.
 
 4. Invoke @review with Pass 1, including impact analysis context:
 
@@ -255,6 +260,8 @@ use explore for impact analysis before @review.
      ```
 
    If both conditions are met, invoke Oracle:
+
+   Dispatch pseudo-code (adapt to your agent system's actual API):
 
    ```
    task(
