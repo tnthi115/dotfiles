@@ -179,6 +179,33 @@ opencode/.config/opencode/
 └── README.md
 ```
 
+### Sandbox Usage
+
+For secure, standardized development, this configuration is compatible with the
+OpenCode Sandbox. The sandbox runs OpenCode in a hardened Docker container
+with restricted network access and approved providers only.
+
+**Prerequisites**: Docker Desktop, `F5AI_API_KEY` environment variable.
+
+1. **Symlink Setup**: The sandbox mounts `~/.local/opencode`. Create a symlink
+   to your stow-managed config:
+
+   ```bash
+   ln -s ~/.config/opencode ~/.local/opencode
+   ```
+
+2. **Launch**: Run the sandbox from any project directory:
+
+   ```bash
+   # Example using the python-flavor sandbox
+   ~/path/to/opencode-sandbox/bin/run.sh python --name my-dev-session
+   ```
+
+**Capability Matrix**:
+
+- **YES**: Custom Agents, Commands, Superpowers Skills.
+- **NO**: External MCP Servers (disabled for sandbox), Internet-phoning plugins.
+
 ### Plugins
 
 - **oh-my-opencode**: Orchestration framework for multi-agent workflows.
@@ -189,12 +216,14 @@ opencode/.config/opencode/
 
 ### MCP Servers
 
-| Server | Purpose |
-| :--- | :--- |
-| git | Repository state analysis and operations |
-| context7 | External library documentation search |
-| sequential-thinking | Advanced reasoning and problem-solving |
-| atlassian | Jira and Confluence integration |
+| Server | Purpose | Status |
+| :--- | :--- | :--- |
+| git | Repository state analysis and operations | Disabled |
+| sequential-thinking | Advanced reasoning and problem-solving | Disabled |
+| atlassian | Jira and Confluence integration | Disabled |
+| context7 | External library documentation search | Disabled (Sandbox) |
+| websearch | exa.ai web search integration | Disabled (Sandbox) |
+| grep_app | grep.app code search integration | Disabled (Sandbox) |
 
 ### Custom Agents
 
