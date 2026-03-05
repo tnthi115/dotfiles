@@ -1,7 +1,7 @@
 ---
 description: Activate Serena MCP server and project for manual context optimization
 agent: general
-model: f5/gpt-5-mini
+model: f5ai/gpt-5-mini
 subtask: true
 ---
 

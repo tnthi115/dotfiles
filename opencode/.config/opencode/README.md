@@ -20,6 +20,7 @@ workflow discipline.
 - [Category Model Assignments](#category-model-assignments)
 - [Superpowers Integration](#superpowers-integration)
 - [LSP and Formatters](#lsp-and-formatters)
+- [Sandbox Compatibility](#sandbox-compatibility)
 - [Troubleshooting](#troubleshooting)
 - [See Also](#see-also)
 
@@ -124,12 +125,12 @@ For detailed decision guidance, refer to the
 
 ## MCP Servers
 
-| Server | Purpose | Notes |
-| :--- | :--- | :--- |
-| git | Repository analysis | Enables deep history and diff exploration. |
-| context7 | Documentation search | Real-time lookup for libraries and frameworks. |
-| sequential-thinking | Complex reasoning | Provides advanced chain-of-thought analysis. |
-| atlassian | JIRA and Confluence | Integration for F5 Data Center environments. |
+| Server | Purpose | Sandbox Status | Notes |
+| :--- | :--- | :--- | :--- |
+| git | Repository analysis | Disabled | Local-only, no network. |
+| context7 | Documentation search | Disabled | Remote API, blocked by oh-my-opencode. |
+| sequential-thinking | Complex reasoning | Disabled | Local-only, no network. |
+| atlassian | JIRA and Confluence | Disabled | Internal network only. |
 
 ## Custom Agents
 
@@ -161,7 +162,7 @@ Model assignments are optimized based on specific agent roles.
 | metis | claude-opus-4-6 | Plan gap analyzer |
 | oracle | gpt-5.2 | Architecture consultant |
 | momus | gpt-5.2 | Ruthless reviewer |
-| hephaestus | gpt-5.2-codex-max | Autonomous deep worker |
+| hephaestus | gpt-5.2-codex | Autonomous deep worker |
 | sisyphus-junior | claude-sonnet-4-5 | Focused task executor |
 | librarian | gemini-3-flash-preview | Lightweight doc search |
 | explore | grok-code-fast-1 | Fast codebase grep |
@@ -174,8 +175,8 @@ Model assignments are optimized based on specific agent roles.
 | :--- | :--- | :--- |
 | visual-engineering | gemini-3-pro-preview | Frontend and UI/UX tasks |
 | artistry | gemini-3-pro-preview | Creative and novel approaches |
-| ultrabrain | gpt-5.2-codex-max | Maximum reasoning capability |
-| deep | gpt-5.2-codex-max | Complex problem-solving |
+| ultrabrain | gpt-5.2-codex | Maximum reasoning capability |
+| deep | gpt-5.2-codex | Complex problem-solving |
 | quick | claude-haiku-4-5 | Trivial or repetitive tasks |
 | writing | gemini-3-flash-preview | Documentation and prose |
 | unspecified-high | claude-opus-4-6 | General complex work |
@@ -229,6 +230,40 @@ OpenCode uses the following tools for code intelligence and formatting:
   `opencode-agent-memory` plugin to see if key information was preserved.
 - **Skill Failures**: Ensure the superpowers repository is up to date with
   `cd ~/.config/opencode/superpowers && git pull`.
+
+## Sandbox Compatibility
+
+The OpenCode configuration is hardened for use within the official OpenCode
+Sandbox. The environment enforces security by restricting network access and
+specific providers.
+
+### Configuration Hardening
+
+Specific features are disabled in `oh-my-opencode.jsonc` to maintain sandbox
+integrity:
+
+```jsonc
+{
+  "disabled_hooks": ["agent-usage-reminder", "auto-update-checker"],
+  "disabled_mcps": ["websearch", "context7", "grep_app"]
+}
+```
+
+### Provider Restrictions
+
+While the sandbox requires `enabled_providers: ["f5ai"]`, this is **NOT**
+included in the shared `opencode.jsonc`. Adding it locally would break 16
+`github-copilot/` model references for standard use. The sandbox enforces this
+restriction at runtime via environment variables.
+
+### Symlink Requirement
+
+The sandbox expects configuration at `~/.local/opencode`. If you use the
+standard `~/.config/opencode` location, create a symlink:
+
+```bash
+ln -s ~/.config/opencode ~/.local/opencode
+```
 
 ## See Also
 
