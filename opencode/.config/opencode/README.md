@@ -138,7 +138,7 @@ For detailed decision guidance, refer to the
 | :--- | :--- | :--- | :--- |
 | @commit | claude-haiku-4-5 | Conventional commit generation from diffs. | `@commit` |
 | @docs-writer | (default) | Automated documentation generation and maintenance. | `@docs-writer` |
-| @review | claude-opus-4-6 | Structured two-pass code review for quality. | `@review` |
+| @review | claude-opus-4-6 | Structured code review combining correctness and quality in a single pass. | `@review` |
 
 ## Custom Commands
 

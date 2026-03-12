@@ -231,7 +231,7 @@ with restricted network access and approved providers only.
 | :--- | :--- | :--- |
 | @commit | Analyzes staged changes for conventional commits | `opencode agent commit` |
 | @docs-writer | Generates and maintains project documentation | `opencode agent docs-writer` |
-| @review | Performs two-pass code review for quality and security | `opencode agent review` |
+| @review | Performs combined correctness and quality code review | `opencode agent review` |
 
 ### Custom Commands
 

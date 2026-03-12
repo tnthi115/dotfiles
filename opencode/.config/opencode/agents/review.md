@@ -1,5 +1,5 @@
 ---
-description: Reviews plans or code with structured two-pass feedback
+description: Reviews plans or code with combined correctness and quality feedback
 mode: subagent
 model: f5ai/claude-opus-4-6
 temperature: 0.1
