@@ -46,6 +46,12 @@
         "apiKey": "{env:F5AI_API_KEY}"
       },
       "models": {
+        "grok-4": {
+          "name": "Grok 4"
+        },
+        "grok-code-fast-1": {
+          "name": "Grok Code Fast 1"
+        },
         "claude-haiku-4-5": {
           "name": "Claude Haiku 4.5"
         },
@@ -61,17 +67,26 @@
         "claude-sonnet-4-6": {
           "name": "Claude Sonnet 4.6"
         },
+        "gpt-5.4": {
+          "name": "GPT-5.4"
+        },
+        "gpt-5.3-codex": {
+          "name": "GPT-5.3-Codex"
+        },
+        "gpt-5.3-codex-max": {
+          "name": "GPT-5.3-Codex-Max"
+        },
         "gpt-5.2-codex-max": {
           "name": "GPT-5.2-Codex-Max"
-        },
-        "gpt-5.1-codex-max": {
-          "name": "GPT-5.1-Codex-Max"
         },
         "gpt-5.2-codex": {
           "name": "GPT-5.2-Codex"
         },
         "gpt-5.2": {
           "name": "GPT-5.2"
+        },
+        "gpt-5.1-codex-max": {
+          "name": "GPT-5.1-Codex-Max"
         },
         "gpt-5": {
           "name": "GPT-5"
