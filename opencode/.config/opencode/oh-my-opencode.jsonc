@@ -35,7 +35,7 @@
     },
     "prometheus": {
       "model": "f5ai/claude-opus-4-6",
-      "fallback_models": ["f5ai/claude-opus-4-5", "github-copilot/gpt-5.4", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"],
+      "fallback_models": ["f5ai/claude-opus-4-5", "github-copilot/gpt-5.3-codex", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"],
       // Extended thinking for thorough planning
       "thinking": {
         "type": "enabled",
@@ -46,7 +46,7 @@
     },
     "metis": {
       "model": "f5ai/claude-opus-4-6",
-      "fallback_models": ["f5ai/claude-opus-4-5", "github-copilot/gpt-5.4", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"],
+      "fallback_models": ["f5ai/claude-opus-4-5", "github-copilot/gpt-5.3-codex", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"],
       // Extended thinking for gap analysis
       "thinking": {
         "type": "enabled",
@@ -55,14 +55,14 @@
     },
     "momus": {
       // Plan review benefits from GPT's critical analysis
-      // github-copilot provider avoids f5ai Azure 'reasoningSummary' parameter bug
-      "model": "github-copilot/gpt-5.4",
+      // github-copilot/gpt-5.3-codex is the highest available GPT via copilot
+      "model": "github-copilot/gpt-5.3-codex",
       "fallback_models": ["github-copilot/gpt-5.2", "f5ai/claude-opus-4-6", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"],
       "reasoningEffort": "high"
     },
     "oracle": {
-      // github-copilot provider avoids f5ai Azure 'reasoningSummary' parameter bug
-      "model": "github-copilot/gpt-5.4",
+      // github-copilot/gpt-5.3-codex is the highest available GPT via copilot
+      "model": "github-copilot/gpt-5.3-codex",
       "fallback_models": ["github-copilot/gpt-5.2", "f5ai/claude-opus-4-6", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"],
       // Extended thinking for architecture decisions
       "thinking": {
@@ -80,7 +80,7 @@
       "fallback_models": ["f5ai/claude-haiku-4-5", "github-copilot/gpt-5-mini", "f5ai/gpt-5-nano"]
     },
     "multimodal-looker": {
-      "model": "github-copilot/gpt-5.4",
+      "model": "github-copilot/gpt-5.3-codex",
       "fallback_models": ["github-copilot/gpt-5", "github-copilot/gpt-5-mini", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"]
     },
     "hephaestus": {
@@ -88,7 +88,7 @@
       // Goal-oriented execution, deep exploration before action, comprehensive context gathering
       // Inspired by AmpCode's deep mode - autonomous problem-solving with thorough research
       "model": "github-copilot/gpt-5.3-codex",
-      "fallback_models": ["github-copilot/gpt-5.2-codex", "github-copilot/gpt-5.4", "f5ai/claude-opus-4-6"],
+      "fallback_models": ["github-copilot/gpt-5.2-codex", "github-copilot/gpt-5.2", "f5ai/claude-opus-4-6"],
       "reasoningEffort": "high",
       // Deployment query routing (xc-planner for prod/staging questions)
       "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
@@ -96,7 +96,7 @@
     "atlas": {
       // Session navigation is lightweight
       "model": "f5ai/claude-sonnet-4-6",
-      "fallback_models": ["f5ai/claude-sonnet-4-5", "f5ai/claude-haiku-4-5", "github-copilot/gpt-5.4"]
+      "fallback_models": ["f5ai/claude-sonnet-4-5", "f5ai/claude-haiku-4-5", "github-copilot/gpt-5.2"]
     }
   },
 
@@ -106,8 +106,8 @@
       "fallback_models": ["f5ai/claude-sonnet-4-6", "f5ai/claude-sonnet-4-5", "f5ai/claude-opus-4-6"]
     },
     "ultrabrain": {
-      // Maximum reasoning capability — GPT-5.4 for principle-driven deep analysis
-      "model": "github-copilot/gpt-5.4",
+      // Maximum reasoning capability — GPT-5.3 Codex (highest available via copilot)
+      "model": "github-copilot/gpt-5.3-codex",
       "fallback_models": ["github-copilot/gpt-5.2-codex", "github-copilot/gpt-5.2", "f5ai/claude-opus-4-6"],
       "reasoningEffort": "high"
     },
@@ -116,12 +116,12 @@
       // Thorough research before action, for hairy problems requiring deep understanding
       // GPT-5.3 Codex for deep coding — autonomous exploration style
       "model": "github-copilot/gpt-5.3-codex",
-      "fallback_models": ["github-copilot/gpt-5.2-codex", "github-copilot/gpt-5.4", "f5ai/claude-opus-4-6"],
+      "fallback_models": ["github-copilot/gpt-5.2-codex", "github-copilot/gpt-5.2", "f5ai/claude-opus-4-6"],
       "reasoningEffort": "high"
     },
     "artistry": {
       "model": "github-copilot/gemini-3-pro-preview",
-      "fallback_models": ["f5ai/claude-opus-4-6", "github-copilot/gpt-5.4"]
+      "fallback_models": ["f5ai/claude-opus-4-6", "github-copilot/gpt-5.3-codex"]
     },
     "quick": {
       // Fast, cheap for trivial tasks
@@ -134,7 +134,7 @@
     },
     "unspecified-high": {
       "model": "f5ai/claude-opus-4-6",
-      "fallback_models": ["f5ai/claude-opus-4-5", "github-copilot/gpt-5.4", "f5ai/claude-sonnet-4-6"]
+      "fallback_models": ["f5ai/claude-opus-4-5", "github-copilot/gpt-5.3-codex", "f5ai/claude-sonnet-4-6"]
     },
     "writing": {
       "model": "github-copilot/gemini-3-flash-preview",
