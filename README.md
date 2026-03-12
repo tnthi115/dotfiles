@@ -261,22 +261,27 @@ Refer to the [orchestration guide](https://github.com/code-yeongyu/oh-my-opencod
 | sisyphus | claude-opus-4-6 | Main orchestrator |
 | prometheus | claude-opus-4-6 | Strategic planner |
 | metis | claude-opus-4-6 | Plan gap analyzer |
-| oracle | gpt-5.2 (github-copilot) | Architecture consultant |
-| momus | gpt-5.2 (github-copilot) | Ruthless reviewer |
-| hephaestus | gpt-5.2-codex (github-copilot) | Autonomous deep worker |
-| sisyphus-junior | claude-sonnet-4-5 | Focused task executor |
+| oracle | gpt-5.4 | Architecture consultant |
+| momus | gpt-5.4 | Ruthless reviewer |
+| hephaestus | gpt-5.3-codex | Autonomous deep worker |
+| sisyphus-junior | claude-sonnet-4-6 | Focused task executor |
 | librarian | gemini-3-flash-preview | Lightweight doc search |
 | explore | grok-code-fast-1 | Fast codebase grep |
+| multimodal-looker | gpt-5.4 | Image/document analysis |
+| atlas | claude-sonnet-4-6 | Todo orchestration |
 
 ### Category Model Assignments
 
 | Category | Model | Purpose |
 | :--- | :--- | :--- |
 | visual-engineering | gemini-3-pro-preview | Frontend/UI development |
-| ultrabrain | gpt-5.2-codex (github-copilot) | Maximum reasoning capability |
-| deep | gpt-5.2-codex (github-copilot) | Complex problem-solving |
+| ultrabrain | gpt-5.4 | Maximum reasoning capability |
+| deep | gpt-5.3-codex | Complex problem-solving |
 | quick | claude-haiku-4-5 | Trivial or repetitive tasks |
 | writing | gemini-3-flash-preview | Documentation and prose |
+| artistry | gemini-3-pro-preview | Creative and novel approaches |
+| unspecified-high | claude-opus-4-6 | General complex work |
+| unspecified-low | claude-sonnet-4-6 | General standard work |
 
 ### Superpowers Skills
 
