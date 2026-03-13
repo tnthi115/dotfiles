@@ -6,33 +6,49 @@ subtask: true
 
 # Review Command
 
-Thin dispatcher: resolve input, gather context, hand off to the right agent.
+Thin dispatcher: resolve input and dispatch.
 
-## Input Resolution
+## Step 1: Determine Mode
 
-1. **Explicit plan file** (`@path/to/plan.md`): Plan Review mode.
-2. **`plan`** keyword alone: find most recently modified `.sisyphus/plans/*.md`.
-3. **`<keywords> plan`** (e.g. `sandbox migration plan`): fuzzy-match plans in
-   `.sisyphus/plans/` by keyword in filename and first 60 lines. Pick best
-   match; if tied, pick most recent. If no match, list top 3 recent plans and
-   stop.
-4. **`changes`** or **`code`** keyword alone: Code Review mode on `<baseline>..HEAD`.
-5. **Git range** (`HEAD~N`, `SHA..SHA`): Code Review mode on that range.
-6. **Empty** (`/review`): auto-detect — if code changes exist on current branch
-   use Code Review; else if plans exist, review latest plan; else report
-   nothing to review.
+Normalize first:
+
+- `ARGS = lowercase(trim($ARGUMENTS))`
+- Collapse repeated spaces in `ARGS`.
+
+Use only `ARGS` below.
+
+Classify `ARGS` in this order:
+
+1. Exactly `changes` or `code` → MODE = **Code Review**
+2. Exactly `plan` → MODE = **Plan Review** (latest plan)
+3. Starts with `@` and points to a markdown file → MODE = **Plan Review**
+4. Ends with a `plan` suffix (for example: `sandbox migration plan`) →
+   fuzzy-match `.sisyphus/plans/`:
+   - exactly 1 match → MODE = **Plan Review**
+   - 0 or multiple matches → stop and ask for `plan` or `@path/to/plan.md`
+5. Looks like a git range (`HEAD~N`, `SHA..SHA`) → MODE = **Code Review**
+6. Empty `ARGS` → auto-detect:
+   - if branch/uncommitted code changes exist, MODE = **Code Review**
+   - else if plans exist, MODE = **Plan Review**
+   - else report nothing to review
+7. Non-empty unmatched input → MODE = **Code Review** (safe default)
+
+## Critical Rules
+
+- Determine MODE once.
+- Execute only the matching section.
+- Never call Momus unless MODE = Plan Review.
 
 ## Plan Review
 
 1. Read the resolved plan file. If unreadable/empty, report error and stop.
 2. Dispatch to Momus using the `task` tool:
    `subagent_type="momus"`, `run_in_background=false`.
-   Pass the full plan content as the prompt. Do not add custom checklists —
-   Momus has its own protocol.
+   Pass full plan content. Do not add custom checklists.
 3. If Momus fails/times out, dispatch a review subagent instead using the
    `task` tool: `category="unspecified-high"`,
-   `load_skills=["superpowers/requesting-code-review"]`. Ask it to review the
-   plan for completeness, feasibility, quality, and executability.
+   `load_skills=["superpowers/requesting-code-review"]`.
+   Ask for plan completeness, feasibility, quality, and executability.
 4. Present findings in the output format below.
 
 ## Code Review
@@ -42,14 +58,14 @@ Thin dispatcher: resolve input, gather context, hand off to the right agent.
 2. Get changed files. If none, report nothing to review and stop.
 3. Gather context (run these with bash):
    - `git diff --stat <baseline>..HEAD`
-   - `git diff --no-binary <baseline>..HEAD` (truncate to 5000 lines if larger;
-     use stat-only if 100+ files)
+   - `git diff <baseline>..HEAD` (truncate to 5000 lines if larger; use
+     stat-only if 100+ files)
    - Run linters only for changed-file languages, only if tool is available
 4. Dispatch a review subagent using the `task` tool:
    `category="unspecified-high"`,
    `load_skills=["superpowers/requesting-code-review"]`.
-   Include diff stat, full diff, linter output, and plan context (if any) in
-   the prompt. Instruct it to evaluate correctness, completeness, and quality.
+   Include diff stat, full diff, linter output, and plan context (if any).
+   Instruct it to evaluate correctness, completeness, and quality.
 5. Present findings in the output format below.
 
 ## Output Format
