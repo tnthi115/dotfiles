@@ -238,7 +238,7 @@ with restricted network access and approved providers only.
 - **/analyze-project**: Initial codebase analysis and indexing.
 - **/plan**: Technical implementation plan generation.
 - **/do**: Automated execution of a generated plan.
-- **/review**: Triggers a deep code review of changes.
+- **/review**: Smart review dispatcher for plans (`/review plan`) and code changes (`/review changes`).
 - **/commit**: Stages and commits changes with AI-generated messages.
 - **/serena**: Manual context optimization.
 
