@@ -238,7 +238,8 @@ with restricted network access and approved providers only.
 - **/analyze-project**: Initial codebase analysis and indexing.
 - **/plan**: Technical implementation plan generation.
 - **/do**: Automated execution of a generated plan.
-- **/review**: Smart review dispatcher for plans (`/review plan`) and code changes (`/review changes`).
+- **/review-code**: Review code changes on the current branch.
+- **/review-plan**: Review an implementation plan via Momus.
 - **/commit**: Stages and commits changes with AI-generated messages.
 - **/serena**: Manual context optimization.
 

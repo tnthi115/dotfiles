@@ -47,7 +47,8 @@ opencode/.config/opencode/
 │   ├── commit.md                       # Commit workflow (delegates to @commit)
 │   ├── do.md                           # Task execution
 │   ├── plan.md                         # Planning workflow
-│   ├── review.md                       # Review workflow
+│   ├── review-code.md                  # Code change review
+│   ├── review-plan.md                  # Plan review via Momus
 │   └── serena.md                       # Serena MCP activation
 ├── themes/                             # Custom TUI themes
 │   └── tymon-kanagawa.json             # Kanagawa color scheme
@@ -147,7 +148,8 @@ For detailed decision guidance, refer to the
 | `/analyze-project` | Deep semantic project analysis. See [analyze-codebase-command-guide.md](./analyze-codebase-command-guide.md). |
 | `/plan` | Technical planning with superpower integration. See [plan-command-usage-guide.md](./plan-command-usage-guide.md). |
 | `/do` | Executes an implementation plan using the `executing-plans` skill. |
-| `/review` | Smart review dispatcher for plans and code changes. |
+| `/review-code` | Review code changes on the current branch. |
+| `/review-plan` | Review an implementation plan via Momus. |
 | `/commit` | Triggers the `@commit` agent for message generation. |
 | `/serena` | Manually activates the Serena MCP server for symbol-level analysis. |
 
