@@ -168,7 +168,8 @@ opencode/.config/opencode/
 │   ├── commit.md
 │   ├── do.md
 │   ├── plan.md
-│   ├── review.md
+│   ├── review-code.md
+│   ├── review-plan.md
 │   └── serena.md
 ├── themes/
 │   └── tymon-kanagawa.json

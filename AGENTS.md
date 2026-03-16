@@ -112,7 +112,7 @@ When completing work via `/start-work`, `/do`, or any plan execution:
 
 1. **After all tasks complete, BEFORE `finishing-a-development-branch`:**
    - Announce: "All tasks complete. Running code review before integration."
-   - Invoke `/review` (or `/review @plan-file.md` if plan context available)
+   - Invoke `/review-code` for code changes or `/review-plan @plan-file.md` for plan review
    - Present review findings to user
 
 2. **After review findings presented:**
@@ -123,11 +123,11 @@ When completing work via `/start-work`, `/do`, or any plan execution:
 3. **Review invocation examples:**
 
    ```bash
-   # After completing .sisyphus/plans/auth-feature.md
-   /review @.sisyphus/plans/auth-feature.md
+   # Review code changes after implementation
+   /review-code
 
-   # If plan context not readily available
-   /review
+   # Review a specific plan
+   /review-plan @.sisyphus/plans/auth-feature.md
    ```
 
 ### Raycast System Automation

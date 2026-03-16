@@ -9,8 +9,8 @@ subtask: true
 ## Determine Baseline
 
 - If `$ARGUMENTS` is a git range (`HEAD~N`, `SHA..SHA`), use it.
-- Otherwise, compute: `git merge-base HEAD origin/main` or fall back to
-  `HEAD~1`.
+- Otherwise, compute: `git merge-base HEAD origin/main` or
+  `git merge-base HEAD origin/master`, falling back to `HEAD~1`.
 
 ## Gather Context
 

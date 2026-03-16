@@ -6,59 +6,29 @@ subtask: true
 
 # Plan Review
 
-Review an implementation plan via Momus.
-
 ## Resolve Plan File
 
-- If `$ARGUMENTS` starts with `@` and points to a markdown file, use that
-  file.
-- If `$ARGUMENTS` contains keywords, fuzzy-match `.sisyphus/plans/` by
-  keyword in filename and first 60 lines. Use the match only if exactly 1
-  result; otherwise list top 3 and stop.
+- If `$ARGUMENTS` starts with `@`, read that file.
+- If `$ARGUMENTS` contains keywords, find the best-matching filename in
+  `.sisyphus/plans/`. If ambiguous, list matches and stop.
 - If `$ARGUMENTS` is empty, use the most recently modified
   `.sisyphus/plans/*.md`.
-- If no plan file is found, report error and stop.
+- If no plan found, report error and stop.
 
 ## Dispatch
 
-1. Read the resolved plan file.
-2. Dispatch to Momus using the `task` tool:
-   `subagent_type="momus"`, `run_in_background=false`.
-   Pass full plan content. Do not add custom checklists.
-3. If Momus fails or times out, dispatch a review subagent instead using the
-   `task` tool: `category="unspecified-high"`,
-   `load_skills=["superpowers/requesting-code-review"]`.
-   Ask for plan completeness, feasibility, quality, and executability.
-
-## Output Format
-
-```markdown
-# Review: {Plan Name}
-
-**Mode**: Plan Review
-**Target**: {plan file path}
-
----
-
-## Findings
-
-{Agent findings here}
-
----
-
-## Summary
-
-| Severity | Count |
-|----------|-------|
-| Critical | N |
-| Important | N |
-| Minor | N |
-
-**Recommendation**: {fix issues | ready for integration}
-```
+1. Read the resolved plan file fully.
+2. Dispatch to Momus: `task(subagent_type="momus", run_in_background=false)`.
+   Pass the full plan content as the prompt. Do not add custom checklists —
+   Momus has its own review protocol.
+3. If Momus fails or times out, review the plan yourself. Evaluate:
+   clarity, verifiability of acceptance criteria, sufficient context for
+   implementation, and overall feasibility.
 
 ## Post-Review
 
+Present Momus findings (or your own) directly — do not reformat.
+
 - **Few/simple issues**: offer to fix directly.
-- **Many/complex issues**: offer to create a plan.
+- **Many/complex issues**: offer to create a revised plan.
 - **No blocking issues**: guide to `finishing-a-development-branch` skill.
