@@ -6,6 +6,9 @@ subtask: true
 
 # Code Review
 
+Evaluate all changes for correctness, security, style, and test coverage.
+Present findings using the structured output format from your review protocol.
+
 ## Determine Baseline
 
 - If `$ARGUMENTS` is a git range (`HEAD~N`, `SHA..SHA`), use it.
@@ -23,13 +26,10 @@ Run these with bash:
 
 If no changed files exist, report nothing to review and stop.
 
-## Review
-
-Evaluate all changes against your review checklist. Use your configured output
-format.
-
 ## Post-Review
 
+Present findings directly — do not reformat.
+
 - **Few/simple issues**: offer to fix directly.
-- **Many/complex issues**: offer to create a plan.
+- **Many/complex issues**: offer to create a revised plan.
 - **No blocking issues**: guide to `finishing-a-development-branch` skill.

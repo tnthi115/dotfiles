@@ -123,6 +123,9 @@ For detailed decision guidance, refer to the
 - **opencode-notify**: System-level notifications for long-running AI tasks.
 - **opencode-agent-memory**: Persistent memory blocks that survive context
   compaction and sessions.
+- **opencode-dcp**: Strips failed tool calls from context for cleaner reasoning.
+- **opencode-smart-title**: Generates AI-powered session titles based on conversation content.
+- **opencode-vibeguard**: Tracks code quality drift and enforces engineering standards.
 
 ## MCP Servers
 
@@ -253,10 +256,9 @@ integrity:
 
 ### Provider Restrictions
 
-While the sandbox requires `enabled_providers: ["f5ai"]`, this is **NOT**
-included in the shared `opencode.jsonc`. Adding it locally would break 16
-`github-copilot/` model references for standard use. The sandbox enforces this
-restriction at runtime via environment variables.
+The OpenCode configuration uses three native F5 providers: `f5ai-anthropic` (native Anthropic SDK), `f5ai-openai` (OpenAI SDK), and `f5ai-grok` (Grok via OpenAI-compatible layer). Additionally, GitHub Copilot models are available via the `github-copilot` provider.
+
+For sandbox environments, see your sandbox documentation for provider restrictions.
 
 ### Symlink Requirement
 

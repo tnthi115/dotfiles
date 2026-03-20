@@ -214,6 +214,9 @@ with restricted network access and approved providers only.
   completion.
 - **opencode-agent-memory**: Persistent memory blocks for long-term project
   context.
+- **opencode-dcp**: Strips failed tool calls from context for cleaner reasoning.
+- **opencode-smart-title**: Generates AI-powered session titles based on conversation content.
+- **opencode-vibeguard**: Tracks code quality drift and enforces engineering standards.
 
 ### MCP Servers
 

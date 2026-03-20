@@ -18,7 +18,6 @@ NC='\033[0m' # No Color
 
 SUPERPOWERS_DIR="$HOME/.config/opencode/superpowers"
 PLUGINS_DIR="$HOME/.config/opencode/plugins"
-SKILLS_DIR="$HOME/.config/opencode/skills"
 
 echo -e "${GREEN}Installing superpowers for OpenCode...${NC}"
 echo ""
@@ -38,12 +37,6 @@ mkdir -p "$PLUGINS_DIR"
 rm -f "$PLUGINS_DIR/superpowers.js"
 ln -s "$SUPERPOWERS_DIR/.opencode/plugins/superpowers.js" "$PLUGINS_DIR/superpowers.js"
 
-# Step 3: Create skills symlink
-echo "Creating skills symlink..."
-mkdir -p "$SKILLS_DIR"
-rm -rf "$SKILLS_DIR/superpowers"
-ln -s "$SUPERPOWERS_DIR/skills" "$SKILLS_DIR/superpowers"
-
 # Verify installation
 echo ""
 echo -e "${GREEN}Verifying installation...${NC}"
@@ -55,22 +48,22 @@ else
     exit 1
 fi
 
-if [[ -L "$SKILLS_DIR/superpowers" ]]; then
-    echo -e "  ${GREEN}✓${NC} Skills symlink created"
+if [[ -d "$SUPERPOWERS_DIR/skills" ]]; then
+    echo -e "  ${GREEN}✓${NC} Skills directory found"
 else
-    echo -e "  ${RED}✗${NC} Skills symlink missing"
+    echo -e "  ${RED}✗${NC} Skills directory missing"
     exit 1
 fi
 
 # Count available skills
-SKILL_COUNT=$(find "$SKILLS_DIR/superpowers" -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' ')
+SKILL_COUNT=$(find "$SUPERPOWERS_DIR/skills" -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' ')
 echo -e "  ${GREEN}✓${NC} Found $SKILL_COUNT superpowers skills"
 
 echo ""
 echo -e "${GREEN}✅ Superpowers installed successfully!${NC}"
 echo ""
 echo "Available skills:"
-for skill in "$SKILLS_DIR/superpowers"/*/; do
+for skill in "$SUPERPOWERS_DIR/skills"/*/; do
     skill_name=$(basename "$skill")
     echo "  - superpowers/$skill_name"
 done

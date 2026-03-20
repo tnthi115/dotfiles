@@ -11,59 +11,86 @@
 
   "agents": {
     "build": {
-      "model": "f5ai/claude-opus-4-6",
-      "fallback_models": ["f5ai/claude-opus-4-5", "f5ai/claude-sonnet-4-6", "f5ai/claude-sonnet-4-5"]
+      "model": "f5ai-anthropic/claude-opus-4-6",
+      "fallback_models": [
+        "f5ai-anthropic/claude-opus-4-5",
+        "f5ai-anthropic/claude-sonnet-4-6",
+        "f5ai-anthropic/claude-sonnet-4-5"
+      ]
     },
     "plan": {
-      "model": "f5ai/claude-opus-4-6",
-      "fallback_models": ["f5ai/claude-opus-4-5", "f5ai/claude-sonnet-4-6", "f5ai/claude-sonnet-4-5"]
+      "model": "f5ai-anthropic/claude-opus-4-6",
+      "fallback_models": [
+        "f5ai-anthropic/claude-opus-4-5",
+        "f5ai-anthropic/claude-sonnet-4-6",
+        "f5ai-anthropic/claude-sonnet-4-5"
+      ]
     },
     "sisyphus": {
-      "model": "f5ai/claude-opus-4-6",
-      "fallback_models": ["f5ai/claude-opus-4-5", "f5ai/claude-sonnet-4-6", "github-copilot/gpt-5.4", "f5ai/claude-sonnet-4-5"],
-      // Extended thinking for complex orchestration
-      "thinking": {
-        "type": "enabled",
-        "budgetTokens": 8000
-      },
+      "model": "f5ai-anthropic/claude-opus-4-6",
+      // Guide: Claude Opus → Claude family → GPT-5.4 (only GPT with dedicated Sisyphus prompt)
+      "fallback_models": [
+        "f5ai-anthropic/claude-opus-4-5",
+        "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/gpt-5.4",
+        "f5ai-anthropic/claude-sonnet-4-5"
+      ],
       // Deployment query routing (xc-planner for prod/staging questions)
       "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
     "sisyphus-junior": {
-      "model": "f5ai/claude-sonnet-4-6",
-      "fallback_models": ["f5ai/claude-sonnet-4-5", "f5ai/claude-haiku-4-5"]
+      // Guide: Claude Sonnet → GPT-5.4
+      "model": "f5ai-anthropic/claude-sonnet-4-6",
+      "fallback_models": [
+        "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/gpt-5.4",
+        "f5ai-anthropic/claude-haiku-4-5"
+      ]
     },
     "prometheus": {
-      "model": "f5ai/claude-opus-4-6",
-      "fallback_models": ["f5ai/claude-opus-4-5", "github-copilot/gpt-5.4", "github-copilot/gpt-5.3-codex", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"],
-      // Extended thinking for thorough planning
-      "thinking": {
-        "type": "enabled",
-        "budgetTokens": 10000
-      },
+      // Guide: Claude Opus → GPT-5.4 → Gemini 3.1 Pro
+      "model": "f5ai-anthropic/claude-opus-4-6",
+      "fallback_models": [
+        "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/gpt-5.4",
+        "github-copilot/gpt-5.3-codex",
+        "github-copilot/gemini-3-pro-preview",
+        "f5ai-anthropic/claude-sonnet-4-6"
+      ],
       // Deployment query routing (xc-planner for prod/staging questions)
       "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
     "metis": {
-      "model": "f5ai/claude-opus-4-6",
-      "fallback_models": ["f5ai/claude-opus-4-5", "github-copilot/gpt-5.4", "github-copilot/gpt-5.3-codex", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"],
-      // Extended thinking for gap analysis
-      "thinking": {
-        "type": "enabled",
-        "budgetTokens": 8000
-      }
+      // Guide: Claude Opus → GPT-5.4
+      "model": "f5ai-anthropic/claude-opus-4-6",
+      "fallback_models": [
+        "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/gpt-5.4",
+        "github-copilot/gpt-5.3-codex",
+        "github-copilot/gemini-3-pro-preview",
+        "f5ai-anthropic/claude-sonnet-4-6"
+      ]
     },
     "momus": {
-      // Plan review benefits from GPT's critical analysis
-      // GPT-5.4 is the recommended primary for Momus per model matching guide
+      // Guide: GPT-5.4 → Claude Opus → Gemini 3.1 Pro (uses xhigh reasoning)
       "model": "github-copilot/gpt-5.4",
-      "fallback_models": ["github-copilot/gpt-5.3-codex", "f5ai/claude-opus-4-6", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"],
+      "fallback_models": [
+        "github-copilot/gpt-5.3-codex",
+        "f5ai-anthropic/claude-opus-4-6",
+        "github-copilot/gemini-3-pro-preview",
+        "f5ai-anthropic/claude-sonnet-4-6"
+      ],
       "reasoningEffort": "high"
     },
     "oracle": {
-      // GPT-5.4 is the recommended primary for Oracle per model matching guide
+      // Guide: GPT-5.4 → Gemini 3.1 Pro → Claude Opus
       "model": "github-copilot/gpt-5.4",
-      "fallback_models": ["github-copilot/gpt-5.3-codex", "github-copilot/gemini-3-pro-preview", "f5ai/claude-opus-4-6", "f5ai/claude-sonnet-4-6"],
+      "fallback_models": [
+        "github-copilot/gpt-5.3-codex",
+        "github-copilot/gemini-3-pro-preview",
+        "f5ai-anthropic/claude-opus-4-6",
+        "f5ai-anthropic/claude-sonnet-4-6"
+      ],
       // Extended thinking for architecture decisions
       "thinking": {
         "type": "enabled",
@@ -71,74 +98,136 @@
       }
     },
     "librarian": {
+      // Guide: Haiku → GPT-5-Nano (speed over intelligence)
       "model": "github-copilot/gemini-3-flash-preview",
-      "fallback_models": ["f5ai/claude-haiku-4-5", "github-copilot/gpt-5-mini", "f5ai/gpt-5-nano"]
+      "fallback_models": [
+        "f5ai-anthropic/claude-haiku-4-5",
+        "github-copilot/gpt-5-mini",
+        "f5ai-openai/gpt-5-nano"
+      ]
     },
     "explore": {
-      // Fast, cheap model for codebase grep - doesn't need heavy reasoning
-      "model": "github-copilot/grok-code-fast-1",
-      "fallback_models": ["f5ai/claude-haiku-4-5", "github-copilot/gpt-5-mini", "f5ai/gpt-5-nano"]
+      // Guide: Grok Code Fast → Haiku → GPT-5-Nano (speed is everything)
+      "model": "f5ai-grok/grok-code-fast-1",
+      "fallback_models": [
+        "github-copilot/grok-code-fast-1",
+        "f5ai-anthropic/claude-haiku-4-5",
+        "github-copilot/gpt-5-mini",
+        "f5ai-openai/gpt-5-nano"
+      ]
     },
     "multimodal-looker": {
+      // Guide: GPT-5.4 → GPT-5-Nano (multimodal-capable fallbacks)
       "model": "github-copilot/gpt-5.4",
-      "fallback_models": ["github-copilot/gpt-5.3-codex", "github-copilot/gpt-5", "github-copilot/gpt-5-mini", "github-copilot/gemini-3-pro-preview", "f5ai/claude-sonnet-4-6"]
+      "fallback_models": [
+        "github-copilot/gpt-5.3-codex",
+        "github-copilot/gpt-5",
+        "github-copilot/gpt-5-mini",
+        "github-copilot/gemini-3-pro-preview",
+        "f5ai-anthropic/claude-sonnet-4-6"
+      ]
     },
     "hephaestus": {
-      // Autonomous Deep Worker - GPT Codex optimized
-      // Goal-oriented execution, deep exploration before action, comprehensive context gathering
-      // Inspired by AmpCode's deep mode - autonomous problem-solving with thorough research
-      "model": "f5ai/gpt-5.3-codex",
-      "fallback_models": ["github-copilot/gpt-5.3-codex", "github-copilot/gpt-5.4", "github-copilot/gpt-5.2-codex", "f5ai/claude-opus-4-6"],
+      // Guide: GPT-5.3 Codex → GPT-5.4 (requires GPT — Claude is personality mismatch)
+      // Autonomous Deep Worker — goal-oriented execution with thorough research
+      "model": "f5ai-openai/gpt-5.3-codex",
+      "fallback_models": [
+        "github-copilot/gpt-5.3-codex",
+        "github-copilot/gpt-5.4",
+        "github-copilot/gpt-5.2-codex",
+        "f5ai-anthropic/claude-opus-4-6"
+      ],
       "reasoningEffort": "xhigh",
       // Deployment query routing (xc-planner for prod/staging questions)
       "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
     "atlas": {
-      // Session navigation is lightweight
-      "model": "f5ai/claude-sonnet-4-6",
-      "fallback_models": ["f5ai/claude-sonnet-4-5", "github-copilot/gpt-5.4", "f5ai/claude-haiku-4-5"]
+      // Guide: Claude Sonnet → GPT-5.4
+      "model": "f5ai-anthropic/claude-sonnet-4-6",
+      "fallback_models": [
+        "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/gpt-5.4",
+        "f5ai-anthropic/claude-haiku-4-5"
+      ]
     }
   },
 
   "categories": {
     "visual-engineering": {
+      // Guide: Gemini 3.1 Pro → Claude Opus
       "model": "github-copilot/gemini-3-pro-preview",
-      "fallback_models": ["f5ai/claude-sonnet-4-6", "f5ai/claude-sonnet-4-5", "f5ai/claude-opus-4-6"]
+      "fallback_models": [
+        "f5ai-anthropic/claude-sonnet-4-6",
+        "f5ai-anthropic/claude-sonnet-4-5",
+        "f5ai-anthropic/claude-opus-4-6"
+      ]
     },
     "ultrabrain": {
-      // Maximum reasoning capability — GPT-5.4 per model matching guide
+      // Guide: GPT-5.4 → Gemini 3.1 Pro → Claude Opus
       "model": "github-copilot/gpt-5.4",
-      "fallback_models": ["github-copilot/gpt-5.3-codex", "github-copilot/gemini-3-pro-preview", "f5ai/claude-opus-4-6"],
+      "fallback_models": [
+        "github-copilot/gpt-5.3-codex",
+        "github-copilot/gemini-3-pro-preview",
+        "f5ai-anthropic/claude-opus-4-6"
+      ],
       "reasoningEffort": "high"
     },
     "deep": {
-      // Goal-oriented autonomous problem-solving
-      // Thorough research before action, for hairy problems requiring deep understanding
-      // GPT-5.3 Codex for deep coding — autonomous exploration style
+      // Guide: GPT-5.3 Codex → Claude Opus → Gemini 3.1 Pro
       "model": "github-copilot/gpt-5.3-codex",
-      "fallback_models": ["github-copilot/gpt-5.2-codex", "github-copilot/gpt-5.2", "f5ai/claude-opus-4-6"],
+      "fallback_models": [
+        "github-copilot/gpt-5.2-codex",
+        "f5ai-anthropic/claude-opus-4-6",
+        "github-copilot/gpt-5.2",
+        "github-copilot/gemini-3-pro-preview"
+      ],
       "reasoningEffort": "high"
     },
     "artistry": {
+      // Guide: Gemini 3.1 Pro → Claude Opus → GPT-5.4
       "model": "github-copilot/gemini-3-pro-preview",
-      "fallback_models": ["f5ai/claude-opus-4-6", "github-copilot/gpt-5.3-codex"]
+      "fallback_models": [
+        "f5ai-anthropic/claude-opus-4-6",
+        "github-copilot/gpt-5.3-codex"
+      ]
     },
     "quick": {
-      // Fast, cheap for trivial tasks
-      "model": "f5ai/claude-haiku-4-5",
-      "fallback_models": ["github-copilot/gemini-3-flash-preview", "github-copilot/gpt-5-mini", "f5ai/gpt-5-nano"]
+      // Guide: GPT-5.4 Mini → Haiku → Gemini Flash → GPT-5-Nano
+      // Using Haiku as primary (GPT-5.4 Mini not available on f5ai)
+      "model": "f5ai-anthropic/claude-haiku-4-5",
+      "fallback_models": [
+        "github-copilot/gemini-3-flash-preview",
+        "github-copilot/gpt-5-mini",
+        "f5ai-openai/gpt-5-nano"
+      ]
     },
     "unspecified-low": {
-      "model": "f5ai/claude-sonnet-4-6",
-      "fallback_models": ["f5ai/claude-sonnet-4-5", "f5ai/claude-haiku-4-5"]
+      // Guide: Claude Sonnet → GPT-5.3 Codex → Gemini Flash
+      "model": "f5ai-anthropic/claude-sonnet-4-6",
+      "fallback_models": [
+        "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/gpt-5.3-codex",
+        "github-copilot/gemini-3-flash-preview"
+      ]
     },
     "unspecified-high": {
-      "model": "f5ai/claude-opus-4-6",
-      "fallback_models": ["f5ai/claude-opus-4-5", "github-copilot/gpt-5.4", "github-copilot/gpt-5.3-codex", "f5ai/claude-sonnet-4-6"]
+      // Guide: Claude Opus → GPT-5.4
+      "model": "f5ai-anthropic/claude-opus-4-6",
+      "fallback_models": [
+        "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/gpt-5.4",
+        "github-copilot/gpt-5.3-codex",
+        "f5ai-anthropic/claude-sonnet-4-6"
+      ]
     },
     "writing": {
+      // Guide: Gemini Flash → Claude Sonnet
       "model": "github-copilot/gemini-3-flash-preview",
-      "fallback_models": ["f5ai/claude-sonnet-4-6", "f5ai/claude-sonnet-4-5", "f5ai/claude-haiku-4-5"]
+      "fallback_models": [
+        "f5ai-anthropic/claude-sonnet-4-6",
+        "f5ai-anthropic/claude-sonnet-4-5",
+        "f5ai-anthropic/claude-haiku-4-5"
+      ]
     }
   },
 
@@ -146,7 +235,9 @@
     // Increased concurrency since no rate limit issues
     "defaultConcurrency": 5,
     "providerConcurrency": {
-      "f5ai": 5,
+      "f5ai-anthropic": 5,
+      "f5ai-openai": 5,
+      "f5ai-grok": 5,
       "github-copilot": 5
       // Add other providers here when switching:
       // "anthropic": 5,
@@ -208,5 +299,12 @@
   // - context7: Documentation search via Upstash
   // - grep_app: GitHub code search
   // These are disabled for sandbox compliance (approved provider only, no internet-calling plugins)
-  "disabled_mcps": ["websearch", "context7", "grep_app", "git", "sequential-thinking", "atlassian"]
+  "disabled_mcps": [
+    "websearch",
+    "context7",
+    "grep_app",
+    "git",
+    "sequential-thinking",
+    "atlassian"
+  ]
 }

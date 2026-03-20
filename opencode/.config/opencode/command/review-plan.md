@@ -6,6 +6,9 @@ subtask: true
 
 # Plan Review
 
+Iteratively review the plan using Metis and Momus, applying fixes after each
+review pass, until no blocking issues remain.
+
 ## Resolve Plan File
 
 - If `$ARGUMENTS` starts with `@`, read that file.
@@ -21,9 +24,9 @@ subtask: true
 2. Dispatch to Momus: `task(subagent_type="momus", run_in_background=false)`.
    Pass the full plan content as the prompt. Do not add custom checklists —
    Momus has its own review protocol.
-3. If Momus fails or times out, review the plan yourself. Evaluate:
-   clarity, verifiability of acceptance criteria, sufficient context for
-   implementation, and overall feasibility.
+3. If Momus fails or times out, review the plan yourself. Evaluate: clarity,
+   verifiability of acceptance criteria, sufficient context for implementation,
+   and overall feasibility.
 
 ## Post-Review
 

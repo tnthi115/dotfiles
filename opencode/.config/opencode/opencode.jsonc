@@ -1,6 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["oh-my-opencode", "opencode-notify", "opencode-agent-memory"],
+  "plugin": [
+    "oh-my-opencode",
+    "opencode-notify",
+    "opencode-agent-memory",
+    "@tarquinen/opencode-dcp@latest",
+    "opencode-smart-title",
+    "opencode-vibeguard"
+  ],
   "share": "disabled",
   "autoupdate": "notify",
   "instructions": [
@@ -13,17 +20,15 @@
   ],
   "compaction": {
     "auto": true,
-    "prune": true
+    "prune": true,
+    "reserved": 10000
   },
   "agent": {
-    // "compaction": {
-    //   "model": "f5ai/claude-sonnet-4-5",
-    // },
     "xc-planner": {
       "mode": "subagent"
     }
   },
-  "small_model": "f5ai/claude-haiku-4-5",
+  "small_model": "f5ai-anthropic/claude-haiku-4-5",
   "permission": {
     "bash": {
       // Prevent accidental pushes — agents should not push directly
@@ -35,94 +40,209 @@
     "webfetch": "ask",
     "websearch": "ask"
   },
-  "enabled_providers": ["f5ai", "github-copilot"],
+  "enabled_providers": [
+    "f5ai-anthropic",
+    "f5ai-openai",
+    "f5ai-grok",
+    "github-copilot"
+  ],
   "disabled_providers": ["opencode"],
   "provider": {
-    "f5ai": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "F5AI",
+    // Native Anthropic API — enables proper thinking support and 1M token context
+    // The OpenAI-compat layer was suppressing thinking for Claude models
+    "f5ai-anthropic": {
+      "npm": "@ai-sdk/anthropic",
+      "name": "F5AI (Anthropic)",
       "options": {
-        "baseURL": "{env:F5AI_API_URL}",
+        "baseURL": "{env:F5AI_ANTHROPIC_API_URL}",
+        "apiKey": "{env:F5AI_API_KEY}",
+        "headers": {
+          "anthropic-beta": "interleaved-thinking-2025-05-14"
+        }
+      },
+      "models": {
+        "claude-opus-4-6": {
+          "name": "Claude Opus 4.6",
+          "reasoning": true,
+          "limit": { "context": 1000000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] },
+          "options": { "thinking": { "type": "adaptive" } },
+          "variants": { "off": { "thinking": { "type": "disabled" } } }
+        },
+        "claude-sonnet-4-6": {
+          "name": "Claude Sonnet 4.6",
+          "reasoning": true,
+          "limit": { "context": 1000000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] },
+          "options": { "thinking": { "type": "adaptive" } },
+          "variants": { "off": { "thinking": { "type": "disabled" } } }
+        },
+        "claude-opus-4-5": {
+          "name": "Claude Opus 4.5",
+          "reasoning": true,
+          "limit": { "context": 200000, "output": 64000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] },
+          "options": {
+            "thinking": { "type": "enabled", "budgetTokens": 8192 }
+          },
+          "variants": { "off": { "thinking": { "type": "disabled" } } }
+        },
+        "claude-sonnet-4-5": {
+          "name": "Claude Sonnet 4.5",
+          "limit": { "context": 200000, "output": 64000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "claude-haiku-4-5": {
+          "name": "Claude Haiku 4.5",
+          "limit": { "context": 200000, "output": 64000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        }
+      }
+    },
+    // OpenAI API — GPT models
+    "f5ai-openai": {
+      "npm": "@ai-sdk/openai",
+      "name": "F5AI (OpenAI)",
+      "options": {
+        "baseURL": "{env:F5AI_OPENAI_API_URL}",
+        "apiKey": "{env:F5AI_API_KEY}"
+      },
+      "models": {
+        "gpt-5.4": {
+          "name": "GPT 5.4",
+          "reasoning": true,
+          "release_date": "2026-03-01",
+          "limit": { "context": 200000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5.3-codex": {
+          "name": "GPT 5.3 Codex",
+          "reasoning": true,
+          "release_date": "2026-02-01",
+          "limit": { "context": 272000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5.3-codex-max": {
+          "name": "GPT 5.3 Codex Max",
+          "reasoning": true,
+          "limit": { "context": 272000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5.2-codex-max": {
+          "name": "GPT 5.2 Codex Max",
+          "reasoning": true,
+          "limit": { "context": 400000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5.2-codex": {
+          "name": "GPT 5.2 Codex",
+          "reasoning": true,
+          "limit": { "context": 400000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5.2": {
+          "name": "GPT 5.2",
+          "reasoning": true,
+          "release_date": "2026-01-01",
+          "limit": { "context": 400000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5.1-codex-max": {
+          "name": "GPT 5.1 Codex Max",
+          "reasoning": true,
+          "limit": { "context": 200000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5": {
+          "name": "GPT 5",
+          "reasoning": true,
+          "limit": { "context": 400000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5-mini": {
+          "name": "GPT 5 Mini",
+          "reasoning": true,
+          "release_date": "2026-01-01",
+          "limit": { "context": 400000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5-codex": {
+          "name": "GPT 5 Codex",
+          "reasoning": true,
+          "limit": { "context": 400000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5-nano": {
+          "name": "GPT 5 Nano",
+          "reasoning": true,
+          "release_date": "2026-01-01",
+          "limit": { "context": 400000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-4.1": {
+          "name": "GPT 4.1",
+          "limit": { "context": 200000, "output": 64000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-4.1-mini": {
+          "name": "GPT 4.1 Mini",
+          "limit": { "context": 200000, "output": 64000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-4o": {
+          "name": "GPT 4o",
+          "limit": { "context": 128000, "output": 16384 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-4o-mini": {
+          "name": "GPT 4o Mini",
+          "limit": { "context": 128000, "output": 16384 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "o4-mini": {
+          "name": "o4 Mini",
+          "reasoning": true,
+          "limit": { "context": 200000, "output": 100000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "o3": {
+          "name": "o3",
+          "reasoning": true,
+          "limit": { "context": 200000, "output": 100000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "o3-mini": {
+          "name": "o3 Mini",
+          "reasoning": true,
+          "limit": { "context": 200000, "output": 100000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "o1": {
+          "name": "o1",
+          "reasoning": true,
+          "limit": { "context": 200000, "output": 100000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        }
+      }
+    },
+    // Grok API — via OpenAI-compatible endpoint
+    "f5ai-grok": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "F5AI (Grok)",
+      "options": {
+        "baseURL": "{env:F5AI_GROK_API_URL}",
         "apiKey": "{env:F5AI_API_KEY}"
       },
       "models": {
         "grok-4": {
-          "name": "Grok 4"
+          "name": "Grok 4",
+          "limit": { "context": 256000, "output": 64000 },
+          "modalities": { "input": ["text"], "output": ["text"] }
         },
         "grok-code-fast-1": {
-          "name": "Grok Code Fast 1"
-        },
-        "claude-haiku-4-5": {
-          "name": "Claude Haiku 4.5"
-        },
-        "claude-opus-4-5": {
-          "name": "Claude Opus 4.5"
-        },
-        "claude-sonnet-4-5": {
-          "name": "Claude Sonnet 4.5"
-        },
-        "claude-opus-4-6": {
-          "name": "Claude Opus 4.6"
-        },
-        "claude-sonnet-4-6": {
-          "name": "Claude Sonnet 4.6"
-        },
-        "gpt-5.4": {
-          "name": "GPT-5.4"
-        },
-        "gpt-5.3-codex": {
-          "name": "GPT-5.3-Codex"
-        },
-        "gpt-5.3-codex-max": {
-          "name": "GPT-5.3-Codex-Max"
-        },
-        "gpt-5.2-codex-max": {
-          "name": "GPT-5.2-Codex-Max"
-        },
-        "gpt-5.2-codex": {
-          "name": "GPT-5.2-Codex"
-        },
-        "gpt-5.2": {
-          "name": "GPT-5.2"
-        },
-        "gpt-5.1-codex-max": {
-          "name": "GPT-5.1-Codex-Max"
-        },
-        "gpt-5": {
-          "name": "GPT-5"
-        },
-        "gpt-5-mini": {
-          "name": "GPT-5-mini"
-        },
-        "gpt-5-codex": {
-          "name": "GPT-5-Codex"
-        },
-        "gpt-5-nano": {
-          "name": "GPT-5-Nano"
-        },
-        "gpt-4.1": {
-          "name": "GPT-4.1"
-        },
-        "gpt-4.1-mini": {
-          "name": "GPT-4.1-mini"
-        },
-        "gpt-4o": {
-          "name": "GPT-4o"
-        },
-        "gpt-4o-mini": {
-          "name": "GPT-4o-mini"
-        },
-        "o4-mini": {
-          "name": "o4-mini"
-        },
-        "o3": {
-          "name": "o3"
-        },
-        "o3-mini": {
-          "name": "o3-mini"
-        },
-        "o1": {
-          "name": "o1"
+          "name": "Grok Code Fast 1",
+          "limit": { "context": 256000, "output": 10000 },
+          "modalities": { "input": ["text"], "output": ["text"] }
         }
       }
     }
@@ -134,6 +254,13 @@
   // gpt-4.1, gpt-4o, gpt-5, gpt-5-mini, gpt-5.1, gpt-5.1-codex, gpt-5.1-codex-max, gpt-5.1-codex-mini
   // gpt-5.2, gpt-5.2-codex, gpt-5.3-codex, gpt-5.4
   // grok-code-fast-1
+  //
+  // Required environment variables for split providers:
+  //   F5AI_API_KEY           — Shared API key for all F5AI endpoints
+  //   F5AI_ANTHROPIC_API_URL — Anthropic native API endpoint
+  //   F5AI_OPENAI_API_URL   — OpenAI API endpoint
+  //   F5AI_GROK_API_URL     — Grok API endpoint (OpenAI-compatible)
+  //
   // NOTE: Agent model configs now managed by oh-my-opencode.jsonc
   // ==============================================================================
   // MCP SERVER CONFIGURATION STRATEGY

@@ -1,7 +1,7 @@
 ---
 description: Structured code reviewer with severity-categorized findings
 mode: subagent
-model: f5ai/claude-opus-4-6
+model: f5ai-anthropic/claude-opus-4-6
 temperature: 0.1
 tools:
   write: false
