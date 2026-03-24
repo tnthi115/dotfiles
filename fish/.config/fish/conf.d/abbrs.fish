@@ -101,7 +101,7 @@ abbr -a -- bl 'brew deps --formula --for-each $(brew leaves) | sed "s/^.*:/$(tpu
 abbr -a -- bd 'brew deps --include-build --tree $(brew leaves)'
 
 abbr -a -- oc opencode
-abbr -a -- ocup 'echo "Updating OpenCode..." && opencode upgrade 2>/dev/null || true && echo "Updating OpenCode plugins..." && npm update --prefix ~/.cache/opencode 2>/dev/null || true && echo "Updating superpowers..." && git -C ~/.config/opencode/superpowers pull --quiet 2>/dev/null || true'
+abbr -a -- ocup 'echo "Updating OpenCode..." && brew upgrade opencode || true && echo "Updating OpenCode plugins..." && npm update --prefix ~/.cache/opencode 2>/dev/null || true && echo "Updating superpowers..." && git -C ~/.config/opencode/superpowers pull --quiet 2>/dev/null || true'
 
 # function abbreviations
 abbr -a -- sg source_goenv
