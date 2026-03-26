@@ -11,6 +11,9 @@
   "share": "disabled",
   "autoupdate": "notify",
   "instructions": [
+    ".opencode/*/*.md",
+    ".ai/*/*.md",
+    "*/*/AGENTS.md",
     "*/AGENTS.md",
     "AGENTS.md",
     "README.md",
