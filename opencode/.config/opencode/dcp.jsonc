@@ -1,0 +1,80 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json",
+  "compress": {
+    // Global defaults — percentages scale with each model's declared context window.
+    // Tuned for 200K models (o3, o4-mini, o1, claude-opus-4.5, haiku-4.5).
+    //
+    // WHY NOT DEFAULTS (50K/100K flat)?
+    //   1. System prompt is ~50K (AGENTS.md + oh-my-opencode + memory + skills).
+    //      50K min means nudges fire from turn 1 for EVERY model.
+    //   2. 100K max on 1M models = strong nudges at 10% usage, wasting 900K of context.
+    //   3. Compression is lossy — premature compression means re-reading files and
+    //      losing exact error messages. Percentages scale; flat numbers don't.
+    "minContextLimit": "35%",
+    "maxContextLimit": "65%",
+    "modelMinLimits": {
+      // 1M-2M context — main orchestrator models, maximize working window
+      // 40% of 1M = 400K min before nudges, giving ~350K working buffer
+      "f5ai-anthropic/claude-opus-4-6": "40%",
+      "f5ai-anthropic/claude-sonnet-4-6": "40%",
+      "f5ai-openai/gpt-5.4": "40%",
+      "f5ai-openai/gpt-4.1": "40%",
+      "f5ai-openai/gpt-4.1-mini": "40%",
+      "f5ai-grok/grok-4": "40%",
+      // 400K context — GPT-5 family + codex. 35% = 140K, ~90K above system prompt
+      "f5ai-openai/gpt-5.3-codex": "35%",
+      "f5ai-openai/gpt-5.3-codex-max": "35%",
+      "f5ai-openai/gpt-5.2-codex-max": "35%",
+      "f5ai-openai/gpt-5.2-codex": "35%",
+      "f5ai-openai/gpt-5.2": "35%",
+      "f5ai-openai/gpt-5": "35%",
+      "f5ai-openai/gpt-5-mini": "35%",
+      "f5ai-openai/gpt-5-codex": "35%",
+      "f5ai-openai/gpt-5-nano": "35%",
+      // 128K context — system prompt alone is ~39% of context. Min must clear that.
+      // 45% = 57.6K, just above system prompt, giving ~1-2 exchanges before nudges
+      "f5ai-openai/gpt-4o": "45%",
+      "f5ai-openai/gpt-4o-mini": "45%"
+    },
+    "modelMaxLimits": {
+      // 1M-2M context — let context grow substantially before strong nudges
+      // 75% of 1M = 750K, leaving 250K buffer before overflow
+      "f5ai-anthropic/claude-opus-4-6": "75%",
+      "f5ai-anthropic/claude-sonnet-4-6": "75%",
+      "f5ai-openai/gpt-5.4": "75%",
+      "f5ai-openai/gpt-4.1": "75%",
+      "f5ai-openai/gpt-4.1-mini": "75%",
+      "f5ai-grok/grok-4": "75%",
+      // 400K context — 70% = 280K, leaving 120K buffer
+      "f5ai-openai/gpt-5.3-codex": "70%",
+      "f5ai-openai/gpt-5.3-codex-max": "70%",
+      "f5ai-openai/gpt-5.2-codex-max": "70%",
+      "f5ai-openai/gpt-5.2-codex": "70%",
+      "f5ai-openai/gpt-5.2": "70%",
+      "f5ai-openai/gpt-5": "70%",
+      "f5ai-openai/gpt-5-mini": "70%",
+      "f5ai-openai/gpt-5-codex": "70%",
+      "f5ai-openai/gpt-5-nano": "70%",
+      // 128K context — 75% = 96K, leaving 32K before overflow.
+      // Higher than global 65% because 128K models need every byte of working room
+      "f5ai-openai/gpt-4o": "75%",
+      "f5ai-openai/gpt-4o-mini": "75%"
+    },
+    // Nudge every 3 tool calls once past maxContextLimit
+    "nudgeFrequency": 3,
+    // Keep user messages intact — don't summarize away user intent
+    "protectUserMessages": true
+  },
+  // Protect recent tool outputs from premature pruning
+  "turnProtection": {
+    "enabled": true,
+    "turns": 4
+  },
+  "strategies": {
+    "deduplication": { "enabled": true },
+    "purgeErrors": {
+      "enabled": true,
+      "turns": 3
+    }
+  }
+}

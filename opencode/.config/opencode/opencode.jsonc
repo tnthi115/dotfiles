@@ -72,7 +72,7 @@
         "claude-sonnet-4-6": {
           "name": "Claude Sonnet 4.6",
           "reasoning": true,
-          "limit": { "context": 1000000, "output": 128000 },
+          "limit": { "context": 1000000, "output": 64000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] },
           "options": { "thinking": { "type": "adaptive" } },
           "variants": { "off": { "thinking": { "type": "disabled" } } }
@@ -112,20 +112,20 @@
           "name": "GPT 5.4",
           "reasoning": true,
           "release_date": "2026-03-01",
-          "limit": { "context": 200000, "output": 128000 },
+          "limit": { "context": 1000000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5.3-codex": {
           "name": "GPT 5.3 Codex",
           "reasoning": true,
           "release_date": "2026-02-01",
-          "limit": { "context": 272000, "output": 128000 },
+          "limit": { "context": 400000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5.3-codex-max": {
           "name": "GPT 5.3 Codex Max",
           "reasoning": true,
-          "limit": { "context": 272000, "output": 128000 },
+          "limit": { "context": 400000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5.2-codex-max": {
@@ -181,12 +181,12 @@
         },
         "gpt-4.1": {
           "name": "GPT 4.1",
-          "limit": { "context": 200000, "output": 64000 },
+          "limit": { "context": 1047576, "output": 32768 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-4.1-mini": {
           "name": "GPT 4.1 Mini",
-          "limit": { "context": 200000, "output": 64000 },
+          "limit": { "context": 1047576, "output": 32768 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-4o": {
@@ -236,7 +236,7 @@
       "models": {
         "grok-4": {
           "name": "Grok 4",
-          "limit": { "context": 256000, "output": 64000 },
+          "limit": { "context": 2000000, "output": 64000 },
           "modalities": { "input": ["text"], "output": ["text"] }
         },
         "grok-code-fast-1": {
