@@ -53,7 +53,6 @@
       "fallback_models": [
         "f5ai-anthropic/claude-opus-4-5",
         "github-copilot/gpt-5.4",
-        "github-copilot/gpt-5.3-codex",
         "github-copilot/gemini-3-pro-preview",
         "f5ai-anthropic/claude-sonnet-4-6"
       ],
@@ -72,15 +71,14 @@
       ]
     },
     "momus": {
-      // Guide: GPT-5.4 → Claude Opus → Gemini 3.1 Pro (uses xhigh reasoning)
+      // Guide: GPT-5.4 → Claude Opus → Gemini 3.1 Pro → GLM-5 (uses xhigh reasoning)
       "model": "github-copilot/gpt-5.4",
       "fallback_models": [
-        "github-copilot/gpt-5.3-codex",
         "f5ai-anthropic/claude-opus-4-6",
         "github-copilot/gemini-3-pro-preview",
         "f5ai-anthropic/claude-sonnet-4-6"
       ],
-      "reasoningEffort": "high"
+      "reasoningEffort": "xhigh"
     },
     "oracle": {
       // Guide: GPT-5.4 → Gemini 3.1 Pro → Claude Opus
@@ -98,20 +96,22 @@
       }
     },
     "librarian": {
-      // Guide: Haiku → GPT-5-Nano (speed over intelligence)
-      "model": "github-copilot/gemini-3-flash-preview",
+      // Guide: minimax-m2.7 → minimax-m2.5 → Haiku → GPT-5-Nano (speed over intelligence)
+      // minimax unavailable without opencode-go; using Haiku as nearest available primary
+      "model": "f5ai-anthropic/claude-haiku-4-5",
       "fallback_models": [
-        "f5ai-anthropic/claude-haiku-4-5",
+        "github-copilot/gemini-3-flash-preview",
         "github-copilot/gpt-5-mini",
         "f5ai-openai/gpt-5-nano"
       ]
     },
     "explore": {
-      // Guide: Haiku → Grok Code Fast → GPT-5-Nano (speed is everything)
+      // Guide: Grok Code Fast → Haiku → GPT-5-Nano (speed is everything)
       // NOTE: f5ai-grok/grok-code-fast-1 disabled — Azure returns 431 (headers too large)
-      "model": "f5ai-anthropic/claude-haiku-4-5",
+      // Using github-copilot/grok-code-fast-1 as primary per guide
+      "model": "github-copilot/grok-code-fast-1",
       "fallback_models": [
-        "github-copilot/grok-code-fast-1",
+        "f5ai-anthropic/claude-haiku-4-5",
         "github-copilot/gpt-5-mini",
         "f5ai-openai/gpt-5-nano"
       ]
@@ -128,16 +128,16 @@
       ]
     },
     "hephaestus": {
-      // Guide: GPT-5.3 Codex → GPT-5.4 (requires GPT — Claude is personality mismatch)
+      // Guide: GPT-5.4 (medium) — requires GPT, Claude is personality mismatch
       // Autonomous Deep Worker — goal-oriented execution with thorough research
-      "model": "f5ai-openai/gpt-5.3-codex",
+      "model": "f5ai-openai/gpt-5.4",
       "fallback_models": [
-        "github-copilot/gpt-5.3-codex",
+        "f5ai-openai/gpt-5.3-codex",
         "github-copilot/gpt-5.4",
-        "github-copilot/gpt-5.2-codex",
-        "f5ai-anthropic/claude-opus-4-6"
+        "github-copilot/gpt-5.3-codex",
+        "github-copilot/gpt-5.2-codex"
       ],
-      "reasoningEffort": "xhigh",
+      "reasoningEffort": "medium",
       // Deployment query routing (xc-planner for prod/staging questions)
       "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
     },
@@ -154,12 +154,12 @@
 
   "categories": {
     "visual-engineering": {
-      // Guide: Gemini 3.1 Pro → Claude Opus
+      // Guide: Gemini 3.1 Pro → GLM-5 → Claude Opus
       "model": "github-copilot/gemini-3-pro-preview",
       "fallback_models": [
+        "f5ai-anthropic/claude-opus-4-6",
         "f5ai-anthropic/claude-sonnet-4-6",
-        "f5ai-anthropic/claude-sonnet-4-5",
-        "f5ai-anthropic/claude-opus-4-6"
+        "f5ai-anthropic/claude-sonnet-4-5"
       ]
     },
     "ultrabrain": {
@@ -176,9 +176,8 @@
       // Guide: GPT-5.3 Codex → Claude Opus → Gemini 3.1 Pro
       "model": "github-copilot/gpt-5.3-codex",
       "fallback_models": [
-        "github-copilot/gpt-5.2-codex",
         "f5ai-anthropic/claude-opus-4-6",
-        "github-copilot/gpt-5.2",
+        "github-copilot/gpt-5.2-codex",
         "github-copilot/gemini-3-pro-preview"
       ],
       "reasoningEffort": "high"

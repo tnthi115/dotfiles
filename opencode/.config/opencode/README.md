@@ -124,8 +124,10 @@ For detailed decision guidance, refer to the
 - **opencode-agent-memory**: Persistent memory blocks that survive context
   compaction and sessions.
 - **opencode-dcp**: Strips failed tool calls from context for cleaner reasoning.
-- **opencode-smart-title**: Generates AI-powered session titles based on conversation content.
-- **opencode-vibeguard**: Tracks code quality drift and enforces engineering standards.
+- **opencode-smart-title**: Generates AI-powered session titles based on
+  conversation content.
+- **opencode-vibeguard**: Tracks code quality drift and enforces engineering
+  standards.
 
 ## MCP Servers
 
@@ -167,9 +169,9 @@ Model assignments are optimized based on specific agent roles.
 | metis | claude-opus-4-6 | Plan gap analyzer |
 | oracle | gpt-5.4 | Architecture consultant |
 | momus | gpt-5.4 | Ruthless reviewer |
-| hephaestus | gpt-5.3-codex | Autonomous deep worker |
+| hephaestus | gpt-5.4 | Autonomous deep worker |
 | sisyphus-junior | claude-sonnet-4-6 | Focused task executor |
-| librarian | gemini-3-flash-preview | Lightweight doc search |
+| librarian | claude-haiku-4-5 | Lightweight doc search |
 | explore | grok-code-fast-1 | Fast codebase grep |
 | multimodal-looker | gpt-5.4 | Image/document analysis |
 | atlas | claude-sonnet-4-6 | Todo orchestration |
@@ -256,9 +258,13 @@ integrity:
 
 ### Provider Restrictions
 
-The OpenCode configuration uses three native F5 providers: `f5ai-anthropic` (native Anthropic SDK), `f5ai-openai` (OpenAI SDK), and `f5ai-grok` (Grok via OpenAI-compatible layer). Additionally, GitHub Copilot models are available via the `github-copilot` provider.
+The OpenCode configuration uses three native F5 providers: `f5ai-anthropic`
+(native Anthropic SDK), `f5ai-openai` (OpenAI SDK), and `f5ai-grok` (Grok via
+OpenAI-compatible layer). Additionally, GitHub Copilot models are available via
+the `github-copilot` provider.
 
-For sandbox environments, see your sandbox documentation for provider restrictions.
+For sandbox environments, see your sandbox documentation for provider
+restrictions.
 
 ### Symlink Requirement
 

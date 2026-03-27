@@ -215,8 +215,10 @@ with restricted network access and approved providers only.
 - **opencode-agent-memory**: Persistent memory blocks for long-term project
   context.
 - **opencode-dcp**: Strips failed tool calls from context for cleaner reasoning.
-- **opencode-smart-title**: Generates AI-powered session titles based on conversation content.
-- **opencode-vibeguard**: Tracks code quality drift and enforces engineering standards.
+- **opencode-smart-title**: Generates AI-powered session titles based on
+  conversation content.
+- **opencode-vibeguard**: Tracks code quality drift and enforces engineering
+  standards.
 
 ### MCP Servers
 
@@ -268,9 +270,9 @@ Refer to the [orchestration guide](https://github.com/code-yeongyu/oh-my-opencod
 | metis | claude-opus-4-6 | Plan gap analyzer |
 | oracle | gpt-5.4 | Architecture consultant |
 | momus | gpt-5.4 | Ruthless reviewer |
-| hephaestus | gpt-5.3-codex | Autonomous deep worker |
+| hephaestus | gpt-5.4 | Autonomous deep worker |
 | sisyphus-junior | claude-sonnet-4-6 | Focused task executor |
-| librarian | gemini-3-flash-preview | Lightweight doc search |
+| librarian | claude-haiku-4-5 | Lightweight doc search |
 | explore | grok-code-fast-1 | Fast codebase grep |
 | multimodal-looker | gpt-5.4 | Image/document analysis |
 | atlas | claude-sonnet-4-6 | Todo orchestration |
