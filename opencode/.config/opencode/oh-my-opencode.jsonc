@@ -231,17 +231,14 @@
   },
 
   "background_task": {
-    // Increased concurrency since no rate limit issues
-    "defaultConcurrency": 5,
+    // Tuned per provider: grok/google high (cheap bulk), anthropic moderate (mix), openai moderate (expensive consultation), copilot conservative (tight rate limits)
+    "defaultConcurrency": 10,
     "providerConcurrency": {
-      "f5ai-anthropic": 5,
-      "f5ai-openai": 5,
-      "f5ai-grok": 5,
-      "github-copilot": 5
-      // Add other providers here when switching:
-      // "anthropic": 5,
-      // "openai": 5,
-      // "openrouter": 3
+      "f5ai-anthropic": 10,
+      "f5ai-openai": 8,
+      "f5ai-grok": 15,
+      "github-copilot": 5,
+      "f5ai-google": 15
     }
   },
 
