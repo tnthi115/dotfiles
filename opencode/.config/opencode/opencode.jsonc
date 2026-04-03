@@ -6,7 +6,8 @@
     "opencode-agent-memory",
     "@tarquinen/opencode-dcp@latest",
     "opencode-smart-title",
-    "opencode-vibeguard"
+    "opencode-vibeguard",
+    "@plannotator/opencode@latest"
   ],
   "share": "disabled",
   "autoupdate": "notify",
