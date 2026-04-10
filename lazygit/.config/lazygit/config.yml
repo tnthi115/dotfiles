@@ -14,6 +14,7 @@ git:
     - hotfix-20241112
     - release-2025-10-0
     - release-2026-2-0
+    - fedramp-100
   pagers:
     - colorArg: always
       # useConfig: true
