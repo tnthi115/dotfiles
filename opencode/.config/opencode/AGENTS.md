@@ -260,7 +260,7 @@ working documents, not version-controlled:
 
 | Directory/Pattern | Purpose |
 |-------------------|---------|
-| `.sisyphus/` | Plans, notepads, drafts from oh-my-opencode |
+| `.sisyphus/` | Legacy plans, notepads, drafts (historical) |
 | `.opencode/plans/` | OpenCode plan files |
 | `*-plan.md`, `plan.md` | Any plan file pattern |
 

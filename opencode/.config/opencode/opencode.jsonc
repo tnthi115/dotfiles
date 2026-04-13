@@ -316,7 +316,7 @@
   // MCP SERVER CONFIGURATION STRATEGY
   // ==============================================================================
   //
-  // MCP servers are handled differently than oh-my-opencode's built-in MCPs.
+  // MCP servers are handled via OpenCode's native MCP configuration.
   // This config defines which MCP servers are available to OpenCode agents.
   //
   // STRATEGY FOR DUAL-MODE OPERATION (LOCAL vs SANDBOX):

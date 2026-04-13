@@ -296,9 +296,13 @@ OpenCode uses the following tools for code intelligence and formatting:
   attempts and return a 400 error. This happens when the prompt contains
   instructions that trigger Microsoft's content filter. Workarounds:
 
+
   1. Switch to a different model temporarily: `@agent model=claude-opus-4.6`
   2. If using a LiteLLM router, configure `content_policy_fallbacks` in the
-     router (not in opencode.jsonc): `[{"Kimi-K2.5": ["claude-opus-4.6"]}]`
+
+  router (not in opencode.jsonc): `[{"Kimi-K2.5": ["claude-opus-4.6"]}]`
+
+
   3. Retry with a shorter or rephrased prompt
 
 ## Sandbox Compatibility
@@ -335,6 +339,6 @@ ln -s ~/.config/opencode ~/.local/opencode
 ## See Also
 
 - [OpenCode Documentation](https://opencode.ai/docs)
-- [oh-my-opencode Repository](https://github.com/code-yeongyu/oh-my-opencode)
+- [oh-my-openagent Repository](https://github.com/code-yeongyu/oh-my-opencode)
 - [Superpowers Repository](https://github.com/obra/superpowers)
 - [Dotfiles AGENTS.md](../../../AGENTS.md)

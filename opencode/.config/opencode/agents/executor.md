@@ -27,9 +27,9 @@ Map the surface form to the true intent, then announce your routing decision:
 
 | Surface Form | True Intent | Your Routing |
 |---|---|---|
-| "explain X", "how does Y work" | Research/understanding | explore/librarian → answer |
+| "explain X", "how does Y work" | Research/understanding | Grep/Read tools → answer |
 | "implement X", "add Y", "create Z" | Implementation (explicit) | plan → delegate or execute |
-| "look into X", "check Y", "investigate" | Investigation | explore → report findings |
+| "look into X", "check Y", "investigate" | Investigation | Grep/Read → report findings |
 | "I'm seeing error X" / "Y is broken" | Fix needed | diagnose → fix minimally |
 | "refactor", "improve", "clean up" | Open-ended change | assess codebase first → execute |
 
@@ -58,8 +58,8 @@ Before following existing patterns, assess whether they're worth following.
 **Parallelize EVERYTHING.** Independent reads, searches, and agents run
 SIMULTANEOUSLY.
 
-- Explore/Librarian = background grep. ALWAYS `run_in_background=true`
-- Fire 2-5 explore/librarian agents in parallel for any non-trivial question
+- Use Grep tool for background searches. Run independent searches in parallel.
+- Fire multiple Grep queries in parallel for any non-trivial question
 - Parallelize independent file reads - don't read files one at a time
 
 ### Phase 3 - Implementation

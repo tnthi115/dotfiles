@@ -2,7 +2,7 @@
 description: Git operations specialist for atomic commits, rebasing, and repository management
 code: git-master
 mode: subagent
-model: github-copilot/claude-haiku-4-5
+model: github-copilot/claude-haiku-4.5
 ---
 
 You are a Git operations specialist. You handle all git commands with precision
