@@ -1,11 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "oh-my-openagent",
+    // "oh-my-openagent",
     "opencode-notify",
     "opencode-agent-memory",
     "@tarquinen/opencode-dcp@latest",
-    "opencode-smart-title",
+    // "opencode-smart-title",
     "opencode-vibeguard",
     "@plannotator/opencode@latest"
   ],
@@ -26,11 +26,41 @@
     "reserved": 10000
   },
   "agent": {
+    "build": {
+      // "model": "f5ai-anthropic/claude-opus-4-6",
+      // "model": "github-copilot/claude-opus-4.6",
+      // "model": "github-copilot/gpt-5.4",
+      "model": "f5ai-moonshot/Kimi-K2.5",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5"
+      ]
+    },
+    "plan": {
+      // "model": "f5ai-anthropic/claude-opus-4-6",
+      // "model": "github-copilot/claude-opus-4.6",
+      // "model": "github-copilot/gpt-5.4",
+      "model": "f5ai-moonshot/Kimi-K2.5",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5"
+      ]
+    },
     "xc-planner": {
       "mode": "subagent"
     }
   },
-  "small_model": "f5ai-anthropic/claude-haiku-4-5",
+  // "small_model": "f5ai-anthropic/claude-haiku-4-5",
+  // "small_model": "f5ai-openai/gpt-5-nano",
+  "small_model": "github-copilot/gpt-5.4-mini",
   "permission": {
     "bash": {
       // Prevent accidental pushes — agents should not push directly
@@ -46,6 +76,7 @@
     "f5ai-anthropic",
     "f5ai-openai",
     "f5ai-grok",
+    "f5ai-moonshot",
     "github-copilot"
   ],
   "disabled_providers": ["opencode"],
@@ -247,6 +278,22 @@
           "modalities": { "input": ["text"], "output": ["text"] }
         }
       }
+    },
+    // Moonshot/Kimi API — via OpenAI-compatible endpoint
+    "f5ai-moonshot": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "F5AI (Moonshot)",
+      "options": {
+        "baseURL": "{env:F5AI_MOONSHOT_API_URL}",
+        "apiKey": "{env:F5AI_API_KEY}"
+      },
+      "models": {
+        "Kimi-K2.5": {
+          "name": "Kimi K2.5",
+          "limit": { "context": 262144, "output": 32768 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        }
+      }
     }
   },
   // List of github-copilot models available (run `opencode models github-copilot` to refresh):
@@ -262,8 +309,9 @@
   //   F5AI_ANTHROPIC_API_URL — Anthropic native API endpoint
   //   F5AI_OPENAI_API_URL   — OpenAI API endpoint
   //   F5AI_GROK_API_URL     — Grok API endpoint (OpenAI-compatible)
+  //   F5AI_MOONSHOT_API_URL — Moonshot/Kimi API endpoint (OpenAI-compatible)
   //
-  // NOTE: Agent model configs now managed by oh-my-opencode.jsonc
+  // NOTE: Agent model configs now managed by oh-my-openagent.jsonc
   // ==============================================================================
   // MCP SERVER CONFIGURATION STRATEGY
   // ==============================================================================
@@ -279,16 +327,16 @@
   //    - Agents have full access to all capabilities
   //
   // 2. SANDBOX MODE (F5AI Only):
-  //    - oh-my-opencode.jsonc enforces provider/MCP restrictions at plugin level
-  //    - `disabled_mcps` array in oh-my-opencode.jsonc blocks remote APIs
+  //    - oh-my-openagent.jsonc enforces provider/MCP restrictions at plugin level
+  //    - `disabled_mcps` array in oh-my-openagent.jsonc blocks remote APIs
   //    - `disabled_hooks` array disables non-essential background tasks
   //    - Runtime environment enforces these restrictions, not config files
   //
   // WHY NOT ADD 'enabled_providers' HERE?
-  //    - Would break 16 'github-copilot/*' model references in oh-my-opencode.jsonc
+  //    - Would break 16 'github-copilot/*' model references in oh-my-openagent.jsonc
   //    - Local development mode requires access to GitHub Copilot models
   //    - Provider restrictions are enforced at runtime for sandbox environments
-  //    - This config is shared across modes; policy enforcement is in oh-my-opencode
+  //    - This config is shared across modes; policy enforcement is in oh-my-openagent
   //
   // MCP SERVER CATEGORIES:
   //
@@ -297,18 +345,18 @@
   //   - sequential-thinking: Local chain-of-thought reasoning (no external calls)
   //   - atlassian: Internal APIs (trusted internal network only)
   //
-  // [KEPT ACTIVE, DISABLED BY oh-my-opencode] Remote APIs:
+  // [KEPT ACTIVE, DISABLED BY oh-my-openagent] Remote APIs:
   //   - context7: Documentation search (external library lookup)
-  //     -> Blocked by oh-my-opencode's `disabled_mcps` for sandbox compliance
+  //     -> Blocked by oh-my-openagent's `disabled_mcps` for sandbox compliance
   //
   // [NOT CONFIGURED] Other Remote APIs:
-  //   - websearch: (Blocked by oh-my-opencode in sandbox mode)
-  //   - grep_app: (Blocked by oh-my-opencode in sandbox mode)
+  //   - websearch: (Blocked by oh-my-openagent in sandbox mode)
+  //   - grep_app: (Blocked by oh-my-openagent in sandbox mode)
   //
   // IMPLEMENTATION NOTES:
   // - Keep this config identical across local and sandbox environments
-  // - Mode-specific restrictions are enforced by oh-my-opencode.jsonc
-  // - If an MCP server needs to be disabled globally, use oh-my-opencode
+  // - Mode-specific restrictions are enforced by oh-my-openagent.jsonc
+  // - If an MCP server needs to be disabled globally, use oh-my-openagent
   // - Local development uses all MCPs; sandbox uses restricted subset
   //
   // ==============================================================================

@@ -101,28 +101,75 @@ optional.
 | Completion | `superpowers:verification-before-completion` | Evidence before claims |
 | Code review | `superpowers:requesting-code-review` | Structured feedback |
 
-### Oh-My-OpenCode Agent Delegation
+## Native Agent Workflow (New)
 
-Use `delegate_task()` for specialized agents:
+This configuration uses **native OpenCode custom agents** derived from
+oh-my-openagent prompts. The oh-my-openagent plugin itself is disabled to reduce
+runtime overhead while preserving the high-value agent behaviors.
 
-| Agent | Purpose | When to Use |
-|-------|---------|-------------|
-| `explore` | Codebase investigation | Finding patterns, understanding structure |
-| `librarian` | External documentation | Looking up APIs, best practices |
-| `oracle` | Architecture consultation | Major design decisions |
-| `prometheus` | Strategic planning | Complex projects needing interview |
-| `sisyphus` | Task execution | Implementing plans from Prometheus |
+### Required Complex-Task Flow
+
+For complex tasks, the workflow enforces:
+
+```text
+plan -> native plan review -> Plannotator human approval -> execution -> code review
+```
+
+| Stage | Native Agent | Purpose |
+|-------|-------------|---------|
+| Planning | `@planner` | Write implementation plans |
+| Plan critique | `@plan-reviewer` | Critique plans before approval |
+| Execution | `@executor` | Execute approved plans |
+| Final review | `@code-reviewer` | Review code changes |
+
+### Native Agents
+
+| Agent | Model | Purpose | Invocation |
+|-------|-------|---------|------------|
+| `@planner` | claude-opus-4.6 | Write implementation plans with problem framing | `/plan` or `@planner` |
+| `@plan-reviewer` | gpt-5.4 | Critique plans for executability and gaps | Built into `/plan` flow |
+| `@executor` | gpt-5.4 | Execute approved plans with verification | `/do` or `@executor` |
+| `@code-reviewer` | claude-opus-4.6 | Structured code review with findings-first output | `/review-code` or `@code-reviewer` |
+| `@commit` | github-copilot/claude-haiku-4.5 | Conventional commit generation from diffs | `@commit` |
+| `@git-master` | github-copilot/claude-haiku-4.5 | Git operations, atomic commits, rebasing | `@git-master` |
+| `@docs-writer` | (default) | Automated documentation generation and maintenance | `@docs-writer` |
+
+**Model Configuration:** Native agents use their frontmatter `model` field.
+`opencode.jsonc` configures `build` and `plan` agent categories (used as
+defaults when agent-specific models aren't specified).
+
+### Legacy Oh-My-OpenCode Agents (Dormant)
+
+The following agents are defined in `oh-my-openagent.jsonc` for reference but
+are not active since the plugin is disabled:
+
+- `explore` - Codebase investigation
+- `librarian` - External documentation
+- `oracle` - Architecture consultation
+- `prometheus` - Strategic planning
+- `sisyphus` - Task execution
+- `metis` - Plan gap analyzer
+- `momus` - Ruthless reviewer
+- `atlas` - Todo orchestration
+- `hephaestus` - Autonomous deep worker
+
+The native agents intentionally preserve exact high-value prompt text from
+oh-my-openagent where behavior quality depends on it. Only infrastructure-
+dependent sections are removed or adapted.
 
 ### Workflow Decision Guide
 
 ```text
 Need to plan something?
-├── Clear requirements? → /plan (quick technical plan)
-└── Unclear requirements? → Prometheus (consultative interview)
+├── Clear requirements? → /plan (native planner agent)
+└── Unclear requirements? → @planner with exploratory dialogue
 
 Need to execute a plan?
-├── Simple plan? → /do with executing-plans skill
-└── Complex multi-session? → /start-work (Sisyphus orchestration)
+├── Approved plan exists? → /do (native executor agent)
+└── Need to plan first? → /plan first, then /do
+
+Need code review?
+├── After implementation → /review-code (native code-reviewer agent)
 
 Need to commit?
 ├── Use @commit agent
@@ -132,6 +179,14 @@ Need code intelligence?
 ├── Use native lsp_* tools (lsp_goto_definition, lsp_find_references, lsp_rename)
 └── Use Grep, ast_grep_search for pattern matching
 ```
+
+### Native Workflow Commands
+
+| Command | Agent | Purpose |
+|---------|-------|---------|
+| `/plan` | `@planner` + `@plan-reviewer` | Create and review implementation plans |
+| `/do` | `@executor` | Execute approved plans |
+| `/review-code` | `@code-reviewer` | Final code review stage |
 
 **Anti-Patterns to Avoid**:
 
@@ -222,13 +277,24 @@ staging them.
 ## Planning Requirements
 
 - **When asked for plan, create markdown document with detailed plan**
-- Save as `.sisyphus/plans/[task-name]-plan.md` in current project repository
-- **ALWAYS save plan files to `.sisyphus/plans/` directory** (git-ignored,
+- Save as `.opencode/plans/[task-name]-plan.md` in current project repository
+- **ALWAYS save plan files to `.opencode/plans/` directory** (git-ignored,
   created automatically if needed)
 - Include: objectives, step-by-step breakdown, dependencies, success criteria
 - Plans should be optimized for coding agent implementation
-- **Default behavior for planning agents: create plan document in `.sisyphus/plans/`**
+- **Default behavior for planning agents: create plan document in `.opencode/plans/`**
 - Plan files are temporary working documents and excluded from version control
+
+### Prompt Preservation Policy
+
+The native custom agents intentionally preserve exact high-value prompt text
+from oh-my-openagent where behavior quality depends on it. Only infrastructure-
+dependent sections are removed or adapted.
+
+### Dormant Reference File
+
+The `oh-my-openagent.jsonc` file is kept for reference and possible future
+reuse. The oh-my-openagent plugin itself remains disabled in `opencode.jsonc`.
 
 ## Context Preservation & Memory Management
 
@@ -236,15 +302,11 @@ staging them.
 
 ### Compaction Configuration
 
-Two compaction systems work together:
-
 | System | Config Location | Purpose |
 |--------|-----------------|---------|
 | **OpenCode Native** | `opencode.jsonc` → `compaction` | Core auto-compaction when context fills |
-| **oh-my-opencode** | `oh-my-opencode.json` → `experimental` | Aggressive truncation and context pruning strategies |
 
-These are complementary: OpenCode's `compaction.auto` triggers compaction, while
-oh-my-opencode's `dynamic_context_pruning` optimizes what gets pruned.
+The `opencode.jsonc` configuration handles context compaction automatically.
 
 ### Agent Memory Plugin
 

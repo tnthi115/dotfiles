@@ -2,8 +2,8 @@
 
 This directory contains the core configuration for OpenCode, a deeply integrated
 AI development environment. It implements a three-layer architecture: OpenCode
-core for execution, oh-my-opencode for agent orchestration, and superpowers for
-workflow discipline.
+core for execution, oh-my-openagent for agent orchestration, and superpowers
+for workflow discipline.
 
 ## Table of Contents
 
@@ -26,13 +26,19 @@ workflow discipline.
 
 ## Architecture
 
-The OpenCode environment is built on a modular, three-tier system:
+The OpenCode environment is built on a modular system:
 
 | Layer | Component | Description |
 | :--- | :--- | :--- |
 | **Execution** | OpenCode Core | The primary engine providing tool access, file I/O, and LLM communication. |
-| **Orchestration** | oh-my-opencode | Multi-agent framework that coordinates specialized agents like Sisyphus and Prometheus. |
+| **Native Agents** | Custom Markdown Agents | Native OpenCode agents derived from oh-my-openagent prompts (planner, plan-reviewer, executor, code-reviewer). |
 | **Discipline** | superpowers | Engineering skills framework that enforces TDD, systematic debugging, and planning protocols. |
+| **Human Review** | Plannotator | Visual plan and code review UI for human approval gates. |
+
+**Note**: The oh-my-openagent plugin is intentionally disabled to reduce runtime
+overhead. The `oh-my-openagent.jsonc` file is kept as a dormant reference for
+prompt extraction and model mappings. Native agents preserve the exact
+high-value prompt text where behavior quality depends on it.
 
 ## Directory Structure
 
@@ -40,21 +46,26 @@ The OpenCode environment is built on a modular, three-tier system:
 opencode/.config/opencode/
 ├── agents/                             # Custom agent definitions
 │   ├── commit.md                       # Conventional commit generation
+│   ├── code-reviewer.md                # Native code review agent (Momus + Oracle)
 │   ├── docs-writer.md                  # Documentation maintenance
-│   └── review.md                       # Structured code review
+│   ├── executor.md                     # Native execution agent (Sisyphus + Atlas + Hephaestus)
+│   ├── git-master.md                   # Git operations specialist
+│   ├── planner.md                      # Native planning agent (Prometheus + Oracle)
+│   ├── plan-reviewer.md                # Native plan review agent (Metis + Momus + Oracle)
+│   └── review.md                       # Structured code review (legacy reference)
 ├── command/                            # Custom slash commands
 │   ├── analyze-project.md              # Deep project analysis (Serena fallback)
 │   ├── commit.md                       # Commit workflow (delegates to @commit)
-│   ├── do.md                           # Task execution
-│   ├── plan.md                         # Planning workflow
-│   ├── review-code.md                  # Code change review
-│   ├── review-plan.md                  # Plan review via Momus
+│   ├── do.md                           # Task execution (native executor agent)
+│   ├── plan.md                         # Planning workflow (native planner agent)
+│   ├── review-code.md                  # Code change review (native code-reviewer agent)
+│   ├── review-plan.md                  # Plan review reference
 │   └── serena.md                       # Serena MCP activation
 ├── themes/                             # Custom TUI themes
 │   └── tymon-kanagawa.json             # Kanagawa color scheme
 ├── AGENTS.md                           # Agent behavior guidelines
 ├── analyze-codebase-command-guide.md   # Detailed /analyze-project docs
-├── oh-my-opencode.jsonc                # Agent orchestration settings
+├── oh-my-openagent.jsonc               # Dormant reference (plugin disabled)
 ├── opencode.jsonc                      # Core configuration
 ├── plan-command-usage-guide.md         # Detailed /plan command docs
 ├── tui.jsonc                           # TUI appearance settings
@@ -82,69 +93,104 @@ Run the bootstrap script to install the superpowers plugin and skills:
 
 ## Workflow
 
-This setup supports two primary high-precision workflows for technical tasks.
-
-### 1. Ultrawork Mode (Direct Execution)
-
-Use `ulw` followed by a task for fast, autonomous execution. This activates
-ultrawork mode, which enforces precision by exploring the codebase, creating a
-plan, delegating to sub-agents, and verifying results.
+This setup uses a native agent workflow for complex tasks:
 
 ```text
-ulw implement JWT authentication for the REST API
+/plan -> plan-reviewer -> Plannotator -> /do -> /review-code
 ```
 
-### 2. Prometheus + /start-work (Strategic Planning)
+### Complex Task Workflow
 
-For complex or ambiguous tasks, use the interview-driven planning workflow.
+For complex or multi-step tasks, use the native agent workflow:
 
-1. **Strategic Planning**: Type `@prometheus <task>` to start a requirement
-   gathering interview.
-2. **Review Plan**: Prometheus produces a detailed implementation plan in
-   `.sisyphus/plans/`.
-3. **Execution**: Run `/start-work` to begin the orchestration phase with
-   Sisyphus.
+1. **Planning**: Type `/plan <task>` to create an implementation plan.
+   - The native `planner` agent writes the plan
+   - The native `plan-reviewer` agent critiques it
+2. **Human Review**: The plan is prepared for Plannotator approval
+3. **Execution**: Run `/do` to execute the approved plan
+   - The native `executor` agent implements in order
+   - Work is tracked with todos and verified incrementally
+4. **Code Review**: Run `/review-code` for final review
+   - The native `code-reviewer` agent provides structured findings
 
-For detailed decision guidance, refer to the
-[oh-my-opencode orchestration guide](https://github.com/code-yeongyu/oh-my-opencode/blob/dev/docs/guide/orchestration.md#tldr---when-to-use-what).
+### Simple Task Workflow
+
+For simple, well-defined tasks:
+
+- Use direct tool execution with native OpenCode tools
+- Use skills like `executing-plans` for single-file changes
+- The `code-reviewer` agent can review small changes directly
+
+### Plan Location
+
+Plans are saved to: `.opencode/plans/[task-name]-plan.md`
+
+This directory is git-ignored. Plans are ephemeral working documents for agent
+execution, not version-controlled artifacts.
 
 ## Configuration Files
 
 | File | Purpose |
 | :--- | :--- |
 | `opencode.jsonc` | Core settings: models, providers, tool permissions, LSP, and MCP servers. |
-| `oh-my-opencode.jsonc` | Orchestration settings: agent model assignments and background task limits. |
+| `oh-my-openagent.jsonc` | Orchestration settings: agent model assignments and background task limits. |
 | `tui.jsonc` | Interface settings: appearance, themes, and keybindings. |
 | `AGENTS.md` | System-level instructions defining agent behavior and engineering principles. |
 
 ## Plugins
 
-- **oh-my-opencode**: Multi-agent orchestration providing specialized personas.
+**Active:**
+
 - **opencode-notify**: System-level notifications for long-running AI tasks.
 - **opencode-agent-memory**: Persistent memory blocks that survive context
   compaction and sessions.
 - **opencode-dcp**: Strips failed tool calls from context for cleaner reasoning.
-- **opencode-smart-title**: Generates AI-powered session titles based on
-  conversation content.
 - **opencode-vibeguard**: Tracks code quality drift and enforces engineering
   standards.
+- **@plannotator/opencode**: Visual plan and code review UI for human approval.
+
+**Disabled:**
+
+- **oh-my-openagent**: Intentionally disabled to reduce overhead. The
+  `oh-my-openagent.jsonc` file is kept as a dormant reference only.
+- **opencode-smart-title**: Removed (cosmetic overhead, low value).
+
+The native agent system replaces oh-my-openagent functionality with focused,
+markdown-based agents that preserve the exact high-value prompt text.
 
 ## MCP Servers
 
 | Server | Purpose | Sandbox Status | Notes |
 | :--- | :--- | :--- | :--- |
 | git | Repository analysis | Disabled | Local-only, no network. |
-| context7 | Documentation search | Disabled | Remote API, blocked by oh-my-opencode. |
+| context7 | Documentation search | Disabled | Remote API, blocked by oh-my-openagent. |
 | sequential-thinking | Complex reasoning | Disabled | Local-only, no network. |
 | atlassian | JIRA and Confluence | Disabled | Internal network only. |
 
-## Custom Agents
+## Native Custom Agents
 
 | Agent | Model | Purpose | Invocation |
 | :--- | :--- | :--- | :--- |
-| @commit | claude-haiku-4-5 | Conventional commit generation from diffs. | `@commit` |
-| @docs-writer | (default) | Automated documentation generation and maintenance. | `@docs-writer` |
-| @review | claude-opus-4-6 | Structured code review combining correctness and quality in a single pass. | `@review` |
+| `@planner` | claude-opus-4.6 | Write implementation plans with problem framing and architecture judgment. | `/plan` or `@planner` |
+| `@plan-reviewer` | gpt-5.4 | Critique plans for executability, gaps, and blockers. | Built into `/plan` flow |
+| `@executor` | gpt-5.4 | Execute approved plans with checkpoints, batching, and verification. | `/do` or `@executor` |
+| `@code-reviewer` | claude-opus-4.6 | Structured code review with findings-first output and merge readiness. | `/review-code` or `@code-reviewer` |
+| `@commit` | claude-haiku-4-5 | Conventional commit generation from diffs. | `@commit` |
+| `@git-master` | claude-haiku-4-5 | Git operations, atomic commits, rebasing, branch management. | `@git-master` |
+| `@docs-writer` | (default) | Automated documentation generation and maintenance. | `@docs-writer` |
+
+### Agent Prompt Preservation
+
+The native agents intentionally preserve exact high-value prompt text from
+oh-my-openagent where behavior quality depends on it. Only infrastructure-
+dependent sections (oh-my-openagent-specific routing, runtime hooks) are removed
+or adapted.
+
+### Legacy Reference
+
+The `oh-my-openagent.jsonc` file contains historical agent configurations
+(Prometheus, Sisyphus, Atlas, Hephaestus, Metis, Momus, Oracle) for reference
+and possible future reuse. The plugin itself is disabled.
 
 ## Custom Commands
 
@@ -158,23 +204,29 @@ For detailed decision guidance, refer to the
 | `/commit` | Triggers the `@commit` agent for message generation. |
 | `/serena` | Manually activates the Serena MCP server for symbol-level analysis. |
 
-## Agent Model Assignments
-
-Model assignments are optimized based on specific agent roles.
+## Native Agent Model Assignments
 
 | Agent | Model | Role |
 | :--- | :--- | :--- |
-| sisyphus | claude-opus-4-6 | Main orchestrator |
-| prometheus | claude-opus-4-6 | Strategic planner |
-| metis | claude-opus-4-6 | Plan gap analyzer |
+| planner | claude-opus-4.6 | Strategic planning with problem framing |
+| plan-reviewer | gpt-5.4 | Plan critique and gap analysis |
+| executor | gpt-5.4 | Execution with batching and verification |
+| code-reviewer | claude-opus-4.6 | Findings-first code review |
+| commit | claude-haiku-4-5 | Conventional commit generation |
+
+### Legacy Reference Models (Dormant)
+
+The `oh-my-openagent.jsonc` file contains these historical assignments:
+
+| Agent | Model | Role |
+| :--- | :--- | :--- |
+| sisyphus | claude-opus-4.6 | Main orchestrator |
+| prometheus | claude-opus-4.6 | Strategic planner |
+| metis | claude-opus-4.6 | Plan gap analyzer |
 | oracle | gpt-5.4 | Architecture consultant |
 | momus | gpt-5.4 | Ruthless reviewer |
 | hephaestus | gpt-5.4 | Autonomous deep worker |
-| sisyphus-junior | claude-sonnet-4-6 | Focused task executor |
-| librarian | claude-haiku-4-5 | Lightweight doc search |
-| explore | grok-code-fast-1 | Fast codebase grep |
-| multimodal-looker | gpt-5.4 | Image/document analysis |
-| atlas | claude-sonnet-4-6 | Todo orchestration |
+| atlas | claude-sonnet-4.6 | Todo orchestration |
 
 ## Category Model Assignments
 
@@ -186,8 +238,8 @@ Model assignments are optimized based on specific agent roles.
 | deep | gpt-5.3-codex | Complex problem-solving |
 | quick | claude-haiku-4-5 | Trivial or repetitive tasks |
 | writing | gemini-3-flash-preview | Documentation and prose |
-| unspecified-high | claude-opus-4-6 | General complex work |
-| unspecified-low | claude-sonnet-4-6 | General standard work |
+| unspecified-high | claude-opus-4.6 | General complex work |
+| unspecified-low | claude-sonnet-4.6 | General standard work |
 
 ## Superpowers Integration
 
@@ -237,6 +289,17 @@ OpenCode uses the following tools for code intelligence and formatting:
   `opencode-agent-memory` plugin to see if key information was preserved.
 - **Skill Failures**: Ensure the superpowers repository is up to date with
   `cd ~/.config/opencode/superpowers && git pull`.
+- **Native agent not found**: Verify agent files exist in
+  `~/.config/opencode/agents/` (planner.md, plan-reviewer.md, executor.md,
+  code-reviewer.md).
+- **Kimi Azure content filter errors**: Azure may flag prompts as "jailbreak"
+  attempts and return a 400 error. This happens when the prompt contains
+  instructions that trigger Microsoft's content filter. Workarounds:
+
+  1. Switch to a different model temporarily: `@agent model=claude-opus-4.6`
+  2. If using a LiteLLM router, configure `content_policy_fallbacks` in the
+     router (not in opencode.jsonc): `[{"Kimi-K2.5": ["claude-opus-4.6"]}]`
+  3. Retry with a shorter or rephrased prompt
 
 ## Sandbox Compatibility
 
@@ -244,17 +307,11 @@ The OpenCode configuration is hardened for use within the official OpenCode
 Sandbox. The environment enforces security by restricting network access and
 specific providers.
 
-### Configuration Hardening
+### Native Agent Compatibility
 
-Specific features are disabled in `oh-my-opencode.jsonc` to maintain sandbox
-integrity:
-
-```jsonc
-{
-  "disabled_hooks": ["agent-usage-reminder", "auto-update-checker"],
-  "disabled_mcps": ["websearch", "context7", "grep_app", "git", "sequential-thinking", "atlassian"]
-}
-```
+The native markdown-based agents are fully compatible with the OpenCode Sandbox
+since they require no external plugins or network access beyond what OpenCode
+core provides.
 
 ### Provider Restrictions
 

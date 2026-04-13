@@ -1,0 +1,407 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+
+  // DORMANT REFERENCE CONFIG
+  // This file is kept for prompt extraction, model mapping reference, and possible future reuse.
+  // The oh-my-openagent plugin is intentionally DISABLED in opencode.jsonc.
+  // Native OpenCode agents now provide equivalent functionality with lower overhead.
+  //
+  // oh-my-openagent configuration
+  // Model matching guide: https://github.com/code-yeongyu/oh-my-opencode/blob/dev/docs/guide/agent-model-matching.md
+  //
+  // New features in oh-my-opencode 3.x
+  "new_task_system_enabled": false,
+  "model_fallback": true,
+  "hashline_edit": true,
+
+  "agents": {
+    "build": {
+      // Official guide: no built-in provider chain documented in the Configuration Reference for this local agent
+      // Local match: prefer f5ai Claude first, then github-copilot Claude duplicates
+      // "model": "f5ai-anthropic/claude-opus-4-6",
+      // "model": "github-copilot/claude-opus-4.6",
+      // "model": "github-copilot/gpt-5.4",
+      "model": "f5ai-moonshot/Kimi-K2.5",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5"
+      ]
+    },
+    "plan": {
+      // Official guide: no built-in provider chain documented in the Configuration Reference for this local agent
+      // Local match: prefer f5ai Claude first, then github-copilot Claude duplicates
+      // "model": "f5ai-anthropic/claude-opus-4-6",
+      // "model": "github-copilot/claude-opus-4.6",
+      // "model": "github-copilot/gpt-5.4",
+      "model": "f5ai-moonshot/Kimi-K2.5",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5"
+      ]
+    },
+    "sisyphus": {
+      // Official guide: anthropic|github-copilot|opencode/claude-opus-4-6 (max) → opencode-go/kimi-k2.5 → kimi-for-coding/k2p5 → opencode|moonshotai|moonshotai-cn|firmware|ollama-cloud|aihubmix/kimi-k2.5 → openai|github-copilot|opencode/gpt-5.4 (medium) → zai-coding-plan|opencode/glm-5 → opencode/big-pickle
+      // Local match: prefer local Kimi after Claude Opus guidance, then GPT substitutes for later guide steps; GLM and Big Pickle are not configured locally
+      // "model": "f5ai-anthropic/claude-opus-4-6",
+      // "model": "github-copilot/claude-opus-4.6",
+      "model": "f5ai-moonshot/Kimi-K2.5",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5",
+        // "f5ai-openai/gpt-5.4",
+        "github-copilot/gpt-5.4",
+        // "f5ai-openai/gpt-5.3-codex",
+        "github-copilot/gpt-5.3-codex"
+      ],
+      // Deployment query routing (xc-planner for prod/staging questions)
+      "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
+    },
+    "sisyphus-junior": {
+      // Official guide: no built-in provider chain documented in the Configuration Reference for this local agent
+      // Local match: prefer f5ai Claude first, then github-copilot Claude duplicates, then GPT and Haiku fallbacks
+      // "model": "f5ai-anthropic/claude-sonnet-4-6",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5",
+        // "f5ai-openai/gpt-5.4",
+        "github-copilot/gpt-5.4",
+        // "f5ai-anthropic/claude-haiku-4-5",
+        "github-copilot/claude-haiku-4.5"
+      ]
+    },
+    "prometheus": {
+      // Official guide: anthropic|github-copilot|opencode/claude-opus-4-6 (max) → openai|github-copilot|opencode/gpt-5.4 (high) → opencode-go/glm-5 → google|github-copilot|opencode/gemini-3.1-pro
+      // Local match: same-model github-copilot fallback comes first, then local substitutes for later guide steps; GLM is not configured locally
+      // "model": "f5ai-anthropic/claude-opus-4-6",
+      // "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/gpt-5.4",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-openai/gpt-5.4",
+        "github-copilot/gpt-5.4",
+        "github-copilot/gemini-3.1-pro-preview",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5"
+      ],
+      // Deployment query routing (xc-planner for prod/staging questions)
+      "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
+    },
+    "metis": {
+      // Official guide: anthropic|github-copilot|opencode/claude-opus-4-6 (max) → openai|github-copilot|opencode/gpt-5.4 (high) → opencode-go/glm-5 → kimi-for-coding/k2p5
+      // Local match: same-model github-copilot fallback comes first, then local substitutes for later guide steps; GLM is not configured locally
+      // "model": "f5ai-anthropic/claude-opus-4-6",
+      // "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/gpt-5.4",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-openai/gpt-5.4",
+        "github-copilot/gpt-5.4",
+        "f5ai-moonshot/Kimi-K2.5",
+        // "f5ai-openai/gpt-5.3-codex",
+        "github-copilot/gpt-5.3-codex",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6"
+      ]
+    },
+    "momus": {
+      // Official guide: openai|github-copilot|opencode/gpt-5.4 (xhigh) → anthropic|github-copilot|opencode/claude-opus-4-6 (max) → google|github-copilot|opencode/gemini-3.1-pro (high) → opencode-go/glm-5
+      // Local match: same-model github-copilot fallback comes first, then local substitutes for later guide steps; GLM is not configured locally
+      // "model": "f5ai-openai/gpt-5.4",
+      "model": "github-copilot/gpt-5.4",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-6",
+        "github-copilot/claude-opus-4.6",
+        "github-copilot/gemini-3.1-pro-preview",
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6"
+      ],
+      "reasoningEffort": "xhigh"
+    },
+    "oracle": {
+      // Official guide: openai|github-copilot|opencode/gpt-5.4 (high) → google|github-copilot|opencode/gemini-3.1-pro (high) → anthropic|github-copilot|opencode/claude-opus-4-6 (max) → opencode-go/glm-5
+      // Local match: same-model github-copilot fallback comes first, then local substitutes for later guide steps; GLM is not configured locally
+      // "model": "f5ai-openai/gpt-5.4",
+      "model": "github-copilot/gpt-5.4",
+      "fallback_models": [
+        "github-copilot/gemini-3.1-pro-preview",
+        // "f5ai-anthropic/claude-opus-4-6",
+        "github-copilot/claude-opus-4.6",
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-openai/gpt-5.3-codex",
+        "github-copilot/gpt-5.3-codex"
+      ],
+      // Extended thinking for architecture decisions
+      "thinking": {
+        "type": "enabled",
+        "budgetTokens": 12000
+      }
+    },
+    "librarian": {
+      // Official guide: opencode-go/minimax-m2.7 → opencode/minimax-m2.7-highspeed → anthropic|opencode/claude-haiku-4-5 → opencode/gpt-5-nano
+      // Local match: Minimax is not configured locally, so use the same-model github-copilot Haiku fallback first, then GPT-5-Nano
+      // "model": "f5ai-anthropic/claude-haiku-4-5",
+      "model": "github-copilot/claude-haiku-4.5",
+      "fallback_models": [],
+      "maxTokens": 8000
+    },
+    "explore": {
+      // Official guide: github-copilot|xai/grok-code-fast-1 → opencode-go/minimax-m2.7-highspeed → opencode/minimax-m2.7 → anthropic|opencode/claude-haiku-4-5 → opencode/gpt-5-nano
+      // Local match: prefer f5ai Grok first, then github-copilot Grok, then Haiku and GPT-5-Nano because Minimax is not configured locally
+      // "model": "f5ai-grok/grok-code-fast-1",
+      "model": "github-copilot/claude-haiku-4.5",
+      "fallback_models": [
+        "github-copilot/grok-code-fast-1",
+        // "f5ai-anthropic/claude-haiku-4-5",
+        "github-copilot/claude-haiku-4.5"
+      ],
+      "maxTokens": 8000
+    },
+    "multimodal-looker": {
+      // Official guide: openai|opencode/gpt-5.4 (medium) → opencode-go/kimi-k2.5 → zai-coding-plan/glm-4.6v → openai|github-copilot|opencode/gpt-5-nano
+      // Local match: same-model github-copilot fallback comes first, then local Kimi; GLM-4.6V is not configured locally
+      // "model": "f5ai-openai/gpt-5.4",
+      "model": "github-copilot/gpt-5.4",
+      "fallback_models": ["f5ai-moonshot/Kimi-K2.5"]
+    },
+    "hephaestus": {
+      // Official guide: gpt-5.4 (medium)
+      // Local match: same-model github-copilot fallback comes first, then nearby GPT Codex fallbacks
+      // Autonomous Deep Worker — goal-oriented execution with thorough research
+      // "model": "f5ai-openai/gpt-5.4",
+      "model": "github-copilot/gpt-5.4",
+      "fallback_models": [
+        // "f5ai-openai/gpt-5.3-codex",
+        "github-copilot/gpt-5.3-codex",
+        // "f5ai-openai/gpt-5.2-codex",
+        "github-copilot/gpt-5.2-codex"
+      ],
+      "reasoningEffort": "medium",
+      // Deployment query routing (xc-planner for prod/staging questions)
+      "prompt_append": "CRITICAL: For deployment questions (what's in prod/staging/crt/dev, deployed images, sre-*-model), delegate to @xc-planner. Local CI configs show :latest tags, not actual deployed versions."
+    },
+    "atlas": {
+      // Official guide: anthropic|github-copilot|opencode/claude-sonnet-4-6 → opencode-go/kimi-k2.5 → openai|github-copilot|opencode/gpt-5.4 (medium) → opencode-go/minimax-m2.7
+      // Local match: same-model github-copilot fallback comes first, then local Kimi, then local substitutes for later guide steps; Minimax is not configured locally
+      // "model": "f5ai-anthropic/claude-sonnet-4-6",
+      // "model": "github-copilot/claude-sonnet-4.6",
+      "model": "f5ai-moonshot/Kimi-K2.5",
+      "fallback_models": [
+        "f5ai-moonshot/Kimi-K2.5",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5",
+        // "f5ai-openai/gpt-5.4",
+        "github-copilot/gpt-5.4",
+        // "f5ai-anthropic/claude-haiku-4-5",
+        "github-copilot/claude-haiku-4.5"
+      ]
+    }
+  },
+
+  "categories": {
+    "visual-engineering": {
+      // Official guide: google|github-copilot|opencode/gemini-3.1-pro (high) → zai-coding-plan|opencode/glm-5 → anthropic|github-copilot|opencode/claude-opus-4-6 (max) → opencode-go/glm-5 → kimi-for-coding/k2p5
+      // Local match: Gemini is available only through github-copilot here; for later Claude steps, same-model github-copilot fallbacks come immediately after the matching f5ai models, then local Kimi
+      "model": "github-copilot/gemini-3.1-pro-preview",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-6",
+        "github-copilot/claude-opus-4.6",
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5",
+        "f5ai-moonshot/Kimi-K2.5"
+      ]
+    },
+    "ultrabrain": {
+      // Official guide: openai|opencode/gpt-5.4 (xhigh) → google|github-copilot|opencode/gemini-3.1-pro (high) → anthropic|github-copilot|opencode/claude-opus-4-6 (max) → opencode-go/glm-5
+      // Local match: same-model github-copilot fallback comes first, then Gemini, then later Claude steps with same-model github-copilot immediately after matching f5ai models; GLM is not configured locally
+      // "model": "f5ai-openai/gpt-5.4",
+      "model": "github-copilot/gpt-5.4",
+      "fallback_models": [
+        "github-copilot/gemini-3.1-pro-preview",
+        // "f5ai-anthropic/claude-opus-4-6",
+        "github-copilot/claude-opus-4.6",
+        // "f5ai-openai/gpt-5.3-codex",
+        "github-copilot/gpt-5.3-codex"
+      ],
+      "reasoningEffort": "high"
+    },
+    "deep": {
+      // Official guide: openai|opencode/gpt-5.3-codex (medium) → anthropic|github-copilot|opencode/claude-opus-4-6 (max) → google|github-copilot|opencode/gemini-3.1-pro (high)
+      // Local match: same-model github-copilot fallback comes first, then later Claude steps with same-model github-copilot immediately after matching f5ai models, then Gemini
+      // "model": "f5ai-openai/gpt-5.3-codex",
+      "model": "github-copilot/gpt-5.3-codex",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-6",
+        "github-copilot/claude-opus-4.6",
+        "github-copilot/gemini-3.1-pro-preview",
+        // "f5ai-openai/gpt-5.2-codex",
+        "github-copilot/gpt-5.2-codex"
+      ],
+      "reasoningEffort": "high"
+    },
+    "artistry": {
+      // Official guide: google|github-copilot|opencode/gemini-3.1-pro (high) → anthropic|github-copilot|opencode/claude-opus-4-6 (max) → openai|github-copilot|opencode/gpt-5.4
+      // Local match: Gemini is available only through github-copilot here; later same-model github-copilot fallbacks come immediately after the matching f5ai Claude/GPT models
+      "model": "github-copilot/gemini-3.1-pro-preview",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-6",
+        "github-copilot/claude-opus-4.6",
+        // "f5ai-openai/gpt-5.4",
+        "github-copilot/gpt-5.4"
+      ]
+    },
+    "quick": {
+      // Official guide: openai|github-copilot|opencode/gpt-5.4-mini → anthropic|github-copilot|opencode/claude-haiku-4-5 → google|github-copilot|opencode/gemini-3-flash → opencode-go/minimax-m2.7 → opencode/gpt-5-nano
+      // Local match: gpt-5.4-mini is not available on github-copilot; use Haiku as primary, then Gemini Flash fallback; Minimax and gpt-5-nano are not configured locally
+      // "f5ai-anthropic/claude-haiku-4-5",
+      "model": "github-copilot/claude-haiku-4.5",
+      "fallback_models": ["github-copilot/gemini-3-flash-preview"]
+    },
+    "unspecified-low": {
+      // Official guide: anthropic|github-copilot|opencode/claude-sonnet-4-6 → openai|opencode/gpt-5.3-codex (medium) → opencode-go/kimi-k2.5 → google|github-copilot|opencode/gemini-3-flash → opencode-go/minimax-m2.7
+      // Local match: same-model github-copilot fallback comes first, then later GPT steps with same-model github-copilot immediately after matching f5ai models, then local Kimi, then Gemini; Minimax is not configured locally
+      // "model": "f5ai-anthropic/claude-sonnet-4-6",
+      "model": "github-copilot/claude-sonnet-4.6",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5",
+        // "f5ai-openai/gpt-5.3-codex",
+        "github-copilot/gpt-5.3-codex",
+        "f5ai-moonshot/Kimi-K2.5",
+        "github-copilot/gemini-3-flash-preview"
+      ]
+    },
+    "unspecified-high": {
+      // Official guide: anthropic|github-copilot|opencode/claude-opus-4-6 (max) → openai|github-copilot|opencode/gpt-5.4 (high) → zai-coding-plan|opencode/glm-5 → kimi-for-coding/k2p5 → opencode-go/glm-5 → opencode/kimi-k2.5 → opencode|moonshotai|moonshotai-cn|firmware|ollama-cloud|aihubmix/kimi-k2.5
+      // Local match: same-model github-copilot fallback comes first, then later GPT steps with same-model github-copilot immediately after matching f5ai models, then local Kimi; GLM is not configured locally
+      // "model": "f5ai-anthropic/claude-opus-4-6",
+      // "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/gpt-5.4",
+      "fallback_models": [
+        // "f5ai-anthropic/claude-opus-4-5",
+        "github-copilot/claude-opus-4.5",
+        // "f5ai-openai/gpt-5.4",
+        "github-copilot/gpt-5.4",
+        "f5ai-moonshot/Kimi-K2.5",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-openai/gpt-5.3-codex",
+        "github-copilot/gpt-5.3-codex"
+      ]
+    },
+    "writing": {
+      // Official guide: google|github-copilot|opencode/gemini-3-flash → opencode-go/kimi-k2.5 → anthropic|github-copilot|opencode/claude-sonnet-4-6 → opencode-go/minimax-m2.7
+      // Local match: Gemini is available only through github-copilot here; then local Kimi, then same-model github-copilot fallbacks come immediately after the matching f5ai Claude models; Minimax is not configured locally
+      "model": "github-copilot/gemini-3-flash-preview",
+      "fallback_models": [
+        "f5ai-moonshot/Kimi-K2.5",
+        // "f5ai-anthropic/claude-sonnet-4-6",
+        "github-copilot/claude-sonnet-4.6",
+        // "f5ai-anthropic/claude-sonnet-4-5",
+        "github-copilot/claude-sonnet-4.5",
+        // "f5ai-anthropic/claude-haiku-4-5",
+        "github-copilot/claude-haiku-4.5"
+      ]
+    }
+  },
+
+  "background_task": {
+    // Tuned per provider: grok/google high (cheap bulk), anthropic moderate (mix), openai moderate (expensive consultation)
+    "defaultConcurrency": 5,
+    "providerConcurrency": {
+      "f5ai-anthropic": 10,
+      "f5ai-openai": 8,
+      "f5ai-grok": 15,
+      "f5ai-moonshot": 8,
+      "github-copilot": 10
+    }
+  },
+
+  "tmux": {
+    "enabled": false,
+    "layout": "main-vertical"
+  },
+
+  "git_master": {
+    "commit_footer": true,
+    "include_co_authored_by": false
+  },
+
+  "ralph_loop": {
+    "enabled": true,
+    "default_max_iterations": 100
+  },
+
+  "experimental": {
+    "auto_resume": true,
+    "aggressive_truncation": true,
+    "dynamic_context_pruning": {
+      "enabled": true,
+      "notification": "minimal",
+      "turn_protection": {
+        "enabled": true,
+        "turns": 3
+      },
+      "strategies": {
+        "deduplication": {
+          "enabled": true
+        },
+        "supersede_writes": {
+          "enabled": true,
+          "aggressive": false
+        },
+        "purge_errors": {
+          "enabled": true,
+          "turns": 5
+        }
+      }
+    }
+  },
+
+  // Disabled to reduce prompt noise - agent usage is already well understood
+  // Disabled hooks:
+  // - agent-usage-reminder: Reduces prompt noise (usage is well understood)
+  // - auto-update-checker: Prevents npm registry network calls (sandbox compliance)
+  "disabled_hooks": ["agent-usage-reminder", "auto-update-checker", "compaction-context-injector"],
+
+  // Disabled MCPs (sandbox compliance):
+  // oh-my-opencode ships with 3 built-in remote MCPs that contact external APIs:
+  // - websearch: Uses Brave Search API
+  // - context7: Documentation search via Upstash
+  // - grep_app: GitHub code search
+  // These are disabled for sandbox compliance (approved provider only, no internet-calling plugins)
+  "disabled_mcps": [
+    "websearch",
+    "context7",
+    "grep_app",
+    "git",
+    "sequential-thinking",
+    "atlassian"
+  ]
+}

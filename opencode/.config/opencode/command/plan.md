@@ -1,6 +1,6 @@
 ---
-description: Create an OpenCode Build Agent optimized implementation plan with comprehensive issue analysis
-agent: general
+description: Create an implementation plan with native planner agent. Plans are reviewed and prepared for Plannotator approval.
+agent: planner
 subtask: true
 ---
 
@@ -8,27 +8,29 @@ subtask: true
 
 **Use `/plan` when:**
 
-- You have clear requirements and want a quick technical plan
-- You need detailed issue analysis (Phase 0) before implementation
-- You want a structured implementation plan without interview flow
+- You have clear requirements and want a technical implementation plan
+- You need comprehensive planning before execution
+- You want the plan reviewed before human approval
 
-**Use Prometheus agent instead when:**
+## Required Workflow
 
-- Requirements are unclear and need consultative refinement
-- Complex projects requiring brainstorming and design exploration
-- You want Metis gap analysis and optional Momus review
+The `/plan` command follows this workflow:
+
+```
+/plan -> plan-reviewer -> Plannotator -> /do -> /review-code
+```
+
+1. **planner** agent writes the plan
+2. **plan-reviewer** agent critiques it for executability
+3. **Plannotator** provides human review and approval
+4. **executor** agent executes via `/do`
+5. **code-reviewer** agent performs final review via `/review-code`
 
 ## Required Skills
 
-**RECOMMENDED:** Reference `superpowers:writing-plans` for bite-sized task
-structure.
+**REQUIRED:** Use `superpowers:writing-plans` for bite-sized task structure.
 
-**NOTE:** This repo overrides the `writing-plans` skill's default path.
-Use `.sisyphus/plans/` instead of `docs/plans/YYYY-MM-DD-<feature>.md`.
-
-## Plan Output Location
-
-Save plans to: `.sisyphus/plans/[task-name]-plan.md`
+**NOTE:** Save plans to `.opencode/plans/[task-name]-plan.md` (not `.sisyphus/plans/`).
 
 Plans are ephemeral working documents (git-ignored) for agent execution.
 
@@ -36,200 +38,74 @@ Plans are ephemeral working documents (git-ignored) for agent execution.
 
 Create a comprehensive, agent-executable implementation plan for: $ARGUMENTS
 
-This plan will be executed by OpenCode's build agent in one pass. Focus on
-clarity, completeness, and actionable steps.
+This plan will be written by the native `planner` agent and reviewed by the
+`plan-reviewer` agent before Plannotator human approval.
 
-## Phase 0: Current State Analysis & Issues Identified
+## Planning Requirements
 
-**First analyze and document all issues found in the current implementation:**
+### Phase 0: Intent Classification (MANDATORY)
 
-### Performance Issues
+Before planning, classify the work intent:
 
-- **Identify Bottlenecks**: Specific performance problems with line references
-- **Resource Usage**: Memory leaks, inefficient algorithms, database query
-  issues
-- **Scalability Concerns**: Code that won't scale with increased load
-- **Quantify Impact**: Expected % improvements with rationale
+**Intent Types:**
+- **Refactoring**: Changes to existing code - focus on safety
+- **Build from Scratch**: New features/modules - focus on discovery
+- **Mid-sized Task**: Scoped, bounded work - focus on guardrails
+- **Collaborative**: Needs dialogue - focus on incremental clarity
+- **Architecture**: System design - focus on strategic decisions
+- **Research**: Investigation needed - focus on exit criteria
 
-### Correctness Issues
+### Phase 1: Problem Framing
 
-- **Logic Errors**: Flawed algorithms or business logic with examples
-- **Edge Cases**: Unhandled scenarios that could cause failures
-- **Data Integrity**: Race conditions, validation gaps, inconsistent states
-- **Error Handling**: Missing or inadequate error handling patterns
+Define:
+- What problem are we solving?
+- What are the constraints?
+- What does success look like?
+- What is explicitly out of scope?
 
-### Maintainability Issues
+### Phase 2: Plan Structure
 
-- **Code Clarity**: Complex, unreadable, or undocumented code sections
-- **Structural Problems**: Tight coupling, violation of SOLID principles
-- **Anti-patterns**: God objects, magic numbers, copy-paste programming
-- **Technical Debt**: Outdated patterns, deprecated dependencies
+Every plan MUST include:
 
-### Security Concerns
+1. **Goal**: One sentence describing what this builds
+2. **Architecture**: 2-3 sentences about approach
+3. **Tech Stack**: Key technologies/libraries
+4. **File Map**: Which files will be created or modified
+5. **Task Breakdown**: Bite-sized tasks with exact steps
+6. **Acceptance Criteria**: How we know it's done
+7. **Verification**: QA scenarios for each deliverable
 
-- **Vulnerabilities**: Potential security holes with severity assessment
-- **Input Validation**: Missing sanitization or validation
-- **Authentication/Authorization**: Access control issues
-- **Data Exposure**: Logging sensitive information, insecure storage
+### Phase 3: Task Granularity
 
-### Code Quality Assessment
+**Each step is one action (2-5 minutes):**
+- Write the failing test
+- Run it to make sure it fails
+- Implement the minimal code to make the test pass
+- Run tests to verify they pass
+- Commit
 
-- **Style Violations**: Inconsistent formatting, naming conventions
-- **Complexity Metrics**: Functions/classes that exceed reasonable complexity
-- **Test Coverage**: Missing or inadequate test coverage areas
-- **Documentation Gaps**: Missing or outdated documentation
+## Output Requirements
 
-## Phase 1: Context Discovery & Solution Design
+- Use checkbox (`- [ ]`) syntax for tracking
+- Exact file paths always
+- Complete code in every step
+- Exact commands with expected output
+- DRY, YAGNI, TDD, frequent commits
 
-**Analyze the codebase and requirements:**
+## Plan Output Location
 
-1. **Technology Detection**
-   - Scan project files to identify the tech stack
-   - Check package.json, requirements.txt, Cargo.toml, go.mod, etc.
-   - Note existing patterns, conventions, and project structure
+Save plans to: `.opencode/plans/[task-name]-plan.md`
 
-2. **File System Mapping**
-   - List all files that need modification (exact paths)
-   - Identify new files to create (exact paths)
-   - Note any config files that need updates
+Plans are ephemeral working documents (git-ignored) for agent execution.
 
-3. **Dependencies & Environment**
-   - Check existing dependencies and versions
-   - Identify new dependencies needed
-   - Note any environment variables or config changes
+## Agent Handoff
 
-### How Each Issue Will Be Addressed
+**CRITICAL: Do not execute the plan yourself.**
 
-**Issue → Solution Mapping:**
+After writing the plan:
 
-For each issue identified in Phase 0, provide:
+1. Hand off to the native `plan-reviewer` agent for critique
+2. The plan must be ready for human review in Plannotator
+3. Stop after the plan is ready for review
 
-- **Current Implementation**: Show the problematic code patterns
-- **Proposed Solution**: Specific technical approach to fix the issue
-- **Rationale**: Why this approach solves the identified problem
-- **Risk Assessment**: What could go wrong and mitigation strategies
-
-**Before/After Code Comparisons:**
-
-- Include concrete code snippets showing current vs. proposed implementations
-- Highlight the specific changes that address each identified issue
-- Explain the technical reasoning behind each solution choice
-
-## Phase 2: Implementation Design
-
-**Create the technical approach:**
-
-1. **Code Structure**
-   - Follow existing code patterns and conventions
-   - Use the same import styles, error handling, and naming
-   - Match existing test patterns and frameworks
-   - Address structural issues identified in Phase 0
-
-2. **Change Breakdown**
-   - Break changes into logical, independent steps
-   - Each step should be testable on its own
-   - Provide exact code for each file change
-   - Prioritize changes by impact and risk level
-
-3. **Quality Standards**
-   - Use OpenCode's LSP integration for real-time validation
-   - Apply configured formatters automatically (no manual commands)
-   - Use configured linters for code quality checks
-   - Note test commands: `npm test`, `pytest`, `go test ./...`, etc.
-   - Implement improvements for issues identified in Phase 0
-
-## Phase 3: Implementation Steps
-
-**For each change, provide:**
-
-1. **File Operations**
-   - **Create new files**: Full file path + complete content
-   - **Modify existing files**: Exact changes with context
-   - **Update configs**: Specific changes to package.json, requirements.txt,
-     etc.
-   - **Reference Phase 0 Issues**: Note which specific issues each change
-     addresses
-
-2. **Code Content**
-   - Include complete, working code for each file
-   - Ensure all imports are correct and available
-   - Follow existing code style and patterns exactly
-   - Implement fixes for performance, correctness, and maintainability issues
-
-3. **Validation Steps**
-   - After each major change, run relevant tests
-   - Check linting and formatting
-   - Verify the change works as expected
-   - Confirm that identified issues are resolved
-
-## Phase 4: Testing & Quality
-
-**Ensure everything works:**
-
-1. **Test Implementation**
-   - Create/update unit tests for new functionality
-   - Include integration tests if needed
-   - Provide complete test code, not just descriptions
-   - Add tests specifically for issues fixed in Phase 0
-
-2. **Quality Checks**
-   - Use OpenCode's LSP for real-time error detection
-   - Apply all configured formatters automatically
-   - Run configured linters for code quality validation
-   - Execute full test suite
-   - Verify security improvements are working
-
-3. **Manual Verification**
-   - List specific things to check manually
-   - Provide example API calls, UI interactions, etc.
-   - Note any edge cases to test
-   - Test scenarios that previously failed due to identified issues
-
-## Phase 5: Impact Assessment & Completion Criteria
-
-**Quantify improvements and define success:**
-
-1. **Performance Improvements**
-   - Expected % improvements with rationale
-   - Benchmark comparisons (before/after metrics)
-   - Resource usage improvements
-   - Scalability enhancements
-
-2. **Maintainability Gains**
-   - How changes improve code clarity and structure
-   - Reduced complexity metrics
-   - Improved test coverage percentages
-   - Documentation improvements
-
-3. **Functional Requirements**
-   - List specific behaviors that must work
-   - Include example inputs/outputs
-   - Note any performance requirements
-   - Confirm all identified issues are resolved
-
-4. **Technical Requirements**
-   - All tests pass (including new tests for fixed issues)
-   - No linting errors
-   - Project builds successfully
-   - No breaking changes (unless intended)
-   - Security vulnerabilities addressed
-
-## Agent Execution Notes
-
-**Save as `[task-name]-plan.md` and ensure:**
-
-- Phase 0 analysis is completed before any implementation begins
-- Every file change includes the complete file path and references specific
-  issues being fixed
-- All code snippets are complete and runnable
-- All commands are exact and ready to execute
-- Dependencies are specified with versions when critical
-- Before/after comparisons are included for key improvements
-- The plan can be executed top-to-bottom without additional context
-- Each implementation step clearly states which Phase 0 issues it addresses
-
-The goal is a plan so clear and complete that any build agent can execute it
-successfully while understanding both the problems being solved and the
-rationale behind each solution.
-
-**CRITICAL: After saving the plan file, STOP. Do not proceed with implementation. Your task is complete once the plan is written.**
+`/plan creates a plan, has it reviewed by the native plan-reviewer agent, and prepares it for Plannotator approval. It does not execute the plan.`
