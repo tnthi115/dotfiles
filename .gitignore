@@ -4,8 +4,12 @@
 .serena/
 serena/
 
-# Ignore Opencode plan files
+# Ignore OpenCode working directories (plan files, session data)
+# Note: Use `git add -f <file>` to force-add specific plan files if needed
 .opencode/plans/
-
-# Ignore oh-my-opencode working directory (plans, session data)
 .sisyphus/
+.opencode/memory/
+
+# Ignore plan and summary files
+*-plan.md
+.opencode/IMPLEMENTATION_SUMMARY.md
