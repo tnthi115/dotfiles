@@ -10,14 +10,41 @@ The `/review-plan` command provides **on-demand plan review** using the native
 `plan-reviewer` agent. Use this when you want critique on a plan before or after
 `/plan` generation, or when reviewing plans created outside the standard workflow.
 
+## Usage
+
+```
+/review-plan                    # Review the most recent plan (RECOMMENDED)
+/review-plan @path/to/plan.md   # Review specific plan file
+/review-plan <keywords>         # Find plan by keywords
+```
+
+**Default behavior:** When run without arguments, `/review-plan` automatically finds and reviews the most recently modified plan in `.opencode/plans/`. This is the typical workflow — just run `/review-plan` after creating a plan with `/plan`.
+
 ## Resolve Plan File
 
-- If `$ARGUMENTS` starts with `@`, read that file.
-- If `$ARGUMENTS` contains keywords, find the best-matching filename in
-  `.opencode/plans/`. If ambiguous, list matches and stop.
-- If `$ARGUMENTS` is empty, use the most recently modified
-  `.opencode/plans/*.md`.
-- If no plan found, report error and stop.
+The command resolves which plan to review using this priority:
+
+1. **If `$ARGUMENTS` starts with `@`:** Read that exact file path
+2. **If `$ARGUMENTS` contains keywords:** Find best-matching filename in `.opencode/plans/`
+3. **If `$ARGUMENTS` is empty (default):** Use the most recently modified `.opencode/plans/*.md`
+4. **If no plan found:** Report error and stop
+
+### Finding the Most Recent Plan
+
+When no argument is provided, automatically determine the most recent plan:
+
+```bash
+ls -t .opencode/plans/*.md | head -1
+```
+
+This returns the most recently modified plan file. Read this file and proceed with review.
+
+**Example workflow:**
+```
+/plan "Implement user authentication"    # Creates .opencode/plans/auth-plan.md
+/review-plan                              # Automatically reviews auth-plan.md
+/do @.opencode/plans/auth-plan.md        # Executes after review
+```
 
 ## Review Method
 

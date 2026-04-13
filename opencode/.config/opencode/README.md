@@ -54,7 +54,7 @@ opencode/.config/opencode/
 │   ├── plan-reviewer.md                # Native plan review agent (Metis + Momus + Oracle)
 │   └── review.md                       # Structured code review (legacy reference)
 ├── command/                            # Custom slash commands
-│   ├── analyze-project.md              # Deep project analysis (Serena fallback)
+│   ├── init-deep.md                    # Deep project initialization
 │   ├── commit.md                       # Commit workflow (delegates to @commit)
 │   ├── do.md                           # Task execution (native executor agent)
 │   ├── plan.md                         # Planning workflow (native planner agent)
@@ -64,7 +64,7 @@ opencode/.config/opencode/
 ├── themes/                             # Custom TUI themes
 │   └── tymon-kanagawa.json             # Kanagawa color scheme
 ├── AGENTS.md                           # Agent behavior guidelines
-├── analyze-codebase-command-guide.md   # Detailed /analyze-project docs
+│                                       # (removed - integrated into init-deep)
 ├── oh-my-openagent.jsonc               # Dormant reference (plugin disabled)
 ├── opencode.jsonc                      # Core configuration
 ├── plan-command-usage-guide.md         # Detailed /plan command docs
@@ -196,7 +196,7 @@ and possible future reuse. The plugin itself is disabled.
 
 | Command | Purpose |
 | :--- | :--- |
-| `/analyze-project` | Deep semantic project analysis. See [analyze-codebase-command-guide.md](./analyze-codebase-command-guide.md). |
+| `/init-deep` | Generate hierarchical AGENTS.md files throughout the project for directory-scoped AI context. |
 | `/plan` | Technical planning with superpower integration. See [plan-command-usage-guide.md](./plan-command-usage-guide.md). |
 | `/do` | Executes an implementation plan using the `executing-plans` skill. |
 | `/review-code` | Review code changes on the current branch. |
@@ -296,14 +296,12 @@ OpenCode uses the following tools for code intelligence and formatting:
   attempts and return a 400 error. This happens when the prompt contains
   instructions that trigger Microsoft's content filter. Workarounds:
 
-
   1. Switch to a different model temporarily: `@agent model=claude-opus-4.6`
   2. If using a LiteLLM router, configure `content_policy_fallbacks` in the
 
   router (not in opencode.jsonc): `[{"Kimi-K2.5": ["claude-opus-4.6"]}]`
 
-
-  3. Retry with a shorter or rephrased prompt
+  1. Retry with a shorter or rephrased prompt
 
 ## Sandbox Compatibility
 

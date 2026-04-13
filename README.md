@@ -164,7 +164,7 @@ opencode/.config/opencode/
 │   ├── docs-writer.md
 │   └── review.md
 ├── command/
-│   ├── analyze-project.md
+│   ├── init-deep.md
 │   ├── commit.md
 │   ├── do.md
 │   ├── plan.md
@@ -241,7 +241,7 @@ with restricted network access and approved providers only.
 
 ### Custom Commands
 
-- **/analyze-project**: Initial codebase analysis and indexing.
+- **/init-deep**: Generate hierarchical AGENTS.md files throughout the project.
 - **/plan**: Technical implementation plan generation.
 - **/do**: Automated execution of a generated plan.
 - **/review-code**: Review code changes on the current branch.

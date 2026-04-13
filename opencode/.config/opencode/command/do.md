@@ -6,8 +6,7 @@ subtask: true
 
 ## Required Skills
 
-**REQUIRED:** Use `superpowers:executing-plans` skill for disciplined plan
-execution.
+**Use `superpowers:executing-plans` skill for disciplined plan execution.**
 
 The skill provides:
 
@@ -17,6 +16,16 @@ The skill provides:
 - Clear stopping conditions when blocked
 
 This command provides the framework; the skill provides the discipline.
+
+## Execution Environment
+
+**Execute in the current working directory.** Do NOT require or create git
+worktrees unless explicitly requested by the user.
+
+The executor agent should:
+- Work directly in the current repository
+- Use the existing git context (branch, remote, etc.)
+- Only stop if there are uncommitted changes that would conflict
 
 ---
 
@@ -30,11 +39,16 @@ Use `/do` with:
 
 The native `executor` agent follows this workflow:
 
+```
+/do -> executor -> /review-code -> DONE
+```
+
 1. **Execute approved plan in order**
 2. **Track progress explicitly** with todos
 3. **Work in batches** with verification between
 4. **Verify before claiming completion**
-5. **Stop and surface blockers** instead of freelancing
+5. **Run `/review-code`** for mandatory post-execution review
+6. **Stop and surface blockers** instead of freelancing
 
 ---
 
@@ -81,6 +95,19 @@ End with verification evidence:
 - Tests pass
 - `lsp_diagnostics` clean on changed files
 - Concise execution summary
+
+**Step 7: Post-Execution Review (CRITICAL)**
+
+After all plan tasks are completed and verified:
+
+1. **Automatically run `/review-code`** to review all changes made during execution
+2. Present the review findings to the user with severity categorization
+3. Offer to fix any issues found or proceed to completion
+
+**Do NOT skip this step** - code review is mandatory after `/do` execution.
+
+This mirrors the `/plan` → plan-reviewer workflow and ensures consistent
+quality gates.
 
 **Guidelines:**
 
