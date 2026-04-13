@@ -60,6 +60,57 @@ The native `executor` agent follows this workflow:
 
 **Step 1: Plan Analysis**
 
+### Resolve Plan File
+
+**Priority order for plan selection:**
+
+1. **Explicit path**: If `$ARGUMENTS` starts with `@`, read that file directly.
+2. **Auto-detect recent**: If `$ARGUMENTS` is empty, automatically detect the
+   most relevant plan using session context first, then file modification time.
+
+### Automatic Detection (when no arguments provided)
+
+**Step 1: Check session context first**
+
+Look for plans mentioned or worked on in the current session:
+- Plans recently created with `/plan`
+- Plans recently reviewed with `/review-plan`
+- Plans mentioned in recent conversation context
+- The most recently modified `.opencode/plans/*.md` file
+
+**Priority within session context:**
+1. Most recently mentioned plan in conversation
+2. Most recently reviewed plan (via `/review-plan`)
+3. Most recently modified file in `.opencode/plans/`
+
+**Step 2: Use bash to find most recent file (fallback)**
+
+If no clear session context, use file modification time:
+
+```bash
+# Find the most recently modified .md file in .opencode/plans/
+ls -t .opencode/plans/*.md 2>/dev/null | head -1
+```
+
+**If found:**
+
+- Read and execute that plan file
+- **Announce to user**: "Executing most recent plan: `<filename>`"
+
+**If not found:**
+
+- Report error: "No plan files found in .opencode/plans/. Create a plan with
+  /plan or specify a file path with /do @plan-file.md"
+- Stop execution
+
+**If multiple plans are equally recent (within 1 minute):**
+
+- List the top 3 most recent plans
+- Ask user to specify which one: "Multiple recent plans found. Use
+  `/do @<filename>` to specify."
+
+### After Plan Resolution
+
 - Read the approved plan from `.opencode/plans/` or session context.
 - Identify targets, dependencies, and code patterns; follow existing patterns.
 
