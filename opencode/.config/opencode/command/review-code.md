@@ -6,14 +6,15 @@ subtask: true
 
 ## Code Review Workflow
 
-The `/review-code` command is the **final stage** of the plan/review/do/review workflow:
+The `/review-code` command is the **final stage** of the plan/review/do/review
+workflow:
 
-```
+```text
 /plan -> plan-reviewer -> Plannotator -> /do -> /review-code
 ```
 
-This command uses the native `code-reviewer` agent for structured, findings-first
-review output.
+This command uses the native `code-reviewer` agent for structured,
+findings-first review output.
 
 ## Determine Baseline
 
@@ -26,8 +27,8 @@ review output.
 Run these with bash:
 
 1. `git diff --stat <baseline>..HEAD`
-2. `git diff <baseline>..HEAD` (truncate to 5000 lines if larger; use
-   stat-only if 100+ files)
+2. `git diff <baseline>..HEAD` (truncate to 5000 lines if larger; use stat-only
+   if 100+ files)
 3. Run linters only for changed-file languages, only if tool is available.
 
 If no changed files exist, report nothing to review and stop.
@@ -63,14 +64,19 @@ The `code-reviewer` agent evaluates:
 The `code-reviewer` agent produces structured output:
 
 ### Strengths
+
 List 2-4 specific strengths with file:line references.
 
 ### Issues
+
 #### Critical (must fix)
+
 #### Important (should fix)
+
 #### Minor (nice to fix)
 
 ### Summary
+
 | Severity | Count |
 |----------|-------|
 | Critical | [N] |
@@ -79,6 +85,7 @@ List 2-4 specific strengths with file:line references.
 | **Total** | **[N]** |
 
 ### Assessment
+
 **Ready to merge?** [Yes / With fixes / No]
 
 ## Post-Review

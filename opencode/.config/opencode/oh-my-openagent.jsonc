@@ -9,7 +9,7 @@
   // oh-my-openagent configuration
   // Model matching guide: https://github.com/code-yeongyu/oh-my-opencode/blob/dev/docs/guide/agent-model-matching.md
   //
-  // New features in oh-my-opencode 3.x
+  // New features in oh-my-openagent 3.x
   "new_task_system_enabled": false,
   "model_fallback": true,
   "hashline_edit": true,
@@ -208,7 +208,6 @@
       // "model": "github-copilot/claude-sonnet-4.6",
       "model": "f5ai-moonshot/Kimi-K2.5",
       "fallback_models": [
-        "f5ai-moonshot/Kimi-K2.5",
         "github-copilot/claude-sonnet-4.6",
         // "f5ai-anthropic/claude-sonnet-4-5",
         "github-copilot/claude-sonnet-4.5",
@@ -391,7 +390,7 @@
   "disabled_hooks": ["agent-usage-reminder", "auto-update-checker", "compaction-context-injector"],
 
   // Disabled MCPs (sandbox compliance):
-  // oh-my-opencode ships with 3 built-in remote MCPs that contact external APIs:
+  // oh-my-openagent ships with 3 built-in remote MCPs that contact external APIs:
   // - websearch: Uses Brave Search API
   // - context7: Documentation search via Upstash
   // - grep_app: GitHub code search

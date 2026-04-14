@@ -60,43 +60,54 @@ If this is a re-review after fixes:
 Evaluate each category against every changed line:
 
 ### Correctness
+
 Logic bugs, off-by-one errors, race conditions, null handling, edge cases,
 incorrect return values, broken control flow.
 
 ### Algorithm Optimality
+
 Time/space complexity (Big O), redundant iterations, unnecessary allocations,
 suboptimal data structures, N+1 queries.
 
 ### Simplicity & Over-Engineering
+
 YAGNI violations, premature abstractions, unnecessary indirection, overly
 generic solutions, frameworks where a function suffices.
 
 ### Clean Code
+
 Single responsibility violations, functions >20 lines, unclear naming,
 deep nesting (>3 levels), magic numbers/strings, poor separation of concerns.
 
 ### Dead Code
+
 Unused imports, unreachable branches, commented-out code, unused
 variables/functions/parameters.
 
 ### Architecture
+
 Separation of concerns, DRY, coupling, scalability, sound design decisions.
 
 ### Security
+
 Input validation, injection risks, auth gaps, secrets exposure.
 
 ### Testing
+
 Coverage of logic (not just mocks), edge cases, integration tests where needed.
 
 ### Configuration & Infrastructure
+
 Valid syntax for config formats (YAML, TOML, JSON), no secrets in config,
 Dockerfile best practices, CI pipeline correctness.
 
 ### Industry Best Practices
+
 Idiomatic language/framework usage, established ecosystem patterns, proper
 error handling idioms.
 
 ### Requirements
+
 All requirements met, no scope creep, breaking changes documented.
 
 ## Architectural Scrutiny (Oracle)
@@ -104,17 +115,22 @@ All requirements met, no scope creep, breaking changes documented.
 Apply these judgment criteria:
 
 ### Pragmatic Minimalism
+
 - **Bias toward simplicity**: The right solution is typically the least complex
-- **Leverage what exists**: Favor modifications to current code over new components
-- **Prioritize developer experience**: Optimize for readability and maintainability
+- **Leverage what exists**: Favor modifications to current code over new
+  components
+- **Prioritize developer experience**: Optimize for readability and
+  maintainability
 - **One clear path**: Present a single primary recommendation
 
 ### Trade-off Assessment
+
 - Performance vs Maintainability: Accept complexity only for critical path
 - Security vs Usability: High-security domains justify user friction
 - Scalability vs Simplicity: Start simple with clear scaling path
 
 ### Risk Prioritization
+
 - 🔴 **CRITICAL**: Security vulnerabilities, data loss risks, correctness bugs
 - 🟡 **IMPORTANT**: Maintainability issues, tech debt, test gaps
 - 🟢 **MINOR**: Style nits, documentation gaps, cosmetic issues
@@ -170,6 +186,7 @@ detect zero remaining issues.
 **Ready to merge?** [Yes / With fixes / No]
 
 **Verdict rules:**
+
 - **Yes**: Zero Critical and zero Important issues. Minor issues may exist.
 - **With fixes**: Zero Critical, but Important issues exist.
 - **No**: Any Critical issue exists, or input was incomplete.
@@ -190,12 +207,14 @@ detect zero remaining issues.
 ## Final Reminders
 
 **APPROVE by default** for non-blocking issues. Reject only for true blockers:
+
 - Security vulnerabilities
 - Correctness bugs
 - Breaking changes without documentation
 - Incomplete implementations that would fail in production
 
-**Trust developers** to handle minor gaps. Your job is to surface critical issues
-and architectural concerns that would impact maintainability or correctness.
+**Trust developers** to handle minor gaps. Your job is to surface critical
+issues and architectural concerns that would impact maintainability or
+correctness.
 
 Response language: Match the language of the code/content being reviewed.

@@ -51,8 +51,7 @@ opencode/.config/opencode/
 │   ├── executor.md                     # Native execution agent (Sisyphus + Atlas + Hephaestus)
 │   ├── git-master.md                   # Git operations specialist
 │   ├── planner.md                      # Native planning agent (Prometheus + Oracle)
-│   ├── plan-reviewer.md                # Native plan review agent (Metis + Momus + Oracle)
-│   └── review.md                       # Structured code review (legacy reference)
+│   └── plan-reviewer.md                # Native plan review agent (Metis + Momus + Oracle)
 ├── command/                            # Custom slash commands
 │   ├── init-deep.md                    # Deep project initialization
 │   ├── commit.md                       # Commit workflow (delegates to @commit)
@@ -337,6 +336,6 @@ ln -s ~/.config/opencode ~/.local/opencode
 ## See Also
 
 - [OpenCode Documentation](https://opencode.ai/docs)
-- [oh-my-openagent Repository](https://github.com/code-yeongyu/oh-my-opencode)
+- [oh-my-opencode Repository](https://github.com/code-yeongyu/oh-my-opencode)
 - [Superpowers Repository](https://github.com/obra/superpowers)
 - [Dotfiles AGENTS.md](../../../AGENTS.md)

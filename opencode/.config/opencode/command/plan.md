@@ -16,7 +16,7 @@ subtask: true
 
 The `/plan` command follows this workflow:
 
-```
+```text
 /plan -> plan-reviewer -> Plannotator -> /do -> /review-code
 ```
 
@@ -30,7 +30,8 @@ The `/plan` command follows this workflow:
 
 **REQUIRED:** Use `superpowers:writing-plans` for bite-sized task structure.
 
-**NOTE:** Save plans to `.opencode/plans/[task-name]-plan.md` (not `.sisyphus/plans/`).
+**NOTE:** Save plans to `.opencode/plans/[task-name]-plan.md` (not
+`.sisyphus/plans/`).
 
 Plans are ephemeral working documents (git-ignored) for agent execution.
 
@@ -48,6 +49,7 @@ This plan will be written by the native `planner` agent and reviewed by the
 Before planning, classify the work intent:
 
 **Intent Types:**
+
 - **Refactoring**: Changes to existing code - focus on safety
 - **Build from Scratch**: New features/modules - focus on discovery
 - **Mid-sized Task**: Scoped, bounded work - focus on guardrails
@@ -58,6 +60,7 @@ Before planning, classify the work intent:
 ### Phase 1: Problem Framing
 
 Define:
+
 - What problem are we solving?
 - What are the constraints?
 - What does success look like?
@@ -78,6 +81,7 @@ Every plan MUST include:
 ### Phase 3: Task Granularity
 
 **Each step is one action (2-5 minutes):**
+
 - Write the failing test
 - Run it to make sure it fails
 - Implement the minimal code to make the test pass
