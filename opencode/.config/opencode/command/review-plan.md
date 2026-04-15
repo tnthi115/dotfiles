@@ -24,26 +24,62 @@ The `/review-plan` command provides **on-demand plan review** using the native
 
 The command resolves which plan to review using this priority:
 
-1. **If `$ARGUMENTS` starts with `@`:** Read that exact file path
-2. **If `$ARGUMENTS` contains keywords:** Find best-matching filename in `.opencode/plans/`
-3. **If `$ARGUMENTS` is empty (default):** Use the most recently modified `.opencode/plans/*.md`
-4. **If no plan found:** Report error and stop
+### Priority Order
 
-### Finding the Most Recent Plan
+1. **Explicit path**: If `$ARGUMENTS` starts with `@`, read that exact file
+2. **Keyword match**: If `$ARGUMENTS` contains keywords, find best-matching filename
+3. **Auto-detect**: Use session context or file modification time
+4. **Interactive selection**: Ask user to choose from available plans
 
-When no argument is provided, automatically determine the most recent plan:
+### Automatic Detection (when no arguments provided)
+
+**Step 1: Check Session Context First**
+
+Look for plans mentioned or worked on in the current session:
+- Plans recently created with `/plan`
+- Plans recently reviewed with `/review-plan`
+- Plans mentioned in recent conversation context
+- Plans referenced in tool outputs
+
+**Step 2: Fall Back to File Modification Time**
+
+If no clear session context, use file modification time:
 
 ```bash
-ls -t .opencode/plans/*.md | head -1
+# List all plans sorted by modification time (most recent first)
+ls -t .opencode/plans/*.md 2>/dev/null
 ```
 
-This returns the most recently modified plan file. Read this file and proceed with review.
+**Step 3: Interactive Plan Selection (if needed)**
+
+If detection is ambiguous or user may want to choose, present numbered options:
+
+```bash
+# List plans with numbers for selection
+ls -t .opencode/plans/*.md 2>/dev/null | head -5 | nl
+```
+
+**Present to user:**
+```
+No explicit plan specified. Available plans (most recent first):
+
+  1) disk-space-cleanup-plan.md        (modified 2 hours ago)
+  2) init-deep-command-plan.md         (modified yesterday)
+  3) opencode-workflow-optimization-plan.md (modified 2 days ago)
+
+Enter a number (1-3) to select, or provide explicit path: @<path>
+```
+
+**Auto-select if clear:**
+- If only one plan exists: Use it automatically
+- If one plan is clearly most recent (>1 min newer than others): Use it automatically
+- If tied or ambiguous: Show numbered list
 
 **Example workflow:**
 ```
 /plan "Implement user authentication"    # Creates .opencode/plans/auth-plan.md
 /review-plan                              # Automatically reviews auth-plan.md
-/do @.opencode/plans/auth-plan.md        # Executes after review
+/do                                       # Automatically executes auth-plan.md
 ```
 
 ## Review Method
@@ -86,6 +122,21 @@ Only list issues if verdict is REQUEST_CHANGES or APPROVE_WITH_NOTES.
 
 ### Strengths
 List 2-3 specific strengths of the plan.
+
+## Error Handling
+
+**No plan files found:**
+```
+No plan files found in .opencode/plans/
+
+Create a plan first with: /plan "<description>"
+Or specify a path explicitly: /review-plan @<path-to-plan.md>
+```
+
+**Invalid selection:**
+```
+Invalid selection. Please enter a number between 1 and N, or provide an explicit path.
+```
 
 ## Post-Review
 

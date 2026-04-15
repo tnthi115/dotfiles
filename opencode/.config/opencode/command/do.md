@@ -70,44 +70,55 @@ The native `executor` agent follows this workflow:
 
 ### Automatic Detection (when no arguments provided)
 
-**Step 1: Check session context first**
+**Step 1: Check Session Context First**
 
 Look for plans mentioned or worked on in the current session:
 - Plans recently created with `/plan`
 - Plans recently reviewed with `/review-plan`
 - Plans mentioned in recent conversation context
-- The most recently modified `.opencode/plans/*.md` file
+- Plans referenced in tool outputs
 
-**Priority within session context:**
-1. Most recently mentioned plan in conversation
-2. Most recently reviewed plan (via `/review-plan`)
-3. Most recently modified file in `.opencode/plans/`
-
-**Step 2: Use bash to find most recent file (fallback)**
+**Step 2: Fall Back to File Modification Time**
 
 If no clear session context, use file modification time:
 
 ```bash
-# Find the most recently modified .md file in .opencode/plans/
-ls -t .opencode/plans/*.md 2>/dev/null | head -1
+# List all plans sorted by modification time (most recent first)
+ls -t .opencode/plans/*.md 2>/dev/null
 ```
 
-**If found:**
+**Step 3: Interactive Plan Selection (if needed)**
 
-- Read and execute that plan file
-- **Announce to user**: "Executing most recent plan: `<filename>`"
+If detection is ambiguous or user may want to choose, present numbered options:
 
-**If not found:**
+```bash
+# List plans with numbers for selection
+ls -t .opencode/plans/*.md 2>/dev/null | head -5 | nl
+```
 
-- Report error: "No plan files found in .opencode/plans/. Create a plan with
-  /plan or specify a file path with /do @plan-file.md"
-- Stop execution
+**Present to user:**
+```
+No explicit plan specified. Available plans (most recent first):
 
-**If multiple plans are equally recent (within 1 minute):**
+  1) disk-space-cleanup-plan.md        (modified 2 hours ago)
+  2) init-deep-command-plan.md         (modified yesterday)
+  3) opencode-workflow-optimization-plan.md (modified 2 days ago)
 
-- List the top 3 most recent plans
-- Ask user to specify which one: "Multiple recent plans found. Use
-  `/do @<filename>` to specify."
+Enter a number (1-3) to select, or provide explicit path: @<path>
+```
+
+**Auto-select if clear:**
+- If only one plan exists: Use it automatically and announce: "Executing plan: `<filename>`"
+- If one plan is clearly most recent (>1 min newer than others): Use it automatically
+- If tied or ambiguous: Show numbered list
+
+**If no plans found:**
+```
+No plan files found in .opencode/plans/
+
+Create a plan first with: /plan "<description>"
+Or specify a path explicitly: /do @<path-to-plan.md>
+```
 
 ### After Plan Resolution
 
@@ -130,6 +141,11 @@ ls -t .opencode/plans/*.md 2>/dev/null | head -1
 
 **Step 4: Error Handling**
 
+**Plan resolution errors:**
+- No plan files found → Clear error message with suggestion to use `/plan`
+- Invalid user selection → Re-prompt for valid number or explicit path
+
+**Execution errors:**
 - If a step fails, auto-diagnose, log, and halt further changes.
 - Suggest or attempt rollback if possible.
 - **After 3 failed attempts**: Stop, revert, document, and ask user.
