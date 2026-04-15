@@ -1,5 +1,5 @@
 ---
-description: Execute an approved plan with the native executor agent. Requires an approved plan file.
+description: Execute an approved plan with the native executor agent. Auto-detects the most recent plan or accepts explicit path.
 agent: executor
 subtask: true
 ---
