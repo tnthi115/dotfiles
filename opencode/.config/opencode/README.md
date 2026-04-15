@@ -103,8 +103,10 @@ This setup uses a native agent workflow for complex tasks:
 For complex or multi-step tasks, use the native agent workflow:
 
 1. **Planning**: Type `/plan <task>` to create an implementation plan.
-   - The native `planner` agent writes the plan
-   - The native `plan-reviewer` agent critiques it
+   - The native plan agent interviews you first to clarify requirements
+   - Auto-transitions to plan generation when requirements are clear
+   - Saves plan to `.opencode/plans/[task-name]-plan.md`
+   - Auto-dispatches `plan-reviewer` agent for critique
 2. **Human Review**: The plan is prepared for Plannotator approval
 3. **Execution**: Run `/do` to execute the approved plan
    - The native `executor` agent implements in order
@@ -170,7 +172,7 @@ markdown-based agents that preserve the exact high-value prompt text.
 
 | Agent | Model | Purpose | Invocation |
 | :--- | :--- | :--- | :--- |
-| `@planner` | claude-opus-4.6 | Write implementation plans with problem framing and architecture judgment. | `/plan` or `@planner` |
+| `@planner` | claude-opus-4.6 | Strategic planning consultant — interviews first, creates plans, dispatches plan-reviewer. | `/plan` or `@planner` |
 | `@plan-reviewer` | gpt-5.4 | Critique plans for executability, gaps, and blockers. | Built into `/plan` flow |
 | `@executor` | gpt-5.4 | Execute approved plans with checkpoints, batching, and verification. | `/do` or `@executor` |
 | `@code-reviewer` | claude-opus-4.6 | Structured code review with findings-first output and merge readiness. | `/review-code` or `@code-reviewer` |
@@ -196,7 +198,7 @@ and possible future reuse. The plugin itself is disabled.
 | Command | Purpose |
 | :--- | :--- |
 | `/init-deep` | Generate hierarchical AGENTS.md files throughout the project for directory-scoped AI context. |
-| `/plan` | Technical planning with superpower integration. See [plan-command-usage-guide.md](./plan-command-usage-guide.md). |
+| `/plan` | Interview-driven planning with Prometheus behavior. Auto-saves to `.opencode/plans/`, dispatches plan-reviewer. See [plan-command-usage-guide.md](./plan-command-usage-guide.md). |
 | `/do` | Executes an implementation plan using the `executing-plans` skill. |
 | `/review-code` | Review code changes on the current branch. |
 | `/review-plan` | Review an implementation plan via Momus. |
@@ -297,10 +299,8 @@ OpenCode uses the following tools for code intelligence and formatting:
 
   1. Switch to a different model temporarily: `@agent model=claude-opus-4.6`
   2. If using a LiteLLM router, configure `content_policy_fallbacks` in the
-
-  router (not in opencode.jsonc): `[{"Kimi-K2.5": ["claude-opus-4.6"]}]`
-
-  1. Retry with a shorter or rephrased prompt
+     router (not in opencode.jsonc): `[{"Kimi-K2.5": ["claude-opus-4.6"]}]`
+  3. Retry with a shorter or rephrased prompt
 
 ## Sandbox Compatibility
 

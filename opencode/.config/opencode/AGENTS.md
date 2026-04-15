@@ -161,8 +161,7 @@ dependent sections are removed or adapted.
 
 ```text
 Need to plan something?
-├── Clear requirements? → /plan (native planner agent)
-└── Unclear requirements? → @planner with exploratory dialogue
+└── /plan or @planner (equivalent — interview-first, auto-saves plan, dispatches plan-reviewer)
 
 Need to execute a plan?
 ├── Approved plan exists? → /do (native executor agent)
@@ -184,7 +183,7 @@ Need code intelligence?
 
 | Command | Agent | Purpose |
 |---------|-------|---------|
-| `/plan` | `@planner` + `@plan-reviewer` | Create and review implementation plans |
+| `/plan` | Native plan agent with Prometheus prompt | Interview-first planning, auto-saves to `.opencode/plans/`, dispatches plan-reviewer |
 | `/do` | `@executor` | Execute approved plans |
 | `/review-code` | `@code-reviewer` | Final code review stage |
 

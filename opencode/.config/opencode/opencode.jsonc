@@ -52,7 +52,8 @@
         "github-copilot/claude-sonnet-4.6",
         // "f5ai-anthropic/claude-sonnet-4-5",
         "github-copilot/claude-sonnet-4.5"
-      ]
+      ],
+      "prompt": "{file:./prompts/plan.md}"
     },
     "xc-planner": {
       "mode": "subagent"
