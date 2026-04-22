@@ -74,6 +74,14 @@ Good: `"List files in config directory"` (5 words, at limit)
 **Sequential Thinking MCP**: Use for complex reasoning, chain-of-thought,
 multi-step analysis.
 
+**Automatic MCP Tool Usage**: Agents are configured to automatically use MCP
+tools without explicit user prompting:
+
+- **sequential-thinking**: ALWAYS use for complex reasoning, planning, and
+  multi-step analysis
+- **gitlab**: Use for all GitLab operations (MRs, issues, pipelines)
+- **atlassian**: Use for JIRA and Confluence integration
+
 **Agent Memory Plugin**: Persistent memory blocks are automatically injected
 into the system prompt. Use `memory_list`, `memory_set`, `memory_replace` to
 manage memory. Memory survives across sessions and compaction.

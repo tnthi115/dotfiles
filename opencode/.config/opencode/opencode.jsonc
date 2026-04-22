@@ -38,6 +38,11 @@
         "github-copilot/claude-sonnet-4.6",
         // "f5ai-anthropic/claude-sonnet-4-5",
         "github-copilot/claude-sonnet-4.5"
+      ],
+      "instructions": [
+        "ALWAYS use sequential-thinking MCP tool for complex reasoning, multi-step analysis, and chain-of-thought processing.",
+        "Use gitlab MCP tool for any GitLab operations (merge requests, issues, pipelines, repositories).",
+        "Break down complex tasks into steps using sequential-thinking before taking action."
       ]
     },
     "plan": {
@@ -59,7 +64,12 @@
       "permission": {
         "edit": "ask",
         "bash": "ask"
-      }
+      },
+      "instructions": [
+        "ALWAYS use sequential-thinking MCP tool for plan creation and complex reasoning.",
+        "Use gitlab MCP tool when planning involves GitLab repositories, issues, or merge requests.",
+        "Break down implementation plans into clear steps using sequential-thinking before writing the plan document."
+      ]
     },
     "xc-planner": {
       "mode": "subagent"
@@ -368,84 +378,84 @@
   //
   // ==============================================================================
 
-  // "mcp": {
-  //   "git": {
-  //     "type": "local",
-  //     "command": ["uvx", "mcp-server-git", "--repository", "${PWD}"]
-  //   },
-  //   //"gitlab": {
-  //   //  "type": "local",
-  //   //  "command": ["npx", "-y", "@zereight/mcp-gitlab"],
-  //   //  "environment": {
-  //   //    "GITLAB_PERSONAL_ACCESS_TOKEN": "{env:GITLAB_TOKEN}",
-  //   //    "GITLAB_API_URL": "https://gitlab.com/api/v4/",
-  //   //    "GITLAB_READ_ONLY_MODE": "false",
-  //   //    "USE_GITLAB_WIKI": "false",
-  //   //    "USE_MILESTONE": "false",
-  //   //    "USE_PIPELINE": "true",
-  //   //  },
-  //   //},
-  //   // prompt: use context7
-  //   "context7": {
-  //     "type": "local",
-  //     "command": ["npx", "-y", "@upstash/context7-mcp"],
-  //     "environment": {
-  //       "DEFAULT_MINIMUM_TOKENS": "5000"
-  //     }
-  //   },
-  //   // prompt: /serena custom command or "activate serena project"
-  //   // NOTE: Commented out - agents don't use Serena automatically.
-  //   // Native LSP tools are better for most operations. Re-enable if needed
-  //   // for symbol-level editing (serena_replace_symbol_body, serena_insert_after_symbol).
-  //   // "serena": {
-  //   //   "type": "local",
-  //   //   "command": [
-  //   //     "uvx",
-  //   //     "--from",
-  //   //     "git+https://github.com/oraios/serena",
-  //   //     "serena",
-  //   //     "start-mcp-server",
-  //   //   ],
-  //   // },
-  //   // prompt: use sequential-thinking, chain-of-thought reasoning, break this down step by step
-  //   "sequential-thinking": {
-  //     "type": "local",
-  //     "command": [
-  //       "npx",
-  //       "-y",
-  //       "@modelcontextprotocol/server-sequential-thinking"
-  //     ]
-  //   },
-  //   // Atlassian (JIRA + Confluence) - Internal
-  //   // Requires: JIRA_URL, JIRA_PAT, CONFLUENCE_URL, CONFLUENCE_PAT env vars
-  //   // Docs: https://github.com/sooperset/mcp-atlassian
-  //   "atlassian": {
-  //     "type": "local",
-  //     "command": ["uvx", "mcp-atlassian"],
-  //     "environment": {
-  //       "JIRA_URL": "{env:JIRA_URL}",
-  //       "JIRA_PERSONAL_TOKEN": "{env:JIRA_PAT}",
-  //       "JIRA_SSL_VERIFY": "false",
-  //       "CONFLUENCE_URL": "{env:CONFLUENCE_URL}",
-  //       "CONFLUENCE_PERSONAL_TOKEN": "{env:CONFLUENCE_PAT}",
-  //       "CONFLUENCE_SSL_VERIFY": "false"
-  //     }
-  //   }
-  //   // E2B: Secure code execution sandbox
-  //   // "e2b": {
-  //   //   "type": "local",
-  //   //   "command": ["npx", "-y", "@e2b/mcp-server"],
-  //   // },
-  //   // Exa: AI-native search engine
-  //   // "exa": {
-  //   //   "type": "local",
-  //   //   "command": [
-  //   //     "npx",
-  //   //     "-y",
-  //   //     "@exa-labs/exa-mcp-server"
-  //   //   ]
-  //   // },
-  // },
+  "mcp": {
+    // "git": {
+    //   "type": "local",
+    //   "command": ["uvx", "mcp-server-git", "--repository", "${PWD}"]
+    // },
+    "gitlab": {
+      "type": "local",
+      "command": ["npx", "-y", "@zereight/mcp-gitlab"],
+      "environment": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "{env:GITLAB_TOKEN}",
+        "GITLAB_API_URL": "https://gitlab.com/api/v4/",
+        "GITLAB_READ_ONLY_MODE": "false",
+        "USE_GITLAB_WIKI": "false",
+        "USE_MILESTONE": "false",
+        "USE_PIPELINE": "true"
+      }
+    },
+    // prompt: use context7
+    // "context7": {
+    //   "type": "local",
+    //   "command": ["npx", "-y", "@upstash/context7-mcp"],
+    //   "environment": {
+    //     "DEFAULT_MINIMUM_TOKENS": "5000"
+    //   }
+    // },
+    // prompt: /serena custom command or "activate serena project"
+    // NOTE: Commented out - agents don't use Serena automatically.
+    // Native LSP tools are better for most operations. Re-enable if needed
+    // for symbol-level editing (serena_replace_symbol_body, serena_insert_after_symbol).
+    // "serena": {
+    //   "type": "local",
+    //   "command": [
+    //     "uvx",
+    //     "--from",
+    //     "git+https://github.com/oraios/serena",
+    //     "serena",
+    //     "start-mcp-server",
+    //   ],
+    // },
+    // prompt: use sequential-thinking, chain-of-thought reasoning, break this down step by step
+    "sequential-thinking": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    // Atlassian (JIRA + Confluence) - Internal
+    // Requires: JIRA_URL, JIRA_PAT, CONFLUENCE_URL, CONFLUENCE_PAT env vars
+    // Docs: https://github.com/sooperset/mcp-atlassian
+    "atlassian": {
+      "type": "local",
+      "command": ["uvx", "mcp-atlassian"],
+      "environment": {
+        "JIRA_URL": "{env:JIRA_URL}",
+        "JIRA_PERSONAL_TOKEN": "{env:JIRA_PAT}",
+        "JIRA_SSL_VERIFY": "false",
+        "CONFLUENCE_URL": "{env:CONFLUENCE_URL}",
+        "CONFLUENCE_PERSONAL_TOKEN": "{env:CONFLUENCE_PAT}",
+        "CONFLUENCE_SSL_VERIFY": "false"
+      }
+    }
+    // E2B: Secure code execution sandbox
+    // "e2b": {
+    //   "type": "local",
+    //   "command": ["npx", "-y", "@e2b/mcp-server"],
+    // },
+    // Exa: AI-native search engine
+    // "exa": {
+    //   "type": "local",
+    //   "command": [
+    //     "npx",
+    //     "-y",
+    //     "@exa-labs/exa-mcp-server"
+    //   ]
+    // },
+  },
   "formatter": {
     "rumdl": {
       "command": ["rumdl", "fmt", "--fix", "$FILE"],
