@@ -307,7 +307,12 @@
       "models": {
         "Kimi-K2.5": {
           "name": "Kimi K2.5",
-          "limit": { "context": 262144, "output": 32768 },
+          "limit": { "context": 262144, "output": 262144 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "Kimi-K2.6": {
+          "name": "Kimi K2.6",
+          "limit": { "context": 262144, "output": 262144 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         }
       }
