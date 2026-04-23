@@ -36,13 +36,19 @@ For this commit task:
    - Understand what changed
    - Detect issue references (branch names, commit messages)
 
-3. **Delegate to git-master** for complex operations:
+3. **Check for issue reference footers** on the branch:
+   - Scan recent commits on current branch for footers like `Ref: <url>`
+   - Use `git log --oneline --grep="Ref:"` or similar to find patterns
+   - Extract the most common issue reference footer (if consistent)
+   - **Preserve and include this footer in the new commit message** for consistency
+
+4. **Delegate to git-master** for complex operations:
    ```
    @git-master Analyze these staged changes and create a conventional commit
    ```
 
-4. **For simple commits**, execute directly:
-   - Generate conventional commit message
+5. **For simple commits**, execute directly:
+   - Generate conventional commit message (including issue ref footer if found)
    - Execute `git commit -m "..."`
    - Verify with `git log -1 --oneline`
 
@@ -52,7 +58,9 @@ For this commit task:
 - Preserve existing commit footers when amending
 - Use imperative mood in subject line ("Add feature" not "Added feature")
 - Keep subject line under 72 characters
-- Reference issues in footer when found
+- **ALWAYS check branch commits for issue reference footers** (e.g., `Ref: <url>`, `Refs: #123`)
+- **Include the consistent issue reference footer** in new commits to maintain branch consistency
+- If multiple different refs exist, use the most common/recent one
 
 ## When to Use @git-master
 
