@@ -27,40 +27,32 @@
   },
   "agent": {
     "build": {
-      // "model": "f5ai-anthropic/claude-opus-4-6",
-      // "model": "github-copilot/claude-opus-4.6",
-      // "model": "github-copilot/gpt-5.4",
-      "model": "f5ai-moonshot/Kimi-K2.5",
+      // Kimi K2.6: optimal price/performance for daily driver.
+      // $0.60/$3.00, 262K context. Heavy lifting delegated to Copilot subagents.
+      "model": "f5ai-moonshot/Kimi-K2.6",
       "fallback_models": [
-        // "f5ai-anthropic/claude-opus-4-5",
-        "github-copilot/claude-opus-4.5",
-        // "f5ai-anthropic/claude-sonnet-4-6",
-        "github-copilot/claude-sonnet-4.6",
-        // "f5ai-anthropic/claude-sonnet-4-5",
-        "github-copilot/claude-sonnet-4.5"
+        "github-copilot/gpt-5.4",
+        "f5ai-openai/gpt-5",
+        "github-copilot/claude-sonnet-4.6"
       ],
       "instructions": [
         "ALWAYS use sequential-thinking MCP tool for complex reasoning, multi-step analysis, and chain-of-thought processing.",
         "Use gitlab MCP tool for any GitLab operations (merge requests, issues, pipelines, repositories).",
-        "Break down complex tasks into steps using sequential-thinking before taking action."
+        "Break down complex tasks into steps using sequential-thinking before taking action.",
+        "AUTO-DELEGATE to subagents: When the user asks for planning, call /plan. When asked to implement, call /do. When asked for code review, call /review-code. When asked to commit, call @commit. Do not attempt complex planning, implementation, or review yourself — delegate to the appropriate Copilot subagent.",
+        "Your role is orchestration, not execution. Route tasks to the right subagent immediately."
       ]
     },
     "plan": {
-      // "model": "f5ai-anthropic/claude-opus-4-6",
-      // "model": "github-copilot/claude-opus-4.6",
-      // "model": "github-copilot/gpt-5.4",
-      "model": "f5ai-moonshot/Kimi-K2.5",
+      // Kimi K2.6: same as build — cheap daily driver that delegates to Copilot subagents.
+      // Planning quality comes from the Copilot planner subagent (claude-opus-4.6), not this orchestrator.
+      "model": "f5ai-moonshot/Kimi-K2.6",
       "fallback_models": [
-        // "f5ai-anthropic/claude-opus-4-5",
-        "github-copilot/claude-opus-4.5",
-        // "f5ai-anthropic/claude-sonnet-4-6",
-        "github-copilot/claude-sonnet-4.6",
-        // "f5ai-anthropic/claude-sonnet-4-5",
-        "github-copilot/claude-sonnet-4.5"
+        "github-copilot/gpt-5.4",
+        "f5ai-openai/gpt-5",
+        "github-copilot/claude-sonnet-4.6"
       ],
       "prompt": "{file:./prompts/plan.md}",
-      // Plan agent should not modify files or run commands — planning only.
-      // Requires user approval for any edits or bash commands.
       "permission": {
         "edit": "ask",
         "bash": "ask"
@@ -68,16 +60,21 @@
       "instructions": [
         "ALWAYS use sequential-thinking MCP tool for plan creation and complex reasoning.",
         "Use gitlab MCP tool when planning involves GitLab repositories, issues, or merge requests.",
-        "Break down implementation plans into clear steps using sequential-thinking before writing the plan document."
+        "Break down implementation plans into clear steps using sequential-thinking before writing the plan document.",
+        "AUTO-DELEGATE to subagents: When the user asks for planning, call /plan. When asked to implement, call /do. When asked for code review, call /review-code. When asked to commit, call @commit. Do not attempt complex planning, implementation, or review yourself — delegate to the appropriate Copilot subagent.",
+        "Your role is orchestration, not execution. Route tasks to the right subagent immediately."
       ]
     },
     "xc-planner": {
       "mode": "subagent"
     }
   },
+  // small_model: lightweight agent for trivial tasks (summaries, formatting, simple classification)
   // "small_model": "f5ai-anthropic/claude-haiku-4-5",
   // "small_model": "f5ai-openai/gpt-5-nano",
-  "small_model": "github-copilot/gpt-5.4-mini",
+  // NOTE: github-copilot/gpt-5.4-mini does not exist in Copilot model list.
+  // Correct Copilot small models: gpt-5-mini, claude-haiku-4.5
+  "small_model": "github-copilot/gpt-5-mini",
   "permission": {
     "bash": {
       // Prevent accidental pushes — agents should not push directly
@@ -122,7 +119,7 @@
         "claude-sonnet-4-6": {
           "name": "Claude Sonnet 4.6",
           "reasoning": true,
-          "limit": { "context": 1000000, "output": 64000 },
+          "limit": { "context": 1000000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] },
           "options": { "thinking": { "type": "adaptive" } },
           "variants": { "off": { "thinking": { "type": "disabled" } } }
@@ -158,75 +155,75 @@
         "apiKey": "{env:F5AI_API_KEY}"
       },
       "models": {
+        "gpt-5.5": {
+          "name": "GPT 5.5",
+          "reasoning": true,
+          "limit": { "context": 1050000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
         "gpt-5.4": {
           "name": "GPT 5.4",
           "reasoning": true,
           "release_date": "2026-03-01",
-          "limit": { "context": 1000000, "output": 128000 },
+          "limit": { "context": 1050000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5.3-codex": {
           "name": "GPT 5.3 Codex",
           "reasoning": true,
           "release_date": "2026-02-01",
-          "limit": { "context": 400000, "output": 128000 },
-          "modalities": { "input": ["text", "image"], "output": ["text"] }
-        },
-        "gpt-5.3-codex-max": {
-          "name": "GPT 5.3 Codex Max",
-          "reasoning": true,
-          "limit": { "context": 400000, "output": 128000 },
-          "modalities": { "input": ["text", "image"], "output": ["text"] }
-        },
-        "gpt-5.2-codex-max": {
-          "name": "GPT 5.2 Codex Max",
-          "reasoning": true,
-          "limit": { "context": 400000, "output": 128000 },
+          "limit": { "context": 272000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5.2-codex": {
           "name": "GPT 5.2 Codex",
           "reasoning": true,
-          "limit": { "context": 400000, "output": 128000 },
+          "limit": { "context": 272000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5.2": {
           "name": "GPT 5.2",
           "reasoning": true,
           "release_date": "2026-01-01",
-          "limit": { "context": 400000, "output": 128000 },
+          "limit": { "context": 272000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5.1-codex-max": {
           "name": "GPT 5.1 Codex Max",
           "reasoning": true,
-          "limit": { "context": 200000, "output": 128000 },
+          "limit": { "context": 272000, "output": 128000 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
+        "gpt-5.1": {
+          "name": "GPT 5.1",
+          "reasoning": true,
+          "limit": { "context": 272000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5": {
           "name": "GPT 5",
           "reasoning": true,
-          "limit": { "context": 400000, "output": 128000 },
+          "limit": { "context": 272000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5-mini": {
           "name": "GPT 5 Mini",
           "reasoning": true,
           "release_date": "2026-01-01",
-          "limit": { "context": 400000, "output": 128000 },
+          "limit": { "context": 272000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5-codex": {
           "name": "GPT 5 Codex",
           "reasoning": true,
-          "limit": { "context": 400000, "output": 128000 },
+          "limit": { "context": 272000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-5-nano": {
           "name": "GPT 5 Nano",
           "reasoning": true,
           "release_date": "2026-01-01",
-          "limit": { "context": 400000, "output": 128000 },
+          "limit": { "context": 272000, "output": 128000 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
         "gpt-4.1": {
@@ -244,10 +241,15 @@
           "limit": { "context": 128000, "output": 16384 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
-        "gpt-4o-mini": {
-          "name": "GPT 4o Mini",
-          "limit": { "context": 128000, "output": 16384 },
-          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        "gpt-4o-transcribe": {
+          "name": "GPT 4o Transcribe",
+          "limit": { "context": 16000, "output": 2000 },
+          "modalities": { "input": ["text", "audio"], "output": ["text"] }
+        },
+        "gpt-image-1": {
+          "name": "GPT Image 1",
+          "limit": { "context": 0, "output": 0 },
+          "modalities": { "input": ["text"], "output": ["image"] }
         },
         "o4-mini": {
           "name": "o4 Mini",
@@ -286,12 +288,12 @@
       "models": {
         "grok-4": {
           "name": "Grok 4",
-          "limit": { "context": 2000000, "output": 64000 },
+          "limit": { "context": 131072, "output": 131072 },
           "modalities": { "input": ["text"], "output": ["text"] }
         },
         "grok-code-fast-1": {
           "name": "Grok Code Fast 1",
-          "limit": { "context": 256000, "output": 10000 },
+          "limit": { "context": 131072, "output": 131072 },
           "modalities": { "input": ["text"], "output": ["text"] }
         }
       }
@@ -318,7 +320,15 @@
       }
     }
   },
-  // List of github-copilot models available (run `opencode models github-copilot` to refresh):
+  // List of F5AI models available (as of 2026-04-27):
+  // Anthropic: claude-opus-4-6, claude-sonnet-4-6, claude-opus-4-5, claude-sonnet-4-5, claude-haiku-4-5
+  // OpenAI: gpt-5.5, gpt-5.4, gpt-5.3-codex, gpt-5.2-codex, gpt-5.2, gpt-5.1-codex-max, gpt-5.1
+  //          gpt-5, gpt-5-mini, gpt-5-codex, gpt-5-nano, gpt-4.1, gpt-4.1-mini, gpt-4o, gpt-4o-transcribe
+  //          gpt-image-1, o4-mini, o3, o3-mini, o1
+  // Grok: grok-4, grok-code-fast-1
+  // Moonshot: Kimi-K2.5, Kimi-K2.6
+  //
+  // GitHub Copilot models (run `opencode models github-copilot` to refresh):
   // claude-haiku-4.5, claude-opus-4.5, claude-opus-4.6, claude-opus-41
   // claude-sonnet-4, claude-sonnet-4.5, claude-sonnet-4.6
   // gemini-2.5-pro, gemini-3-flash-preview, gemini-3-pro-preview, gemini-3.1-pro-preview
@@ -438,11 +448,11 @@
       "type": "local",
       "command": ["uvx", "mcp-atlassian"],
       "environment": {
-        "JIRA_URL": "{env:JIRA_URL}",
-        "JIRA_PERSONAL_TOKEN": "{env:JIRA_PAT}",
+        "JIRA_URL": "{env:F5_JIRA_URL}",
+        "JIRA_PERSONAL_TOKEN": "{env:F5_JIRA_PAT}",
         "JIRA_SSL_VERIFY": "false",
-        "CONFLUENCE_URL": "{env:CONFLUENCE_URL}",
-        "CONFLUENCE_PERSONAL_TOKEN": "{env:CONFLUENCE_PAT}",
+        "CONFLUENCE_URL": "{env:F5_CONFLUENCE_URL}",
+        "CONFLUENCE_PERSONAL_TOKEN": "{env:F5_CONFLUENCE_PAT}",
         "CONFLUENCE_SSL_VERIFY": "false"
       }
     }

@@ -1,9 +1,11 @@
 # OpenCode Configuration
 
-This directory contains the core configuration for OpenCode, a deeply integrated
-AI development environment. It implements a three-layer architecture: OpenCode
-core for execution, oh-my-openagent for agent orchestration, and superpowers
-for workflow discipline.
+This directory contains the core configuration for OpenCode, a cost-optimized AI
+development environment. It implements a three-tier model architecture:
+**Kimi K2.6** ($0.60/$3) for primary orchestration, **GitHub Copilot** (free)
+for subagent heavy lifting (planning, execution, review), and **superpowers**
+for workflow discipline. The oh-my-openagent plugin is intentionally disabled to
+eliminate per-request token injection overhead.
 
 ## Table of Contents
 
@@ -26,14 +28,20 @@ for workflow discipline.
 
 ## Architecture
 
-The OpenCode environment is built on a modular system:
+The OpenCode environment is built on a modular, cost-optimized system:
 
-| Layer | Component | Description |
-| :--- | :--- | :--- |
-| **Execution** | OpenCode Core | The primary engine providing tool access, file I/O, and LLM communication. |
-| **Native Agents** | Custom Markdown Agents | Native OpenCode agents derived from oh-my-openagent prompts (planner, plan-reviewer, executor, code-reviewer). |
-| **Discipline** | superpowers | Engineering skills framework that enforces TDD, systematic debugging, and planning protocols. |
-| **Human Review** | Plannotator | Visual plan and code review UI for human approval gates. |
+| Layer | Component | Model | Cost | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| **Orchestration** | OpenCode Core | `f5ai-moonshot/Kimi-K2.6` | $0.60/$3 | Primary agent — chat, tool routing, task classification |
+| **Native Agents** | Custom Markdown Agents | `github-copilot/*` | **Free** | Planning, execution, review, commits (heavy lifting) |
+| **Discipline** | superpowers | — | — | Skills framework enforcing TDD, debugging, planning |
+| **Human Review** | Plannotator | — | — | Visual plan and code review UI for approval gates |
+| **Fallback** | Emergency models | `f5ai-openai/gpt-5` | $1.25/$10 | Only if Kimi + Copilot both fail |
+
+**Design rationale**: Primary agents delegate expensive work to Copilot
+subagents while staying cheap for conversational turns. This eliminates
+per-request token injection overhead from oh-my-openagent and minimizes F5AI
+spending.
 
 **Note**: The oh-my-openagent plugin is intentionally disabled to reduce runtime
 overhead. The `oh-my-openagent.jsonc` file is kept as a dormant reference for
@@ -92,42 +100,58 @@ Run the bootstrap script to install the superpowers plugin and skills:
 
 ## Workflow
 
-This setup uses a native agent workflow for complex tasks:
+This setup uses a native agent workflow for complex tasks with
+**auto-delegation**:
 
 ```text
 /plan -> plan-reviewer -> Plannotator -> /do -> /review-code
 ```
 
+You do **not** need to manually invoke `/plan`, `/do`, or `/review-code`. The
+primary `build`/`plan` agent (Kimi) recognizes your intent and delegates to the
+appropriate Copilot subagent automatically. Only invoke subagents directly if
+you want to override the default routing.
+
 ### Complex Task Workflow
 
-For complex or multi-step tasks, use the native agent workflow:
+For complex or multi-step tasks, the workflow is:
 
-1. **Planning**: Type `/plan <task>` to create an implementation plan.
-   - The native plan agent interviews you first to clarify requirements
+1. **Planning**: Say "Plan user authentication" or `/plan <task>`
+   - Primary agent auto-routes to `@planner` (Copilot claude-opus-4.6)
+   - The planner interviews you first to clarify requirements
    - Auto-transitions to plan generation when requirements are clear
    - Saves plan to `.opencode/plans/[task-name]-plan.md`
    - Auto-dispatches `plan-reviewer` agent for critique
 2. **Human Review**: The plan is prepared for Plannotator approval
-3. **Execution**: Run `/do` to execute the approved plan
-   - The native `executor` agent implements in order
-   - Work is tracked with todos and verified incrementally
-4. **Code Review**: Run `/review-code` for final review
-   - The native `code-reviewer` agent provides structured findings
+3. **Execution**: Say "Implement it" or run `/do`
+   - Primary agent auto-routes to `@executor` (Copilot gpt-5.4)
+   - Implements in order, tracks with todos, verifies incrementally
+4. **Code Review**: Say "Review my changes" or run `/review-code`
+   - Primary agent auto-routes to `@code-reviewer` (Copilot claude-opus-4.6)
+   - Provides structured findings with severity
 
 ### Simple Task Workflow
 
 For simple, well-defined tasks:
 
-- Use direct tool execution with native OpenCode tools
-- Use skills like `executing-plans` for single-file changes
-- The `code-reviewer` agent can review small changes directly
+- The primary agent may handle directly (for trivial edits, formatting)
+- Or auto-delegate to the cheapest appropriate subagent
+- `@commit` handles commit message generation
+- `@git-master` handles complex git operations
 
-### Plan Location
+### Cost Per Workflow Turn
 
-Plans are saved to: `.opencode/plans/[task-name]-plan.md`
+| Step | Model | Approx Cost |
+|------|-------|-------------|
+| User asks for plan | Kimi (orchestration) | ~$0.002 |
+| Planner writes plan | Copilot claude-opus-4.6 | **Free** |
+| Plan-reviewer critiques | Copilot gpt-5.4 | **Free** |
+| Executor implements | Copilot gpt-5.4 | **Free** |
+| Code-reviewer reviews | Copilot claude-opus-4.6 | **Free** |
 
-This directory is git-ignored. Plans are ephemeral working documents for agent
-execution, not version-controlled artifacts.
+**Result**: An entire complex task costs ~$0.02 in F5AI tokens (the
+orchestration overhead), with all heavy lifting done by Copilot at zero marginal
+cost.
 
 ## Configuration Files
 
@@ -164,23 +188,36 @@ markdown-based agents that preserve the exact high-value prompt text.
 | Server | Purpose | Sandbox Status | Notes |
 | :--- | :--- | :--- | :--- |
 | git | Repository analysis | Disabled | Local-only, no network. |
-| context7 | Documentation search | Disabled | Remote API, blocked by oh-my-openagent. |
+| context7 | Documentation search | Disabled | Remote API. Not configured by default (commented out in MCP config). |
 | sequential-thinking | Complex reasoning | Disabled | Local-only, no network. |
 | atlassian | JIRA and Confluence | Disabled | Internal network only. |
 
 ## Native Custom Agents
 
-| Agent | Model | Purpose | Invocation |
-| :--- | :--- | :--- | :--- |
-| `@planner` | claude-opus-4.6 | Strategic planning consultant — interviews first, creates plans, dispatches plan-reviewer. | `/plan` or `@planner` |
-| `@plan-reviewer` | gpt-5.4 | Critique plans for executability, gaps, and blockers. | Built into `/plan` flow |
-| `@executor` | gpt-5.4 | Execute approved plans with checkpoints, batching, and verification. | `/do` or `@executor` |
-| `@code-reviewer` | claude-opus-4.6 | Structured code review with findings-first output and merge readiness. | `/review-code` or `@code-reviewer` |
-| `@commit` | claude-haiku-4-5 | Conventional commit generation from diffs. | `@commit` |
-| `@git-master` | claude-haiku-4-5 | Git operations, atomic commits, rebasing, branch management. | `@git-master` |
-| `@docs-writer` | (default) | Automated documentation generation and maintenance. | `@docs-writer` |
+All heavy-lifting agents run on **GitHub Copilot** (zero marginal cost). The
+primary orchestrator (`build`/`plan`) runs on cheap **Kimi K2.6** ($0.60/$3).
 
-### Agent Prompt Preservation
+| Agent | Model | Provider | Purpose | Invocation |
+| :--- | :--- | :--- | :--- | :--- |
+| `@planner` | `claude-opus-4.6` | `github-copilot` | Strategic planning consultant — interviews first, creates plans, dispatches plan-reviewer. | `/plan` or `@planner` |
+| `@plan-reviewer` | `gpt-5.4` | `github-copilot` | Critique plans for executability, gaps, and blockers. | Built into `/plan` flow |
+| `@executor` | `gpt-5.4` | `github-copilot` | Execute approved plans with checkpoints, batching, and verification. | `/do` or `@executor` |
+| `@code-reviewer` | `claude-opus-4.6` | `github-copilot` | Structured code review with findings-first output and merge readiness. | `/review-code` or `@code-reviewer` |
+| `@commit` | `claude-haiku-4.5` | `github-copilot` | Conventional commit generation from diffs. | `@commit` |
+| `@git-master` | `claude-haiku-4.5` | `github-copilot` | Git operations, atomic commits, rebasing, branch management. | `@git-master` |
+| `@docs-writer` | (default) | — | Automated documentation generation and maintenance. | `@docs-writer` |
+
+### Auto-Delegation
+
+The primary `build`/`plan` agents are configured to **auto-delegate** to the
+appropriate subagent based on user intent. You do not need to manually invoke
+`/plan`, `/do`, or `/review-code` — the primary agent recognizes the task and
+routes it automatically:
+
+```text
+User: "Implement user authentication"
+→ Kimi (orchestrator, $0.002) → /do → Copilot executor (free)
+```
 
 The native agents intentionally preserve exact high-value prompt text from
 oh-my-openagent where behavior quality depends on it. Only infrastructure-
@@ -207,13 +244,21 @@ and possible future reuse. The plugin itself is disabled.
 
 ## Native Agent Model Assignments
 
-| Agent | Model | Role |
+| Agent | Model | Provider | Role |
+| :--- | :--- | :--- | :--- |
+| `planner` | `claude-opus-4.6` | `github-copilot` | Strategic planning with problem framing |
+| `plan-reviewer` | `gpt-5.4` | `github-copilot` | Plan critique and gap analysis |
+| `executor` | `gpt-5.4` | `github-copilot` | Execution with batching and verification |
+| `code-reviewer` | `claude-opus-4.6` | `github-copilot` | Findings-first code review |
+| `commit` | `claude-haiku-4.5` | `github-copilot` | Conventional commit generation |
+| `git-master` | `claude-haiku-4.5` | `github-copilot` | Git operations specialist |
+
+### Primary Agent Configuration
+
+| Agent | Model | Fallback Chain |
 | :--- | :--- | :--- |
-| planner | claude-opus-4.6 | Strategic planning with problem framing |
-| plan-reviewer | gpt-5.4 | Plan critique and gap analysis |
-| executor | gpt-5.4 | Execution with batching and verification |
-| code-reviewer | claude-opus-4.6 | Findings-first code review |
-| commit | claude-haiku-4-5 | Conventional commit generation |
+| `build` | `f5ai-moonshot/Kimi-K2.6` | `github-copilot/gpt-5.4` → `f5ai-openai/gpt-5` → `github-copilot/claude-sonnet-4.6` |
+| `plan` | `f5ai-moonshot/Kimi-K2.6` | `github-copilot/gpt-5.4` → `f5ai-openai/gpt-5` → `github-copilot/claude-sonnet-4.6` |
 
 ### Legacy Reference Models (Dormant)
 
@@ -229,18 +274,36 @@ The `oh-my-openagent.jsonc` file contains these historical assignments:
 | hephaestus | gpt-5.4 | Autonomous deep worker |
 | atlas | claude-sonnet-4.6 | Todo orchestration |
 
-## Category Model Assignments
+## Model Tier Strategy
 
-| Category | Model | Purpose |
+Since the oh-my-openagent plugin is disabled, category-based model assignments
+no longer apply. Instead, models are assigned by **tier** based on cost and
+responsibility:
+
+### Tier 1 — Primary Orchestrator ($)
+
+| Model | Cost | Context | Role |
+| :--- | :--- | :--- | :--- |
+| `Kimi-K2.6` | $0.60/$3 | 262K | Chat, orchestration, tool routing. Delegates to subagents. |
+
+### Tier 2 — Copilot Subagents (Free)
+
+| Model | Provider | Role |
 | :--- | :--- | :--- |
-| visual-engineering | gemini-3-pro-preview | Frontend and UI/UX tasks |
-| artistry | gemini-3-pro-preview | Creative and novel approaches |
-| ultrabrain | gpt-5.4 | Maximum reasoning capability |
-| deep | gpt-5.3-codex | Complex problem-solving |
-| quick | claude-haiku-4-5 | Trivial or repetitive tasks |
-| writing | gemini-3-flash-preview | Documentation and prose |
-| unspecified-high | claude-opus-4.6 | General complex work |
-| unspecified-low | claude-sonnet-4.6 | General standard work |
+| `claude-opus-4.6` | `github-copilot` | Planning, deep reasoning, code review |
+| `gpt-5.4` | `github-copilot` | Plan critique, execution |
+| `claude-haiku-4.5` | `github-copilot` | Commits, git operations |
+
+### Tier 3 — Emergency Fallbacks ($$)
+
+| Model | Cost | Context | When |
+| :--- | :--- | :--- | :--- |
+| `gpt-5` | $1.25/$10 | 272K | If both Kimi and Copilot fail |
+
+### Usage Rule
+
+> **90% of tokens should be on Kimi (Tier 1). Subagents handle all heavy lifting
+> via Copilot (Tier 2). F5AI fallbacks (Tier 3) are for emergencies only.**
 
 ## Superpowers Integration
 
@@ -293,14 +356,27 @@ OpenCode uses the following tools for code intelligence and formatting:
 - **Native agent not found**: Verify agent files exist in
   `~/.config/opencode/agents/` (planner.md, plan-reviewer.md, executor.md,
   code-reviewer.md).
+- **Agent instructions not taking effect**: The `instructions` array in
+  `opencode.jsonc` is **additive** — it appends to the agent's built-in prompt,
+  it does not replace it. Use `prompt` (not `instructions`) if you need to
+  override the entire system prompt.
+- **Config validation**: OpenCode validates JSONC at startup. If you see parse
+  errors, check for trailing commas (invalid in JSON but accepted in JSONC) or
+  unclosed quotes/brackets.
+- **F5AI quota burned too fast**: Verify that primary agents (`build`/ `plan`)
+  delegate to Copilot subagents. If the primary agent attempts complex work
+  itself instead of routing to subagents, check the `instructions` field in
+  `opencode.jsonc` includes the auto-delegate rules.
 - **Kimi Azure content filter errors**: Azure may flag prompts as "jailbreak"
   attempts and return a 400 error. This happens when the prompt contains
   instructions that trigger Microsoft's content filter. Workarounds:
 
   1. Switch to a different model temporarily: `@agent model=claude-opus-4.6`
   2. If using a LiteLLM router, configure `content_policy_fallbacks` in the
-     router (not in opencode.jsonc): `[{"Kimi-K2.5": ["claude-opus-4.6"]}]`
-  3. Retry with a shorter or rephrased prompt
+
+  router (not in opencode.jsonc): `[{"Kimi-K2.5": ["claude-opus-4.6"]}]`
+
+  1. Retry with a shorter or rephrased prompt
 
 ## Sandbox Compatibility
 

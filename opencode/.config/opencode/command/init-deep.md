@@ -1,7 +1,6 @@
 ---
-description: Generate hierarchical AGENTS.md files throughout the project for directory-scoped AI agent context
-agent: general
-model: f5ai-anthropic/claude-sonnet-4-6
+description: Generate hierarchical AGENTS.md files throughout the project (root + subdirectories)
+model: github-copilot/claude-sonnet-4.6
 subtask: true
 ---
 

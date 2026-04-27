@@ -113,7 +113,47 @@ optional.
 
 This configuration uses **native OpenCode custom agents** derived from
 oh-my-openagent prompts. The oh-my-openagent plugin itself is disabled to reduce
-runtime overhead while preserving the high-value agent behaviors.
+runtime overhead and per-request token injection while preserving the high-value
+agent behaviors.
+
+### Cost-Optimized Model Architecture
+
+| Layer | Model Provider | Cost | Role |
+|-------|---------------|------|------|
+| **Primary Agents** (chat/orchestrate) | `f5ai-moonshot/Kimi-K2.6` | $0.60/$3 | Daily driver — handles chat, tool routing, orchestration |
+| **Subagents** (heavy lifting) | `github-copilot/*` | **Free** | Planning, implementation, code review, commits |
+| **Emergency Fallbacks** | `f5ai-openai/gpt-5` | $1.25/$10 | Only if Kimi + Copilot both fail |
+
+**Why this architecture?**
+
+- Kimi is the cheapest capable model for conversational turns (90% of
+  interaction)
+- Copilot subagents handle expensive work (planning, coding, review) at zero
+  marginal cost
+- Eliminates oh-my-openagent's ~500-2000 token per-request injection overhead
+- F5AI fallbacks are rarely triggered
+
+### Auto-Delegation Pattern (Primary Agent Behavior)
+
+The `build` and `plan` primary agents are configured as **orchestrators**, not
+executors. Their job is to recognize task intent and immediately route to the
+appropriate Copilot subagent. This is enforced via the `instructions` array in
+`opencode.jsonc` — these instructions are **additive** (appended to the
+agent's built-in prompt), not replacements.
+
+| User Intent | Primary Agent Action | Subagent Invoked |
+|-------------|---------------------|------------------|
+| Plan a feature/fix | Auto triggers `/plan` | `@planner` (Copilot claude-opus-4.6) |
+| Implement something | Auto triggers `/do` | `@executor` (Copilot gpt-5.4) |
+| Review code | Auto triggers `/review-code` | `@code-reviewer` (Copilot claude-opus-4.6) |
+| Commit changes | Auto triggers `@commit` | `@commit` (Copilot claude-haiku-4.5) |
+| Git operations | Delegates to `@git-master` | `@git-master` (Copilot claude-haiku-4.5) |
+
+**This ensures:**
+
+- Heavy lifting always runs on Copilot (free)
+- Kimi only pays for the single orchestration turn (~$0.002)
+- No manual subagent invocation required from the user
 
 ### Required Complex-Task Flow
 
@@ -123,28 +163,38 @@ For complex tasks, the workflow enforces:
 plan -> native plan review -> Plannotator human approval -> execution -> code review
 ```
 
-| Stage | Native Agent | Purpose |
-|-------|-------------|---------|
-| Planning | `@planner` | Write implementation plans |
-| Plan critique | `@plan-reviewer` | Critique plans before approval |
-| Execution | `@executor` | Execute approved plans |
-| Final review | `@code-reviewer` | Review code changes |
+| Stage | Native Agent | Model | Purpose |
+|-------|-------------|-------|---------|
+| Planning | `@planner` | `github-copilot/claude-opus-4.6` | Write implementation plans |
+| Plan critique | `@plan-reviewer` | `github-copilot/gpt-5.4` | Critique plans before approval |
+| Execution | `@executor` | `github-copilot/gpt-5.4` | Execute approved plans |
+| Final review | `@code-reviewer` | `github-copilot/claude-opus-4.6` | Structured code review |
 
 ### Native Agents
 
 | Agent | Model | Purpose | Invocation |
 |-------|-------|---------|------------|
-| `@planner` | claude-opus-4.6 | Write implementation plans with problem framing | `/plan` or `@planner` |
-| `@plan-reviewer` | gpt-5.4 | Critique plans for executability and gaps | Built into `/plan` flow |
-| `@executor` | gpt-5.4 | Execute approved plans with verification | `/do` or `@executor` |
-| `@code-reviewer` | claude-opus-4.6 | Structured code review with findings-first output | `/review-code` or `@code-reviewer` |
-| `@commit` | github-copilot/claude-haiku-4.5 | Conventional commit generation from diffs | `@commit` |
-| `@git-master` | github-copilot/claude-haiku-4.5 | Git operations, atomic commits, rebasing | `@git-master` |
+| `@planner` | `github-copilot/claude-opus-4.6` | Write implementation plans with problem framing | `/plan` or `@planner` |
+| `@plan-reviewer` | `github-copilot/gpt-5.4` | Critique plans for executability and gaps | Built into `/plan` flow |
+| `@executor` | `github-copilot/gpt-5.4` | Execute approved plans with verification | `/do` or `@executor` |
+| `@code-reviewer` | `github-copilot/claude-opus-4.6` | Structured code review with findings-first output | `/review-code` or `@code-reviewer` |
+| `@commit` | `github-copilot/claude-haiku-4.5` | Conventional commit generation from diffs | `@commit` |
+| `@git-master` | `github-copilot/claude-haiku-4.5` | Git operations, atomic commits, rebasing | `@git-master` |
 | `@docs-writer` | (default) | Automated documentation generation and maintenance | `@docs-writer` |
 
-**Model Configuration:** Native agents use their frontmatter `model` field.
-`opencode.jsonc` configures `build` and `plan` agent categories (used as
-defaults when agent-specific models aren't specified).
+**Primary Agent Configuration:** `opencode.jsonc` configures `build` and `plan`
+categories with `f5ai-moonshot/Kimi-K2.6` as the daily driver. All heavy lifting
+is delegated to Copilot subagents via slash commands.
+
+### Fallback Chain (Emergency Only)
+
+If the primary agent fails, the fallback chain resolves in order:
+
+1. `github-copilot/gpt-5.4` (free)
+2. `f5ai-openai/gpt-5` ($1.25/$10)
+3. `github-copilot/claude-sonnet-4.6` (free)
+
+Under normal usage, you should never hit F5AI fallbacks.
 
 ### Legacy Oh-My-OpenCode Agents (Dormant)
 
