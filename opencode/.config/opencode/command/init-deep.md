@@ -1,5 +1,6 @@
 ---
 description: Generate hierarchical AGENTS.md files throughout the project (root + subdirectories)
+agent: docs-writer
 model: github-copilot/claude-sonnet-4.6
 subtask: true
 ---

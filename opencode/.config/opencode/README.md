@@ -16,10 +16,10 @@ eliminate per-request token injection overhead.
 - [Configuration Files](#configuration-files)
 - [Plugins](#plugins)
 - [MCP Servers](#mcp-servers)
-- [Custom Agents](#custom-agents)
+- [Native Custom Agents](#native-custom-agents)
 - [Custom Commands](#custom-commands)
-- [Agent Model Assignments](#agent-model-assignments)
-- [Category Model Assignments](#category-model-assignments)
+- [Native Agent Model Assignments](#native-agent-model-assignments)
+- [Model Tier Strategy](#model-tier-strategy)
 - [Superpowers Integration](#superpowers-integration)
 - [LSP and Formatters](#lsp-and-formatters)
 - [Sandbox Compatibility](#sandbox-compatibility)
@@ -257,8 +257,8 @@ and possible future reuse. The plugin itself is disabled.
 
 | Agent | Model | Fallback Chain |
 | :--- | :--- | :--- |
-| `build` | `f5ai-moonshot/Kimi-K2.6` | `github-copilot/gpt-5.4` → `f5ai-openai/gpt-5` → `github-copilot/claude-sonnet-4.6` |
-| `plan` | `f5ai-moonshot/Kimi-K2.6` | `github-copilot/gpt-5.4` → `f5ai-openai/gpt-5` → `github-copilot/claude-sonnet-4.6` |
+| `build` | `f5ai-moonshot/Kimi-K2.6` | `github-copilot/gpt-5.4` → `f5ai-openai/gpt-5` → `codeburro-qwen/qwen-3.6` |
+| `plan` | `f5ai-moonshot/Kimi-K2.6` | `github-copilot/gpt-5.4` → `f5ai-openai/gpt-5` → `codeburro-qwen/qwen-3.6` |
 
 ### Legacy Reference Models (Dormant)
 
@@ -284,7 +284,7 @@ responsibility:
 
 | Model | Cost | Context | Role |
 | :--- | :--- | :--- | :--- |
-| `Kimi-K2.6` | $0.60/$3 | 262K | Chat, orchestration, tool routing. Delegates to subagents. |
+| `Kimi-K2.6` | $0.60/$3 | 256K | Chat, orchestration, tool routing. Delegates to subagents. |
 
 ### Tier 2 — Copilot Subagents (Free)
 
@@ -373,10 +373,8 @@ OpenCode uses the following tools for code intelligence and formatting:
 
   1. Switch to a different model temporarily: `@agent model=claude-opus-4.6`
   2. If using a LiteLLM router, configure `content_policy_fallbacks` in the
-
-  router (not in opencode.jsonc): `[{"Kimi-K2.5": ["claude-opus-4.6"]}]`
-
-  1. Retry with a shorter or rephrased prompt
+     router (not in opencode.jsonc): `[{"Kimi-K2.6": ["claude-opus-4.6"]}]`
+  3. Retry with a shorter or rephrased prompt
 
 ## Sandbox Compatibility
 

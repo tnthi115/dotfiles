@@ -192,7 +192,7 @@ If the primary agent fails, the fallback chain resolves in order:
 
 1. `github-copilot/gpt-5.4` (free)
 2. `f5ai-openai/gpt-5` ($1.25/$10)
-3. `github-copilot/claude-sonnet-4.6` (free)
+3. `codeburro-qwen/qwen-3.6` (free)
 
 Under normal usage, you should never hit F5AI fallbacks.
 

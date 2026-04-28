@@ -65,8 +65,9 @@ The native `executor` agent follows this workflow:
 **Priority order for plan selection:**
 
 1. **Explicit path**: If `$ARGUMENTS` starts with `@`, read that file directly.
-2. **Auto-detect recent**: If `$ARGUMENTS` is empty, automatically detect the
-   most relevant plan using session context first, then file modification time.
+2. **Plan name/keywords**: If `$ARGUMENTS` is a non-empty string without `@`, search `.opencode/plans/` for a filename containing those keywords and use the best match.
+3. **Auto-detect recent**: If `$ARGUMENTS` is empty, automatically detect the
+   most relevant plan using the procedure below.
 
 ### Automatic Detection (when no arguments provided)
 
@@ -87,7 +88,24 @@ If no clear session context, use file modification time:
 ls -t .opencode/plans/*.md 2>/dev/null
 ```
 
-**Step 3: Interactive Plan Selection (if needed)**
+**Step 3: Ask the Primary Agent (if still unclear)**
+
+If after Steps 1 and 2 the plan cannot be determined unambiguously:
+
+**Return a clear request to the parent agent:**
+```
+Could not determine which plan to execute.
+
+Please supply the plan using one of:
+  /do @<path-to-plan.md>
+  /do <plan-name-or-keywords>
+
+Or provide the plan content/context from this session and retry /do.
+```
+
+The parent agent can then re-invoke `/do` with the correct plan.
+
+**Step 4: Interactive Plan Selection (if needed)**
 
 If detection is ambiguous or user may want to choose, present numbered options:
 
@@ -110,7 +128,7 @@ Enter a number (1-3) to select, or provide explicit path: @<path>
 **Auto-select if clear:**
 - If only one plan exists: Use it automatically and announce: "Executing plan: `<filename>`"
 - If one plan is clearly most recent (>1 min newer than others): Use it automatically
-- If tied or ambiguous: Show numbered list
+- If tied or ambiguous: Ask the parent agent (Step 3) or show numbered list (Step 4)
 
 **If no plans found:**
 ```

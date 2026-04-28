@@ -27,13 +27,13 @@
   },
   "agent": {
     "build": {
-      // Kimi K2.6: optimal price/performance for daily driver.
-      // $0.60/$3.00, 262K context. Heavy lifting delegated to Copilot subagents.
+      // Kimi-K2.6: primary orchestrator (daily driver).
+      // 256K context. Heavy lifting delegated to Copilot subagents.
       "model": "f5ai-moonshot/Kimi-K2.6",
       "fallback_models": [
         "github-copilot/gpt-5.4",
         "f5ai-openai/gpt-5",
-        "github-copilot/claude-sonnet-4.6"
+        "codeburro-qwen/qwen-3.6"
       ],
       "instructions": [
         "ALWAYS use sequential-thinking MCP tool for complex reasoning, multi-step analysis, and chain-of-thought processing.",
@@ -44,13 +44,13 @@
       ]
     },
     "plan": {
-      // Kimi K2.6: same as build — cheap daily driver that delegates to Copilot subagents.
+      // Kimi-K2.6: primary orchestrator for planning.
       // Planning quality comes from the Copilot planner subagent (claude-opus-4.6), not this orchestrator.
       "model": "f5ai-moonshot/Kimi-K2.6",
       "fallback_models": [
         "github-copilot/gpt-5.4",
         "f5ai-openai/gpt-5",
-        "github-copilot/claude-sonnet-4.6"
+        "codeburro-qwen/qwen-3.6"
       ],
       "prompt": "{file:./prompts/plan.md}",
       "permission": {
@@ -91,7 +91,8 @@
     "f5ai-openai",
     "f5ai-grok",
     "f5ai-moonshot",
-    "github-copilot"
+    "github-copilot",
+    "codeburro-qwen"
   ],
   "disabled_providers": ["opencode"],
   "provider": {
@@ -148,7 +149,7 @@
     },
     // OpenAI API — GPT models
     "f5ai-openai": {
-      "npm": "@ai-sdk/openai",
+      "npm": "@ai-sdk/openai-compatible",
       "name": "F5AI (OpenAI)",
       "options": {
         "baseURL": "{env:F5AI_OPENAI_API_URL}",
@@ -318,6 +319,22 @@
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         }
       }
+    },
+    // CodeBurro Qwen API — via OpenAI-compatible endpoint
+    "codeburro-qwen": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "CodeBurro (Qwen)",
+      "options": {
+        "baseURL": "{env:CODEBURRO_API_URL}",
+        "apiKey": "{env:CODEBURRO_API_KEY}"
+      },
+      "models": {
+        "qwen-3.6": {
+          "name": "Qwen 3.6",
+          "limit": { "context": 100096, "output": 131072 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        }
+      }
     }
   },
   // List of F5AI models available (as of 2026-04-27):
@@ -327,6 +344,7 @@
   //          gpt-image-1, o4-mini, o3, o3-mini, o1
   // Grok: grok-4, grok-code-fast-1
   // Moonshot: Kimi-K2.5, Kimi-K2.6
+  // CodeBurro: qwen-3.6
   //
   // GitHub Copilot models (run `opencode models github-copilot` to refresh):
   // claude-haiku-4.5, claude-opus-4.5, claude-opus-4.6, claude-opus-41
@@ -342,6 +360,8 @@
   //   F5AI_OPENAI_API_URL   — OpenAI API endpoint
   //   F5AI_GROK_API_URL     — Grok API endpoint (OpenAI-compatible)
   //   F5AI_MOONSHOT_API_URL — Moonshot/Kimi API endpoint (OpenAI-compatible)
+  //   CODEBURRO_API_URL     — CodeBurro Qwen API endpoint (OpenAI-compatible)
+  //   CODEBURRO_API_KEY     — CodeBurro Qwen API key
   //
   // NOTE: Agent model configs now managed by oh-my-openagent.jsonc
   // ==============================================================================
