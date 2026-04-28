@@ -331,7 +331,7 @@
       "models": {
         "qwen-3.6": {
           "name": "Qwen 3.6",
-          "limit": { "context": 100096, "output": 131072 },
+          "limit": { "context": 131072, "output": 131072 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         }
       }
