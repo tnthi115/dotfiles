@@ -84,7 +84,7 @@ Enter a number (1-3) to select, or provide explicit path: @<path>
 
 ## Review Method
 
-**Read the plan critically.** Do not skim. Walk through each task:
+**Read the entire plan file critically.** Do not skim, summarize, or rely on partial context. Walk through each task from beginning to end:
 
 - Is the task sequence logical?
 - Are file paths exact and correct?

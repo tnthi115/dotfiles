@@ -29,20 +29,29 @@ Run these with bash:
 1. `git diff --stat <baseline>..HEAD`
 2. `git diff <baseline>..HEAD` (truncate to 5000 lines if larger; use stat-only
    if 100+ files)
-3. Run linters only for changed-file languages, only if tool is available.
+3. `git diff --stat` (unstaged changes)
+4. `git diff` (unstaged changes; truncate to 5000 lines if larger)
+5. Run linters only for changed-file languages, only if tool is available.
 
-If no changed files exist, report nothing to review and stop.
+If no committed or unstaged changes exist, report nothing to review and stop.
+
+## Review Coverage
+
+Review **both** committed changes (`<baseline>..HEAD`) **AND** unstaged changes in the working tree. Both are part of the overall change set and must be reviewed.
 
 ## Review Method
 
-**Review every changed line.** Do not skim, summarize, or skip sections.
-Walk through the diff hunk by hunk, line by line.
+**Holistic file review — not just the diff.**
+
+1. Read each changed file **in its entirety** (or its most recently modified sections with surrounding context).
+2. Review **every line** in the file, not only the lines in the git diff. Fixes and previous reviews may have introduced issues in untouched lines.
+3. Walk through the code hunk by hunk, line by line. Do not skim, summarize, or skip sections.
 
 **Skip without comment**: Binary files, lock files, auto-generated code,
 vendored dependencies.
 
-**Truncation check**: If the diff appears truncated, state:
-"**WARNING: Partial diff detected. Review covers only the provided content.**"
+**Truncation check**: If context forces truncation, state:
+"**WARNING: Partial review detected. Coverage may be incomplete.**"
 
 ## Review Checklist
 

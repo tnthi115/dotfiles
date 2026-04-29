@@ -109,12 +109,18 @@ For each issue:
 - Apply the minimal, correct fix.
 - Verify the fix preserves plan structure and consistency.
 
-## Step 3: Re-Review (Inside This Subtask)
+## Step 3: Holistic Re-Review (Inside This Subtask)
 
-After all issues are fixed, run `/review-plan` **again** on the same plan—**still within this subtask**.
+After all fixes are applied, **re-read the entire plan file from start to finish** — not just the sections that were edited.
 
-- If zero issues: stop and report success.
-- If any issues remain: go back to **Step 2**.
+Directives for each re-review cycle:
+
+1. Read the complete plan document.
+2. Review **every task and step holistically** — fixing one task can introduce inconsistencies, gaps, or contradictions elsewhere in the plan.
+3. Verify the plan still reads as a coherent, achievable document after all edits.
+
+- If zero issues across the entire plan: stop and report success.
+- If any issues remain (even in previously unreviewed sections): go back to **Step 2**.
 
 ## Stopping Conditions
 
