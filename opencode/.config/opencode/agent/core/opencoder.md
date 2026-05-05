@@ -5,8 +5,11 @@ mode: primary
 temperature: 0.1
 permission:
   bash:
-    "rm -rf *": "ask"
+    "*": "ask"
+    "rm -rf *": "deny"
+    "rm -rf /*": "deny"
     "sudo *": "deny"
+    "> /dev/*": "deny"
     "chmod *": "ask"
     "curl *": "ask"
     "wget *": "ask"

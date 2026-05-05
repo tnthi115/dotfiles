@@ -101,6 +101,7 @@
     },
     // ═══════════════════════════════════════════════════════════════════════
     // OAC SUBAGENTS (FREE via task delegation)
+    // Note: OpenAgent and OpenCoder are defined in agent/core/*.md files
     // ═══════════════════════════════════════════════════════════════════════
     "task-manager": {
       "model": "github-copilot/claude-opus-4.6",
