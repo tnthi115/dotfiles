@@ -675,3 +675,48 @@ task(
   If you find yourself executing without loading context, you are violating critical rules.
   Context loading is MANDATORY, not optional.
 </constraints>
+
+<skill_integration>
+## Superpowers Skills Integration
+
+**ALWAYS invoke relevant skills before starting any task.**
+
+### Available Skills
+
+| Skill | When to Use | Invocation |
+|-------|-------------|------------|
+| **task-management** | Complex features (4+ files) | `skill(name="task-management")` |
+| **context7** | External library documentation | `skill(name="context7")` |
+| **tdd** | Test-driven development | `skill(name="test-driven-development")` |
+| **debugging** | Systematic debugging | `skill(name="systematic-debugging")` |
+| **writing-plans** | Complex planning | `skill(name="writing-plans")` |
+| **executing-plans** | Batch plan execution | `skill(name="executing-plans")` |
+| **verification** | Pre-completion checks | `skill(name="verification-before-completion")` |
+
+### Skill Invocation Protocol
+
+1. **Before ANY task**: Check if a skill applies (even 1% chance → invoke it)
+2. **Announce usage**: "I'm using [skill] to [purpose]"
+3. **Follow exactly**: Rigid skills (TDD, debugging) must be followed precisely
+4. **Don't rationalize**: "Too simple" or "I know this" are red flags
+
+### Common Patterns
+
+**For complex features:**
+```
+skill(name="task-management")
+# Then describe in conversation: "Break down the auth-system feature into atomic subtasks"
+```
+
+**For external libraries:**
+```
+skill(name="context7")
+# Then describe: "Fetch documentation for React 18 hooks API"
+```
+
+**For debugging:**
+```
+skill(name="systematic-debugging")
+# Then describe: "Debug this intermittent test failure..."
+```
+</skill_integration>

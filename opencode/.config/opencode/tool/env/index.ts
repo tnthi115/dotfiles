@@ -60,7 +60,7 @@ export async function loadEnvVariables(config: EnvLoaderConfig = {}): Promise<Re
           // Remove quotes if present
           const cleanValue = value.replace(/^["']|["']$/g, '')
           
-          if (key && cleanValue && (override || !process.env[key])) {
+          if (key && (override || !process.env[key])) {
             process.env[key] = cleanValue
             loadedVars[key] = cleanValue
             
@@ -73,7 +73,8 @@ export async function loadEnvVariables(config: EnvLoaderConfig = {}): Promise<Re
     } catch (error) {
       // File doesn't exist or can't be read, continue to next
       if (verbose) {
-        console.log(`Could not read ${envPath}: ${error.message}`)
+        const errorMessage = error instanceof Error ? error.message : String(error)
+        console.log(`Could not read ${envPath}: ${errorMessage}`)
       }
     }
   }

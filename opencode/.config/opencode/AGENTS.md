@@ -182,6 +182,30 @@ plan -> native plan review -> Plannotator human approval -> execution -> code re
 | `@git-master` | `github-copilot/claude-haiku-4.5` | Git operations, atomic commits, rebasing | `@git-master` |
 | `@docs-writer` | (default) | Automated documentation generation and maintenance | `@docs-writer` |
 
+### OAC Agents (OpenAgentsControl)
+
+**Purpose**: Enhanced agents with automatic discovery, external documentation,
+and parallel execution
+
+| Agent | Model | Purpose | When to Use |
+|-------|-------|---------|-------------|
+| **OpenAgent** | `f5ai-moonshot/Kimi-K2.6` | Universal agent with discovery | New codebases, complex discovery |
+| **OpenCoder** | `github-copilot/gpt-5.4` | Coding specialist with coordination | Complex features, parallel execution |
+| **TaskManager** | `github-copilot/claude-opus-4.6` | Task breakdown and planning | Complex features (4+ files) |
+| **CoderAgent** | `github-copilot/gpt-5.4` | Code implementation | All coding tasks |
+| **ContextScout** | `f5ai-moonshot/Kimi-K2.6` | Automatic context discovery | Before any implementation |
+| **ExternalScout** | `f5ai-moonshot/Kimi-K2.6` | External documentation fetch | External libraries/APIs |
+| **BatchExecutor** | `github-copilot/gpt-5.4` | Parallel task coordination | 5+ parallel tasks |
+| **Reviewer** | `github-copilot/claude-opus-4.6` | Code review | Pattern-based reviews |
+| **TestEngineer** | `github-copilot/gpt-5.4` | Test writing | TDD workflows |
+| **BuildAgent** | `github-copilot/gpt-5.3-codex` | Build validation | Type checking, linting |
+
+**OAC Commands**:
+
+- `/add-context` — Interactive context wizard
+- `/analyze-patterns` — Pattern analysis
+- `/commit` — Smart git commits
+
 **Primary Agent Configuration:** `opencode.jsonc` configures `build` and `plan`
 categories with `f5ai-moonshot/Kimi-K2.6` as the daily driver. All heavy lifting
 is delegated to Copilot subagents via slash commands.

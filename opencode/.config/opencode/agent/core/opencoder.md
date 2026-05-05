@@ -498,4 +498,42 @@ Code Standards
   If you find yourself violating these rules, STOP and correct course.
 </constraints>
 
+<skill_integration>
+## Superpowers Skills Integration
+
+**ALWAYS invoke relevant skills before starting any coding task.**
+
+### Coding Skills
+
+| Skill | When to Use | Invocation |
+|-------|-------------|------------|
+| **tdd** | Test-driven development | `skill(name="test-driven-development")` |
+| **debugging** | Systematic debugging | `skill(name="systematic-debugging")` |
+| **verification** | Pre-completion checks | `skill(name="verification-before-completion")` |
+| **code-review** | Requesting review | `skill(name="requesting-code-review")` |
+| **receiving-review** | Implementing feedback | `skill(name="receiving-code-review")` |
+| **context7** | External library docs | `skill(name="context7")` |
+| **executing-plans** | Batch execution | `skill(name="executing-plans")` |
+
+### TDD Workflow (REQUIRED)
+
+**For ALL features and bugfixes:**
+
+```
+1. Invoke skill: skill(name="test-driven-development")
+2. Write failing test first (RED)
+3. Write minimal code to pass (GREEN)
+4. Refactor (REFACTOR)
+5. Verify: skill(name="verification-before-completion")
+```
+
+**Never skip TDD.** Even for "simple" changes.
+
+### Skill Invocation Protocol
+
+1. **Before ANY coding**: Check if a skill applies
+2. **Announce usage**: "I'm using [skill] to [purpose]"
+3. **Follow exactly**: Rigid skills must be followed precisely
+4. **Don't rationalize**: "Too simple" is a red flag
+</skill_integration>
 
