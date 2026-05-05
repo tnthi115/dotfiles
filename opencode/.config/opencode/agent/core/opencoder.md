@@ -5,16 +5,104 @@ mode: primary
 temperature: 0.1
 permission:
   bash:
-    "*": "ask"
+    # ═══════════════════════════════════════════════════════════════════════
+    # ALLOW: Safe, frequent, read-only commands
+    # ═══════════════════════════════════════════════════════════════════════
+    "ls*": "allow"
+    "ll*": "allow"
+    "pwd": "allow"
+    "pwd *": "allow"
+    "cd*": "allow"
+    "cat *": "allow"
+    "head *": "allow"
+    "tail *": "allow"
+    "grep*": "allow"
+    "find*": "allow"
+    "which*": "allow"
+    "echo*": "allow"
+    "printf*": "allow"
+    "clear": "allow"
+    "history": "allow"
+    "date": "allow"
+    "whoami": "allow"
+    "uname*": "allow"
+    "hostname": "allow"
+    
+    # Git read-only
+    "git status*": "allow"
+    "git log*": "allow"
+    "git diff*": "allow"
+    "git show*": "allow"
+    "git branch*": "allow"
+    "git remote*": "allow"
+    "git config*": "allow"
+    
+    # Node/npm read-only
+    "node --version": "allow"
+    "npm --version": "allow"
+    "npm list*": "allow"
+    "npx --version": "allow"
+    "which node": "allow"
+    "which npm": "allow"
+    
+    # Python read-only  
+    "python* --version": "allow"
+    "python* -c *": "ask"
+    "pip* --version": "allow"
+    "pip* list*": "allow"
+    "pip* freeze*": "allow"
+    "which python*": "allow"
+    "which pip*": "allow"
+    
+    # Build tools read-only
+    "make --version": "allow"
+    "make help*": "allow"
+    "cmake --version": "allow"
+    "docker --version": "allow"
+    "docker-compose --version": "allow"
+    "kubectl version*": "allow"
+    "rustc --version": "allow"
+    "cargo --version": "allow"
+    "go version": "allow"
+    
+    # ═══════════════════════════════════════════════════════════════════════
+    # DENY: Destructive or dangerous commands
+    # ═══════════════════════════════════════════════════════════════════════
+    "sudo*": "deny"
     "rm -rf *": "deny"
     "rm -rf /*": "deny"
-    "sudo *": "deny"
-    "> /dev/*": "deny"
-    "chmod *": "ask"
-    "curl *": "ask"
-    "wget *": "ask"
-    "docker *": "ask"
-    "kubectl *": "ask"
+    "rm -rf ~*": "deny"
+    "rm -rf /": "deny"
+    "> *": "deny"
+    "*> /dev/null": "allow"
+    "*> /dev/tty*": "deny"
+    "dd *": "deny"
+    "mkfs*": "deny"
+    "fdisk*": "deny"
+    "format *": "deny"
+    ":(){ :|:& };:*": "deny"
+    "shred*": "deny"
+    
+    # Git destructive
+    "git reset --hard*": "deny"
+    "git push --force*": "deny"
+    "git push -f*": "deny"
+    "git clean -fd*": "deny"
+    
+    # ═══════════════════════════════════════════════════════════════════════
+    # ASK: Everything else (modifications, installations, builds, etc.)
+    # ═══════════════════════════════════════════════════════════════════════
+    "*": "ask"
+    
+  edit:
+    "**/*.env*": "deny"
+    "**/*.key": "deny"
+    "**/*.secret": "deny"
+    "node_modules/**": "deny"
+    "**/__pycache__/**": "deny"
+    "**/*.pyc": "deny"
+    ".git/**": "deny"
+---
   edit:
     "**/*.env*": "deny"
     "**/*.key": "deny"
