@@ -18,7 +18,7 @@ export interface EnvLoaderConfig {
  */
 const DEFAULT_ENV_PATHS = [
   './.env',
-  '../.env', 
+  '../.env',
   '../../.env',
   '../plugin/.env',
   '../../../.env'
@@ -99,7 +99,7 @@ export async function getEnvVariable(varName: string, config: EnvLoaderConfig = 
     value = loadedVars[varName] || process.env[varName]
   }
   
-  return value || null
+  return value !== undefined ? value : null
 }
 
 /**

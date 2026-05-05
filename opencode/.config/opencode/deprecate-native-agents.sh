@@ -62,8 +62,8 @@ fi
 echo ""
 echo "Archiving agents..."
 
-# Archive from agent/
-for agent in "${OAC_REPLACED[@]}"; do
+# Archive from agent/ (only agent/* paths)
+for agent in agent/planner.md agent/executor.md agent/code-reviewer.md agent/plan-reviewer.md; do
     if [ -f "$agent" ]; then
         echo "  Archiving: $agent"
         mv "$agent" "agent/.archive/"

@@ -8,7 +8,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLI_SCRIPT="$SCRIPT_DIR/scripts/task-cli.ts"
-MIGRATE_SCRIPT="$SCRIPT_DIR/scripts/migrate-schema.ts"
+# MIGRATE_SCRIPT - reserved for future use
 
 # Show help
 show_help() {
@@ -99,7 +99,8 @@ PROJECT_ROOT="$(find_project_root)"
 # Route commands
 case "$1" in
   migrate)
-    cd "$PROJECT_ROOT" && npx ts-node "$MIGRATE_SCRIPT" "$@"
+    echo "❌ Error: migrate command not yet implemented"
+    exit 1
     ;;
   *)
     # Run the task CLI with all arguments

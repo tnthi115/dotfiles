@@ -19,8 +19,8 @@
  *   .tmp/tasks/completed/{feature-slug}/
  */
 
-const fs = require('fs');
-const path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
 
 // Find project root (look for .git or package.json)
 function findProjectRoot(): string {
