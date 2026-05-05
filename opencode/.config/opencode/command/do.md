@@ -6,16 +6,24 @@ subtask: true
 
 ## Required Skills
 
-**Use `superpowers:executing-plans` skill for disciplined plan execution.**
+**Use `superpowers:subagent-driven-development` skill for parallel task execution.**
 
 The skill provides:
 
-- Batch execution with checkpoints (default: 3 tasks per batch)
-- Review gates between batches
+- Parallel subagent delegation for independent tasks
+- Dependency-aware execution ordering
+- Checkpoint validation between batches
 - TodoWrite integration for progress tracking
 - Clear stopping conditions when blocked
 
-This command provides the framework; the skill provides the discipline.
+**Why this skill:** OpenCode has full subagent support. Subagent-driven
+development is more efficient than sequential executing-plans for complex
+multi-file work.
+
+## Fallback
+
+If subagent-driven-development is unavailable, fall back to
+`superpowers:executing-plans` for sequential batch execution.
 
 ## Execution Environment
 
