@@ -69,39 +69,9 @@
       "mode": "subagent"
     },
     // ═══════════════════════════════════════════════════════════════════════
-    // OAC PRIMARY AGENTS
-    // ═══════════════════════════════════════════════════════════════════════
-    "openagent": {
-      "model": "f5ai-moonshot/Kimi-K2.6",
-      "fallback_models": ["github-copilot/gpt-5.4", "f5ai-openai/gpt-5"],
-      "mode": "primary",
-      "instructions": [
-        "You are OpenAgent - a universal agent for questions, discovery, and coordination.",
-        "Your job is to analyze requests and DELEGATE to subagents for actual work.",
-        "Use ContextScout for discovery before implementation.",
-        "Use TaskManager for complex multi-step planning.",
-        "You orchestrate, subagents execute. That's the rule."
-      ]
-    },
-    "opencoder": {
-      "model": "github-copilot/gpt-5.4",
-      "fallback_models": [
-        "github-copilot/claude-opus-4.6",
-        "github-copilot/gpt-5.3-codex",
-        "f5ai-moonshot/Kimi-K2.6"
-      ],
-      "mode": "primary",
-      "instructions": [
-        "You are OpenCoder - a coding specialist for complex development.",
-        "Your job is to coordinate coding tasks and DELEGATE to CoderAgent for implementation.",
-        "Use ContextScout to discover project patterns before coding.",
-        "Use BatchExecutor + CoderAgent for parallel file operations.",
-        "You architect and coordinate, CoderAgent writes the actual code."
-      ]
-    },
-    // ═══════════════════════════════════════════════════════════════════════
-    // OAC SUBAGENTS (FREE via task delegation)
+    // OAC SUBAGENTS ONLY
     // Note: OpenAgent and OpenCoder are defined in agent/core/*.md files
+    // These subagents supplement the OAC ecosystem with specific capabilities
     // ═══════════════════════════════════════════════════════════════════════
     "task-manager": {
       "model": "github-copilot/claude-opus-4.6",

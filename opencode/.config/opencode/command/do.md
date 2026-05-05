@@ -77,73 +77,52 @@ The native `executor` agent follows this workflow:
 3. **Auto-detect recent**: If `$ARGUMENTS` is empty, automatically detect the
    most relevant plan using the procedure below.
 
-### Automatic Detection (when no arguments provided)
+### Automatic Detection (NEVER FAILS)
 
-**Step 1: Check Session Context First**
+**CRITICAL: This command NEVER fails due to missing plan files.**
 
-Look for plans mentioned or worked on in the current session:
-- Plans recently created with `/plan`
-- Plans recently reviewed with `/review-plan`
+**Priority 1: Session Context (Highest)**
+
+Always check for plans from the current session first:
+- Plans recently created with `/plan` in this session
+- Plans recently reviewed with `/review-plan` in this session
 - Plans mentioned in recent conversation context
-- Plans referenced in tool outputs
+- Plans referenced in tool outputs from this session
+- Any plan the primary agent has been working on
 
-**Step 2: Fall Back to File Modification Time**
+**Priority 2: Most Recent Plan File**
 
-If no clear session context, use file modification time:
-
-```bash
-# List all plans sorted by modification time (most recent first)
-ls -t .opencode/plans/*.md 2>/dev/null
-```
-
-**Step 3: Ask the Primary Agent (if still unclear)**
-
-If after Steps 1 and 2 the plan cannot be determined unambiguously:
-
-**Return a clear request to the parent agent:**
-```
-Could not determine which plan to execute.
-
-Please supply the plan using one of:
-  /do @<path-to-plan.md>
-  /do <plan-name-or-keywords>
-
-Or provide the plan content/context from this session and retry /do.
-```
-
-The parent agent can then re-invoke `/do` with the correct plan.
-
-**Step 4: Interactive Plan Selection (if needed)**
-
-If detection is ambiguous or user may want to choose, present numbered options:
+If no session context, automatically use the most recently modified plan file:
 
 ```bash
-# List plans with numbers for selection
+# This always returns a result if any plans exist
+ls -t .opencode/plans/*.md 2>/dev/null | head -1
+```
+
+**Priority 3: Interactive Selection (Only if Ambiguous)**
+
+If multiple plans exist and context is unclear:
+
+```bash
+# Show available plans
 ls -t .opencode/plans/*.md 2>/dev/null | head -5 | nl
 ```
 
-**Present to user:**
+**Auto-select rules:**
+- **Single plan**: Use it immediately, announce: "Executing plan: `<filename>`"
+- **Clear most recent** (>1 min newer): Use it immediately
+- **Ambiguous**: Show list: "Multiple plans found. Select one or provide path: @<path>"
+
+**No-Failure Behavior:**
+
+If no plans directory exists or is empty, guide the user:
 ```
-No explicit plan specified. Available plans (most recent first):
+No plans found in .opencode/plans/
 
-  1) disk-space-cleanup-plan.md        (modified 2 hours ago)
-  2) init-deep-command-plan.md         (modified yesterday)
-  3) opencode-workflow-optimization-plan.md (modified 2 days ago)
-
-Enter a number (1-3) to select, or provide explicit path: @<path>
-```
-
-**Auto-select if clear:**
-- If only one plan exists: Use it automatically and announce: "Executing plan: `<filename>`"
-- If one plan is clearly most recent (>1 min newer than others): Use it automatically
-- If tied or ambiguous: Ask the parent agent (Step 3) or show numbered list (Step 4)
-
-**If no plans found:**
-```
-No plan files found in .opencode/plans/
-
-Create a plan first with: /plan "<description>"
-Or specify a path explicitly: /do @<path-to-plan.md>
+Options:
+1. Create a plan: /plan "<description>"
+2. Specify a plan: /do @<path-to-plan.md>
+3. Provide plan content in this conversation
 ```
 
 ### After Plan Resolution
@@ -167,9 +146,9 @@ Or specify a path explicitly: /do @<path-to-plan.md>
 
 **Step 4: Error Handling**
 
-**Plan resolution errors:**
-- No plan files found → Clear error message with suggestion to use `/plan`
-- Invalid user selection → Re-prompt for valid number or explicit path
+**Plan resolution:**
+- NEVER fails - always finds a plan or guides user to create one
+- No "Could not determine" errors
 
 **Execution errors:**
 - If a step fails, auto-diagnose, log, and halt further changes.

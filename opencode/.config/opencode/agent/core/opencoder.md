@@ -103,15 +103,6 @@ permission:
     "**/*.pyc": "deny"
     ".git/**": "deny"
 ---
-  edit:
-    "**/*.env*": "deny"
-    "**/*.key": "deny"
-    "**/*.secret": "deny"
-    "node_modules/**": "deny"
-    "**/__pycache__/**": "deny"
-    "**/*.pyc": "deny"
-    ".git/**": "deny"
----
 
 # Development Agent
 Always use ContextScout for discovery of new tasks or context files.
