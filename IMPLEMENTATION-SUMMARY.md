@@ -62,7 +62,19 @@
 
 - `SKILL-REFERENCE.md` — All skills and when to use them
 - `AGENT-DECISION-GUIDE.md` — Agent selection guide
-- Updated `AGENTS.md` — Complete agent reference with OAC
+- `AGENTS.md` — Complete agent reference with OAC (centralized, single source of
+  truth)
+
+### Phase 7: Deduplication ✅
+
+**Centralized subagent registry:**
+
+- Removed duplicate "Available Subagents" sections from `openagent.md` and
+  `opencoder.md`
+- Added reference to `AGENTS.md` as the canonical registry in both agent files
+- Added 5 missing OAC subagents to `AGENTS.md` (DocWriter, DevOpsSpecialist,
+  FrontendSpecialist, ContextOrganizer, SystemBuilder)
+- Result: One source of truth, no drift risk
 
 ---
 
@@ -110,14 +122,18 @@
 
 ### Agent Files
 
-- `opencode/.config/opencode/agent/core/openagent.md` — Skill integration
-- `opencode/.config/opencode/agent/core/opencoder.md` — Skill integration
+- `opencode/.config/opencode/agent/core/openagent.md` — Skill integration,
+  references AGENTS.md for subagents
+- `opencode/.config/opencode/agent/core/opencoder.md` — Skill integration,
+  references AGENTS.md for subagents
 
 ### Documentation
 
-- `opencode/.config/opencode/AGENTS.md` — Updated with OAC agents
-- `opencode/.config/opencode/SKILL-REFERENCE.md` — NEW
-- `opencode/.config/opencode/AGENT-DECISION-GUIDE.md` — NEW
+- `opencode/.config/opencode/AGENTS.md` — Complete agent reference with OAC
+  (single source of truth)
+- `opencode/.config/opencode/SKILL-REFERENCE.md` — All skills and when to use
+  them
+- `opencode/.config/opencode/AGENT-DECISION-GUIDE.md` — Agent selection guide
 
 ---
 
