@@ -36,10 +36,10 @@
         "codeburro-qwen/qwen-3.6"
       ],
       "instructions": [
-        "ALWAYS use sequential-thinking MCP tool for complex reasoning, multi-step analysis, and chain-of-thought processing.",
+        "Use sequential-thinking MCP tool for complex reasoning, multi-step analysis, and chain-of-thought processing.",
         "Use gitlab MCP tool for any GitLab operations (merge requests, issues, pipelines, repositories).",
         "Break down complex tasks into steps using sequential-thinking before taking action.",
-        "AUTO-DELEGATE to subagents: When the user asks for planning, call /plan. When asked to implement, call /do. When asked for code review, call /review-code. When asked to commit, call @commit. Do not attempt complex planning, implementation, or review yourself — delegate to the appropriate Copilot subagent.",
+        "Auto-delegate to subagents: When the user asks for planning, call /plan. When asked to implement, call /do. When asked for code review, call /review-code. When asked to commit, call @commit. Do not attempt complex planning, implementation, or review yourself — delegate to the appropriate Copilot subagent.",
         "Your role is orchestration, not execution. Route tasks to the right subagent immediately."
       ]
     },
@@ -58,10 +58,10 @@
         "bash": "ask"
       },
       "instructions": [
-        "ALWAYS use sequential-thinking MCP tool for plan creation and complex reasoning.",
+        "Use sequential-thinking MCP tool for plan creation and complex reasoning.",
         "Use gitlab MCP tool when planning involves GitLab repositories, issues, or merge requests.",
         "Break down implementation plans into clear steps using sequential-thinking before writing the plan document.",
-        "AUTO-DELEGATE to subagents: When the user asks for planning, call /plan. When asked to implement, call /do. When asked for code review, call /review-code. When asked to commit, call @commit. Do not attempt complex planning, implementation, or review yourself — delegate to the appropriate Copilot subagent.",
+        "Auto-delegate to subagents: When the user asks for planning, call /plan. When asked to implement, call /do. When asked for code review, call /review-code. When asked to commit, call @commit. Do not attempt complex planning, implementation, or review yourself — delegate to the appropriate Copilot subagent.",
         "Your role is orchestration, not execution. Route tasks to the right subagent immediately."
       ]
     },
