@@ -1,7 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    // "oh-my-openagent",
+    "oh-my-openagent",
     "opencode-notify",
     "opencode-agent-memory",
     "@tarquinen/opencode-dcp@latest",
@@ -26,45 +26,9 @@
     "reserved": 10000
   },
   "agent": {
-    "build": {
-      // Kimi-K2.6: primary orchestrator (daily driver).
-      // 256K context. Heavy lifting delegated to Copilot subagents.
-      "model": "f5ai-moonshot/Kimi-K2.6",
-      "fallback_models": [
-        "github-copilot/gpt-5.4",
-        "f5ai-openai/gpt-5",
-        "codeburro-qwen/qwen-3.6"
-      ],
-      "instructions": [
-        "Use sequential-thinking MCP tool for complex reasoning, multi-step analysis, and chain-of-thought processing.",
-        "Use gitlab MCP tool for any GitLab operations (merge requests, issues, pipelines, repositories).",
-        "Break down complex tasks into steps using sequential-thinking before taking action.",
-        "Auto-delegate to subagents: When the user asks for planning, call /plan. When asked to implement, call /do. When asked for code review, call /review-code. When asked to commit, call @commit. Do not attempt complex planning, implementation, or review yourself — delegate to the appropriate Copilot subagent.",
-        "Your role is orchestration, not execution. Route tasks to the right subagent immediately."
-      ]
-    },
-    "plan": {
-      // Kimi-K2.6: primary orchestrator for planning.
-      // Planning quality comes from the Copilot planner subagent (claude-opus-4.6), not this orchestrator.
-      "model": "f5ai-moonshot/Kimi-K2.6",
-      "fallback_models": [
-        "github-copilot/gpt-5.4",
-        "f5ai-openai/gpt-5",
-        "codeburro-qwen/qwen-3.6"
-      ],
-      "prompt": "{file:./prompts/plan.md}",
-      "permission": {
-        "edit": "ask",
-        "bash": "ask"
-      },
-      "instructions": [
-        "Use sequential-thinking MCP tool for plan creation and complex reasoning.",
-        "Use gitlab MCP tool when planning involves GitLab repositories, issues, or merge requests.",
-        "Break down implementation plans into clear steps using sequential-thinking before writing the plan document.",
-        "Auto-delegate to subagents: When the user asks for planning, call /plan. When asked to implement, call /do. When asked for code review, call /review-code. When asked to commit, call @commit. Do not attempt complex planning, implementation, or review yourself — delegate to the appropriate Copilot subagent.",
-        "Your role is orchestration, not execution. Route tasks to the right subagent immediately."
-      ]
-    },
+    // Disabled: oh-my-openagent provides Sisyphus and Prometheus.
+    // "build": { ... },
+    // "plan": { ... },
     "xc-planner": {
       "mode": "subagent"
     }

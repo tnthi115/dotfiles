@@ -109,141 +109,77 @@ optional.
 | Completion | `superpowers:verification-before-completion` | Evidence before claims |
 | Code review | `superpowers:requesting-code-review` | Structured feedback |
 
-## Native Agent Workflow (New)
+## Oh-My-OpenAgent Architecture (Active)
 
-This configuration uses **native OpenCode custom agents** derived from
-oh-my-openagent prompts. The oh-my-openagent plugin itself is disabled to reduce
-runtime overhead and per-request token injection while preserving the high-value
-agent behaviors.
+oh-my-openagent is now the primary orchestration layer. All planning, execution,
+and review flows route through Sisyphus and its specialist subagents.
 
 ### Cost-Optimized Model Architecture
 
 | Layer | Model Provider | Cost | Role |
 |-------|---------------|------|------|
-| **Primary Agents** (chat/orchestrate) | `f5ai-moonshot/Kimi-K2.6` | $0.60/$3 | Daily driver — handles chat, tool routing, orchestration |
-| **Subagents** (heavy lifting) | `github-copilot/*` | **Free** | Planning, implementation, code review, commits |
-| **Emergency Fallbacks** | `f5ai-openai/gpt-5` | $1.25/$10 | Only if Kimi + Copilot both fail |
+| **Primary Orchestrator** | `f5ai-moonshot/Kimi-K2.6` | $0.60/$3 | Sisyphus/Atlas/Prometheus — orchestration only |
+| **Specialist Subagents** | `github-copilot/*` | Subagent calls don't consume premium requests | Hephaestus, Oracle, Momus, Metis, Librarian, Explore |
+| **Emergency Fallbacks** | `f5ai-moonshot/Kimi-K2.5` or `github-copilot/*` | Varies | Only if primary fails |
 
 **Why this architecture?**
 
-- Kimi is the cheapest capable model for conversational turns (90% of
+- Kimi K2.6 is the cheapest capable model for conversational turns (~90% of
   interaction)
 - Copilot subagents handle expensive work (planning, coding, review) at zero
   marginal cost
-- Eliminates oh-my-openagent's ~500-2000 token per-request injection overhead
-- F5AI fallbacks are rarely triggered
+- oh-my-openagent's category system auto-routes to the right model family
+- Background task concurrency is minimized to prevent accidental token burn
 
-### Auto-Delegation Pattern (Primary Agent Behavior)
+### Agent Delegation Pattern
 
-The `build` and `plan` primary agents are configured as **orchestrators**, not
-executors. Their job is to recognize task intent and immediately route to the
-appropriate Copilot subagent. This is enforced via the `instructions` array in
-`opencode.jsonc` — these instructions are **additive** (appended to the
-agent's built-in prompt), not replacements.
+| User Intent | Primary Agent | Model | Subagents Invoked |
+|-------------|--------------|-------|-------------------|
+| Complex task / `ultrawork` | Sisyphus | Kimi K2.6 | Hephaestus, Oracle, Librarian, Explore (parallel) |
+| Plan a feature | Prometheus | Kimi K2.6 | Metis (plan review) |
+| Execute plan | Sisyphus | Kimi K2.6 | Category-selected specialists |
+| Review code | Momus | Copilot GPT-5.4 | — |
+| Debug architecture | Oracle | Copilot GPT-5.4 | — |
+| Grep codebase | Explore | Copilot Haiku | — |
+| Git operations | Git Master (skill) | Copilot Haiku | — |
 
-| User Intent | Primary Agent Action | Subagent Invoked |
-|-------------|---------------------|------------------|
-| Plan a feature/fix | Auto triggers `/plan` | `@planner` (Copilot claude-opus-4.6) |
-| Implement something | Auto triggers `/do` | `@executor` (Copilot gpt-5.4) |
-| Review code | Auto triggers `/review-code` | `@code-reviewer` (Copilot claude-opus-4.6) |
-| Commit changes | Auto triggers `@commit` | `@commit` (Copilot claude-haiku-4.5) |
-| Git operations | Delegates to `@git-master` | `@git-master` (Copilot claude-haiku-4.5) |
-
-**This ensures:**
-
-- Heavy lifting always runs on Copilot (free)
-- Kimi only pays for the single orchestration turn (~$0.002)
-- No manual subagent invocation required from the user
-
-### Required Complex-Task Flow
-
-For complex tasks, the workflow enforces:
-
-```text
-plan -> native plan review -> Plannotator human approval -> execution -> code review
-```
-
-| Stage | Native Agent | Model | Purpose |
-|-------|-------------|-------|---------|
-| Planning | `@planner` | `github-copilot/claude-opus-4.6` | Write implementation plans |
-| Plan critique | `@plan-reviewer` | `github-copilot/gpt-5.4` | Critique plans before approval |
-| Execution | `@executor` | `github-copilot/gpt-5.4` | Execute approved plans |
-| Final review | `@code-reviewer` | `github-copilot/claude-opus-4.6` | Structured code review |
-
-### Native Agents
-
-| Agent | Model | Purpose | Invocation |
-|-------|-------|---------|------------|
-| `@planner` | `github-copilot/claude-opus-4.6` | Write implementation plans with problem framing | `/plan` or `@planner` |
-| `@plan-reviewer` | `github-copilot/gpt-5.4` | Critique plans for executability and gaps | Built into `/plan` flow |
-| `@executor` | `github-copilot/gpt-5.4` | Execute approved plans with verification | `/do` or `@executor` |
-| `@code-reviewer` | `github-copilot/claude-opus-4.6` | Structured code review with findings-first output | `/review-code` or `@code-reviewer` |
-| `@commit` | `github-copilot/claude-haiku-4.5` | Conventional commit generation from diffs | `@commit` |
-| `@git-master` | `github-copilot/claude-haiku-4.5` | Git operations, atomic commits, rebasing | `@git-master` |
-| `@docs-writer` | (default) | Automated documentation generation and maintenance | `@docs-writer` |
-
-**Primary Agent Configuration:** `opencode.jsonc` configures `build` and `plan`
-categories with `f5ai-moonshot/Kimi-K2.6` as the daily driver. All heavy lifting
-is delegated to Copilot subagents via slash commands.
-
-### Fallback Chain (Emergency Only)
-
-If the primary agent fails, the fallback chain resolves in order:
-
-1. `github-copilot/gpt-5.4` (free)
-2. `f5ai-openai/gpt-5` ($1.25/$10)
-3. `codeburro-qwen/qwen-3.6` (free)
-
-Under normal usage, you should never hit F5AI fallbacks.
-
-### Legacy Oh-My-OpenCode Agents (Dormant)
-
-The following agents are defined in `oh-my-openagent.jsonc` for reference but
-are not active since the plugin is disabled:
-
-- `explore` - Codebase investigation
-- `librarian` - External documentation
-- `oracle` - Architecture consultation
-- `prometheus` - Strategic planning
-- `sisyphus` - Task execution
-- `metis` - Plan gap analyzer
-- `momus` - Ruthless reviewer
-- `atlas` - Todo orchestration
-- `hephaestus` - Autonomous deep worker
-
-The native agents intentionally preserve exact high-value prompt text from
-oh-my-openagent where behavior quality depends on it. Only infrastructure-
-dependent sections are removed or adapted.
-
-### Workflow Decision Guide
-
-```text
-Need to plan something?
-└── /plan or @planner (equivalent — interview-first, auto-saves plan, dispatches plan-reviewer)
-
-Need to execute a plan?
-├── Approved plan exists? → /do (native executor agent)
-└── Need to plan first? → /plan first, then /do
-
-Need code review?
-├── After implementation → /review-code (native code-reviewer agent)
-
-Need to commit?
-├── Use @commit agent
-└── ALWAYS use verification-before-completion skill
-
-Need code intelligence?
-├── Use native lsp_* tools (lsp_goto_definition, lsp_find_references, lsp_rename)
-└── Use Grep, ast_grep_search for pattern matching
-```
-
-### Native Workflow Commands
+### Workflow Commands
 
 | Command | Agent | Purpose |
 |---------|-------|---------|
-| `/plan` | Native plan agent with Prometheus prompt | Interview-first planning, auto-saves to `.opencode/plans/`, dispatches plan-reviewer |
-| `/do` | `@executor` | Execute approved plans |
-| `/review-code` | `@code-reviewer` | Final code review stage |
+| `ultrawork` / `ulw` | Sisyphus | Autonomous execution with full orchestration |
+| `/start-work` | Prometheus | Interview-driven planning before execution |
+| `/init-deep` | — | Generate hierarchical AGENTS.md files |
+| `/ralph-loop` | Sisyphus | Self-referential loop until completion |
+| `/review-code` | Momus | Ruthless code review |
+
+### Background Tasks vs Subagents
+
+**Preference: Explicit subagent calls over background tasks.**
+
+oh-my-openagent's `task()` tool can run agents in parallel via background tasks.
+However, background tasks consume tokens from the orchestrator model (Kimi).
+To minimize costs:
+
+1. **Sisyphus explicitly delegates** to @executor, @planner, @code-reviewer via
+   native OpenCode subagents when possible
+2. **Category routing** sends specialist work to Copilot models automatically
+3. **Background concurrency** is capped at 2 global / 5 Copilot to prevent
+   runaway usage
+4. **Subagent calls** via `@agent` do not count against background task
+   concurrency
+
+### Legacy Native Agents (Dormant)
+
+The following native OpenCode agents were previously configured in
+`opencode.jsonc` but have been commented out to avoid duplication with
+oh-my-openagent:
+
+- `build` (native, commented out) → Replaced by Sisyphus
+- `plan` (native, commented out) → Replaced by Prometheus
+
+Native agents `@commit` and `@git-master` remain available for explicit
+invocation.
 
 **Anti-Patterns to Avoid**:
 
@@ -339,7 +275,8 @@ staging them.
   created automatically if needed)
 - Include: objectives, step-by-step breakdown, dependencies, success criteria
 - Plans should be optimized for coding agent implementation
-- **Default behavior for planning agents: create plan document in `.opencode/plans/`**
+- **Default behavior for planning agents:** create plan document in
+  `.opencode/plans/`
 - Plan files are temporary working documents and excluded from version control
 
 ### Prompt Preservation Policy
@@ -347,11 +284,6 @@ staging them.
 The native custom agents intentionally preserve exact high-value prompt text
 from oh-my-openagent where behavior quality depends on it. Only infrastructure-
 dependent sections are removed or adapted.
-
-### Dormant Reference File
-
-The `oh-my-openagent.jsonc` file is kept for reference and possible future
-reuse. The oh-my-openagent plugin itself remains disabled in `opencode.jsonc`.
 
 ## Context Preservation & Memory Management
 
