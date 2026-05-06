@@ -55,14 +55,15 @@ export async function loadEnvVariables(config: EnvLoaderConfig = {}): Promise<Re
         const trimmed = line.trim()
         if (trimmed && !trimmed.startsWith('#') && trimmed.includes('=')) {
           const [key, ...valueParts] = trimmed.split('=')
+          const cleanKey = key.trim()
           const value = valueParts.join('=').trim()
           
-          // Remove quotes if present
-          const cleanValue = value.replace(/^["']|["']$/g, '')
+          // Remove quotes only if they match ("value" or 'value', not "value')
+          const cleanValue = /^(["'])(.*)\1$/.test(value) ? value.slice(1, -1) : value
           
-          if (key && (override || !process.env[key])) {
-            process.env[key] = cleanValue
-            loadedVars[key] = cleanValue
+          if (cleanKey && (override || !process.env[cleanKey])) {
+            process.env[cleanKey] = cleanValue
+            loadedVars[cleanKey] = cleanValue
             
             if (verbose) {
               console.log(`Loaded ${key} from ${envPath}`)
