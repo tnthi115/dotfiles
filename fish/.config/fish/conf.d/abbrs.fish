@@ -100,7 +100,7 @@ abbr -a -- bs 'brew search'
 abbr -a -- bl 'brew deps --formula --for-each $(brew leaves) | sed "s/^.*:/$(tput setaf 4)&$(tput sgr0)/"'
 abbr -a -- bd 'brew deps --include-build --tree $(brew leaves)'
 
-abbr -a -- oc opencode
+abbr -a -- oc 'opencode --port'
 abbr -a -- ocup 'echo "Updating OpenCode..." && brew upgrade opencode || true && echo "Updating OpenCode plugins..." && npm update --prefix ~/.cache/opencode 2>/dev/null || true && echo "Updating superpowers..." && git -C ~/.config/opencode/superpowers pull --quiet 2>/dev/null || true'
 
 # function abbreviations

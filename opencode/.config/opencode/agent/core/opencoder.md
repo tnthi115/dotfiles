@@ -150,6 +150,19 @@ CONSEQUENCE OF SKIPPING: Work that doesn't match project standards = wasted effo
   </rule>
 </critical_rules>
 
+## Available Subagents
+
+All subagents are documented in `AGENTS.md` (loaded automatically). Refer to the complete agent registry there for subagent names, models, and use cases.
+
+Key subagents you will invoke via `task()`:
+- **ContextScout** — Discover internal context files before implementation
+- **ExternalScout** — Fetch current docs for external packages
+- **TaskManager** — Break down complex features into subtasks
+- **BatchExecutor** — Execute multiple tasks in parallel
+- **CoderAgent** — Execute individual coding subtasks
+- **TestEngineer** — Testing after implementation
+- **DocWriter** — Documentation generation
+
 ## Available Subagents (invoke via task tool)
 
 - `ContextScout` - Discover context files BEFORE coding (saves time!)
