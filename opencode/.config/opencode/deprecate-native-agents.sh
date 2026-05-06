@@ -1,8 +1,9 @@
 #!/bin/bash
+set -e
 # OAC Native Agent Deprecation Script
 # Run this to hide/archive native agents you don't need anymore
 
-cd ~/dotfiles/opencode/.config/opencode
+cd ~/dotfiles/opencode/.config/opencode || exit 1
 
 # Create archive directory
 mkdir -p agent/.archive
@@ -52,7 +53,7 @@ for agent in "${KEEP[@]}"; do
 done
 
 echo ""
-read -p "Proceed with archiving? (yes/no): " confirm
+read -rp "Proceed with archiving? (yes/no): " confirm
 
 if [ "$confirm" != "yes" ]; then
     echo "Aborted. No changes made."
@@ -80,7 +81,7 @@ done
 
 echo ""
 echo "Restowing configuration..."
-cd ~/dotfiles
+cd ~/dotfiles || exit 1
 stow --restow opencode
 
 echo ""
@@ -96,10 +97,10 @@ echo "  cd ~/dotfiles && stow --restow opencode"
 echo ""
 echo "Current agent status:"
 echo "  OAC agents: agent/core/"
-ls agent/core/ 2>/dev/null | sed 's/^/    - /'
+for f in agent/core/*.md; do [ -f "$f" ] && echo "    - $(basename "$f")"; done
 echo ""
 echo "  Native agents (kept): agent/"
-ls agent/*.md 2>/dev/null | xargs -n1 basename | sed 's/^/    - /'
+for f in agent/*.md; do [ -f "$f" ] && echo "    - $(basename "$f")"; done
 echo ""
 echo "  Native agents (archived): agent/.archive/"
-ls agent/.archive/*.md 2>/dev/null | xargs -n1 basename | sed 's/^/    - /'
+for f in agent/.archive/*.md; do [ -f "$f" ] && echo "    - $(basename "$f")"; done

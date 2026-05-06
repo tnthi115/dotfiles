@@ -463,9 +463,9 @@ function cmdValidate(feature?: string): void {
         if (visited.has(seq)) return false;
         visited.add(seq);
 
-        const task = subtasks.find(t => t.seq === seq);
-        if (task) {
-          for (const dep of task.depends_on) {
+        const depTask = subtasks.find(t => t.seq === seq);
+        if (depTask) {
+          for (const dep of depTask.depends_on) {
             if (checkCircular(dep, [...path, seq])) return true;
           }
         }
