@@ -199,6 +199,11 @@ and parallel execution
 | **Reviewer** | `github-copilot/claude-opus-4.6` | Code review | Pattern-based reviews |
 | **TestEngineer** | `github-copilot/gpt-5.4` | Test writing | TDD workflows |
 | **BuildAgent** | `github-copilot/gpt-5.3-codex` | Build validation | Type checking, linting |
+| **DocWriter** | `github-copilot/gemini-3-flash-preview` | Documentation generation | Docs, READMEs, guides |
+| **DevOpsSpecialist** | `github-copilot/gpt-5.4` | CI/CD, infrastructure, deployment | Pipeline configs, IaC |
+| **FrontendSpecialist** | `github-copilot/gemini-3.1-pro-preview` | UI/UX, React, CSS, design systems | Frontend components |
+| **ContextOrganizer** | `f5ai-moonshot/Kimi-K2.6` | Context file management | Harvest, extract, organize |
+| **SystemBuilder** | `github-copilot/gpt-5.4` | Multi-component system design | Architecture, scaffolding |
 
 **OAC Commands**:
 
