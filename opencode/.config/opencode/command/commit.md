@@ -1,6 +1,6 @@
 ---
 description: Analyze staged changes, generate a Conventional Commit message, and commit
-agent: commit
+agent: git-master
 subtask: true
 ---
 
